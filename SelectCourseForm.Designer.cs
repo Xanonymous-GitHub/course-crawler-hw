@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectCourseForm));
             this.courseGridView = new System.Windows.Forms.DataGridView();
             this.coursePanel = new System.Windows.Forms.Panel();
+            this.submitCourseSelectionButton = new System.Windows.Forms.Button();
+            this.getCourseSelectResultbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.courseGridView)).BeginInit();
             this.coursePanel.SuspendLayout();
             this.SuspendLayout();
@@ -46,23 +48,43 @@
             this.courseGridView.ReadOnly = true;
             this.courseGridView.RowHeadersWidth = 51;
             this.courseGridView.RowTemplate.Height = 27;
-            this.courseGridView.Size = new System.Drawing.Size(982, 703);
+            this.courseGridView.Size = new System.Drawing.Size(1238, 563);
             this.courseGridView.TabIndex = 0;
             // 
             // coursePanel
             // 
             this.coursePanel.Controls.Add(this.courseGridView);
-            this.coursePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.coursePanel.Location = new System.Drawing.Point(0, 0);
+            this.coursePanel.Location = new System.Drawing.Point(12, 12);
             this.coursePanel.Name = "coursePanel";
-            this.coursePanel.Size = new System.Drawing.Size(982, 703);
+            this.coursePanel.Size = new System.Drawing.Size(1238, 563);
             this.coursePanel.TabIndex = 1;
+            // 
+            // submitCourseSelectionButton
+            // 
+            this.submitCourseSelectionButton.Enabled = false;
+            this.submitCourseSelectionButton.Location = new System.Drawing.Point(742, 632);
+            this.submitCourseSelectionButton.Name = "submitCourseSelectionButton";
+            this.submitCourseSelectionButton.Size = new System.Drawing.Size(251, 59);
+            this.submitCourseSelectionButton.TabIndex = 2;
+            this.submitCourseSelectionButton.Text = "確認送出";
+            this.submitCourseSelectionButton.UseVisualStyleBackColor = true;
+            // 
+            // getCourseSelectResultbutton
+            // 
+            this.getCourseSelectResultbutton.Location = new System.Drawing.Point(999, 632);
+            this.getCourseSelectResultbutton.Name = "getCourseSelectResultbutton";
+            this.getCourseSelectResultbutton.Size = new System.Drawing.Size(251, 59);
+            this.getCourseSelectResultbutton.TabIndex = 3;
+            this.getCourseSelectResultbutton.Text = "查看選課結果";
+            this.getCourseSelectResultbutton.UseVisualStyleBackColor = true;
             // 
             // SelectCourseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 703);
+            this.ClientSize = new System.Drawing.Size(1262, 703);
+            this.Controls.Add(this.getCourseSelectResultbutton);
+            this.Controls.Add(this.submitCourseSelectionButton);
             this.Controls.Add(this.coursePanel);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -81,6 +103,8 @@
 
         private System.Windows.Forms.DataGridView courseGridView;
         private System.Windows.Forms.Panel coursePanel;
+        private System.Windows.Forms.Button submitCourseSelectionButton;
+        private System.Windows.Forms.Button getCourseSelectResultbutton;
     }
 }
 
