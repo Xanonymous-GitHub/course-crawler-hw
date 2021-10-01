@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CourseCrawler
 {
-    public partial class Form1 : Form
+    public partial class SelectCourseForm : Form
     {
-        public Form1()
+        public SelectCourseForm()
         {
             InitializeComponent();
         }
