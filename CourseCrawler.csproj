@@ -105,6 +105,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SelectCourseForm.resx">
+      <DependentUpon>SelectCourseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="CourseCrawler.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
