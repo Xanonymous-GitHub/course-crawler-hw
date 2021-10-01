@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CourseCrawler")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP")]
+[assembly: AssemblyCompany("Xanonymous")]
 [assembly: AssemblyProduct("CourseCrawler")]
-[assembly: AssemblyCopyright("Copyright © HP 2021")]
+[assembly: AssemblyCopyright("Copyright © Xanonymous 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
