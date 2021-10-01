@@ -44,51 +44,56 @@
             this.courseGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.courseGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.courseGridView.Location = new System.Drawing.Point(0, 0);
+            this.courseGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.courseGridView.Name = "courseGridView";
             this.courseGridView.ReadOnly = true;
             this.courseGridView.RowHeadersWidth = 51;
             this.courseGridView.RowTemplate.Height = 27;
-            this.courseGridView.Size = new System.Drawing.Size(1238, 563);
+            this.courseGridView.Size = new System.Drawing.Size(1238, 557);
             this.courseGridView.TabIndex = 0;
             // 
             // coursePanel
             // 
             this.coursePanel.Controls.Add(this.courseGridView);
-            this.coursePanel.Location = new System.Drawing.Point(12, 12);
+            this.coursePanel.Location = new System.Drawing.Point(12, 13);
+            this.coursePanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.coursePanel.Name = "coursePanel";
-            this.coursePanel.Size = new System.Drawing.Size(1238, 563);
+            this.coursePanel.Size = new System.Drawing.Size(1238, 557);
             this.coursePanel.TabIndex = 1;
             // 
             // submitCourseSelectionButton
             // 
             this.submitCourseSelectionButton.Enabled = false;
-            this.submitCourseSelectionButton.Location = new System.Drawing.Point(742, 632);
+            this.submitCourseSelectionButton.Location = new System.Drawing.Point(680, 615);
+            this.submitCourseSelectionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.submitCourseSelectionButton.Name = "submitCourseSelectionButton";
-            this.submitCourseSelectionButton.Size = new System.Drawing.Size(251, 59);
+            this.submitCourseSelectionButton.Size = new System.Drawing.Size(282, 75);
             this.submitCourseSelectionButton.TabIndex = 2;
             this.submitCourseSelectionButton.Text = "確認送出";
             this.submitCourseSelectionButton.UseVisualStyleBackColor = true;
             // 
             // getCourseSelectResultbutton
             // 
-            this.getCourseSelectResultbutton.Location = new System.Drawing.Point(999, 632);
+            this.getCourseSelectResultbutton.Location = new System.Drawing.Point(968, 615);
+            this.getCourseSelectResultbutton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.getCourseSelectResultbutton.Name = "getCourseSelectResultbutton";
-            this.getCourseSelectResultbutton.Size = new System.Drawing.Size(251, 59);
+            this.getCourseSelectResultbutton.Size = new System.Drawing.Size(282, 75);
             this.getCourseSelectResultbutton.TabIndex = 3;
             this.getCourseSelectResultbutton.Text = "查看選課結果";
             this.getCourseSelectResultbutton.UseVisualStyleBackColor = true;
             // 
             // SelectCourseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 703);
-            this.Controls.Add(this.getCourseSelectResultbutton);
             this.Controls.Add(this.submitCourseSelectionButton);
             this.Controls.Add(this.coursePanel);
+            this.Controls.Add(this.getCourseSelectResultbutton);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "SelectCourseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

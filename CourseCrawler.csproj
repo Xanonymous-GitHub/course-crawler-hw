@@ -50,6 +50,12 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>CourseCrawler.pfx</AssemblyOriginatorKeyFile>
     <DelaySign>true</DelaySign>
+    <DebugType>none</DebugType>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <Authors>TU-Lin Xanonymous, 108820003 @ EECS-CSIE-junior</Authors>
+    <PackageIcon>web-crawler.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <NeutralLanguage>zh-TW</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System">
@@ -90,6 +96,12 @@
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+    </None>
+    <None Update="web-crawler.png">
+      <Pack>True</Pack>
     </None>
   </ItemGroup>
 </Project>
