@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectCourseForm));
             this.courseGridView = new System.Windows.Forms.DataGridView();
-            this.coursePanel = new System.Windows.Forms.Panel();
-            this.submitCourseSelectionButton = new System.Windows.Forms.Button();
-            this.getCourseSelectResultbutton = new System.Windows.Forms.Button();
             this.CourseSelectionBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CourseNumberColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CourseNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +57,9 @@
             this.RemarkColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AttachedPeopleAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsExperimentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coursePanel = new System.Windows.Forms.Panel();
+            this.submitCourseSelectionButton = new System.Windows.Forms.Button();
+            this.getCourseSelectResultbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.courseGridView)).BeginInit();
             this.coursePanel.SuspendLayout();
             this.SuspendLayout();
@@ -99,38 +102,8 @@
             this.courseGridView.RowHeadersVisible = false;
             this.courseGridView.RowHeadersWidth = 51;
             this.courseGridView.RowTemplate.Height = 27;
-            this.courseGridView.Size = new System.Drawing.Size(1238, 557);
+            this.courseGridView.Size = new System.Drawing.Size(1458, 557);
             this.courseGridView.TabIndex = 0;
-            // 
-            // coursePanel
-            // 
-            this.coursePanel.Controls.Add(this.courseGridView);
-            this.coursePanel.Location = new System.Drawing.Point(12, 13);
-            this.coursePanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.coursePanel.Name = "coursePanel";
-            this.coursePanel.Size = new System.Drawing.Size(1238, 557);
-            this.coursePanel.TabIndex = 1;
-            // 
-            // submitCourseSelectionButton
-            // 
-            this.submitCourseSelectionButton.Enabled = false;
-            this.submitCourseSelectionButton.Location = new System.Drawing.Point(680, 615);
-            this.submitCourseSelectionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.submitCourseSelectionButton.Name = "submitCourseSelectionButton";
-            this.submitCourseSelectionButton.Size = new System.Drawing.Size(282, 75);
-            this.submitCourseSelectionButton.TabIndex = 2;
-            this.submitCourseSelectionButton.Text = "確認送出";
-            this.submitCourseSelectionButton.UseVisualStyleBackColor = true;
-            // 
-            // getCourseSelectResultbutton
-            // 
-            this.getCourseSelectResultbutton.Location = new System.Drawing.Point(968, 615);
-            this.getCourseSelectResultbutton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.getCourseSelectResultbutton.Name = "getCourseSelectResultbutton";
-            this.getCourseSelectResultbutton.Size = new System.Drawing.Size(282, 75);
-            this.getCourseSelectResultbutton.TabIndex = 3;
-            this.getCourseSelectResultbutton.Text = "查看選課結果";
-            this.getCourseSelectResultbutton.UseVisualStyleBackColor = true;
             // 
             // CourseSelectionBoxColumn
             // 
@@ -144,58 +117,60 @@
             // 
             // CourseNumberColumn
             // 
-            this.CourseNumberColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CourseNumberColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.CourseNumberColumn.HeaderText = "課號";
             this.CourseNumberColumn.MinimumWidth = 6;
             this.CourseNumberColumn.Name = "CourseNumberColumn";
             this.CourseNumberColumn.ReadOnly = true;
             this.CourseNumberColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseNumberColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseNumberColumn.Width = 45;
+            this.CourseNumberColumn.Width = 125;
             // 
             // CourseNameColumn
             // 
-            this.CourseNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CourseNameColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.CourseNameColumn.HeaderText = "課程名稱";
             this.CourseNameColumn.MinimumWidth = 6;
             this.CourseNameColumn.Name = "CourseNameColumn";
             this.CourseNameColumn.ReadOnly = true;
             this.CourseNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseNameColumn.Width = 75;
+            this.CourseNameColumn.Width = 200;
             // 
             // CourseLevelColumn
             // 
             this.CourseLevelColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.CourseLevelColumn.HeaderText = "階段";
-            this.CourseLevelColumn.MinimumWidth = 6;
+            this.CourseLevelColumn.MinimumWidth = 40;
             this.CourseLevelColumn.Name = "CourseLevelColumn";
             this.CourseLevelColumn.ReadOnly = true;
             this.CourseLevelColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseLevelColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseLevelColumn.Width = 45;
+            this.CourseLevelColumn.Width = 41;
             // 
             // CourseCreditColumn
             // 
             this.CourseCreditColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.CourseCreditColumn.HeaderText = "學分";
-            this.CourseCreditColumn.MinimumWidth = 6;
+            this.CourseCreditColumn.MinimumWidth = 40;
             this.CourseCreditColumn.Name = "CourseCreditColumn";
             this.CourseCreditColumn.ReadOnly = true;
             this.CourseCreditColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseCreditColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseCreditColumn.Width = 45;
+            this.CourseCreditColumn.Width = 41;
             // 
             // CourseHourColumn
             // 
             this.CourseHourColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.CourseHourColumn.HeaderText = "時數";
-            this.CourseHourColumn.MinimumWidth = 6;
+            this.CourseHourColumn.MinimumWidth = 40;
             this.CourseHourColumn.Name = "CourseHourColumn";
             this.CourseHourColumn.ReadOnly = true;
             this.CourseHourColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseHourColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseHourColumn.Width = 45;
+            this.CourseHourColumn.Width = 41;
             // 
             // CourseTypeColumn
             // 
@@ -210,108 +185,108 @@
             // 
             // CourseTeacherColumn
             // 
-            this.CourseTeacherColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CourseTeacherColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.CourseTeacherColumn.HeaderText = "教師";
-            this.CourseTeacherColumn.MinimumWidth = 6;
+            this.CourseTeacherColumn.MinimumWidth = 80;
             this.CourseTeacherColumn.Name = "CourseTeacherColumn";
             this.CourseTeacherColumn.ReadOnly = true;
             this.CourseTeacherColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseTeacherColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseTeacherColumn.Width = 45;
+            this.CourseTeacherColumn.Width = 80;
             // 
             // SundayColumn
             // 
             this.SundayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.SundayColumn.HeaderText = "日";
-            this.SundayColumn.MinimumWidth = 6;
+            this.SundayColumn.MinimumWidth = 60;
             this.SundayColumn.Name = "SundayColumn";
             this.SundayColumn.ReadOnly = true;
             this.SundayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.SundayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SundayColumn.Width = 30;
+            this.SundayColumn.Width = 60;
             // 
             // MondayColumn
             // 
             this.MondayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.MondayColumn.HeaderText = "一";
-            this.MondayColumn.MinimumWidth = 6;
+            this.MondayColumn.MinimumWidth = 60;
             this.MondayColumn.Name = "MondayColumn";
             this.MondayColumn.ReadOnly = true;
             this.MondayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.MondayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.MondayColumn.Width = 30;
+            this.MondayColumn.Width = 60;
             // 
             // TuesdayColumn
             // 
             this.TuesdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.TuesdayColumn.HeaderText = "二";
-            this.TuesdayColumn.MinimumWidth = 6;
+            this.TuesdayColumn.MinimumWidth = 60;
             this.TuesdayColumn.Name = "TuesdayColumn";
             this.TuesdayColumn.ReadOnly = true;
             this.TuesdayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.TuesdayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TuesdayColumn.Width = 30;
+            this.TuesdayColumn.Width = 60;
             // 
             // WednesdayColumn
             // 
             this.WednesdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.WednesdayColumn.HeaderText = "三";
-            this.WednesdayColumn.MinimumWidth = 6;
+            this.WednesdayColumn.MinimumWidth = 60;
             this.WednesdayColumn.Name = "WednesdayColumn";
             this.WednesdayColumn.ReadOnly = true;
             this.WednesdayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.WednesdayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.WednesdayColumn.Width = 30;
+            this.WednesdayColumn.Width = 60;
             // 
             // ThursdayColumn
             // 
             this.ThursdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.ThursdayColumn.HeaderText = "四";
-            this.ThursdayColumn.MinimumWidth = 6;
+            this.ThursdayColumn.MinimumWidth = 60;
             this.ThursdayColumn.Name = "ThursdayColumn";
             this.ThursdayColumn.ReadOnly = true;
             this.ThursdayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ThursdayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ThursdayColumn.Width = 30;
+            this.ThursdayColumn.Width = 60;
             // 
             // FridayColumn
             // 
             this.FridayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.FridayColumn.HeaderText = "五";
-            this.FridayColumn.MinimumWidth = 6;
+            this.FridayColumn.MinimumWidth = 60;
             this.FridayColumn.Name = "FridayColumn";
             this.FridayColumn.ReadOnly = true;
             this.FridayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.FridayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.FridayColumn.Width = 30;
+            this.FridayColumn.Width = 60;
             // 
             // SaturdayColumn
             // 
             this.SaturdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.SaturdayColumn.HeaderText = "六";
-            this.SaturdayColumn.MinimumWidth = 6;
+            this.SaturdayColumn.MinimumWidth = 60;
             this.SaturdayColumn.Name = "SaturdayColumn";
             this.SaturdayColumn.ReadOnly = true;
             this.SaturdayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.SaturdayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SaturdayColumn.Width = 30;
+            this.SaturdayColumn.Width = 60;
             // 
             // ClassroomColumn
             // 
-            this.ClassroomColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.ClassroomColumn.HeaderText = "教室";
-            this.ClassroomColumn.MinimumWidth = 6;
+            this.ClassroomColumn.MinimumWidth = 200;
             this.ClassroomColumn.Name = "ClassroomColumn";
             this.ClassroomColumn.ReadOnly = true;
             this.ClassroomColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ClassroomColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ClassroomColumn.Width = 45;
+            this.ClassroomColumn.Width = 200;
             // 
             // JoinedPeopleAmountColumn
             // 
             this.JoinedPeopleAmountColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.JoinedPeopleAmountColumn.HeaderText = "人";
-            this.JoinedPeopleAmountColumn.MinimumWidth = 6;
+            this.JoinedPeopleAmountColumn.MinimumWidth = 30;
             this.JoinedPeopleAmountColumn.Name = "JoinedPeopleAmountColumn";
             this.JoinedPeopleAmountColumn.ReadOnly = true;
             this.JoinedPeopleAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -322,7 +297,7 @@
             // 
             this.GivenUpPeopleAmountColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.GivenUpPeopleAmountColumn.HeaderText = "撤";
-            this.GivenUpPeopleAmountColumn.MinimumWidth = 6;
+            this.GivenUpPeopleAmountColumn.MinimumWidth = 30;
             this.GivenUpPeopleAmountColumn.Name = "GivenUpPeopleAmountColumn";
             this.GivenUpPeopleAmountColumn.ReadOnly = true;
             this.GivenUpPeopleAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -338,7 +313,7 @@
             this.CourseAssistantColumn.ReadOnly = true;
             this.CourseAssistantColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseAssistantColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseAssistantColumn.Width = 75;
+            this.CourseAssistantColumn.Width = 54;
             // 
             // TeachingLanguageColumn
             // 
@@ -349,7 +324,7 @@
             this.TeachingLanguageColumn.ReadOnly = true;
             this.TeachingLanguageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.TeachingLanguageColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TeachingLanguageColumn.Width = 75;
+            this.TeachingLanguageColumn.Width = 54;
             // 
             // OutlineAndProgressColumn
             // 
@@ -364,14 +339,13 @@
             // 
             // RemarkColumn
             // 
-            this.RemarkColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.RemarkColumn.HeaderText = "備註";
-            this.RemarkColumn.MinimumWidth = 6;
+            this.RemarkColumn.MinimumWidth = 200;
             this.RemarkColumn.Name = "RemarkColumn";
             this.RemarkColumn.ReadOnly = true;
             this.RemarkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.RemarkColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.RemarkColumn.Width = 41;
+            this.RemarkColumn.Width = 200;
             // 
             // AttachedPeopleAmountColumn
             // 
@@ -395,11 +369,41 @@
             this.IsExperimentColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.IsExperimentColumn.Width = 54;
             // 
+            // coursePanel
+            // 
+            this.coursePanel.Controls.Add(this.courseGridView);
+            this.coursePanel.Location = new System.Drawing.Point(12, 13);
+            this.coursePanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.coursePanel.Name = "coursePanel";
+            this.coursePanel.Size = new System.Drawing.Size(1458, 557);
+            this.coursePanel.TabIndex = 1;
+            // 
+            // submitCourseSelectionButton
+            // 
+            this.submitCourseSelectionButton.Enabled = false;
+            this.submitCourseSelectionButton.Location = new System.Drawing.Point(900, 615);
+            this.submitCourseSelectionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.submitCourseSelectionButton.Name = "submitCourseSelectionButton";
+            this.submitCourseSelectionButton.Size = new System.Drawing.Size(282, 75);
+            this.submitCourseSelectionButton.TabIndex = 2;
+            this.submitCourseSelectionButton.Text = "確認送出";
+            this.submitCourseSelectionButton.UseVisualStyleBackColor = true;
+            // 
+            // getCourseSelectResultbutton
+            // 
+            this.getCourseSelectResultbutton.Location = new System.Drawing.Point(1188, 615);
+            this.getCourseSelectResultbutton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.getCourseSelectResultbutton.Name = "getCourseSelectResultbutton";
+            this.getCourseSelectResultbutton.Size = new System.Drawing.Size(282, 75);
+            this.getCourseSelectResultbutton.TabIndex = 3;
+            this.getCourseSelectResultbutton.Text = "查看選課結果";
+            this.getCourseSelectResultbutton.UseVisualStyleBackColor = true;
+            // 
             // SelectCourseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1262, 703);
+            this.ClientSize = new System.Drawing.Size(1482, 703);
             this.Controls.Add(this.submitCourseSelectionButton);
             this.Controls.Add(this.coursePanel);
             this.Controls.Add(this.getCourseSelectResultbutton);
