@@ -11,5 +11,6 @@ namespace CourseCrawler
         public static readonly List<string> LanguageSymbols = new() { "", "中文", "英語" };
         public static readonly char NewLineChar = '\n';
         public static readonly char SpaceChar = ' ';
+        public static readonly char DiamondChar = '◆';
     }
 }

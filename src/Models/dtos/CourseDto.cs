@@ -67,7 +67,7 @@ namespace CourseCrawler
                 course.OutlineAndProgressUrl,
                 course.Remark,
                 course.AttachedStudentAmount,
-                course.IsExperiment ? "◆" : "",
+                course.IsExperiment ? Constants.DiamondChar.ToString() : "",
             };
         }
 
