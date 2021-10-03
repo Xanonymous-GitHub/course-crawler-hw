@@ -32,10 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectCourseForm));
-            this.courseGridView = new System.Windows.Forms.DataGridView();
-            this.coursePanel = new System.Windows.Forms.Panel();
-            this.submitCourseSelectionButton = new System.Windows.Forms.Button();
-            this.getCourseSelectResultbutton = new System.Windows.Forms.Button();
+            this.CourseGridView = new System.Windows.Forms.DataGridView();
             this.CourseSelectionBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CourseNumberColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CourseNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,16 +57,21 @@
             this.RemarkColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AttachedStudentAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsExperimentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.courseGridView)).BeginInit();
-            this.coursePanel.SuspendLayout();
+            this.CoursePanel = new System.Windows.Forms.Panel();
+            this.SubmitCourseSelectionButton = new System.Windows.Forms.Button();
+            this.GetCourseSelectResultbutton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.CourseGridView)).BeginInit();
+            this.CoursePanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // courseGridView
+            // CourseGridView
             // 
-            this.courseGridView.AllowUserToAddRows = false;
-            this.courseGridView.AllowUserToDeleteRows = false;
-            this.courseGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.courseGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CourseGridView.AllowUserToAddRows = false;
+            this.CourseGridView.AllowUserToDeleteRows = false;
+            this.CourseGridView.AllowUserToResizeColumns = false;
+            this.CourseGridView.AllowUserToResizeRows = false;
+            this.CourseGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CourseGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CourseSelectionBoxColumn,
             this.CourseNumberColumn,
             this.CourseNameColumn,
@@ -94,46 +96,16 @@
             this.RemarkColumn,
             this.AttachedStudentAmountColumn,
             this.IsExperimentColumn});
-            this.courseGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.courseGridView.Location = new System.Drawing.Point(0, 0);
-            this.courseGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.courseGridView.Name = "courseGridView";
-            this.courseGridView.ReadOnly = true;
-            this.courseGridView.RowHeadersVisible = false;
-            this.courseGridView.RowHeadersWidth = 51;
-            this.courseGridView.RowTemplate.Height = 27;
-            this.courseGridView.Size = new System.Drawing.Size(1458, 557);
-            this.courseGridView.TabIndex = 0;
-            // 
-            // coursePanel
-            // 
-            this.coursePanel.Controls.Add(this.courseGridView);
-            this.coursePanel.Location = new System.Drawing.Point(12, 13);
-            this.coursePanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.coursePanel.Name = "coursePanel";
-            this.coursePanel.Size = new System.Drawing.Size(1458, 557);
-            this.coursePanel.TabIndex = 1;
-            // 
-            // submitCourseSelectionButton
-            // 
-            this.submitCourseSelectionButton.Enabled = false;
-            this.submitCourseSelectionButton.Location = new System.Drawing.Point(900, 615);
-            this.submitCourseSelectionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.submitCourseSelectionButton.Name = "submitCourseSelectionButton";
-            this.submitCourseSelectionButton.Size = new System.Drawing.Size(282, 75);
-            this.submitCourseSelectionButton.TabIndex = 2;
-            this.submitCourseSelectionButton.Text = "確認送出";
-            this.submitCourseSelectionButton.UseVisualStyleBackColor = true;
-            // 
-            // getCourseSelectResultbutton
-            // 
-            this.getCourseSelectResultbutton.Location = new System.Drawing.Point(1188, 615);
-            this.getCourseSelectResultbutton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.getCourseSelectResultbutton.Name = "getCourseSelectResultbutton";
-            this.getCourseSelectResultbutton.Size = new System.Drawing.Size(282, 75);
-            this.getCourseSelectResultbutton.TabIndex = 3;
-            this.getCourseSelectResultbutton.Text = "查看選課結果";
-            this.getCourseSelectResultbutton.UseVisualStyleBackColor = true;
+            this.CourseGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CourseGridView.Location = new System.Drawing.Point(0, 0);
+            this.CourseGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CourseGridView.Name = "CourseGridView";
+            this.CourseGridView.ReadOnly = true;
+            this.CourseGridView.RowHeadersVisible = false;
+            this.CourseGridView.RowHeadersWidth = 51;
+            this.CourseGridView.RowTemplate.Height = 27;
+            this.CourseGridView.Size = new System.Drawing.Size(1458, 557);
+            this.CourseGridView.TabIndex = 0;
             // 
             // CourseSelectionBoxColumn
             // 
@@ -178,7 +150,7 @@
             this.CourseLevelColumn.ReadOnly = true;
             this.CourseLevelColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseLevelColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseLevelColumn.Width = 45;
+            this.CourseLevelColumn.Width = 41;
             // 
             // CourseCreditColumn
             // 
@@ -189,7 +161,7 @@
             this.CourseCreditColumn.ReadOnly = true;
             this.CourseCreditColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseCreditColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseCreditColumn.Width = 45;
+            this.CourseCreditColumn.Width = 41;
             // 
             // CourseHourColumn
             // 
@@ -200,7 +172,7 @@
             this.CourseHourColumn.ReadOnly = true;
             this.CourseHourColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseHourColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseHourColumn.Width = 45;
+            this.CourseHourColumn.Width = 41;
             // 
             // CourseTypeColumn
             // 
@@ -343,7 +315,7 @@
             this.TAsColumn.ReadOnly = true;
             this.TAsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.TAsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TAsColumn.Width = 75;
+            this.TAsColumn.Width = 54;
             // 
             // LanguageColumn
             // 
@@ -354,7 +326,7 @@
             this.LanguageColumn.ReadOnly = true;
             this.LanguageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.LanguageColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.LanguageColumn.Width = 75;
+            this.LanguageColumn.Width = 54;
             // 
             // OutlineAndProgressColumn
             // 
@@ -399,14 +371,44 @@
             this.IsExperimentColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.IsExperimentColumn.Width = 54;
             // 
+            // CoursePanel
+            // 
+            this.CoursePanel.Controls.Add(this.CourseGridView);
+            this.CoursePanel.Location = new System.Drawing.Point(12, 13);
+            this.CoursePanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CoursePanel.Name = "CoursePanel";
+            this.CoursePanel.Size = new System.Drawing.Size(1458, 557);
+            this.CoursePanel.TabIndex = 1;
+            // 
+            // SubmitCourseSelectionButton
+            // 
+            this.SubmitCourseSelectionButton.Enabled = false;
+            this.SubmitCourseSelectionButton.Location = new System.Drawing.Point(900, 615);
+            this.SubmitCourseSelectionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.SubmitCourseSelectionButton.Name = "SubmitCourseSelectionButton";
+            this.SubmitCourseSelectionButton.Size = new System.Drawing.Size(282, 75);
+            this.SubmitCourseSelectionButton.TabIndex = 2;
+            this.SubmitCourseSelectionButton.Text = "確認送出";
+            this.SubmitCourseSelectionButton.UseVisualStyleBackColor = true;
+            // 
+            // GetCourseSelectResultbutton
+            // 
+            this.GetCourseSelectResultbutton.Location = new System.Drawing.Point(1188, 615);
+            this.GetCourseSelectResultbutton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.GetCourseSelectResultbutton.Name = "GetCourseSelectResultbutton";
+            this.GetCourseSelectResultbutton.Size = new System.Drawing.Size(282, 75);
+            this.GetCourseSelectResultbutton.TabIndex = 3;
+            this.GetCourseSelectResultbutton.Text = "查看選課結果";
+            this.GetCourseSelectResultbutton.UseVisualStyleBackColor = true;
+            // 
             // SelectCourseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1482, 703);
-            this.Controls.Add(this.submitCourseSelectionButton);
-            this.Controls.Add(this.coursePanel);
-            this.Controls.Add(this.getCourseSelectResultbutton);
+            this.Controls.Add(this.SubmitCourseSelectionButton);
+            this.Controls.Add(this.CoursePanel);
+            this.Controls.Add(this.GetCourseSelectResultbutton);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -415,18 +417,19 @@
             this.Name = "SelectCourseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CourseCrawler by Xanonymous";
-            ((System.ComponentModel.ISupportInitialize)(this.courseGridView)).EndInit();
-            this.coursePanel.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.SelectCourseForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.CourseGridView)).EndInit();
+            this.CoursePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView courseGridView;
-        private System.Windows.Forms.Panel coursePanel;
-        private System.Windows.Forms.Button submitCourseSelectionButton;
-        private System.Windows.Forms.Button getCourseSelectResultbutton;
+        private System.Windows.Forms.DataGridView CourseGridView;
+        private System.Windows.Forms.Panel CoursePanel;
+        private System.Windows.Forms.Button SubmitCourseSelectionButton;
+        private System.Windows.Forms.Button GetCourseSelectResultbutton;
         private System.Windows.Forms.DataGridViewCheckBoxColumn CourseSelectionBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CourseNumberColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CourseNameColumn;

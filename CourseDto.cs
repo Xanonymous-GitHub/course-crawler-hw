@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CourseCrawler
+{
+    internal static class CourseDto
+    {
+        public static Course FromElementStrings(params string[] source)
+        {
+            source = source.Select(data => data.Trim()).ToArray();
+
+            return new Course
+                (
+                    serial: source[0],
+                    name: source[1],
+                    level: source[2],
+                    credit: source[3],
+                    hour: source[4],
+                    type: ToCourseTypeFromString(source[5]),
+                    teachers: source[6].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    mondayTimes: source[7].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    tuesdayTimes: source[8].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    wednesdayTimes: source[9].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    thursdayTimes: source[10].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    fridayTimes: source[11].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    saturdayTimes: source[12].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    sundayTimes: source[13].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    classrooms: source[14].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    studentAmount: source[15],
+                    givenUpStudentAmount: source[16],
+                    tas: source[17].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    language: ToCourseLanguageFromString(source[18]),
+                    outlineAndProgressUrl: source[19],
+                    remark: source[20],
+                    attachedStudentAmount: source[21],
+                    isExperiment: source[22] != ""
+                );
+        }
+
+        public static string[] ToStringList(Course course)
+        {
+            return new string[]
+            {
+                course.IsSelected.ToString(),
+                course.Serial,
+                course.Name,
+                course.Level,
+                course.Credit,
+                course.Hour,
+                course.Type.ToString(),
+                string.Join(Constants.NewLineChar, course.Teachers),
+                string.Join(Constants.NewLineChar, course.MondayTimes),
+                string.Join(Constants.NewLineChar, course.TuesdayTimes),
+                string.Join(Constants.NewLineChar, course.WednesdayTimes),
+                string.Join(Constants.NewLineChar, course.ThursdayTimes),
+                string.Join(Constants.NewLineChar, course.FridayTimes),
+                string.Join(Constants.NewLineChar, course.SaturdayTimes),
+                string.Join(Constants.NewLineChar, course.SundayTimes),
+                string.Join(Constants.NewLineChar, course.Classrooms),
+                course.StudentAmount,
+                course.GivenUpStudentAmount,
+                string.Join(Constants.NewLineChar, course.TAs),
+                course.Language.ToString(),
+                course.OutlineAndProgressUrl,
+                course.Remark,
+                course.AttachedStudentAmount,
+                course.IsExperiment ? "◆" : "",
+            };
+        }
+
+        public static CourseType ToCourseTypeFromString(string symbolText)
+        {
+            return (CourseType)Constants.CourseSymbols.IndexOf(symbolText);
+        }
+
+        public static string ToString(this CourseType courseType)
+        {
+            return Constants.CourseSymbols[(int)courseType];
+        }
+
+        public static CourseLanguage ToCourseLanguageFromString(string symbolText)
+        {
+            return (CourseLanguage)Constants.LanguageSymbols.IndexOf(symbolText);
+        }
+
+        public static string ToString(this CourseLanguage courseLanguage)
+        {
+            return Constants.LanguageSymbols[(int)courseLanguage];
+        }
+    }
+}
