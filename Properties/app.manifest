@@ -47,14 +47,14 @@
        應該在其 app.config 中將 'EnableWindowsFormsHighDpiAutoResizing' 設定為 'true'。
        
        將應用程式設定為感知長路徑。請參閱 https://docs.microsoft.com/windows/win32/fileio/maximum-file-path-limitation-->
-
+<!--
   <application xmlns="urn:schemas-microsoft-com:asm.v3">
     <windowsSettings>
       <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true</dpiAware>
       <longPathAware xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">true</longPathAware>
     </windowsSettings>
   </application>
-
+-->
   <!-- 啟用 Windows 通用控制項和對話方塊的佈景主題 (Windows XP 以後版本) -->
   <!--
   <dependency>

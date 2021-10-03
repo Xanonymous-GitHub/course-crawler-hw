@@ -25,6 +25,8 @@ namespace CourseCrawler
 
         private void SetupCourseGridView()
         {
+
+
             List<Course> courseRows = FetchCourseData(Constants.CoursePageUri);
 
             foreach (Course course in courseRows)

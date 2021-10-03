@@ -4,18 +4,18 @@ using HtmlAgilityPack;
 
 namespace CourseCrawler
 {
-    internal interface ICrawlerUseCase
-    {
-        HtmlDocument Do();
-    }
-
-    internal class CrawlerUseCase : ICrawlerUseCase
+    internal class CrawlerUseCase : IUseCase<HtmlDocument>
     {
         public CrawlerUseCase(Uri uri)
         {
             _uri = uri;
-            _webClient = new HtmlWeb();
-            _webClient.OverrideEncoding = Encoding.Default;
+
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+            _webClient = new HtmlWeb
+            {
+                OverrideEncoding = Encoding.GetEncoding(950)
+            };
         }
 
         private readonly Uri _uri;

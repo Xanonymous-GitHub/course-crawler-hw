@@ -50,20 +50,20 @@ namespace CourseCrawler
                 course.Level,
                 course.Credit,
                 course.Hour,
-                course.Type.ToString(),
+                course.Type.ToOriginString(),
                 string.Join(Constants.NewLineChar, course.Teachers),
-                string.Join(Constants.NewLineChar, course.MondayTimes),
-                string.Join(Constants.NewLineChar, course.TuesdayTimes),
-                string.Join(Constants.NewLineChar, course.WednesdayTimes),
-                string.Join(Constants.NewLineChar, course.ThursdayTimes),
-                string.Join(Constants.NewLineChar, course.FridayTimes),
-                string.Join(Constants.NewLineChar, course.SaturdayTimes),
-                string.Join(Constants.NewLineChar, course.SundayTimes),
+                string.Join(Constants.SpaceChar, course.MondayTimes),
+                string.Join(Constants.SpaceChar, course.TuesdayTimes),
+                string.Join(Constants.SpaceChar, course.WednesdayTimes),
+                string.Join(Constants.SpaceChar, course.ThursdayTimes),
+                string.Join(Constants.SpaceChar, course.FridayTimes),
+                string.Join(Constants.SpaceChar, course.SaturdayTimes),
+                string.Join(Constants.SpaceChar, course.SundayTimes),
                 string.Join(Constants.NewLineChar, course.Classrooms),
                 course.StudentAmount,
                 course.GivenUpStudentAmount,
                 string.Join(Constants.NewLineChar, course.TAs),
-                course.Language.ToString(),
+                course.Language.ToOriginString(),
                 course.OutlineAndProgressUrl,
                 course.Remark,
                 course.AttachedStudentAmount,
@@ -76,7 +76,7 @@ namespace CourseCrawler
             return (CourseType)Constants.CourseSymbols.IndexOf(symbolText);
         }
 
-        public static string ToString(this CourseType courseType)
+        public static string ToOriginString(this CourseType courseType)
         {
             return Constants.CourseSymbols[(int)courseType];
         }
@@ -86,7 +86,7 @@ namespace CourseCrawler
             return (CourseLanguage)Constants.LanguageSymbols.IndexOf(symbolText);
         }
 
-        public static string ToString(this CourseLanguage courseLanguage)
+        public static string ToOriginString(this CourseLanguage courseLanguage)
         {
             return Constants.LanguageSymbols[(int)courseLanguage];
         }

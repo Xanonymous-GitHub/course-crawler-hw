@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectCourseForm));
             this.CourseGridView = new System.Windows.Forms.DataGridView();
             this.CourseSelectionBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -70,6 +71,8 @@
             this.CourseGridView.AllowUserToDeleteRows = false;
             this.CourseGridView.AllowUserToResizeColumns = false;
             this.CourseGridView.AllowUserToResizeRows = false;
+            this.CourseGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.CourseGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.CourseGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CourseGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CourseSelectionBoxColumn,
@@ -103,7 +106,9 @@
             this.CourseGridView.ReadOnly = true;
             this.CourseGridView.RowHeadersVisible = false;
             this.CourseGridView.RowHeadersWidth = 51;
+            this.CourseGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.CourseGridView.RowTemplate.Height = 27;
+            this.CourseGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.CourseGridView.Size = new System.Drawing.Size(1458, 557);
             this.CourseGridView.TabIndex = 0;
             // 
@@ -127,7 +132,7 @@
             this.CourseNumberColumn.ReadOnly = true;
             this.CourseNumberColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseNumberColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseNumberColumn.Width = 125;
+            this.CourseNumberColumn.Width = 41;
             // 
             // CourseNameColumn
             // 
@@ -139,7 +144,7 @@
             this.CourseNameColumn.ReadOnly = true;
             this.CourseNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseNameColumn.Width = 200;
+            this.CourseNameColumn.Width = 54;
             // 
             // CourseLevelColumn
             // 
@@ -188,6 +193,7 @@
             // CourseTeachersColumn
             // 
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.CourseTeachersColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.CourseTeachersColumn.HeaderText = "教師";
             this.CourseTeachersColumn.MinimumWidth = 80;
@@ -276,6 +282,9 @@
             // 
             // ClassroomsColumn
             // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ClassroomsColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.ClassroomsColumn.HeaderText = "教室";
             this.ClassroomsColumn.MinimumWidth = 200;
             this.ClassroomsColumn.Name = "ClassroomsColumn";

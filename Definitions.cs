@@ -2,20 +2,25 @@
 {
     internal enum CourseType
     {
-        NoType,
-        DeptRequired, // ○
-        UniversityRequired, // △
-        CommonElective, // ☆
-        DeptMajorRequired, // ●
-        UniversityMajorRequired, // ▲
-        MajorElective, // ★
+        NoType = 0,
+        DeptRequired = 1, // ○
+        UniversityRequired = 2, // △
+        CommonElective = 3, // ☆
+        DeptMajorRequired = 4, // ●
+        UniversityMajorRequired = 5, // ▲
+        MajorElective = 6, // ★
     }
 
     internal enum CourseLanguage
     {
-        NotSet,
-        TW,
-        EN,
+        NotSet = 0,
+        TW = 1,
+        EN = 2,
+    }
+
+    internal interface IUseCase<T>
+    {
+        T Do();
     }
 
     internal interface ICourse
