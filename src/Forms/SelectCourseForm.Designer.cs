@@ -407,6 +407,7 @@
             this.SubmitCourseSelectionButton.TabIndex = 2;
             this.SubmitCourseSelectionButton.Text = "確認送出";
             this.SubmitCourseSelectionButton.UseVisualStyleBackColor = true;
+            this.SubmitCourseSelectionButton.Click += new System.EventHandler(this.SubmitCourseSelectionButton_Click);
             // 
             // GetCourseSelectResultbutton
             // 
