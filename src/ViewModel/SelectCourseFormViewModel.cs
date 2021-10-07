@@ -4,39 +4,33 @@ namespace CourseCrawler
 {
     internal sealed class SelectCourseFormViewModel
     {
-        public SelectCourseFormViewModel() { }
-
-        private CourseTable GetTable(string departmentName, string tableName)
+        public SelectCourseFormViewModel(string departmentName, string tableName) 
         {
-            GetDepartmentUseCase getDepartmentUseCase = new(departmentName);
-            Department department = getDepartmentUseCase.Do();
-
-            if (department != null)
-            {
-                bool hasTable = department.CourseTables.TryGetValue(tableName, out ICourseTable table);
-                if (hasTable) return (CourseTable)table;
-            }
-
-            FetchDepartmentCourseTableUseCase fetchDepartmentCourseTableUseCase = new(departmentName, tableName);
-            department = fetchDepartmentCourseTableUseCase.Do();
-            return (CourseTable)department.CourseTables[tableName];
+            CurrentDepartmentName = departmentName;
+            CurrentTableName = tableName;
         }
 
-        public List<string[]> GetCourseTableRows(string departmentName, string tableName)
+        public string CurrentDepartmentName, CurrentTableName;
+
+        public List<string[]> GetCourseTableRows()
         {
-            CourseTable table = GetTable(departmentName, tableName);
-            return CourseTableDto.FromTableToRows(table);
+            GetCourseTableUseCase getTableUseCase = new(CurrentDepartmentName, CurrentTableName);
+            return CourseTableDto.FromTableToRows(getTableUseCase.Do());
         }
 
-        public bool IsAnyCourseSelected(string departmentName, string tableName)
+        public bool IsAnyCourseSelected()
         {
-            CourseTable table = GetTable(departmentName, tableName);
-            return table.IsAnyCourseSelected;
+            GetCourseTableUseCase getTableUseCase = new(CurrentDepartmentName, CurrentTableName);
+            CourseTable table = getTableUseCase.Do();
+
+            return table != null && table.IsAnyCourseSelected;
         }
 
-        public void ChangeCourseSelectionStatus(string departmentName, string tableName, int index, bool isSelected)
+        public void ChangeCourseSelectionStatus(int index, bool isSelected)
         {
-            CourseTable table = GetTable(departmentName, tableName);
+            GetCourseTableUseCase getTableUseCase = new(CurrentDepartmentName, CurrentTableName);
+            CourseTable table = getTableUseCase.Do();
+
             if (isSelected)
             {
                 table.Courses[index].MakeSelected();

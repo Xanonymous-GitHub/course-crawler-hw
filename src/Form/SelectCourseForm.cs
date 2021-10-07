@@ -17,10 +17,10 @@ namespace CourseCrawler
             InitializeComponent();
         }
 
-        private string _currentDepartmentName = "123";
-        private string _currentTableName = "123"; 
+        private const string _currentDepartmentName = "123"; // DEBUG
+        private const string _currentTableName = "123"; // DEBUG
 
-        private readonly SelectCourseFormViewModel _formViewModel = new();
+        private readonly SelectCourseFormViewModel _formViewModel = new(_currentDepartmentName, _currentTableName);
 
 
         private void SelectCourseForm_Load(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace CourseCrawler
 
         private void UpdateCourseGridView()
         {
-            List<string[]> courseRows = _formViewModel.GetCourseTableRows(_currentDepartmentName, _currentTableName);
+            List<string[]> courseRows = _formViewModel.GetCourseTableRows();
 
             courseRows.ForEach(row => CourseGridView.Rows.Add(row));
             CourseGridView.NotifyCurrentCellDirty(true);
@@ -43,7 +43,7 @@ namespace CourseCrawler
                 DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)CourseGridView.Rows[e.RowIndex].Cells[CourseSelectionBoxColumn.Name];
                 bool isCurrentCheckBoxSelected = Convert.ToBoolean(checkCell.Value);
 
-                _formViewModel.ChangeCourseSelectionStatus(_currentDepartmentName, _currentTableName, e.RowIndex, !isCurrentCheckBoxSelected);
+                _formViewModel.ChangeCourseSelectionStatus(e.RowIndex, !isCurrentCheckBoxSelected);
 
                 checkCell.Value = !isCurrentCheckBoxSelected;
                 CourseGridView.NotifyCurrentCellDirty(true);
@@ -55,7 +55,7 @@ namespace CourseCrawler
         {
             if (!CourseGridView.IsCurrentCellDirty) return;
 
-            SubmitCourseSelectionButton.Enabled = _formViewModel.IsAnyCourseSelected(_currentDepartmentName, _currentTableName);
+            SubmitCourseSelectionButton.Enabled = _formViewModel.IsAnyCourseSelected();
         }
 
         private void SubmitCourseSelectionButton_Click(object sender, EventArgs e)
