@@ -20,7 +20,7 @@ namespace CourseCrawler
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SelectCourseForm());
+            Application.Run(new StartUpForm());
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
