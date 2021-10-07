@@ -1,28 +1,11 @@
-﻿namespace CourseCrawler
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CourseCrawler
 {
-    internal enum CourseType
-    {
-        NoType = 0,
-        DeptRequired = 1, // ○
-        UniversityRequired = 2, // △
-        CommonElective = 3, // ☆
-        DeptMajorRequired = 4, // ●
-        UniversityMajorRequired = 5, // ▲
-        MajorElective = 6, // ★
-    }
-
-    internal enum CourseLanguage
-    {
-        NotSet = 0,
-        TW = 1,
-        EN = 2,
-    }
-
-    internal interface IUseCase<T>
-    {
-        T Do();
-    }
-
     internal interface ICourse
     {
         public void MakeSelected();
@@ -51,5 +34,21 @@
         public string Remark { get; }
         public string AttachedStudentAmount { get; }
         public bool IsExperiment { get; }
+    }
+
+    internal interface ICourseTable
+    {
+        public string Name { get; }
+
+        public List<ICourse> Courses { get; }
+
+        public bool IsAnyCourseSelected { get; }
+    }
+
+    internal interface IDepartment
+    {
+        public string Name { get; }
+
+        public Dictionary<string, ICourseTable> CourseTables { get; }
     }
 }

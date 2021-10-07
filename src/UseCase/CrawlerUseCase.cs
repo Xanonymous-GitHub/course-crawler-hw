@@ -4,7 +4,7 @@ using HtmlAgilityPack;
 
 namespace CourseCrawler
 {
-    internal class CrawlerUseCase : IUseCase<HtmlDocument>
+    internal sealed class CrawlerUseCase : IUseCase<HtmlDocument>
     {
         public CrawlerUseCase(Uri uri)
         {
