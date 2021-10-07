@@ -1,4 +1,4 @@
-﻿namespace CourseCrawler.src.Forms
+﻿namespace CourseCrawler
 {
     partial class StartUpForm
     {
