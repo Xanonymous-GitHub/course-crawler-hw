@@ -16,5 +16,23 @@ namespace CourseCrawler
         {
             InitializeComponent();
         }
+
+        private void CourseSelectingSystemButton_Click(object sender, EventArgs e)
+        {
+            SelectCourseForm selectCourseForm = new();
+            selectCourseForm.ShowDialog();
+        }
+
+        private void StartUpForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+            Application.ExitThread();
+            Environment.Exit(Environment.ExitCode);
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

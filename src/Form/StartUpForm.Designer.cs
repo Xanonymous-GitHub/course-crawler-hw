@@ -43,6 +43,7 @@
             this.CourseSelectingSystemButton.TabIndex = 0;
             this.CourseSelectingSystemButton.Text = "Select Course";
             this.CourseSelectingSystemButton.UseVisualStyleBackColor = true;
+            this.CourseSelectingSystemButton.Click += new System.EventHandler(this.CourseSelectingSystemButton_Click);
             // 
             // CourseManagementSystemButton
             // 
@@ -61,6 +62,7 @@
             this.ExitButton.TabIndex = 2;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // CopyrightLabel
             // 
@@ -86,6 +88,7 @@
             this.Name = "StartUpForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StartUpForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
