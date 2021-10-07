@@ -30,7 +30,7 @@ namespace CourseCrawler
                     givenUpStudentAmount: source[16],
                     tas: source[17].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
                     language: ToCourseLanguageFromString(source[18]),
-                    outlineAndProgressUrl: source[19],
+                    outlineAndProgressUrl: source[19].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
                     remark: source[20],
                     attachedStudentAmount: source[21],
                     isExperiment: source[22] != ""
@@ -61,7 +61,7 @@ namespace CourseCrawler
                 course.GivenUpStudentAmount,
                 string.Join(Constants.NewLineChar, course.TAs),
                 course.Language.ToOriginString(),
-                course.OutlineAndProgressUrl,
+                string.Join("Constants.NewLineChar", course.OutlineAndProgressUrl),
                 course.Remark,
                 course.AttachedStudentAmount,
                 course.IsExperiment ? Constants.DiamondChar.ToString() : "",

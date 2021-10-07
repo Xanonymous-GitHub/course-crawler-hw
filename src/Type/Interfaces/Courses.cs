@@ -26,7 +26,7 @@ namespace CourseCrawler
         public string GivenUpStudentAmount { get; }
         public string[] TAs { get; }
         public CourseLanguage Language { get; }
-        public string OutlineAndProgressUrl { get; }
+        public string[] OutlineAndProgressUrl { get; }
         public string Remark { get; }
         public string AttachedStudentAmount { get; }
         public bool IsExperiment { get; }

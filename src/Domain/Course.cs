@@ -22,7 +22,7 @@
             string givenUpStudentAmount = "0",
             string[] tas = null,
             CourseLanguage language = CourseLanguage.NotSet,
-            string outlineAndProgressUrl = null,
+            string[] outlineAndProgressUrl = null,
             string remark = "",
             string attachedStudentAmount = "0",
             bool isExperiment = false,
@@ -75,7 +75,7 @@
         private string _givenUpStudentAmount;
         private string[] _tas;
         private CourseLanguage _language;
-        private string _outlineAndProgressUrl;
+        private string[] _outlineAndProgressUrl;
         private string _remark;
         private string _attachedStudentAmount;
         private bool _isExperiment;
@@ -125,7 +125,7 @@
 
         public CourseLanguage Language => _language;
 
-        public string OutlineAndProgressUrl => _outlineAndProgressUrl;
+        public string[] OutlineAndProgressUrl => _outlineAndProgressUrl;
 
         public string Remark => _remark;
 
