@@ -62,5 +62,11 @@ namespace CourseCrawler
         {
             MessageBox.Show("北科大名校實屬牛逼", "", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Information);
         }
+
+        private void GetCourseSelectResultbutton_Click(object sender, EventArgs e)
+        {
+            CourseSelectionResultForm courseSelectionResultForm = new();
+            courseSelectionResultForm.ShowDialog();
+        }
     }
 }
