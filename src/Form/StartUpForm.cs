@@ -34,5 +34,11 @@ namespace CourseCrawler
         {
             Close();
         }
+
+        private void CourseManagementSystemButton_Click(object sender, EventArgs e)
+        {
+            CourseManagementForm courseManagementForm = new();
+            courseManagementForm.ShowDialog();
+        }
     }
 }

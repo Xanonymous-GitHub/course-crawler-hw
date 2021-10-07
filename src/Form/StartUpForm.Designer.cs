@@ -53,6 +53,7 @@
             this.CourseManagementSystemButton.TabIndex = 1;
             this.CourseManagementSystemButton.Text = "Manage Course";
             this.CourseManagementSystemButton.UseVisualStyleBackColor = true;
+            this.CourseManagementSystemButton.Click += new System.EventHandler(this.CourseManagementSystemButton_Click);
             // 
             // ExitButton
             // 
