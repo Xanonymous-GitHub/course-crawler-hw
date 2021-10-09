@@ -70,6 +70,10 @@ namespace CourseCrawler
 
         public static string ToNumberAndName(Course course)
         {
+            if (course.Serial == "") {
+                return course.Name;
+            }
+
             return course.Serial + Constants.Dash + course.Name;
         }
 

@@ -46,6 +46,7 @@ namespace CourseCrawler
                 _formViewModel.ChangeCourseSelectionStatus(e.RowIndex, !isCurrentCheckBoxSelected);
 
                 checkCell.Value = !isCurrentCheckBoxSelected;
+
                 CourseGridView.NotifyCurrentCellDirty(true);
                 CourseGridView.Invalidate();
             }
@@ -55,12 +56,16 @@ namespace CourseCrawler
         {
             if (!CourseGridView.IsCurrentCellDirty) return;
 
-            SubmitCourseSelectionButton.Enabled = _formViewModel.IsAnyCourseSelected();
+            SubmitCourseSelectionButton.Enabled = _formViewModel.IsAnyCourseChecked();
         }
 
         private void SubmitCourseSelectionButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("北科大名校實屬牛逼", "", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Information);
+            Result<string> submitResult = _formViewModel.HandleSelectCourseSubmission();
+
+            string resultMsg = submitResult.Success ? submitResult.Data : (submitResult as ErrorResult<string>).Message;
+
+            MessageBox.Show(resultMsg, "", buttons: MessageBoxButtons.OK, icon: submitResult.Success ? MessageBoxIcon.Information : MessageBoxIcon.Error);
         }
 
         private void GetCourseSelectResultbutton_Click(object sender, EventArgs e)

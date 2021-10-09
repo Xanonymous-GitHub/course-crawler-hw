@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace CourseCrawler
 {
@@ -8,6 +9,11 @@ namespace CourseCrawler
         {
             // TODO: implement the converter.
             return Constants.CoursePageUri;
+        }
+
+        public static void ShowDebugBox(dynamic debugInfo)
+        {
+            MessageBox.Show(debugInfo.ToString());
         }
     }
 }

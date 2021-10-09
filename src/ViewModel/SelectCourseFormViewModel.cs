@@ -10,19 +10,17 @@ namespace CourseCrawler
             ChangeDisplayTable(departmentName, tableName);
         }
 
-        public bool IsLastOperationHasIncreasedCourseCheckedAmount = false;
-
-        private int _currentDisplayedTableNameHash;
+        private string _currentDisplayedTableNameHash;
 
         private string _currentDepartmentName, _currentTableName;
 
-        private readonly Dictionary<int, CourseTable> _cachedTables = new();
+        private readonly Dictionary<string, CourseTable> _cachedTables = new();
 
-        private readonly SortedDictionary<int, List<bool>> _courseTableCheckedStates = new();
+        private readonly SortedDictionary<string, List<bool>> _courseTableCheckedStates = new();
 
         public void ChangeDisplayTable(string departmentName, string tableName)
         {
-            int nextDisplayedTableNameHash = (departmentName + tableName).GetHashCode();
+            string nextDisplayedTableNameHash = departmentName + tableName;
 
             if (_currentDisplayedTableNameHash == nextDisplayedTableNameHash) return;
             
@@ -33,13 +31,15 @@ namespace CourseCrawler
 
                 if (newTable == null) return;
 
-                _cachedTables.Add(nextDisplayedTableNameHash.GetHashCode(), newTable);
-                _courseTableCheckedStates.Add(nextDisplayedTableNameHash, new List<bool>(newTable.Courses.Count));
+                _cachedTables.Add(nextDisplayedTableNameHash, newTable);
+
+                List<bool> checkStates = new(new bool[newTable.Courses.Count]);
+                _courseTableCheckedStates.Add(nextDisplayedTableNameHash, checkStates);
             }
 
             _currentDepartmentName = departmentName;
             _currentTableName = tableName;
-            _currentDisplayedTableNameHash = (_currentDepartmentName + _currentTableName).GetHashCode();
+            _currentDisplayedTableNameHash = _currentDepartmentName + _currentTableName;
         }
 
         public List<string[]> GetCourseTableRows()
@@ -49,9 +49,7 @@ namespace CourseCrawler
 
         public bool IsAnyCourseChecked()
         {
-            if (IsLastOperationHasIncreasedCourseCheckedAmount) return true;
-
-            foreach (KeyValuePair<int, List<bool>> kvp in _courseTableCheckedStates)
+            foreach (KeyValuePair<string, List<bool>> kvp in _courseTableCheckedStates)
             {
                 if (kvp.Value.Any(state => state)) return true;
             }
@@ -61,7 +59,7 @@ namespace CourseCrawler
 
         public bool IsAnyCourseSelected()
         {
-            foreach (KeyValuePair<int, CourseTable> kvp in _cachedTables)
+            foreach (KeyValuePair<string, CourseTable> kvp in _cachedTables)
             {
                 if (kvp.Value.IsAnyCourseSelected) return true;
             }
@@ -78,7 +76,7 @@ namespace CourseCrawler
         {
             List<Course> checkedCourse = new();
 
-            foreach (KeyValuePair<int, CourseTable> kvp in _cachedTables)
+            foreach (KeyValuePair<string, CourseTable> kvp in _cachedTables)
             {
                 foreach (dynamic course in kvp.Value.Courses.Select((value, index) => new { value, index }))
                 {
@@ -89,9 +87,60 @@ namespace CourseCrawler
             return checkedCourse;
         }
 
+        private List<Course> GetUncheckedCourse()
+        {
+            List<Course> unCheckedCourse = new();
+
+            foreach (KeyValuePair<string, CourseTable> kvp in _cachedTables)
+            {
+                foreach (dynamic course in kvp.Value.Courses.Select((value, index) => new { value, index }))
+                {
+                    if (!_courseTableCheckedStates[kvp.Key][course.index]) unCheckedCourse.Add(course.value);
+                }
+            }
+
+            return unCheckedCourse;
+        }
+
+        private void SelectCourses(List<Course> courses)
+        {
+            foreach (Course course in courses)
+            {
+                course.MakeSelected();
+            }
+        }
+
+        private void UnselectCourses(List<Course> courses)
+        {
+            foreach (Course course in courses)
+            {
+                course.MakeUnselected();
+            }
+        }
+
+        private string GenerateConflictErrMsg(SortedDictionary<string, List<Course>> classifiedDict)
+        {
+            string result = null;
+            foreach (KeyValuePair<string, List<Course>> kvp in classifiedDict)
+            {
+                if (kvp.Value != null && kvp.Value.Count < 2) continue;
+                if (result != null) result += Constants.Comma;
+                result += string.Join(
+                    Constants.IdeographicComma,
+                    kvp.Value.Select(course =>
+                        Constants.UpperQuoteTw +
+                        CourseDto.ToNumberAndName(course) +
+                        Constants.LowerQuoteTw
+                    ).ToArray()
+                );
+            }
+            return result;
+        }
+
         public Result<string> HandleSelectCourseSubmission()
         {
             List<Course> checkedCourse = GetCheckedCourse();
+            List<Course> unCheckedCourse = GetUncheckedCourse();
             SortedDictionary<string, List<Course>> courseClassifiedByName = new();
             SortedDictionary<string, List<Course>> courseClassifiedByTime = new();
 
@@ -105,11 +154,11 @@ namespace CourseCrawler
 
                 foreach (WeekTime weekTime in course.WeekTimes)
                 {
-                    if (weekTime.Times == null) continue;
+                    if (weekTime.Times == null || weekTime.Times[0] == "") continue;
 
                     foreach (string time in weekTime.Times)
                     {
-                        string classifyKey = weekTime.Name + Constants.SpaceChar + time;
+                        string classifyKey = weekTime.Name + time;
                         if (!courseClassifiedByTime.ContainsKey(classifyKey))
                         {
                             courseClassifiedByTime[classifyKey] = new();
@@ -119,50 +168,45 @@ namespace CourseCrawler
                 }
             }
 
-            string nameConflictErrMsg = null;
-            string timeConflictErrMsg = null;
-
-            foreach (KeyValuePair<string, List<Course>> kvp in courseClassifiedByName)
-            {
-                if (kvp.Value.Count < 2) continue;
-                if (nameConflictErrMsg != null) nameConflictErrMsg += Constants.Comma;
-                nameConflictErrMsg += string.Join(
-                    Constants.IdeographicComma,
-                    kvp.Value.Select(course => 
-                        Constants.UpperQuoteTw + 
-                        CourseDto.ToNumberAndName(course) + 
-                        Constants.LowerQuoteTw
-                    ).ToArray()
-                );
-            }
-
-            foreach (KeyValuePair<string, List<Course>> kvp in courseClassifiedByTime)
-            {
-                if (kvp.Value.Count < 2) continue;
-                if (timeConflictErrMsg != null) timeConflictErrMsg += Constants.Comma;
-                timeConflictErrMsg += string.Join(
-                    Constants.IdeographicComma,
-                    kvp.Value.Select(course =>
-                        Constants.UpperQuoteTw +
-                        CourseDto.ToNumberAndName(course) +
-                        Constants.LowerQuoteTw
-                    ).ToArray()
-                );
-            }
+            string nameConflictErrMsg = GenerateConflictErrMsg(courseClassifiedByName);
+            string timeConflictErrMsg = GenerateConflictErrMsg(courseClassifiedByTime);
 
             if (nameConflictErrMsg == null && timeConflictErrMsg == null)
             {
+                UnselectCourses(unCheckedCourse);
+                SelectCourses(checkedCourse);
                 return new SuccessResult<string>(Constants.SuccessfullySelectCourse);
             }
 
-            nameConflictErrMsg = Constants.NameConflictErrMsgHead + nameConflictErrMsg;
-            timeConflictErrMsg = Constants.TimeConflictErrMsgHead + timeConflictErrMsg;
+            if (nameConflictErrMsg != null)
+            {
+                nameConflictErrMsg =
+                    Constants.NewLineChar +
+                    Constants.NameConflictErrMsgHead +
+                    nameConflictErrMsg;
+            }
+            else
+            {
+                nameConflictErrMsg = "";
+            }
+            
+            if (timeConflictErrMsg != null)
+            {
+                timeConflictErrMsg =
+                    Constants.NewLineChar +
+                    Constants.TimeConflictErrMsgHead + 
+                    timeConflictErrMsg;
+            }
+            else
+            {
+                timeConflictErrMsg = "";
+            }
 
             return new ErrorResult<string>
             (
                 Constants.FailToSelectCourse +
-                timeConflictErrMsg.ToString() +
-                nameConflictErrMsg.ToString()
+                timeConflictErrMsg +
+                nameConflictErrMsg
             );
         }
     }
