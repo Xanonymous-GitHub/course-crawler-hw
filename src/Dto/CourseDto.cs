@@ -61,11 +61,16 @@ namespace CourseCrawler
                 course.GivenUpStudentAmount,
                 string.Join(Constants.NewLineChar, course.TAs),
                 course.Language.ToOriginString(),
-                string.Join("Constants.NewLineChar", course.OutlineAndProgressUrl),
+                string.Join(Constants.NewLineChar, course.OutlineAndProgressUrl),
                 course.Remark,
                 course.AttachedStudentAmount,
                 course.IsExperiment ? Constants.DiamondChar.ToString() : "",
             };
+        }
+
+        public static string ToNumberAndName(Course course)
+        {
+            return course.Serial + Constants.Dash + course.Name;
         }
 
         public static CourseType ToCourseTypeFromString(string symbolText)

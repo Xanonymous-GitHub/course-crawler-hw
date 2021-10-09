@@ -1,4 +1,6 @@
-﻿namespace CourseCrawler
+﻿using System.Collections.Generic;
+
+namespace CourseCrawler
 {
     internal class Course : ICourse
     {
@@ -100,6 +102,17 @@
         public CourseType Type => _type;
 
         public string[] Teachers => _teachers;
+
+        public List<WeekTime> WeekTimes => new()
+        {
+            new WeekTime(Constants.Monday, MondayTimes),
+            new WeekTime(Constants.Tuesday, TuesdayTimes),
+            new WeekTime(Constants.Wednesday, WednesdayTimes),
+            new WeekTime(Constants.Thursday, ThursdayTimes),
+            new WeekTime(Constants.Friday, FridayTimes),
+            new WeekTime(Constants.Saturday, SaturdayTimes),
+            new WeekTime(Constants.Sunday, SundayTimes),
+        };
 
         public string[] MondayTimes => _mondayTimes;
 

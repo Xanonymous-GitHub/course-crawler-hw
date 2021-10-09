@@ -14,13 +14,7 @@ namespace CourseCrawler
         public string Hour { get; }
         public CourseType Type { get; }
         public string[] Teachers { get; }
-        public string[] MondayTimes { get; }
-        public string[] TuesdayTimes { get; }
-        public string[] WednesdayTimes { get; }
-        public string[] ThursdayTimes { get; }
-        public string[] FridayTimes { get; }
-        public string[] SaturdayTimes { get; }
-        public string[] SundayTimes { get; }
+        public List<WeekTime> WeekTimes { get; }
         public string[] Classrooms { get; }
         public string StudentAmount { get; }
         public string GivenUpStudentAmount { get; }
@@ -30,6 +24,18 @@ namespace CourseCrawler
         public string Remark { get; }
         public string AttachedStudentAmount { get; }
         public bool IsExperiment { get; }
+    }
+
+    internal readonly struct WeekTime
+    {
+        public WeekTime(string name, string[] times) 
+        {
+            Name = name;
+            Times = times;
+        }
+
+        public readonly string Name { get; init; }
+        public readonly string[] Times { get; init; }
     }
 
     internal interface ICourseTable
