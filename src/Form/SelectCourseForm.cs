@@ -35,6 +35,7 @@ namespace CourseCrawler
             CourseGridView.Rows.Clear();
             courseRows.ForEach(row => CourseGridView.Rows.Add(row));
             DisableSelectedCourseCheckBox();
+            ReDrawContents();
             CourseGridView.NotifyCurrentCellDirty(true);
         }
 
@@ -69,7 +70,7 @@ namespace CourseCrawler
 
             string resultMsg = submitResult.Success ? submitResult.Data : (submitResult as ErrorResult<string>).Message;
 
-            MessageBox.Show(resultMsg, "", buttons: MessageBoxButtons.OK, icon: submitResult.Success ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+            MessageBox.Show(resultMsg, Constants.EmptyString, buttons: MessageBoxButtons.OK, icon: submitResult.Success ? MessageBoxIcon.Information : MessageBoxIcon.Error);
 
             ReDrawContents();
             UpdateCourseGridView();

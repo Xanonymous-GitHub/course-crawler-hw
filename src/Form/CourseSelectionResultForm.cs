@@ -16,5 +16,21 @@ namespace CourseCrawler
         {
             InitializeComponent();
         }
+
+        private readonly CourseSelectionResultFormViewModel _formViewModel = new();
+
+        private void UpdateCourseGridView()
+        {
+            List<string[]> courseRows = _formViewModel.GetSelectedCourseTableRows();
+
+            CourseGridView.Rows.Clear();
+            courseRows.ForEach(row => CourseGridView.Rows.Add(row));
+            CourseGridView.NotifyCurrentCellDirty(true);
+        }
+
+        private void CourseSelectionResultForm_Load(object sender, EventArgs e)
+        {
+            UpdateCourseGridView();
+        }
     }
 }

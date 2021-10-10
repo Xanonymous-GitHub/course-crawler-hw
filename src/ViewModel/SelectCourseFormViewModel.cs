@@ -147,10 +147,14 @@ namespace CourseCrawler
 
         private void SelectCourses(List<Course> courses)
         {
+            List<ICourse> selectedCourses = new();
             foreach (Course course in courses)
             {
                 course.MakeSelected();
+                selectedCourses.Add(course);
             }
+            SaveSelectedCourseUseCase saveSelectedCourseUseCase = new(selectedCourses);
+            saveSelectedCourseUseCase.Do();
         }
 
         private void UnselectCourses(List<Course> courses)
@@ -197,7 +201,7 @@ namespace CourseCrawler
 
                 foreach (WeekTime weekTime in course.WeekTimes)
                 {
-                    if (weekTime.Times == null || weekTime.Times[0] == "") continue;
+                    if (weekTime.Times == null || weekTime.Times[0] == Constants.EmptyString) continue;
 
                     foreach (string time in weekTime.Times)
                     {
@@ -231,7 +235,7 @@ namespace CourseCrawler
             }
             else
             {
-                nameConflictErrMsg = "";
+                nameConflictErrMsg = Constants.EmptyString;
             }
             
             if (timeConflictErrMsg != null)
@@ -243,7 +247,7 @@ namespace CourseCrawler
             }
             else
             {
-                timeConflictErrMsg = "";
+                timeConflictErrMsg = Constants.EmptyString;
             }
 
             return new ErrorResult<string>
