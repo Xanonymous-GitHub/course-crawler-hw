@@ -121,6 +121,7 @@ namespace CourseCrawler
 
             TabPage newTabPage = CourseTableTabControl.TabPages[Constants.TabPageNameTitle + (_currentShownTabIndex + 1).ToString()];
             newTabPage.SuspendLayout();
+            newTabPage.Controls.Clear();
             newTabPage.Controls.Add(CoursePanel);
             newTabPage.ResumeLayout(true);
             newTabPage.Refresh();

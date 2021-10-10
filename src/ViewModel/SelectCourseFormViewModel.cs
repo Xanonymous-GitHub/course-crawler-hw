@@ -165,31 +165,30 @@ namespace CourseCrawler
             }
         }
 
-        private string GenerateConflictErrMsg(SortedDictionary<string, List<Course>> classifiedDict)
+        private string GenerateConflictErrMsg(SortedDictionary<string, HashSet<Course>> classifiedDict)
         {
-            string result = null;
-            foreach (KeyValuePair<string, List<Course>> kvp in classifiedDict)
+            HashSet<string> result = new();
+            foreach (KeyValuePair<string, HashSet<Course>> kvp in classifiedDict)
             {
                 if (kvp.Value != null && kvp.Value.Count < 2) continue;
-                if (result != null) result += Constants.Comma;
-                result += string.Join(
+                result.Add(string.Join(
                     Constants.IdeographicComma,
                     kvp.Value.Select(course =>
                         Constants.UpperQuoteTw +
                         CourseDto.ToNumberAndName(course) +
                         Constants.LowerQuoteTw
                     ).ToArray()
-                );
+                ));
             }
-            return result;
+            return result.Count > 0 ? string.Join(Constants.Comma, result) : null;
         }
 
         public Result<string> HandleSelectCourseSubmission()
         {
             List<Course> checkedCourse = GetCheckedCourse();
             List<Course> unCheckedCourse = GetUncheckedCourse();
-            SortedDictionary<string, List<Course>> courseClassifiedByName = new();
-            SortedDictionary<string, List<Course>> courseClassifiedByTime = new();
+            SortedDictionary<string, HashSet<Course>> courseClassifiedByName = new();
+            SortedDictionary<string, HashSet<Course>> courseClassifiedByTime = new();
 
             foreach (Course course in checkedCourse)
             {
