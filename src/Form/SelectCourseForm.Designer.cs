@@ -141,6 +141,7 @@
             // 
             // GetCourseSelectResultbutton
             // 
+            this.GetCourseSelectResultbutton.Enabled = false;
             this.GetCourseSelectResultbutton.Location = new System.Drawing.Point(1188, 615);
             this.GetCourseSelectResultbutton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.GetCourseSelectResultbutton.Name = "GetCourseSelectResultbutton";
@@ -153,13 +154,13 @@
             // CourseSelectionBoxColumn
             // 
             this.CourseSelectionBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CourseSelectionBoxColumn.FalseValue = "";
+            this.CourseSelectionBoxColumn.FalseValue = "False";
             this.CourseSelectionBoxColumn.HeaderText = "選";
             this.CourseSelectionBoxColumn.MinimumWidth = 6;
             this.CourseSelectionBoxColumn.Name = "CourseSelectionBoxColumn";
             this.CourseSelectionBoxColumn.ReadOnly = true;
             this.CourseSelectionBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CourseSelectionBoxColumn.TrueValue = "";
+            this.CourseSelectionBoxColumn.TrueValue = "True";
             this.CourseSelectionBoxColumn.Width = 30;
             // 
             // CourseNumberColumn

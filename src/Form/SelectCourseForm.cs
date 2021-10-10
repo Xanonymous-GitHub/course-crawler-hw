@@ -21,7 +21,7 @@ namespace CourseCrawler
         private const string _currentTableName = "123"; // DEBUG
 
         private readonly SelectCourseFormViewModel _formViewModel = new(_currentDepartmentName, _currentTableName);
-
+        private List<int> _currentSelectIndex = new();
 
         private void SelectCourseForm_Load(object sender, EventArgs e)
         {
@@ -32,7 +32,9 @@ namespace CourseCrawler
         {
             List<string[]> courseRows = _formViewModel.GetCourseTableRows();
 
+            CourseGridView.Rows.Clear();
             courseRows.ForEach(row => CourseGridView.Rows.Add(row));
+            DisableSelectedCourseCheckBox();
             CourseGridView.NotifyCurrentCellDirty(true);
         }
 
@@ -41,9 +43,11 @@ namespace CourseCrawler
             if (e.ColumnIndex != -1 && CourseGridView.Columns[e.ColumnIndex].Name == CourseSelectionBoxColumn.Name)
             {
                 DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)CourseGridView.Rows[e.RowIndex].Cells[CourseSelectionBoxColumn.Name];
+                if (_currentSelectIndex.Contains(e.RowIndex)) return;
+
                 bool isCurrentCheckBoxSelected = Convert.ToBoolean(checkCell.Value);
 
-                _formViewModel.ChangeCourseSelectionStatus(e.RowIndex, !isCurrentCheckBoxSelected);
+                _formViewModel.ChangeCourseCheckStatus(e.RowIndex, !isCurrentCheckBoxSelected);
 
                 checkCell.Value = !isCurrentCheckBoxSelected;
 
@@ -56,7 +60,7 @@ namespace CourseCrawler
         {
             if (!CourseGridView.IsCurrentCellDirty) return;
 
-            SubmitCourseSelectionButton.Enabled = _formViewModel.IsAnyCourseChecked();
+            ReDrawContents();
         }
 
         private void SubmitCourseSelectionButton_Click(object sender, EventArgs e)
@@ -66,12 +70,31 @@ namespace CourseCrawler
             string resultMsg = submitResult.Success ? submitResult.Data : (submitResult as ErrorResult<string>).Message;
 
             MessageBox.Show(resultMsg, "", buttons: MessageBoxButtons.OK, icon: submitResult.Success ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+
+            ReDrawContents();
+            UpdateCourseGridView();
         }
 
         private void GetCourseSelectResultbutton_Click(object sender, EventArgs e)
         {
             CourseSelectionResultForm courseSelectionResultForm = new();
             courseSelectionResultForm.ShowDialog();
+        }
+
+        private void ReDrawContents()
+        {
+            SubmitCourseSelectionButton.Enabled = _formViewModel.IsAnyCourseChecked();
+            GetCourseSelectResultbutton.Enabled = _formViewModel.IsAnyCourseSelected();
+        }
+
+        private void DisableSelectedCourseCheckBox()
+        {
+            _currentSelectIndex = _formViewModel.GetSelectedCourseIndex();
+            foreach (int courseIndex in _currentSelectIndex)
+            {
+                DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)CourseGridView.Rows[courseIndex].Cells[CourseSelectionBoxColumn.Name];
+                checkCell.Value = true;
+            }
         }
     }
 }

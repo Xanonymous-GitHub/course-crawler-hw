@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace CourseCrawler
 {
@@ -37,11 +38,10 @@ namespace CourseCrawler
                 );
         }
 
-        public static string[] ToStringList(Course course)
+        public static List<string> ToStringList(Course course)
         {
-            return new string[]
+            return new List<string>()
             {
-                course.IsSelected.ToString(),
                 course.Serial,
                 course.Name,
                 course.Level,

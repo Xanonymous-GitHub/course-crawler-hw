@@ -44,7 +44,22 @@ namespace CourseCrawler
 
         public List<string[]> GetCourseTableRows()
         {
-            return CourseTableDto.FromTableToRows(_cachedTables[_currentDisplayedTableNameHash]);
+            List<List<string>> tableRows = CourseTableDto.FromTableToRows(_cachedTables[_currentDisplayedTableNameHash]);
+            List<string[]> tableRowsStr = new();
+
+            for(int i = 0; i < tableRows.Count; i++)
+            {
+                string stateStr = _courseTableCheckedStates[_currentDisplayedTableNameHash][i].ToString();
+                tableRowsStr.Add(new string[] { stateStr });
+                foreach(string col in tableRows[i])
+                {
+                    List<string> tmp = tableRowsStr[i].ToList();
+                    tmp.Add(col);
+                    tableRowsStr[i] = tmp.ToArray();
+                }
+            }
+
+            return tableRowsStr;
         }
 
         public bool IsAnyCourseChecked()
@@ -67,9 +82,20 @@ namespace CourseCrawler
             return false;
         }
 
-        public void ChangeCourseSelectionStatus(int index, bool isSelected)
+        public void ChangeCourseCheckStatus(int index, bool isChecked)
         {
-            _courseTableCheckedStates[_currentDisplayedTableNameHash][index] = isSelected;
+            _courseTableCheckedStates[_currentDisplayedTableNameHash][index] = isChecked;
+        }
+
+        public void MakeAllUnCheck()
+        {
+            foreach (string k in _courseTableCheckedStates.Keys)
+            {
+                for(int i = 0; i< _courseTableCheckedStates[k].Count; i++)
+                {
+                    _courseTableCheckedStates[k][i] = false;
+                }
+            }
         }
 
         private List<Course> GetCheckedCourse()
@@ -100,6 +126,17 @@ namespace CourseCrawler
             }
 
             return unCheckedCourse;
+        }
+
+        public List<int> GetSelectedCourseIndex()
+        {
+            List<int> selectedStatus = new();
+            List<ICourse> currentCourses = _cachedTables[_currentDisplayedTableNameHash].Courses;
+            for (int i = 0; i < currentCourses.Count; i++)
+            {
+                if (currentCourses[i].IsSelected) selectedStatus.Add(i);
+            }
+            return selectedStatus;
         }
 
         private void SelectCourses(List<Course> courses)
@@ -175,6 +212,7 @@ namespace CourseCrawler
             {
                 UnselectCourses(unCheckedCourse);
                 SelectCourses(checkedCourse);
+                MakeAllUnCheck();
                 return new SuccessResult<string>(Constants.SuccessfullySelectCourse);
             }
 
