@@ -106,7 +106,10 @@ namespace CourseCrawler
             {
                 foreach (dynamic course in kvp.Value.Courses.Select((value, index) => new { value, index }))
                 {
-                    if (_courseTableCheckedStates[kvp.Key][course.index]) checkedCourse.Add(course.value);
+                    if (_courseTableCheckedStates[kvp.Key][course.index] || course.value.IsSelected)
+                    {
+                        checkedCourse.Add(course.value);
+                    }
                 }
             }
 
@@ -121,7 +124,10 @@ namespace CourseCrawler
             {
                 foreach (dynamic course in kvp.Value.Courses.Select((value, index) => new { value, index }))
                 {
-                    if (!_courseTableCheckedStates[kvp.Key][course.index]) unCheckedCourse.Add(course.value);
+                    if (!_courseTableCheckedStates[kvp.Key][course.index] && !course.value.IsSelected)
+                    {
+                        unCheckedCourse.Add(course.value);
+                    }
                 }
             }
 
