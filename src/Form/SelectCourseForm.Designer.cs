@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectCourseForm));
             this.CourseGridView = new System.Windows.Forms.DataGridView();
             this.CourseSelectionBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -66,6 +66,7 @@
             this.CourseTableTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.CourseGridView)).BeginInit();
             this.CoursePanel.SuspendLayout();
             this.CourseTableTabControl.SuspendLayout();
@@ -139,8 +140,8 @@
             // 
             // CourseNumberColumn
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CourseNumberColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CourseNumberColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.CourseNumberColumn.HeaderText = "課號";
             this.CourseNumberColumn.MinimumWidth = 6;
             this.CourseNumberColumn.Name = "CourseNumberColumn";
@@ -151,8 +152,8 @@
             // 
             // CourseNameColumn
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CourseNameColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CourseNameColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.CourseNameColumn.HeaderText = "課程名稱";
             this.CourseNameColumn.MinimumWidth = 6;
             this.CourseNameColumn.Name = "CourseNameColumn";
@@ -197,8 +198,8 @@
             // CourseTypeColumn
             // 
             this.CourseTypeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CourseTypeColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CourseTypeColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.CourseTypeColumn.HeaderText = "修";
             this.CourseTypeColumn.MinimumWidth = 6;
             this.CourseTypeColumn.Name = "CourseTypeColumn";
@@ -209,9 +210,9 @@
             // 
             // CourseTeachersColumn
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CourseTeachersColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CourseTeachersColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.CourseTeachersColumn.HeaderText = "教師";
             this.CourseTeachersColumn.MinimumWidth = 80;
             this.CourseTeachersColumn.Name = "CourseTeachersColumn";
@@ -299,9 +300,9 @@
             // 
             // ClassroomsColumn
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ClassroomsColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ClassroomsColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.ClassroomsColumn.HeaderText = "教室";
             this.ClassroomsColumn.MinimumWidth = 200;
             this.ClassroomsColumn.Name = "ClassroomsColumn";
@@ -355,9 +356,9 @@
             // OutlineAndProgressColumn
             // 
             this.OutlineAndProgressColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.OutlineAndProgressColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.OutlineAndProgressColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.OutlineAndProgressColumn.HeaderText = "教學大綱與進度表";
             this.OutlineAndProgressColumn.MinimumWidth = 75;
             this.OutlineAndProgressColumn.Name = "OutlineAndProgressColumn";
@@ -436,6 +437,7 @@
             // 
             this.CourseTableTabControl.Controls.Add(this.tabPage1);
             this.CourseTableTabControl.Controls.Add(this.tabPage2);
+            this.CourseTableTabControl.Controls.Add(this.tabPage3);
             this.CourseTableTabControl.Location = new System.Drawing.Point(12, 12);
             this.CourseTableTabControl.Name = "CourseTableTabControl";
             this.CourseTableTabControl.SelectedIndex = 0;
@@ -463,6 +465,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "電子三甲";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1450, 564);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "化工三乙";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // SelectCourseForm
             // 
@@ -524,6 +535,7 @@
         private System.Windows.Forms.TabControl CourseTableTabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }
 

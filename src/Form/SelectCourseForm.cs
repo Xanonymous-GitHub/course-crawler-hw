@@ -18,6 +18,7 @@ namespace CourseCrawler
 
             _supportedCourseTableMapIndex.Add(new CourseTabSourceIndex(0, 2)); // 資工, 三
             _supportedCourseTableMapIndex.Add(new CourseTabSourceIndex(1, 6)); // 電子, 三甲
+            _supportedCourseTableMapIndex.Add(new CourseTabSourceIndex(2, 10)); // 化工, 三乙
             _currentShownTabIndex = 0;
 
             _formViewModel = new(_currentDepartmentName, _currentTableName);
@@ -82,8 +83,11 @@ namespace CourseCrawler
 
             MessageBox.Show(resultMsg, Constants.EmptyString, buttons: MessageBoxButtons.OK, icon: submitResult.Success ? MessageBoxIcon.Information : MessageBoxIcon.Error);
 
-            ReDrawContents();
-            UpdateCourseGridView();
+            if (submitResult.Success)
+            {
+                ReDrawContents();
+                UpdateCourseGridView();
+            }
         }
 
         private void GetCourseSelectResultbutton_Click(object sender, EventArgs e)

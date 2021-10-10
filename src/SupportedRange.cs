@@ -11,13 +11,15 @@ namespace CourseCrawler
         public static Dictionary<string, string> TableNumber = new()
         {
             { "資工三", "2433" },
-            { "電子三甲", "2423" }
+            { "電子三甲", "2423" },
+            { "化工三乙", "2416" }
         };
 
         public static List<string> DepartmentNames = new()
         {
             "資工",
-            "電子"
+            "電子",
+            "化工"
         };
 
         public static List<string> TableNames = new()
