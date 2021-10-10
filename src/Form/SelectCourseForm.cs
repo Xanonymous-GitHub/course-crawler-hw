@@ -15,12 +15,22 @@ namespace CourseCrawler
         public SelectCourseForm()
         {
             InitializeComponent();
+
+            _supportedCourseTableMapIndex.Add(new CourseTabSourceIndex(0, 2)); // 資工, 三
+            _supportedCourseTableMapIndex.Add(new CourseTabSourceIndex(1, 6)); // 電子, 三甲
+            _currentShownTabIndex = 0;
+
+            _formViewModel = new(_currentDepartmentName, _currentTableName);
         }
 
-        private const string _currentDepartmentName = "123"; // DEBUG
-        private const string _currentTableName = "123"; // DEBUG
+        private readonly List<CourseTabSourceIndex> _supportedCourseTableMapIndex = new();
 
-        private readonly SelectCourseFormViewModel _formViewModel = new(_currentDepartmentName, _currentTableName);
+        private static int _currentShownTabIndex = 0;
+
+        private string _currentDepartmentName => SupportedRange.DepartmentNames[_supportedCourseTableMapIndex[_currentShownTabIndex].DepartmentIndex];
+        private string _currentTableName => SupportedRange.TableNames[_supportedCourseTableMapIndex[_currentShownTabIndex].TableIIndex];
+
+        private SelectCourseFormViewModel _formViewModel;
         private List<int> _currentSelectIndex = new();
 
         private void SelectCourseForm_Load(object sender, EventArgs e)
@@ -30,8 +40,8 @@ namespace CourseCrawler
 
         private void UpdateCourseGridView()
         {
+            _formViewModel.ChangeDisplayTable(_currentDepartmentName, _currentTableName);
             List<string[]> courseRows = _formViewModel.GetCourseTableRows();
-
             CourseGridView.Rows.Clear();
             courseRows.ForEach(row => CourseGridView.Rows.Add(row));
             DisableSelectedCourseCheckBox();
@@ -102,6 +112,19 @@ namespace CourseCrawler
                 checkCell.Value = true;
                 checkCell.Style.BackColor = Color.Gray;
             }
+        }
+
+        private void CourseTableTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentShownTabIndex = CourseTableTabControl.SelectedIndex;
+            UpdateCourseGridView();
+
+            TabPage newTabPage = CourseTableTabControl.TabPages[Constants.TabPageNameTitle + (_currentShownTabIndex + 1).ToString()];
+            newTabPage.SuspendLayout();
+            newTabPage.Controls.Add(CoursePanel);
+            newTabPage.ResumeLayout(true);
+            newTabPage.Refresh();
+            CourseTableTabControl.Refresh();
         }
     }
 }

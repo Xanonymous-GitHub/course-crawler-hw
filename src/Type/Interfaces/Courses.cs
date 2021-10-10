@@ -53,4 +53,28 @@ namespace CourseCrawler
 
         public Dictionary<string, ICourseTable> CourseTables { get; }
     }
+
+    internal struct DepartmentNameWithTableName
+    {
+        public DepartmentNameWithTableName(string departmentName, string tableName)
+        {
+            DepartmentName = departmentName;
+            TableName = tableName;
+        }
+
+        public string DepartmentName { get; init; }
+        public string TableName { get; init; }
+    }
+
+    internal class CourseTabSourceIndex
+    {
+        public CourseTabSourceIndex(int departmentIndex, int tableIndex)
+        {
+            DepartmentIndex = departmentIndex;
+            TableIIndex = tableIndex;
+        }
+
+        public int DepartmentIndex { get; init; }
+        public int TableIIndex { get; init; }
+    }
 }
