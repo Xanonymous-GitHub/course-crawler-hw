@@ -92,8 +92,12 @@ namespace CourseCrawler
             _currentSelectIndex = _formViewModel.GetSelectedCourseIndex();
             foreach (int courseIndex in _currentSelectIndex)
             {
-                DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)CourseGridView.Rows[courseIndex].Cells[CourseSelectionBoxColumn.Name];
+                DataGridViewRow checkedRow = CourseGridView.Rows[courseIndex];
+                DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)checkedRow.Cells[CourseSelectionBoxColumn.Name];
+                checkedRow.DefaultCellStyle.ForeColor = Color.Blue;
+                checkedRow.DefaultCellStyle.BackColor = Color.LightGray;
                 checkCell.Value = true;
+                checkCell.Style.BackColor = Color.Gray;
             }
         }
     }

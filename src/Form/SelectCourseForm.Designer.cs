@@ -155,11 +155,13 @@
             // 
             this.CourseSelectionBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.CourseSelectionBoxColumn.FalseValue = "False";
+            this.CourseSelectionBoxColumn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.CourseSelectionBoxColumn.HeaderText = "選";
             this.CourseSelectionBoxColumn.MinimumWidth = 6;
             this.CourseSelectionBoxColumn.Name = "CourseSelectionBoxColumn";
             this.CourseSelectionBoxColumn.ReadOnly = true;
             this.CourseSelectionBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CourseSelectionBoxColumn.ToolTipText = "選課狀態";
             this.CourseSelectionBoxColumn.TrueValue = "True";
             this.CourseSelectionBoxColumn.Width = 30;
             // 
