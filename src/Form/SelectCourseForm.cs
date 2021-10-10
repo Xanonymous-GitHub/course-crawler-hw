@@ -80,6 +80,8 @@ namespace CourseCrawler
         {
             CourseSelectionResultForm courseSelectionResultForm = new();
             courseSelectionResultForm.ShowDialog();
+            ReDrawContents();
+            UpdateCourseGridView();
         }
 
         private void ReDrawContents()
