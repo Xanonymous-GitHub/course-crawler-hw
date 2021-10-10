@@ -8,17 +8,24 @@ namespace CourseCrawler
 {
     internal sealed class CourseSelectionResultFormViewModel
     {
-        private CourseTable GenerateSelectedCourseTable()
+        public CourseSelectionResultFormViewModel()
+        {
+            GenerateSelectedCourseTable();
+        }
+
+        private CourseTable _selectedCourseTable;
+
+        private void GenerateSelectedCourseTable()
         {
             GetSelectedCourseUseCase getSelectedCourseUseCase = new();
             List<ICourse> selectedCourses = getSelectedCourseUseCase.Do();
 
-            return new CourseTable(Constants.SelectedCourse, selectedCourses);
+            _selectedCourseTable = new CourseTable(Constants.SelectedCourse, selectedCourses);
         }
 
         public List<string[]> GetSelectedCourseTableRows()
         {
-            CourseTable table = GenerateSelectedCourseTable();
+            CourseTable table = _selectedCourseTable;
             List<List<string>> tableRows = CourseTableDto.FromTableToRows(table);
             List<string[]> tableRowsStr = new();
 
@@ -34,6 +41,15 @@ namespace CourseCrawler
             }
 
             return tableRowsStr;
+        }
+
+        public void UnselectedCourse(int unselectIndex)
+        {
+            _selectedCourseTable.Courses[unselectIndex].MakeUnselected();
+            _selectedCourseTable.Courses.RemoveAt(unselectIndex);
+            SaveSelectedCourseUseCase saveSelectedCourseUseCase = new(_selectedCourseTable.Courses);
+            saveSelectedCourseUseCase.Do();
+            GenerateSelectedCourseTable();
         }
     }
 }

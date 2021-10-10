@@ -38,7 +38,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CourseSelectionResultForm));
             this.CoursePanel = new System.Windows.Forms.Panel();
             this.CourseGridView = new System.Windows.Forms.DataGridView();
-            this.CourseSelectionBoxColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.UnselectCourseButtonColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.CourseNumberColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CourseNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CourseLevelColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,7 +86,7 @@
             this.CourseGridView.BackgroundColor = System.Drawing.SystemColors.Control;
             this.CourseGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CourseGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CourseSelectionBoxColumn,
+            this.UnselectCourseButtonColumn,
             this.CourseNumberColumn,
             this.CourseNameColumn,
             this.CourseLevelColumn,
@@ -123,19 +123,20 @@
             this.CourseGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.CourseGridView.Size = new System.Drawing.Size(1158, 527);
             this.CourseGridView.TabIndex = 0;
+            this.CourseGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CourseGridView_CellContentClick);
             // 
-            // CourseSelectionBoxColumn
+            // UnselectCourseButtonColumn
             // 
-            this.CourseSelectionBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.UnselectCourseButtonColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CourseSelectionBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.CourseSelectionBoxColumn.HeaderText = "退";
-            this.CourseSelectionBoxColumn.MinimumWidth = 60;
-            this.CourseSelectionBoxColumn.Name = "CourseSelectionBoxColumn";
-            this.CourseSelectionBoxColumn.ReadOnly = true;
-            this.CourseSelectionBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CourseSelectionBoxColumn.Width = 60;
+            this.UnselectCourseButtonColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.UnselectCourseButtonColumn.HeaderText = "退";
+            this.UnselectCourseButtonColumn.MinimumWidth = 60;
+            this.UnselectCourseButtonColumn.Name = "UnselectCourseButtonColumn";
+            this.UnselectCourseButtonColumn.ReadOnly = true;
+            this.UnselectCourseButtonColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.UnselectCourseButtonColumn.Width = 60;
             // 
             // CourseNumberColumn
             // 
@@ -421,7 +422,7 @@
 
         private System.Windows.Forms.Panel CoursePanel;
         private System.Windows.Forms.DataGridView CourseGridView;
-        private System.Windows.Forms.DataGridViewButtonColumn CourseSelectionBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn UnselectCourseButtonColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CourseNumberColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CourseNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CourseLevelColumn;

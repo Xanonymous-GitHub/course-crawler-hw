@@ -32,5 +32,14 @@ namespace CourseCrawler
         {
             UpdateCourseGridView();
         }
+
+        private void CourseGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != -1 && CourseGridView.Columns[e.ColumnIndex].Name == UnselectCourseButtonColumn.Name)
+            {
+                _formViewModel.UnselectedCourse(e.RowIndex);
+                UpdateCourseGridView();
+            }
+        }
     }
 }
