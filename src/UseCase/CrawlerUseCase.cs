@@ -10,8 +10,6 @@ namespace CourseCrawler
         {
             _uri = uri;
 
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-
             _webClient = new HtmlWeb
             {
                 OverrideEncoding = Encoding.GetEncoding(950)

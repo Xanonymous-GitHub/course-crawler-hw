@@ -34,8 +34,8 @@ namespace CourseCrawler
             Times = times;
         }
 
-        public readonly string Name { get; init; }
-        public readonly string[] Times { get; init; }
+        public readonly string Name { get; }
+        public readonly string[] Times { get; }
     }
 
     internal interface ICourseTable
@@ -62,8 +62,8 @@ namespace CourseCrawler
             TableName = tableName;
         }
 
-        public string DepartmentName { get; init; }
-        public string TableName { get; init; }
+        public string DepartmentName { get; }
+        public string TableName { get; }
     }
 
     internal class CourseTabSourceIndex
@@ -74,7 +74,7 @@ namespace CourseCrawler
             TableIIndex = tableIndex;
         }
 
-        public int DepartmentIndex { get; init; }
-        public int TableIIndex { get; init; }
+        public int DepartmentIndex { get; }
+        public int TableIIndex { get; }
     }
 }

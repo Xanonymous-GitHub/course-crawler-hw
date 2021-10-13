@@ -34,8 +34,33 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectCourseForm));
             this.CourseGridView = new System.Windows.Forms.DataGridView();
+            this.CoursePanel = new System.Windows.Forms.Panel();
+            this.SubmitCourseSelectionButton = new System.Windows.Forms.Button();
+            this.GetCourseSelectResultbutton = new System.Windows.Forms.Button();
+            this.CourseTableTabControl = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.CourseSelectionBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CourseNumberColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CourseNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,13 +85,6 @@
             this.RemarkColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AttachedStudentAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsExperimentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CoursePanel = new System.Windows.Forms.Panel();
-            this.SubmitCourseSelectionButton = new System.Windows.Forms.Button();
-            this.GetCourseSelectResultbutton = new System.Windows.Forms.Button();
-            this.CourseTableTabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.CourseGridView)).BeginInit();
             this.CoursePanel.SuspendLayout();
             this.CourseTableTabControl.SuspendLayout();
@@ -124,281 +142,6 @@
             this.CourseGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CourseGridView_CellContentClick);
             this.CourseGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.CourseGridView_CellValueChanged);
             // 
-            // CourseSelectionBoxColumn
-            // 
-            this.CourseSelectionBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CourseSelectionBoxColumn.FalseValue = "False";
-            this.CourseSelectionBoxColumn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.CourseSelectionBoxColumn.HeaderText = "選";
-            this.CourseSelectionBoxColumn.MinimumWidth = 6;
-            this.CourseSelectionBoxColumn.Name = "CourseSelectionBoxColumn";
-            this.CourseSelectionBoxColumn.ReadOnly = true;
-            this.CourseSelectionBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CourseSelectionBoxColumn.ToolTipText = "選課狀態";
-            this.CourseSelectionBoxColumn.TrueValue = "True";
-            this.CourseSelectionBoxColumn.Width = 30;
-            // 
-            // CourseNumberColumn
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CourseNumberColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.CourseNumberColumn.HeaderText = "課號";
-            this.CourseNumberColumn.MinimumWidth = 6;
-            this.CourseNumberColumn.Name = "CourseNumberColumn";
-            this.CourseNumberColumn.ReadOnly = true;
-            this.CourseNumberColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CourseNumberColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseNumberColumn.Width = 41;
-            // 
-            // CourseNameColumn
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CourseNameColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.CourseNameColumn.HeaderText = "課程名稱";
-            this.CourseNameColumn.MinimumWidth = 6;
-            this.CourseNameColumn.Name = "CourseNameColumn";
-            this.CourseNameColumn.ReadOnly = true;
-            this.CourseNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CourseNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseNameColumn.Width = 54;
-            // 
-            // CourseLevelColumn
-            // 
-            this.CourseLevelColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CourseLevelColumn.HeaderText = "階段";
-            this.CourseLevelColumn.MinimumWidth = 40;
-            this.CourseLevelColumn.Name = "CourseLevelColumn";
-            this.CourseLevelColumn.ReadOnly = true;
-            this.CourseLevelColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CourseLevelColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseLevelColumn.Width = 41;
-            // 
-            // CourseCreditColumn
-            // 
-            this.CourseCreditColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CourseCreditColumn.HeaderText = "學分";
-            this.CourseCreditColumn.MinimumWidth = 40;
-            this.CourseCreditColumn.Name = "CourseCreditColumn";
-            this.CourseCreditColumn.ReadOnly = true;
-            this.CourseCreditColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CourseCreditColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseCreditColumn.Width = 41;
-            // 
-            // CourseHourColumn
-            // 
-            this.CourseHourColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CourseHourColumn.HeaderText = "時數";
-            this.CourseHourColumn.MinimumWidth = 40;
-            this.CourseHourColumn.Name = "CourseHourColumn";
-            this.CourseHourColumn.ReadOnly = true;
-            this.CourseHourColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CourseHourColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseHourColumn.Width = 41;
-            // 
-            // CourseTypeColumn
-            // 
-            this.CourseTypeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CourseTypeColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.CourseTypeColumn.HeaderText = "修";
-            this.CourseTypeColumn.MinimumWidth = 6;
-            this.CourseTypeColumn.Name = "CourseTypeColumn";
-            this.CourseTypeColumn.ReadOnly = true;
-            this.CourseTypeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CourseTypeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseTypeColumn.Width = 30;
-            // 
-            // CourseTeachersColumn
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CourseTeachersColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.CourseTeachersColumn.HeaderText = "教師";
-            this.CourseTeachersColumn.MinimumWidth = 80;
-            this.CourseTeachersColumn.Name = "CourseTeachersColumn";
-            this.CourseTeachersColumn.ReadOnly = true;
-            this.CourseTeachersColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CourseTeachersColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseTeachersColumn.Width = 80;
-            // 
-            // SundayColumn
-            // 
-            this.SundayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.SundayColumn.HeaderText = "日";
-            this.SundayColumn.MinimumWidth = 60;
-            this.SundayColumn.Name = "SundayColumn";
-            this.SundayColumn.ReadOnly = true;
-            this.SundayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.SundayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SundayColumn.Width = 60;
-            // 
-            // MondayColumn
-            // 
-            this.MondayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.MondayColumn.HeaderText = "一";
-            this.MondayColumn.MinimumWidth = 60;
-            this.MondayColumn.Name = "MondayColumn";
-            this.MondayColumn.ReadOnly = true;
-            this.MondayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.MondayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.MondayColumn.Width = 60;
-            // 
-            // TuesdayColumn
-            // 
-            this.TuesdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.TuesdayColumn.HeaderText = "二";
-            this.TuesdayColumn.MinimumWidth = 60;
-            this.TuesdayColumn.Name = "TuesdayColumn";
-            this.TuesdayColumn.ReadOnly = true;
-            this.TuesdayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.TuesdayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TuesdayColumn.Width = 60;
-            // 
-            // WednesdayColumn
-            // 
-            this.WednesdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.WednesdayColumn.HeaderText = "三";
-            this.WednesdayColumn.MinimumWidth = 60;
-            this.WednesdayColumn.Name = "WednesdayColumn";
-            this.WednesdayColumn.ReadOnly = true;
-            this.WednesdayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.WednesdayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.WednesdayColumn.Width = 60;
-            // 
-            // ThursdayColumn
-            // 
-            this.ThursdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ThursdayColumn.HeaderText = "四";
-            this.ThursdayColumn.MinimumWidth = 60;
-            this.ThursdayColumn.Name = "ThursdayColumn";
-            this.ThursdayColumn.ReadOnly = true;
-            this.ThursdayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ThursdayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ThursdayColumn.Width = 60;
-            // 
-            // FridayColumn
-            // 
-            this.FridayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.FridayColumn.HeaderText = "五";
-            this.FridayColumn.MinimumWidth = 60;
-            this.FridayColumn.Name = "FridayColumn";
-            this.FridayColumn.ReadOnly = true;
-            this.FridayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.FridayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.FridayColumn.Width = 60;
-            // 
-            // SaturdayColumn
-            // 
-            this.SaturdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.SaturdayColumn.HeaderText = "六";
-            this.SaturdayColumn.MinimumWidth = 60;
-            this.SaturdayColumn.Name = "SaturdayColumn";
-            this.SaturdayColumn.ReadOnly = true;
-            this.SaturdayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.SaturdayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SaturdayColumn.Width = 60;
-            // 
-            // ClassroomsColumn
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ClassroomsColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.ClassroomsColumn.HeaderText = "教室";
-            this.ClassroomsColumn.MinimumWidth = 200;
-            this.ClassroomsColumn.Name = "ClassroomsColumn";
-            this.ClassroomsColumn.ReadOnly = true;
-            this.ClassroomsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ClassroomsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ClassroomsColumn.Width = 200;
-            // 
-            // StudentAmountColumn
-            // 
-            this.StudentAmountColumn.HeaderText = "人";
-            this.StudentAmountColumn.MinimumWidth = 30;
-            this.StudentAmountColumn.Name = "StudentAmountColumn";
-            this.StudentAmountColumn.ReadOnly = true;
-            this.StudentAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.StudentAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.StudentAmountColumn.Width = 30;
-            // 
-            // GivenUpStudentAmountColumn
-            // 
-            this.GivenUpStudentAmountColumn.HeaderText = "撤";
-            this.GivenUpStudentAmountColumn.MinimumWidth = 30;
-            this.GivenUpStudentAmountColumn.Name = "GivenUpStudentAmountColumn";
-            this.GivenUpStudentAmountColumn.ReadOnly = true;
-            this.GivenUpStudentAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.GivenUpStudentAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.GivenUpStudentAmountColumn.Width = 30;
-            // 
-            // TAsColumn
-            // 
-            this.TAsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.TAsColumn.HeaderText = "教學助理";
-            this.TAsColumn.MinimumWidth = 6;
-            this.TAsColumn.Name = "TAsColumn";
-            this.TAsColumn.ReadOnly = true;
-            this.TAsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.TAsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TAsColumn.Width = 54;
-            // 
-            // LanguageColumn
-            // 
-            this.LanguageColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.LanguageColumn.HeaderText = "授課語言";
-            this.LanguageColumn.MinimumWidth = 6;
-            this.LanguageColumn.Name = "LanguageColumn";
-            this.LanguageColumn.ReadOnly = true;
-            this.LanguageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.LanguageColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.LanguageColumn.Width = 54;
-            // 
-            // OutlineAndProgressColumn
-            // 
-            this.OutlineAndProgressColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.OutlineAndProgressColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.OutlineAndProgressColumn.HeaderText = "教學大綱與進度表";
-            this.OutlineAndProgressColumn.MinimumWidth = 75;
-            this.OutlineAndProgressColumn.Name = "OutlineAndProgressColumn";
-            this.OutlineAndProgressColumn.ReadOnly = true;
-            this.OutlineAndProgressColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.OutlineAndProgressColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OutlineAndProgressColumn.Width = 75;
-            // 
-            // RemarkColumn
-            // 
-            this.RemarkColumn.HeaderText = "備註";
-            this.RemarkColumn.MinimumWidth = 200;
-            this.RemarkColumn.Name = "RemarkColumn";
-            this.RemarkColumn.ReadOnly = true;
-            this.RemarkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.RemarkColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.RemarkColumn.Width = 200;
-            // 
-            // AttachedStudentAmountColumn
-            // 
-            this.AttachedStudentAmountColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.AttachedStudentAmountColumn.HeaderText = "隨班附讀";
-            this.AttachedStudentAmountColumn.MinimumWidth = 6;
-            this.AttachedStudentAmountColumn.Name = "AttachedStudentAmountColumn";
-            this.AttachedStudentAmountColumn.ReadOnly = true;
-            this.AttachedStudentAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.AttachedStudentAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.AttachedStudentAmountColumn.Width = 54;
-            // 
-            // IsExperimentColumn
-            // 
-            this.IsExperimentColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.IsExperimentColumn.HeaderText = "實驗實習";
-            this.IsExperimentColumn.MinimumWidth = 6;
-            this.IsExperimentColumn.Name = "IsExperimentColumn";
-            this.IsExperimentColumn.ReadOnly = true;
-            this.IsExperimentColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsExperimentColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.IsExperimentColumn.Width = 54;
-            // 
             // CoursePanel
             // 
             this.CoursePanel.Controls.Add(this.CourseGridView);
@@ -412,6 +155,7 @@
             // SubmitCourseSelectionButton
             // 
             this.SubmitCourseSelectionButton.Enabled = false;
+            this.SubmitCourseSelectionButton.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.SubmitCourseSelectionButton.Location = new System.Drawing.Point(900, 615);
             this.SubmitCourseSelectionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SubmitCourseSelectionButton.Name = "SubmitCourseSelectionButton";
@@ -424,6 +168,7 @@
             // GetCourseSelectResultbutton
             // 
             this.GetCourseSelectResultbutton.Enabled = false;
+            this.GetCourseSelectResultbutton.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.GetCourseSelectResultbutton.Location = new System.Drawing.Point(1188, 615);
             this.GetCourseSelectResultbutton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.GetCourseSelectResultbutton.Name = "GetCourseSelectResultbutton";
@@ -438,6 +183,7 @@
             this.CourseTableTabControl.Controls.Add(this.tabPage1);
             this.CourseTableTabControl.Controls.Add(this.tabPage2);
             this.CourseTableTabControl.Controls.Add(this.tabPage3);
+            this.CourseTableTabControl.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.CourseTableTabControl.Location = new System.Drawing.Point(12, 12);
             this.CourseTableTabControl.Name = "CourseTableTabControl";
             this.CourseTableTabControl.SelectedIndex = 0;
@@ -458,22 +204,341 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1450, 564);
+            this.tabPage2.Size = new System.Drawing.Size(1450, 567);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "電子三甲";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1450, 564);
+            this.tabPage3.Size = new System.Drawing.Size(1450, 567);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "化工三乙";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // CourseSelectionBoxColumn
+            // 
+            this.CourseSelectionBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.NullValue = false;
+            this.CourseSelectionBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.CourseSelectionBoxColumn.FalseValue = "False";
+            this.CourseSelectionBoxColumn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.CourseSelectionBoxColumn.HeaderText = "選";
+            this.CourseSelectionBoxColumn.MinimumWidth = 6;
+            this.CourseSelectionBoxColumn.Name = "CourseSelectionBoxColumn";
+            this.CourseSelectionBoxColumn.ReadOnly = true;
+            this.CourseSelectionBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CourseSelectionBoxColumn.ToolTipText = "選課狀態";
+            this.CourseSelectionBoxColumn.TrueValue = "True";
+            this.CourseSelectionBoxColumn.Width = 30;
+            // 
+            // CourseNumberColumn
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.CourseNumberColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.CourseNumberColumn.HeaderText = "課號";
+            this.CourseNumberColumn.MinimumWidth = 6;
+            this.CourseNumberColumn.Name = "CourseNumberColumn";
+            this.CourseNumberColumn.ReadOnly = true;
+            this.CourseNumberColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CourseNumberColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CourseNumberColumn.Width = 41;
+            // 
+            // CourseNameColumn
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.CourseNameColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.CourseNameColumn.HeaderText = "課程名稱";
+            this.CourseNameColumn.MinimumWidth = 6;
+            this.CourseNameColumn.Name = "CourseNameColumn";
+            this.CourseNameColumn.ReadOnly = true;
+            this.CourseNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CourseNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CourseNameColumn.Width = 54;
+            // 
+            // CourseLevelColumn
+            // 
+            this.CourseLevelColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.CourseLevelColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.CourseLevelColumn.HeaderText = "階段";
+            this.CourseLevelColumn.MinimumWidth = 40;
+            this.CourseLevelColumn.Name = "CourseLevelColumn";
+            this.CourseLevelColumn.ReadOnly = true;
+            this.CourseLevelColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CourseLevelColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CourseLevelColumn.Width = 41;
+            // 
+            // CourseCreditColumn
+            // 
+            this.CourseCreditColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.CourseCreditColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.CourseCreditColumn.HeaderText = "學分";
+            this.CourseCreditColumn.MinimumWidth = 40;
+            this.CourseCreditColumn.Name = "CourseCreditColumn";
+            this.CourseCreditColumn.ReadOnly = true;
+            this.CourseCreditColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CourseCreditColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CourseCreditColumn.Width = 41;
+            // 
+            // CourseHourColumn
+            // 
+            this.CourseHourColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.CourseHourColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.CourseHourColumn.HeaderText = "時數";
+            this.CourseHourColumn.MinimumWidth = 40;
+            this.CourseHourColumn.Name = "CourseHourColumn";
+            this.CourseHourColumn.ReadOnly = true;
+            this.CourseHourColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CourseHourColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CourseHourColumn.Width = 41;
+            // 
+            // CourseTypeColumn
+            // 
+            this.CourseTypeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.CourseTypeColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            this.CourseTypeColumn.HeaderText = "修";
+            this.CourseTypeColumn.MinimumWidth = 6;
+            this.CourseTypeColumn.Name = "CourseTypeColumn";
+            this.CourseTypeColumn.ReadOnly = true;
+            this.CourseTypeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CourseTypeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CourseTypeColumn.Width = 30;
+            // 
+            // CourseTeachersColumn
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CourseTeachersColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            this.CourseTeachersColumn.HeaderText = "教師";
+            this.CourseTeachersColumn.MinimumWidth = 80;
+            this.CourseTeachersColumn.Name = "CourseTeachersColumn";
+            this.CourseTeachersColumn.ReadOnly = true;
+            this.CourseTeachersColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CourseTeachersColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CourseTeachersColumn.Width = 80;
+            // 
+            // SundayColumn
+            // 
+            this.SundayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.SundayColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            this.SundayColumn.HeaderText = "日";
+            this.SundayColumn.MinimumWidth = 60;
+            this.SundayColumn.Name = "SundayColumn";
+            this.SundayColumn.ReadOnly = true;
+            this.SundayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SundayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.SundayColumn.Width = 60;
+            // 
+            // MondayColumn
+            // 
+            this.MondayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.MondayColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            this.MondayColumn.HeaderText = "一";
+            this.MondayColumn.MinimumWidth = 60;
+            this.MondayColumn.Name = "MondayColumn";
+            this.MondayColumn.ReadOnly = true;
+            this.MondayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.MondayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.MondayColumn.Width = 60;
+            // 
+            // TuesdayColumn
+            // 
+            this.TuesdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.TuesdayColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            this.TuesdayColumn.HeaderText = "二";
+            this.TuesdayColumn.MinimumWidth = 60;
+            this.TuesdayColumn.Name = "TuesdayColumn";
+            this.TuesdayColumn.ReadOnly = true;
+            this.TuesdayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TuesdayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TuesdayColumn.Width = 60;
+            // 
+            // WednesdayColumn
+            // 
+            this.WednesdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.WednesdayColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            this.WednesdayColumn.HeaderText = "三";
+            this.WednesdayColumn.MinimumWidth = 60;
+            this.WednesdayColumn.Name = "WednesdayColumn";
+            this.WednesdayColumn.ReadOnly = true;
+            this.WednesdayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.WednesdayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.WednesdayColumn.Width = 60;
+            // 
+            // ThursdayColumn
+            // 
+            this.ThursdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.ThursdayColumn.DefaultCellStyle = dataGridViewCellStyle13;
+            this.ThursdayColumn.HeaderText = "四";
+            this.ThursdayColumn.MinimumWidth = 60;
+            this.ThursdayColumn.Name = "ThursdayColumn";
+            this.ThursdayColumn.ReadOnly = true;
+            this.ThursdayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ThursdayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ThursdayColumn.Width = 60;
+            // 
+            // FridayColumn
+            // 
+            this.FridayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.FridayColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            this.FridayColumn.HeaderText = "五";
+            this.FridayColumn.MinimumWidth = 60;
+            this.FridayColumn.Name = "FridayColumn";
+            this.FridayColumn.ReadOnly = true;
+            this.FridayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.FridayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.FridayColumn.Width = 60;
+            // 
+            // SaturdayColumn
+            // 
+            this.SaturdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.SaturdayColumn.DefaultCellStyle = dataGridViewCellStyle15;
+            this.SaturdayColumn.HeaderText = "六";
+            this.SaturdayColumn.MinimumWidth = 60;
+            this.SaturdayColumn.Name = "SaturdayColumn";
+            this.SaturdayColumn.ReadOnly = true;
+            this.SaturdayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SaturdayColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.SaturdayColumn.Width = 60;
+            // 
+            // ClassroomsColumn
+            // 
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ClassroomsColumn.DefaultCellStyle = dataGridViewCellStyle16;
+            this.ClassroomsColumn.HeaderText = "教室";
+            this.ClassroomsColumn.MinimumWidth = 200;
+            this.ClassroomsColumn.Name = "ClassroomsColumn";
+            this.ClassroomsColumn.ReadOnly = true;
+            this.ClassroomsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ClassroomsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ClassroomsColumn.Width = 200;
+            // 
+            // StudentAmountColumn
+            // 
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.StudentAmountColumn.DefaultCellStyle = dataGridViewCellStyle17;
+            this.StudentAmountColumn.HeaderText = "人";
+            this.StudentAmountColumn.MinimumWidth = 30;
+            this.StudentAmountColumn.Name = "StudentAmountColumn";
+            this.StudentAmountColumn.ReadOnly = true;
+            this.StudentAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.StudentAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.StudentAmountColumn.Width = 30;
+            // 
+            // GivenUpStudentAmountColumn
+            // 
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.GivenUpStudentAmountColumn.DefaultCellStyle = dataGridViewCellStyle18;
+            this.GivenUpStudentAmountColumn.HeaderText = "撤";
+            this.GivenUpStudentAmountColumn.MinimumWidth = 30;
+            this.GivenUpStudentAmountColumn.Name = "GivenUpStudentAmountColumn";
+            this.GivenUpStudentAmountColumn.ReadOnly = true;
+            this.GivenUpStudentAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.GivenUpStudentAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.GivenUpStudentAmountColumn.Width = 30;
+            // 
+            // TAsColumn
+            // 
+            this.TAsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.TAsColumn.DefaultCellStyle = dataGridViewCellStyle19;
+            this.TAsColumn.HeaderText = "教學助理";
+            this.TAsColumn.MinimumWidth = 6;
+            this.TAsColumn.Name = "TAsColumn";
+            this.TAsColumn.ReadOnly = true;
+            this.TAsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TAsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TAsColumn.Width = 54;
+            // 
+            // LanguageColumn
+            // 
+            this.LanguageColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.LanguageColumn.DefaultCellStyle = dataGridViewCellStyle20;
+            this.LanguageColumn.HeaderText = "授課語言";
+            this.LanguageColumn.MinimumWidth = 6;
+            this.LanguageColumn.Name = "LanguageColumn";
+            this.LanguageColumn.ReadOnly = true;
+            this.LanguageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.LanguageColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.LanguageColumn.Width = 54;
+            // 
+            // OutlineAndProgressColumn
+            // 
+            this.OutlineAndProgressColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.OutlineAndProgressColumn.DefaultCellStyle = dataGridViewCellStyle21;
+            this.OutlineAndProgressColumn.HeaderText = "教學大綱與進度表";
+            this.OutlineAndProgressColumn.MinimumWidth = 75;
+            this.OutlineAndProgressColumn.Name = "OutlineAndProgressColumn";
+            this.OutlineAndProgressColumn.ReadOnly = true;
+            this.OutlineAndProgressColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.OutlineAndProgressColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.OutlineAndProgressColumn.Width = 75;
+            // 
+            // RemarkColumn
+            // 
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.RemarkColumn.DefaultCellStyle = dataGridViewCellStyle22;
+            this.RemarkColumn.HeaderText = "備註";
+            this.RemarkColumn.MinimumWidth = 200;
+            this.RemarkColumn.Name = "RemarkColumn";
+            this.RemarkColumn.ReadOnly = true;
+            this.RemarkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.RemarkColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.RemarkColumn.Width = 200;
+            // 
+            // AttachedStudentAmountColumn
+            // 
+            this.AttachedStudentAmountColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.AttachedStudentAmountColumn.DefaultCellStyle = dataGridViewCellStyle23;
+            this.AttachedStudentAmountColumn.HeaderText = "隨班附讀";
+            this.AttachedStudentAmountColumn.MinimumWidth = 6;
+            this.AttachedStudentAmountColumn.Name = "AttachedStudentAmountColumn";
+            this.AttachedStudentAmountColumn.ReadOnly = true;
+            this.AttachedStudentAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.AttachedStudentAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.AttachedStudentAmountColumn.Width = 54;
+            // 
+            // IsExperimentColumn
+            // 
+            this.IsExperimentColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.IsExperimentColumn.DefaultCellStyle = dataGridViewCellStyle24;
+            this.IsExperimentColumn.HeaderText = "實驗實習";
+            this.IsExperimentColumn.MinimumWidth = 6;
+            this.IsExperimentColumn.Name = "IsExperimentColumn";
+            this.IsExperimentColumn.ReadOnly = true;
+            this.IsExperimentColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IsExperimentColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.IsExperimentColumn.Width = 54;
             // 
             // SelectCourseForm
             // 
@@ -508,6 +573,10 @@
         private System.Windows.Forms.Panel CoursePanel;
         private System.Windows.Forms.Button SubmitCourseSelectionButton;
         private System.Windows.Forms.Button GetCourseSelectResultbutton;
+        private System.Windows.Forms.TabControl CourseTableTabControl;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridViewCheckBoxColumn CourseSelectionBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CourseNumberColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CourseNameColumn;
@@ -532,10 +601,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn RemarkColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn AttachedStudentAmountColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IsExperimentColumn;
-        private System.Windows.Forms.TabControl CourseTableTabControl;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
     }
 }
 

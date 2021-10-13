@@ -5,13 +5,13 @@ namespace CourseCrawler
 {
     internal static class Constants
     {
-        public static readonly string CoursePagePath = new("https://aps.ntut.edu.tw/course/tw/Subj.jsp?format=-4&year=110&sem=1&code=");
+        public static readonly string CoursePagePath = "https://aps.ntut.edu.tw/course/tw/Subj.jsp?format=-4&year=110&sem=1&code=";
         public static readonly string[] StringSplitSeperators = new[] { "\r\n", "\r", "\n", " ", "\n\r" };
         public static readonly List<string> CourseSymbols = new() { "", "○", "△", "☆", "●", "▲", "★" };
         public static readonly List<string> LanguageSymbols = new() { "", "中文", "英語" };
-        public static readonly char NewLineChar = '\n';
-        public static readonly char SpaceChar = ' ';
-        public static readonly char DiamondChar = '◆';
+        public static readonly string NewLineChar = "\n";
+        public static readonly string SpaceChar = " ";
+        public static readonly string DiamondChar = "◆";
         public static readonly string Monday = "一";
         public static readonly string Tuesday = "二";
         public static readonly string Wednesday = "三";

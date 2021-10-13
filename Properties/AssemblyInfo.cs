@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -10,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Xanonymous")]
 [assembly: AssemblyProduct("CourseCrawler")]
-[assembly: AssemblyCopyright("Copyright © Xanonymous 2021")]
+[assembly: AssemblyCopyright("Copyright © TU-Lin Xanonymous 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 下列 GUID 為專案公開 (Expose) 至 COM 時所要使用的 typelib ID
-[assembly: Guid("3ba7e941-f54c-4198-bafb-f963cc65681b")]
+[assembly: Guid("7bf5ea4d-4542-48d8-bcfb-5f6da468e183")]
 
 // 組件的版本資訊由下列四個值所組成: 
 //
@@ -34,3 +35,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("zh-TW")]

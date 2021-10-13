@@ -37,9 +37,11 @@
             // 
             // CourseSelectingSystemButton
             // 
-            this.CourseSelectingSystemButton.Location = new System.Drawing.Point(12, 12);
+            this.CourseSelectingSystemButton.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.CourseSelectingSystemButton.Location = new System.Drawing.Point(11, 9);
+            this.CourseSelectingSystemButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CourseSelectingSystemButton.Name = "CourseSelectingSystemButton";
-            this.CourseSelectingSystemButton.Size = new System.Drawing.Size(363, 66);
+            this.CourseSelectingSystemButton.Size = new System.Drawing.Size(323, 52);
             this.CourseSelectingSystemButton.TabIndex = 0;
             this.CourseSelectingSystemButton.Text = "Select Course";
             this.CourseSelectingSystemButton.UseVisualStyleBackColor = true;
@@ -47,9 +49,11 @@
             // 
             // CourseManagementSystemButton
             // 
-            this.CourseManagementSystemButton.Location = new System.Drawing.Point(12, 84);
+            this.CourseManagementSystemButton.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.CourseManagementSystemButton.Location = new System.Drawing.Point(11, 66);
+            this.CourseManagementSystemButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CourseManagementSystemButton.Name = "CourseManagementSystemButton";
-            this.CourseManagementSystemButton.Size = new System.Drawing.Size(363, 66);
+            this.CourseManagementSystemButton.Size = new System.Drawing.Size(323, 52);
             this.CourseManagementSystemButton.TabIndex = 1;
             this.CourseManagementSystemButton.Text = "Manage Course";
             this.CourseManagementSystemButton.UseVisualStyleBackColor = true;
@@ -57,9 +61,11 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(265, 156);
+            this.ExitButton.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.ExitButton.Location = new System.Drawing.Point(236, 123);
+            this.ExitButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(110, 33);
+            this.ExitButton.Size = new System.Drawing.Size(98, 26);
             this.ExitButton.TabIndex = 2;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
@@ -68,23 +74,25 @@
             // CopyrightLabel
             // 
             this.CopyrightLabel.AutoSize = true;
-            this.CopyrightLabel.Location = new System.Drawing.Point(12, 170);
+            this.CopyrightLabel.Font = new System.Drawing.Font("微軟正黑體", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.CopyrightLabel.Location = new System.Drawing.Point(12, 129);
             this.CopyrightLabel.Name = "CopyrightLabel";
-            this.CopyrightLabel.Size = new System.Drawing.Size(239, 19);
+            this.CopyrightLabel.Size = new System.Drawing.Size(223, 18);
             this.CopyrightLabel.TabIndex = 3;
             this.CopyrightLabel.Text = "Copyright (C) 2021 Xanonymous";
             // 
             // StartUpForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(387, 201);
+            this.ClientSize = new System.Drawing.Size(344, 159);
             this.Controls.Add(this.CopyrightLabel);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.CourseManagementSystemButton);
             this.Controls.Add(this.CourseSelectingSystemButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "StartUpForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

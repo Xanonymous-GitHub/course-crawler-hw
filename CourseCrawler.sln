@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31717.71
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseCrawler", "CourseCrawler.csproj", "{3BA7E941-F54C-4198-BAFB-F963CC65681B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseCrawler", "CourseCrawler.csproj", "{7BF5EA4D-4542-48D8-BCFB-5F6DA468E183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3BA7E941-F54C-4198-BAFB-F963CC65681B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BA7E941-F54C-4198-BAFB-F963CC65681B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BA7E941-F54C-4198-BAFB-F963CC65681B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BA7E941-F54C-4198-BAFB-F963CC65681B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BF5EA4D-4542-48D8-BCFB-5F6DA468E183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BF5EA4D-4542-48D8-BCFB-5F6DA468E183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BF5EA4D-4542-48D8-BCFB-5F6DA468E183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BF5EA4D-4542-48D8-BCFB-5F6DA468E183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {19FDF892-615F-44B7-A9C3-0AAFD9962090}
+		SolutionGuid = {BE34708A-C427-48B4-835B-58B8551807ED}
 	EndGlobalSection
 EndGlobal
