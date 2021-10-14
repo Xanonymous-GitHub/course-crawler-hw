@@ -19,6 +19,7 @@ namespace CourseCrawler
 
         private readonly CourseSelectionResultFormViewModel _formViewModel = new();
 
+        // Use latest selected course info to draw the gridView.
         private void UpdateCourseGridView()
         {
             List<string[]> courseRows = _formViewModel.GetSelectedCourseTableRows();
@@ -28,11 +29,13 @@ namespace CourseCrawler
             CourseGridView.NotifyCurrentCellDirty(true);
         }
 
+        // Event handler for CourseSelectionResultForm Load.
         private void CourseSelectionResultForm_Load(object sender, EventArgs e)
         {
             UpdateCourseGridView();
         }
 
+        // Event handler for CourseGridView CellContentClick.
         private void CourseGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != -1 && CourseGridView.Columns[e.ColumnIndex].Name == UnselectCourseButtonColumn.Name)
