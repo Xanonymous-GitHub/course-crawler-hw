@@ -33,12 +33,14 @@ namespace CourseCrawler
 
         private SelectCourseFormViewModel _formViewModel;
         private List<int> _currentSelectIndex = new();
-
+        
+        // Event handler when SelectCourseForm Loaded.
         private void SelectCourseForm_Load(object sender, EventArgs e)
         {
             UpdateCourseGridView();
         }
-
+        
+        // Use _currentDepartmentName & _currentTableName to fetch new course table data then redraw the gridview.
         private void UpdateCourseGridView()
         {
             _formViewModel.ChangeDisplayTable(_currentDepartmentName, _currentTableName);
@@ -50,6 +52,7 @@ namespace CourseCrawler
             CourseGridView.NotifyCurrentCellDirty(true);
         }
 
+        // Event handler when CourseGridView CellContentClick.
         private void CourseGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != -1 && CourseGridView.Columns[e.ColumnIndex].Name == CourseSelectionBoxColumn.Name)
@@ -67,7 +70,8 @@ namespace CourseCrawler
                 CourseGridView.Invalidate();
             }
         }
-
+        
+        // Event handler when CourseGridView CellValueChanged.
         private void CourseGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (!CourseGridView.IsCurrentCellDirty) return;
@@ -75,6 +79,7 @@ namespace CourseCrawler
             ReDrawContents();
         }
 
+        // Event handler when SubmitCourseSelectionButton Click.
         private void SubmitCourseSelectionButton_Click(object sender, EventArgs e)
         {
             Result<string> submitResult = _formViewModel.HandleSelectCourseSubmission();
@@ -90,6 +95,7 @@ namespace CourseCrawler
             }
         }
 
+        // Event handler when GetCourseSelectResultbutton Click.
         private void GetCourseSelectResultbutton_Click(object sender, EventArgs e)
         {
             CourseSelectionResultForm courseSelectionResultForm = new();
@@ -98,12 +104,14 @@ namespace CourseCrawler
             UpdateCourseGridView();
         }
 
+        // ReConfigure the properties of Controllers in the form, exclude the gridView.
         private void ReDrawContents()
         {
             SubmitCourseSelectionButton.Enabled = _formViewModel.IsAnyCourseChecked();
             GetCourseSelectResultbutton.Enabled = _formViewModel.IsAnyCourseSelected();
         }
 
+        // make the selected course's row to be a Disable status.
         private void DisableSelectedCourseCheckBox()
         {
             _currentSelectIndex = _formViewModel.GetSelectedCourseIndex();
@@ -118,6 +126,7 @@ namespace CourseCrawler
             }
         }
 
+        // Event handler when CourseTableTabControl SelectedIndexChanged.
         private void CourseTableTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentShownTabIndex = CourseTableTabControl.SelectedIndex;
