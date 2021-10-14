@@ -17,24 +17,28 @@ namespace CourseCrawler
             InitializeComponent();
         }
 
+        // Event handler for StartUpForm FormClosed.
         private void StartUpForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
             Application.ExitThread();
             Environment.Exit(Environment.ExitCode);
         }
-
+        
+        // Event handler for ExitButton Click.
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
-
+        
+        // Event handler for CourseSelectingSystemButton Click.
         private void CourseSelectingSystemButton_Click(object sender, EventArgs e)
         {
             SelectCourseForm selectCourseForm= new();
             selectCourseForm.Show();
         }
 
+        // Event handler for CourseManagementSystemButton Click.
         private void CourseManagementSystemButton_Click(object sender, EventArgs e)
         {
             CourseManagementForm courseManagementForm = new();
