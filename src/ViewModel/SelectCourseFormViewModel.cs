@@ -18,6 +18,7 @@ namespace CourseCrawler
 
         private readonly SortedDictionary<string, List<bool>> _courseTableCheckedStates = new();
 
+        // Use the given departname & tablename to generate a course table then cached it.
         public void ChangeDisplayTable(string departmentName, string tableName)
         {
             string nextDisplayedTableNameHash = departmentName + tableName;
@@ -42,6 +43,7 @@ namespace CourseCrawler
             _currentDisplayedTableNameHash = _currentDepartmentName + _currentTableName;
         }
 
+        // Convert current cached course table to string array with checkBox status.
         public List<string[]> GetCourseTableRows()
         {
             List<List<string>> tableRows = CourseTableDto.FromTableToRows(_cachedTables[_currentDisplayedTableNameHash]);
@@ -62,6 +64,7 @@ namespace CourseCrawler
             return tableRowsStr;
         }
 
+        // Check if there's exist any checked checkBox in whole gridView.
         public bool IsAnyCourseChecked()
         {
             foreach (KeyValuePair<string, List<bool>> kvp in _courseTableCheckedStates)
@@ -72,6 +75,7 @@ namespace CourseCrawler
             return false;
         }
 
+        // Check if there's exist any Selected course in whole cachedTables.
         public bool IsAnyCourseSelected()
         {
             foreach (KeyValuePair<string, CourseTable> kvp in _cachedTables)
@@ -82,11 +86,13 @@ namespace CourseCrawler
             return false;
         }
 
+        // Change Course Check Status.
         public void ChangeCourseCheckStatus(int index, bool isChecked)
         {
             _courseTableCheckedStates[_currentDisplayedTableNameHash][index] = isChecked;
         }
 
+        // clear check status.
         public void MakeAllUnCheck()
         {
             foreach (string k in _courseTableCheckedStates.Keys)
@@ -98,6 +104,7 @@ namespace CourseCrawler
             }
         }
 
+        // Get a List contains checked courses and selected but non-checked courses.
         private List<Course> GetCheckedCourse()
         {
             List<Course> checkedCourse = new();
@@ -116,6 +123,7 @@ namespace CourseCrawler
             return checkedCourse;
         }
 
+        // Get a List contains non-checked and non-selected courses.
         private List<Course> GetUncheckedCourse()
         {
             List<Course> unCheckedCourse = new();
@@ -134,6 +142,7 @@ namespace CourseCrawler
             return unCheckedCourse;
         }
 
+        // Get a List contains all selected course's display index of current displayed tab.
         public List<int> GetSelectedCourseIndex()
         {
             List<int> selectedStatus = new();
@@ -145,6 +154,7 @@ namespace CourseCrawler
             return selectedStatus;
         }
 
+        // Make all given courses to selected state and save the selected course references to Store.
         private void SelectCourses(List<Course> courses)
         {
             List<ICourse> selectedCourses = new();
@@ -157,6 +167,7 @@ namespace CourseCrawler
             saveSelectedCourseUseCase.Do();
         }
 
+        // Make all given courses to unselected state.
         private void UnselectCourses(List<Course> courses)
         {
             foreach (Course course in courses)
@@ -165,6 +176,7 @@ namespace CourseCrawler
             }
         }
 
+        // When there exist more than 2 courses in same Map Value, means they have some conflict property, then add its info to generate the error msg.
         private string GenerateConflictErrMsg(SortedDictionary<string, HashSet<Course>> classifiedDict)
         {
             HashSet<string> result = new();
@@ -183,6 +195,7 @@ namespace CourseCrawler
             return result.Count > 0 ? string.Join(Constants.Comma, result) : null;
         }
 
+        // Verify all checked courses, check if there exist any conflicts of there properties, then make them become selected state.
         public Result<string> HandleSelectCourseSubmission()
         {
             List<Course> checkedCourse = GetCheckedCourse();
