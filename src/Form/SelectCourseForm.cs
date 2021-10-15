@@ -32,7 +32,6 @@ namespace CourseCrawler
         private string _currentTableName => SupportedRange.TableNames[_supportedCourseTableMapIndex[_currentShownTabIndex].TableIIndex];
 
         private SelectCourseFormViewModel _formViewModel;
-        private List<int> _currentSelectIndex = new();
         
         // Event handler when SelectCourseForm Loaded.
         private void SelectCourseForm_Load(object sender, EventArgs e)
@@ -49,7 +48,6 @@ namespace CourseCrawler
             {
                 CourseGridView.Rows.Clear();
                 courseRows.ForEach(row => CourseGridView.Rows.Add(row));
-                DisableSelectedCourseCheckBox();
                 ReDrawContents();
                 CourseGridView.NotifyCurrentCellDirty(true);
             }
@@ -61,7 +59,6 @@ namespace CourseCrawler
             if (e.ColumnIndex != -1 && CourseGridView.Columns[e.ColumnIndex].Name == CourseSelectionBoxColumn.Name)
             {
                 DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)CourseGridView.Rows[e.RowIndex].Cells[CourseSelectionBoxColumn.Name];
-                if (_currentSelectIndex.Contains(e.RowIndex)) return;
 
                 bool isCurrentCheckBoxSelected = Convert.ToBoolean(checkCell.Value);
 
@@ -112,21 +109,6 @@ namespace CourseCrawler
         {
             SubmitCourseSelectionButton.Enabled = _formViewModel.IsAnyCourseChecked();
             GetCourseSelectResultbutton.Enabled = _formViewModel.IsAnyCourseSelected();
-        }
-
-        // make the selected course's row to be a Disable status.
-        private void DisableSelectedCourseCheckBox()
-        {
-            _currentSelectIndex = _formViewModel.GetSelectedCourseIndex();
-            foreach (int courseIndex in _currentSelectIndex)
-            {
-                DataGridViewRow checkedRow = CourseGridView.Rows[courseIndex];
-                DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)checkedRow.Cells[CourseSelectionBoxColumn.Name];
-                checkedRow.DefaultCellStyle.ForeColor = Color.Blue;
-                checkedRow.DefaultCellStyle.BackColor = Color.LightGray;
-                checkCell.Value = true;
-                checkCell.Style.BackColor = Color.Gray;
-            }
         }
 
         // Event handler when CourseTableTabControl SelectedIndexChanged.

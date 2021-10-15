@@ -49,9 +49,11 @@ namespace CourseCrawler
             List<List<string>> tableRows = CourseTableDto.FromTableToRows(_cachedTables[_currentDisplayedTableNameHash]);
 
             List<string[]> tableRowsStr = new();
+            List<int> selectedCourseIndex = GetSelectedCourseIndex();
 
-            for(int i = 0; i < tableRows.Count; i++)
+            for (int i = 0; i < tableRows.Count; i++)
             {
+                if (selectedCourseIndex.Contains(i)) continue;
                 string stateStr = _courseTableCheckedStates[_currentDisplayedTableNameHash][i].ToString();
                 tableRowsStr.Add(new string[] { stateStr });
                 foreach(string col in tableRows[i])
@@ -88,9 +90,18 @@ namespace CourseCrawler
         }
 
         // Change Course Check Status.
-        public void ChangeCourseCheckStatus(int index, bool isChecked)
+        public void ChangeCourseCheckStatus(int displayIndex, bool isChecked)
         {
-            _courseTableCheckedStates[_currentDisplayedTableNameHash][index] = isChecked;
+            List<int> selectedCourseIndex = GetSelectedCourseIndex();
+            int visitedDisplayedIndexAmount = 0, currentPos = -1;
+
+            while (visitedDisplayedIndexAmount < displayIndex + 1)
+            {
+                currentPos++;
+                if (!selectedCourseIndex.Contains(currentPos)) visitedDisplayedIndexAmount++;
+            }
+
+            _courseTableCheckedStates[_currentDisplayedTableNameHash][currentPos] = isChecked;
         }
 
         // clear check status.
