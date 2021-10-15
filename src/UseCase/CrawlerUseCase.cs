@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Text;
+using System.Net;
 using HtmlAgilityPack;
 
 namespace CourseCrawler
 {
-    internal sealed class CrawlerUseCase : IUseCase<HtmlDocument>
+    internal sealed class CrawlerUseCase : IUseCase<Result<HtmlDocument>>
     {
         public CrawlerUseCase(Uri uri)
         {
@@ -19,11 +20,17 @@ namespace CourseCrawler
         private readonly Uri _uri;
         private readonly HtmlWeb _webClient;
 
-        public HtmlDocument Do()
+        public Result<HtmlDocument> Do()
         {
-            // TODO Add StatusCode Check & Error handlers.
             // TODO Make request process async.
-            return _webClient.Load(_uri);
+            try
+            {
+                return new SuccessResult<HtmlDocument>(_webClient.Load(_uri));
+            }
+            catch (WebException e)
+            {
+                return new ErrorResult<HtmlDocument>(e.Message);
+            }
         }
     }
 }

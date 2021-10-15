@@ -23,6 +23,8 @@
 
             FetchDepartmentCourseTableUseCase fetchDepartmentCourseTableUseCase = new(_departmentName, _tableName);
             department = fetchDepartmentCourseTableUseCase.Do();
+            if (department == null) return null;
+
             return (CourseTable)department.CourseTables[_tableName];
         }
     }

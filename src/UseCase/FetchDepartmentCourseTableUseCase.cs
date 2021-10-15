@@ -22,10 +22,16 @@ namespace CourseCrawler
             Uri targetUri = Utils.GetDepartmentCourseTableUri(_departmentName, _tableName);
             CrawlerUseCase crawlerUseCase = new(targetUri);
 
-            HtmlDocument crawledResult = crawlerUseCase.Do();
+            Result<HtmlDocument> crawledResult = crawlerUseCase.Do();
+
+            if (crawledResult.Success != true)
+            {
+                Utils.ShowDebugBox("Fail to Fetch course tables !!");
+                return null;
+            }
 
             const string neededContentFilterString = "//body/table";
-            HtmlNodeCollection courseTableRows = crawledResult.DocumentNode.SelectSingleNode(neededContentFilterString).ChildNodes;
+            HtmlNodeCollection courseTableRows = (crawledResult as SuccessResult<HtmlDocument>).Data.DocumentNode.SelectSingleNode(neededContentFilterString).ChildNodes;
 
             const int unneededCourseTableRowOnTopAmount = 3;
             for (int i = 0; i < unneededCourseTableRowOnTopAmount; i++)
@@ -73,6 +79,8 @@ namespace CourseCrawler
         public Department Do()
         {
             HtmlNodeCollection courseTableRows = FetchNeededRawHtmlTableRows();
+            if (courseTableRows == null) return null;
+
             List<ICourse> courses = GenerateCourses(courseTableRows);
             Department department = GenerateDepartment(courses);
 

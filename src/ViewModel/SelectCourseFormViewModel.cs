@@ -30,9 +30,8 @@ namespace CourseCrawler
                 GetCourseTableUseCase getTableUseCase = new(departmentName, tableName);
                 CourseTable newTable = getTableUseCase.Do();
 
-                if (newTable == null) return;
-
                 _cachedTables.Add(nextDisplayedTableNameHash, newTable);
+                if (newTable == null) return;
 
                 List<bool> checkStates = new(new bool[newTable.Courses.Count]);
                 _courseTableCheckedStates.Add(nextDisplayedTableNameHash, checkStates);
@@ -46,7 +45,9 @@ namespace CourseCrawler
         // Convert current cached course table to string array with checkBox status.
         public List<string[]> GetCourseTableRows()
         {
+            if (_cachedTables[_currentDisplayedTableNameHash] == null) return null;
             List<List<string>> tableRows = CourseTableDto.FromTableToRows(_cachedTables[_currentDisplayedTableNameHash]);
+
             List<string[]> tableRowsStr = new();
 
             for(int i = 0; i < tableRows.Count; i++)

@@ -45,11 +45,14 @@ namespace CourseCrawler
         {
             _formViewModel.ChangeDisplayTable(_currentDepartmentName, _currentTableName);
             List<string[]> courseRows = _formViewModel.GetCourseTableRows();
-            CourseGridView.Rows.Clear();
-            courseRows.ForEach(row => CourseGridView.Rows.Add(row));
-            DisableSelectedCourseCheckBox();
-            ReDrawContents();
-            CourseGridView.NotifyCurrentCellDirty(true);
+            if (courseRows != null)
+            {
+                CourseGridView.Rows.Clear();
+                courseRows.ForEach(row => CourseGridView.Rows.Add(row));
+                DisableSelectedCourseCheckBox();
+                ReDrawContents();
+                CourseGridView.NotifyCurrentCellDirty(true);
+            }
         }
 
         // Event handler when CourseGridView CellContentClick.
