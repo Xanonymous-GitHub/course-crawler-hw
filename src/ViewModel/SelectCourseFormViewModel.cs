@@ -45,26 +45,28 @@ namespace CourseCrawler
         // Convert current cached course table to string array with checkBox status.
         public List<string[]> GetCourseTableRows()
         {
-            if (_cachedTables[_currentDisplayedTableNameHash] == null) return null;
-            List<List<string>> tableRows = CourseTableDto.FromTableToRows(_cachedTables[_currentDisplayedTableNameHash]);
+            CourseTable currentTable = _cachedTables[_currentDisplayedTableNameHash];
+            if (currentTable == null) return null;
 
-            List<string[]> tableRowsStr = new();
+            List<List<string>> tableRows = CourseTableDto.FromTableToRows(currentTable);
+            List<List<string>> shouldDisplayedtableRows = new();
             List<int> selectedCourseIndex = GetSelectedCourseIndex();
+            List<bool> currentCheckStates = _courseTableCheckedStates[_currentDisplayedTableNameHash];
 
             for (int i = 0; i < tableRows.Count; i++)
             {
                 if (selectedCourseIndex.Contains(i)) continue;
-                string stateStr = _courseTableCheckedStates[_currentDisplayedTableNameHash][i].ToString();
-                tableRowsStr.Add(new string[] { stateStr });
-                foreach(string col in tableRows[i])
+
+                List<string> rowWithCheckState = new() { currentCheckStates[i].ToString() };
+                foreach(string colValue in tableRows[i])
                 {
-                    List<string> tmp = tableRowsStr[i].ToList();
-                    tmp.Add(col);
-                    tableRowsStr[i] = tmp.ToArray();
+                    rowWithCheckState.Add(colValue);
                 }
+
+                shouldDisplayedtableRows.Add(rowWithCheckState);
             }
 
-            return tableRowsStr;
+            return shouldDisplayedtableRows.Count == 0 ? null : shouldDisplayedtableRows.Select(row => row.ToArray()).ToList();
         }
 
         // Check if there's exist any checked checkBox in whole gridView.
