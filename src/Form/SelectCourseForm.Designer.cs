@@ -97,7 +97,7 @@
             this.CourseGridView.AllowUserToDeleteRows = false;
             this.CourseGridView.AllowUserToResizeColumns = false;
             this.CourseGridView.AllowUserToResizeRows = false;
-            this.CourseGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.CourseGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CourseGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.CourseGridView.BackgroundColor = System.Drawing.SystemColors.Control;
             this.CourseGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -128,7 +128,7 @@
             this.IsExperimentColumn});
             this.CourseGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CourseGridView.Location = new System.Drawing.Point(0, 0);
-            this.CourseGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CourseGridView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.CourseGridView.MultiSelect = false;
             this.CourseGridView.Name = "CourseGridView";
             this.CourseGridView.ReadOnly = true;
@@ -137,7 +137,7 @@
             this.CourseGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.CourseGridView.RowTemplate.Height = 27;
             this.CourseGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.CourseGridView.Size = new System.Drawing.Size(1444, 558);
+            this.CourseGridView.Size = new System.Drawing.Size(2307, 892);
             this.CourseGridView.TabIndex = 0;
             this.CourseGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CourseGridView_CellContentClick);
             this.CourseGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.CourseGridView_CellValueChanged);
@@ -146,20 +146,20 @@
             // 
             this.CoursePanel.Controls.Add(this.CourseGridView);
             this.CoursePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CoursePanel.Location = new System.Drawing.Point(3, 3);
-            this.CoursePanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CoursePanel.Location = new System.Drawing.Point(5, 5);
+            this.CoursePanel.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.CoursePanel.Name = "CoursePanel";
-            this.CoursePanel.Size = new System.Drawing.Size(1444, 558);
+            this.CoursePanel.Size = new System.Drawing.Size(2307, 892);
             this.CoursePanel.TabIndex = 1;
             // 
             // SubmitCourseSelectionButton
             // 
             this.SubmitCourseSelectionButton.Enabled = false;
             this.SubmitCourseSelectionButton.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.SubmitCourseSelectionButton.Location = new System.Drawing.Point(900, 615);
-            this.SubmitCourseSelectionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.SubmitCourseSelectionButton.Location = new System.Drawing.Point(1440, 984);
+            this.SubmitCourseSelectionButton.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.SubmitCourseSelectionButton.Name = "SubmitCourseSelectionButton";
-            this.SubmitCourseSelectionButton.Size = new System.Drawing.Size(282, 75);
+            this.SubmitCourseSelectionButton.Size = new System.Drawing.Size(451, 120);
             this.SubmitCourseSelectionButton.TabIndex = 2;
             this.SubmitCourseSelectionButton.Text = "確認送出";
             this.SubmitCourseSelectionButton.UseVisualStyleBackColor = true;
@@ -169,10 +169,10 @@
             // 
             this.GetCourseSelectResultbutton.Enabled = false;
             this.GetCourseSelectResultbutton.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.GetCourseSelectResultbutton.Location = new System.Drawing.Point(1188, 615);
-            this.GetCourseSelectResultbutton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.GetCourseSelectResultbutton.Location = new System.Drawing.Point(1901, 984);
+            this.GetCourseSelectResultbutton.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.GetCourseSelectResultbutton.Name = "GetCourseSelectResultbutton";
-            this.GetCourseSelectResultbutton.Size = new System.Drawing.Size(282, 75);
+            this.GetCourseSelectResultbutton.Size = new System.Drawing.Size(451, 120);
             this.GetCourseSelectResultbutton.TabIndex = 3;
             this.GetCourseSelectResultbutton.Text = "查看選課結果";
             this.GetCourseSelectResultbutton.UseVisualStyleBackColor = true;
@@ -184,39 +184,43 @@
             this.CourseTableTabControl.Controls.Add(this.tabPage2);
             this.CourseTableTabControl.Controls.Add(this.tabPage3);
             this.CourseTableTabControl.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.CourseTableTabControl.Location = new System.Drawing.Point(12, 12);
+            this.CourseTableTabControl.Location = new System.Drawing.Point(19, 19);
+            this.CourseTableTabControl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.CourseTableTabControl.Name = "CourseTableTabControl";
             this.CourseTableTabControl.SelectedIndex = 0;
-            this.CourseTableTabControl.Size = new System.Drawing.Size(1458, 596);
+            this.CourseTableTabControl.Size = new System.Drawing.Size(2333, 954);
             this.CourseTableTabControl.TabIndex = 4;
             this.CourseTableTabControl.SelectedIndexChanged += new System.EventHandler(this.CourseTableTabControl_SelectedIndexChanged);
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.CoursePanel);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Location = new System.Drawing.Point(8, 44);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1450, 564);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tabPage1.Size = new System.Drawing.Size(2317, 902);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "資工三";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(8, 44);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1450, 567);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tabPage2.Size = new System.Drawing.Size(2317, 902);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "電子三甲";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(8, 44);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1450, 567);
+            this.tabPage3.Size = new System.Drawing.Size(2317, 902);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "化工三乙";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -237,10 +241,11 @@
             this.CourseSelectionBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseSelectionBoxColumn.ToolTipText = "選課狀態";
             this.CourseSelectionBoxColumn.TrueValue = "True";
-            this.CourseSelectionBoxColumn.Width = 30;
+            this.CourseSelectionBoxColumn.Width = 43;
             // 
             // CourseNumberColumn
             // 
+            this.CourseNumberColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.CourseNumberColumn.DefaultCellStyle = dataGridViewCellStyle2;
@@ -250,10 +255,11 @@
             this.CourseNumberColumn.ReadOnly = true;
             this.CourseNumberColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseNumberColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseNumberColumn.Width = 41;
+            this.CourseNumberColumn.Width = 60;
             // 
             // CourseNameColumn
             // 
+            this.CourseNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.CourseNameColumn.DefaultCellStyle = dataGridViewCellStyle3;
@@ -263,11 +269,11 @@
             this.CourseNameColumn.ReadOnly = true;
             this.CourseNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseNameColumn.Width = 54;
+            this.CourseNameColumn.Width = 82;
             // 
             // CourseLevelColumn
             // 
-            this.CourseLevelColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CourseLevelColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.CourseLevelColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.CourseLevelColumn.HeaderText = "階段";
@@ -276,11 +282,11 @@
             this.CourseLevelColumn.ReadOnly = true;
             this.CourseLevelColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseLevelColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseLevelColumn.Width = 41;
+            this.CourseLevelColumn.Width = 60;
             // 
             // CourseCreditColumn
             // 
-            this.CourseCreditColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CourseCreditColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.CourseCreditColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.CourseCreditColumn.HeaderText = "學分";
@@ -289,11 +295,11 @@
             this.CourseCreditColumn.ReadOnly = true;
             this.CourseCreditColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseCreditColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseCreditColumn.Width = 41;
+            this.CourseCreditColumn.Width = 60;
             // 
             // CourseHourColumn
             // 
-            this.CourseHourColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CourseHourColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.CourseHourColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.CourseHourColumn.HeaderText = "時數";
@@ -302,11 +308,11 @@
             this.CourseHourColumn.ReadOnly = true;
             this.CourseHourColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseHourColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseHourColumn.Width = 41;
+            this.CourseHourColumn.Width = 60;
             // 
             // CourseTypeColumn
             // 
-            this.CourseTypeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CourseTypeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.CourseTypeColumn.DefaultCellStyle = dataGridViewCellStyle7;
@@ -316,10 +322,11 @@
             this.CourseTypeColumn.ReadOnly = true;
             this.CourseTypeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseTypeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseTypeColumn.Width = 30;
+            this.CourseTypeColumn.Width = 43;
             // 
             // CourseTeachersColumn
             // 
+            this.CourseTeachersColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -334,7 +341,7 @@
             // 
             // SundayColumn
             // 
-            this.SundayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.SundayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle9.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.SundayColumn.DefaultCellStyle = dataGridViewCellStyle9;
             this.SundayColumn.HeaderText = "日";
@@ -347,7 +354,7 @@
             // 
             // MondayColumn
             // 
-            this.MondayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.MondayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle10.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.MondayColumn.DefaultCellStyle = dataGridViewCellStyle10;
             this.MondayColumn.HeaderText = "一";
@@ -360,7 +367,7 @@
             // 
             // TuesdayColumn
             // 
-            this.TuesdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.TuesdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle11.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.TuesdayColumn.DefaultCellStyle = dataGridViewCellStyle11;
             this.TuesdayColumn.HeaderText = "二";
@@ -373,7 +380,7 @@
             // 
             // WednesdayColumn
             // 
-            this.WednesdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.WednesdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle12.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.WednesdayColumn.DefaultCellStyle = dataGridViewCellStyle12;
             this.WednesdayColumn.HeaderText = "三";
@@ -386,7 +393,7 @@
             // 
             // ThursdayColumn
             // 
-            this.ThursdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ThursdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle13.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.ThursdayColumn.DefaultCellStyle = dataGridViewCellStyle13;
             this.ThursdayColumn.HeaderText = "四";
@@ -399,7 +406,7 @@
             // 
             // FridayColumn
             // 
-            this.FridayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.FridayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle14.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.FridayColumn.DefaultCellStyle = dataGridViewCellStyle14;
             this.FridayColumn.HeaderText = "五";
@@ -412,7 +419,7 @@
             // 
             // SaturdayColumn
             // 
-            this.SaturdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.SaturdayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle15.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.SaturdayColumn.DefaultCellStyle = dataGridViewCellStyle15;
             this.SaturdayColumn.HeaderText = "六";
@@ -425,6 +432,7 @@
             // 
             // ClassroomsColumn
             // 
+            this.ClassroomsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle16.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -439,6 +447,7 @@
             // 
             // StudentAmountColumn
             // 
+            this.StudentAmountColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle17.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.StudentAmountColumn.DefaultCellStyle = dataGridViewCellStyle17;
             this.StudentAmountColumn.HeaderText = "人";
@@ -447,10 +456,11 @@
             this.StudentAmountColumn.ReadOnly = true;
             this.StudentAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.StudentAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.StudentAmountColumn.Width = 30;
+            this.StudentAmountColumn.Width = 43;
             // 
             // GivenUpStudentAmountColumn
             // 
+            this.GivenUpStudentAmountColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle18.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.GivenUpStudentAmountColumn.DefaultCellStyle = dataGridViewCellStyle18;
             this.GivenUpStudentAmountColumn.HeaderText = "撤";
@@ -459,11 +469,11 @@
             this.GivenUpStudentAmountColumn.ReadOnly = true;
             this.GivenUpStudentAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.GivenUpStudentAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.GivenUpStudentAmountColumn.Width = 30;
+            this.GivenUpStudentAmountColumn.Width = 43;
             // 
             // TAsColumn
             // 
-            this.TAsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.TAsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle19.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.TAsColumn.DefaultCellStyle = dataGridViewCellStyle19;
             this.TAsColumn.HeaderText = "教學助理";
@@ -472,11 +482,11 @@
             this.TAsColumn.ReadOnly = true;
             this.TAsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.TAsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TAsColumn.Width = 54;
+            this.TAsColumn.Width = 82;
             // 
             // LanguageColumn
             // 
-            this.LanguageColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.LanguageColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle20.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.LanguageColumn.DefaultCellStyle = dataGridViewCellStyle20;
             this.LanguageColumn.HeaderText = "授課語言";
@@ -485,11 +495,11 @@
             this.LanguageColumn.ReadOnly = true;
             this.LanguageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.LanguageColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.LanguageColumn.Width = 54;
+            this.LanguageColumn.Width = 82;
             // 
             // OutlineAndProgressColumn
             // 
-            this.OutlineAndProgressColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.OutlineAndProgressColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle21.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -500,10 +510,11 @@
             this.OutlineAndProgressColumn.ReadOnly = true;
             this.OutlineAndProgressColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.OutlineAndProgressColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OutlineAndProgressColumn.Width = 75;
+            this.OutlineAndProgressColumn.Width = 125;
             // 
             // RemarkColumn
             // 
+            this.RemarkColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle22.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.RemarkColumn.DefaultCellStyle = dataGridViewCellStyle22;
             this.RemarkColumn.HeaderText = "備註";
@@ -516,7 +527,7 @@
             // 
             // AttachedStudentAmountColumn
             // 
-            this.AttachedStudentAmountColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.AttachedStudentAmountColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle23.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.AttachedStudentAmountColumn.DefaultCellStyle = dataGridViewCellStyle23;
             this.AttachedStudentAmountColumn.HeaderText = "隨班附讀";
@@ -525,11 +536,11 @@
             this.AttachedStudentAmountColumn.ReadOnly = true;
             this.AttachedStudentAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.AttachedStudentAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.AttachedStudentAmountColumn.Width = 54;
+            this.AttachedStudentAmountColumn.Width = 82;
             // 
             // IsExperimentColumn
             // 
-            this.IsExperimentColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.IsExperimentColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle24.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.IsExperimentColumn.DefaultCellStyle = dataGridViewCellStyle24;
             this.IsExperimentColumn.HeaderText = "實驗實習";
@@ -538,22 +549,22 @@
             this.IsExperimentColumn.ReadOnly = true;
             this.IsExperimentColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.IsExperimentColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.IsExperimentColumn.Width = 54;
+            this.IsExperimentColumn.Width = 82;
             // 
             // SelectCourseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1482, 703);
+            this.ClientSize = new System.Drawing.Size(2371, 1125);
             this.Controls.Add(this.CourseTableTabControl);
             this.Controls.Add(this.SubmitCourseSelectionButton);
             this.Controls.Add(this.GetCourseSelectResultbutton);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.MaximizeBox = false;
             this.Name = "SelectCourseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
