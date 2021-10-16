@@ -16,7 +16,11 @@ namespace CourseCrawler
 
         private readonly Dictionary<string, CourseTable> _cachedTables = new();
 
+        private readonly Dictionary<string, List<string[]>> _cachedshouldDisplayedtableRowsStr = new();
+
         private readonly SortedDictionary<string, List<bool>> _courseTableCheckedStates = new();
+
+        private bool _displayedtableRowsDirty = true;
 
         public static SelectCourseFormViewModel Instance;
 
@@ -43,6 +47,8 @@ namespace CourseCrawler
 
                 List<bool> checkStates = new(new bool[newTable.Courses.Count]);
                 _courseTableCheckedStates.Add(nextDisplayedTableNameHash, checkStates);
+
+                _displayedtableRowsDirty = true;
             }
 
             _currentDepartmentName = departmentName;
@@ -53,6 +59,9 @@ namespace CourseCrawler
         // Convert current cached course table to string array with checkBox status.
         public List<string[]> GetCourseTableRows()
         {
+            Utils.ShowDebugBox(_displayedtableRowsDirty);
+            if (!_displayedtableRowsDirty) return _cachedshouldDisplayedtableRowsStr[_currentDisplayedTableNameHash];
+
             CourseTable currentTable = _cachedTables[_currentDisplayedTableNameHash];
             if (currentTable == null) return null;
 
@@ -74,7 +83,12 @@ namespace CourseCrawler
                 shouldDisplayedtableRows.Add(rowWithCheckState);
             }
 
-            return shouldDisplayedtableRows.Count == 0 ? null : shouldDisplayedtableRows.Select(row => row.ToArray()).ToList();
+            _displayedtableRowsDirty = false;
+
+            List<string[]> shouldDisplayedtableRowsStr = shouldDisplayedtableRows.Count == 0 ? null : shouldDisplayedtableRows.Select(row => row.ToArray()).ToList();
+            _cachedshouldDisplayedtableRowsStr[_currentDisplayedTableNameHash] = shouldDisplayedtableRowsStr;
+
+            return shouldDisplayedtableRowsStr;
         }
 
         // Check if there's exist any checked checkBox in whole gridView.
@@ -251,6 +265,8 @@ namespace CourseCrawler
 
             string nameConflictErrMsg = GenerateConflictErrMsg(courseClassifiedByName);
             string timeConflictErrMsg = GenerateConflictErrMsg(courseClassifiedByTime);
+
+            _displayedtableRowsDirty = true;
 
             if (nameConflictErrMsg == null && timeConflictErrMsg == null)
             {
