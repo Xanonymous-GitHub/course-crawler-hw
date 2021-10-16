@@ -59,7 +59,6 @@ namespace CourseCrawler
         // Convert current cached course table to string array with checkBox status.
         public List<string[]> GetCourseTableRows()
         {
-            Utils.ShowDebugBox(_displayedtableRowsDirty);
             if (!_displayedtableRowsDirty) return _cachedshouldDisplayedtableRowsStr[_currentDisplayedTableNameHash];
 
             CourseTable currentTable = _cachedTables[_currentDisplayedTableNameHash];

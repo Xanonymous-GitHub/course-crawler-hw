@@ -118,10 +118,13 @@ namespace CourseCrawler
             UpdateCourseGridView();
 
             TabPage newTabPage = CourseTableTabControl.TabPages[Constants.TabPageNameTitle + (_currentShownTabIndex + 1).ToString()];
+            
+            if (newTabPage.Controls.Count != 0) return;
+
             newTabPage.SuspendLayout();
             newTabPage.Controls.Clear();
             newTabPage.Controls.Add(CoursePanel);
-            newTabPage.ResumeLayout(true);
+            newTabPage.ResumeLayout();
             newTabPage.Refresh();
             CourseTableTabControl.Refresh();
         }
