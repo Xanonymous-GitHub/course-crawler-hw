@@ -70,7 +70,7 @@
             // 
             this.CoursePanel.Controls.Add(this.CourseGridView);
             this.CoursePanel.Location = new System.Drawing.Point(18, 16);
-            this.CoursePanel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CoursePanel.Margin = new System.Windows.Forms.Padding(5);
             this.CoursePanel.Name = "CoursePanel";
             this.CoursePanel.Size = new System.Drawing.Size(1672, 666);
             this.CoursePanel.TabIndex = 2;
@@ -112,7 +112,7 @@
             this.IsExperimentColumn});
             this.CourseGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CourseGridView.Location = new System.Drawing.Point(0, 0);
-            this.CourseGridView.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseGridView.Margin = new System.Windows.Forms.Padding(5);
             this.CourseGridView.MultiSelect = false;
             this.CourseGridView.Name = "CourseGridView";
             this.CourseGridView.ReadOnly = true;
@@ -376,14 +376,12 @@
             // 
             // RemarkColumn
             // 
-            this.RemarkColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.RemarkColumn.HeaderText = "備註";
             this.RemarkColumn.MinimumWidth = 200;
             this.RemarkColumn.Name = "RemarkColumn";
             this.RemarkColumn.ReadOnly = true;
             this.RemarkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.RemarkColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.RemarkColumn.Width = 200;
             // 
             // AttachedStudentAmountColumn
             // 

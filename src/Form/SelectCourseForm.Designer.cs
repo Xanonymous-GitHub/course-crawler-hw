@@ -185,7 +185,7 @@
             this.CourseTableTabControl.Controls.Add(this.tabPage3);
             this.CourseTableTabControl.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.CourseTableTabControl.Location = new System.Drawing.Point(19, 19);
-            this.CourseTableTabControl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseTableTabControl.Margin = new System.Windows.Forms.Padding(5);
             this.CourseTableTabControl.Name = "CourseTableTabControl";
             this.CourseTableTabControl.SelectedIndex = 0;
             this.CourseTableTabControl.Size = new System.Drawing.Size(2333, 954);
@@ -196,9 +196,9 @@
             // 
             this.tabPage1.Controls.Add(this.CoursePanel);
             this.tabPage1.Location = new System.Drawing.Point(8, 44);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(5);
             this.tabPage1.Size = new System.Drawing.Size(2317, 902);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "資工三";
@@ -207,9 +207,9 @@
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(8, 44);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(5);
             this.tabPage2.Size = new System.Drawing.Size(2317, 902);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "電子三甲";
@@ -218,7 +218,7 @@
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(8, 44);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(2317, 902);
             this.tabPage3.TabIndex = 2;
@@ -255,7 +255,7 @@
             this.CourseNumberColumn.ReadOnly = true;
             this.CourseNumberColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseNumberColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseNumberColumn.Width = 60;
+            this.CourseNumberColumn.Width = 67;
             // 
             // CourseNameColumn
             // 
@@ -269,7 +269,7 @@
             this.CourseNameColumn.ReadOnly = true;
             this.CourseNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseNameColumn.Width = 82;
+            this.CourseNameColumn.Width = 115;
             // 
             // CourseLevelColumn
             // 
@@ -282,7 +282,7 @@
             this.CourseLevelColumn.ReadOnly = true;
             this.CourseLevelColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseLevelColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseLevelColumn.Width = 60;
+            this.CourseLevelColumn.Width = 67;
             // 
             // CourseCreditColumn
             // 
@@ -295,7 +295,7 @@
             this.CourseCreditColumn.ReadOnly = true;
             this.CourseCreditColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseCreditColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseCreditColumn.Width = 60;
+            this.CourseCreditColumn.Width = 67;
             // 
             // CourseHourColumn
             // 
@@ -308,7 +308,7 @@
             this.CourseHourColumn.ReadOnly = true;
             this.CourseHourColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseHourColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseHourColumn.Width = 60;
+            this.CourseHourColumn.Width = 67;
             // 
             // CourseTypeColumn
             // 
@@ -482,7 +482,7 @@
             this.TAsColumn.ReadOnly = true;
             this.TAsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.TAsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TAsColumn.Width = 82;
+            this.TAsColumn.Width = 115;
             // 
             // LanguageColumn
             // 
@@ -495,7 +495,7 @@
             this.LanguageColumn.ReadOnly = true;
             this.LanguageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.LanguageColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.LanguageColumn.Width = 82;
+            this.LanguageColumn.Width = 115;
             // 
             // OutlineAndProgressColumn
             // 
@@ -514,7 +514,6 @@
             // 
             // RemarkColumn
             // 
-            this.RemarkColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridViewCellStyle22.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.RemarkColumn.DefaultCellStyle = dataGridViewCellStyle22;
             this.RemarkColumn.HeaderText = "備註";
@@ -523,7 +522,6 @@
             this.RemarkColumn.ReadOnly = true;
             this.RemarkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.RemarkColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.RemarkColumn.Width = 200;
             // 
             // AttachedStudentAmountColumn
             // 
