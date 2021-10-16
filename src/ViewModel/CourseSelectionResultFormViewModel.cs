@@ -25,22 +25,21 @@ namespace CourseCrawler
 
         public List<string[]> GetSelectedCourseTableRows()
         {
-            CourseTable table = _selectedCourseTable;
-            List<List<string>> tableRows = CourseTableDto.FromTableToRows(table);
-            List<string[]> tableRowsStr = new();
+            List<List<string>> tableRows = CourseTableDto.FromTableToRows(_selectedCourseTable);
+            List<List<string>> shouldDisplayedtableRows = new();
 
             for (int i = 0; i < tableRows.Count; i++)
             {
-                tableRowsStr.Add(new string[] { Constants.UnselectCourse });
-                foreach (string col in tableRows[i])
+                List<string> rowWithUnselectButton = new() { Constants.UnselectCourse };
+                foreach (string colValue in tableRows[i])
                 {
-                    List<string> tmp = tableRowsStr[i].ToList();
-                    tmp.Add(col);
-                    tableRowsStr[i] = tmp.ToArray();
+                    rowWithUnselectButton.Add(colValue);
                 }
+
+                shouldDisplayedtableRows.Add(rowWithUnselectButton);
             }
 
-            return tableRowsStr;
+            return shouldDisplayedtableRows.Select(row => row.ToArray()).ToList();
         }
 
         public void UnselectedCourse(int unselectIndex)
