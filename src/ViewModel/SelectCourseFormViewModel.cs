@@ -5,7 +5,7 @@ namespace CourseCrawler
 {
     internal sealed class SelectCourseFormViewModel
     {
-        public SelectCourseFormViewModel(string departmentName, string tableName) 
+        private SelectCourseFormViewModel(string departmentName, string tableName)
         {
             ChangeDisplayTable(departmentName, tableName);
         }
@@ -17,6 +17,14 @@ namespace CourseCrawler
         private readonly Dictionary<string, CourseTable> _cachedTables = new();
 
         private readonly SortedDictionary<string, List<bool>> _courseTableCheckedStates = new();
+
+        public static SelectCourseFormViewModel Instance;
+
+        public static SelectCourseFormViewModel UseCreateBy(string departmentName, string tableName)
+        {
+            if (Instance == null) Instance = new SelectCourseFormViewModel(departmentName, tableName);
+            return Instance;
+        }
 
         // Use the given departname & tablename to generate a course table then cached it.
         public void ChangeDisplayTable(string departmentName, string tableName)

@@ -21,7 +21,7 @@ namespace CourseCrawler
             _supportedCourseTableMapIndex.Add(new CourseTabSourceIndex(2, 10)); // 化工, 三乙
             _currentShownTabIndex = 0;
 
-            _formViewModel = new(_currentDepartmentName, _currentTableName);
+            _formViewModel = SelectCourseFormViewModel.UseCreateBy(_currentDepartmentName, _currentTableName);
         }
 
         private readonly List<CourseTabSourceIndex> _supportedCourseTableMapIndex = new();
