@@ -14,7 +14,8 @@ namespace CourseCrawler
         [STAThread]
         static void Main()
         {
-            if (Environment.OSVersion.Version.Major >= 6) {
+            if (Environment.OSVersion.Version.Major >= 6) 
+            {
                 SetProcessDPIAware();
             }
 

@@ -73,7 +73,8 @@ namespace CourseCrawler
         // ToNumberAndName
         public static string ToNumberAndName(Course course)
         {
-            if (course.Serial == "") {
+            if (course.Serial == Constants.EmptyString) 
+            {
                 return course.Name;
             }
 
