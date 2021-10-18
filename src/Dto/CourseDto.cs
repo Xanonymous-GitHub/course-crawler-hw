@@ -6,6 +6,7 @@ namespace CourseCrawler
 {
     internal static class CourseDto
     {
+        // FromElementStrings
         public static Course FromElementStrings(params string[] source)
         {
             source = source.Select(data => data.Trim()).ToArray();
@@ -38,6 +39,7 @@ namespace CourseCrawler
                 );
         }
 
+        // ToStringList
         public static List<string> ToStringList(Course course)
         {
             return new List<string>()
@@ -68,6 +70,7 @@ namespace CourseCrawler
             };
         }
 
+        // ToNumberAndName
         public static string ToNumberAndName(Course course)
         {
             if (course.Serial == "") {
@@ -77,21 +80,25 @@ namespace CourseCrawler
             return course.Serial + Constants.Dash + course.Name;
         }
 
+        // ToCourseTypeFromString
         public static CourseType ToCourseTypeFromString(string symbolText)
         {
             return (CourseType)Constants.CourseSymbols.IndexOf(symbolText);
         }
 
+        // ToOriginString
         public static string ToOriginString(this CourseType courseType)
         {
             return Constants.CourseSymbols[(int)courseType];
         }
 
+        // ToCourseLanguageFromString
         public static CourseLanguage ToCourseLanguageFromString(string symbolText)
         {
             return (CourseLanguage)Constants.LanguageSymbols.IndexOf(symbolText);
         }
 
+        // ToOriginString
         public static string ToOriginString(this CourseLanguage courseLanguage)
         {
             return Constants.LanguageSymbols[(int)courseLanguage];

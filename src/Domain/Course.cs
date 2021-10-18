@@ -82,9 +82,10 @@ namespace CourseCrawler
         private string _attachedStudentAmount;
         private bool _isExperiment;
 
-
+        // MakeSelected
         public void MakeSelected() => _isSelected = true;
 
+        // MakeUnselected
         public void MakeUnselected() => _isSelected = false;
 
         public bool IsSelected => _isSelected;

@@ -4,6 +4,7 @@ namespace CourseCrawler
 {
     internal static class CourseTableDto
     {
+        // FromTableToRows
         public static List<List<string>> FromTableToRows(CourseTable table)
         {
             List<List<string>> result = new();

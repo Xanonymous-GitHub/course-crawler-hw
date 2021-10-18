@@ -15,6 +15,7 @@ namespace CourseCrawler
 
         private CourseTable _selectedCourseTable;
 
+        // GenerateSelectedCourseTable
         private void GenerateSelectedCourseTable()
         {
             GetSelectedCourseUseCase getSelectedCourseUseCase = new();
@@ -23,6 +24,7 @@ namespace CourseCrawler
             _selectedCourseTable = new CourseTable(Constants.SelectedCourse, selectedCourses);
         }
 
+        // GetSelectedCourseTableRows
         public List<string[]> GetSelectedCourseTableRows()
         {
             List<List<string>> tableRows = CourseTableDto.FromTableToRows(_selectedCourseTable);
@@ -42,6 +44,7 @@ namespace CourseCrawler
             return shouldDisplayedtableRows.Select(row => row.ToArray()).ToList();
         }
 
+        // UnselectedCourse
         public void UnselectedCourse(int unselectIndex)
         {
             _selectedCourseTable.Courses[unselectIndex].MakeUnselected();

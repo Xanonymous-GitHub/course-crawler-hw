@@ -10,6 +10,7 @@
 
         private readonly string _departmentName, _tableName;
 
+        // Do this usecase
         public CourseTable Do()
         {
             GetDepartmentUseCase getDepartmentUseCase = new(_departmentName);

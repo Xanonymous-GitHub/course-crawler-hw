@@ -6,6 +6,7 @@ namespace CourseCrawler
 {
     internal static class Utils
     {
+        // GetDepartmentCourseTableUri
         public static Uri GetDepartmentCourseTableUri(string departmentName, string tableName)
         {
             // TODO: implement the converter.
@@ -13,6 +14,7 @@ namespace CourseCrawler
             return uri;
         }
 
+        // ShowDebugBox
         public static void ShowDebugBox(dynamic debugInfo)
         {
             MessageBox.Show(debugInfo.ToString());

@@ -17,6 +17,7 @@ namespace CourseCrawler
 
         private readonly Store _store = Store.Instance;
 
+        // Do this usecase
         public bool Do()
         {
             _store.Update(Constants.SelectedCourse, _selectedCourses);
@@ -30,6 +31,7 @@ namespace CourseCrawler
 
         private readonly Store _store = Store.Instance;
 
+        // Do this usecase
         public List<ICourse> Do()
         {
             return _store.Use<List<ICourse>>(Constants.SelectedCourse);

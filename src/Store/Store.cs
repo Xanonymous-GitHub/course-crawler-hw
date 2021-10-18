@@ -10,7 +10,7 @@ namespace CourseCrawler
             _box = new();
         }
 
-        private static readonly Lazy<Store> lazy = new Lazy<Store>(() => new Store());
+        private static readonly Lazy<Store> lazy = new(() => new Store());
 
         private readonly Dictionary<string, dynamic> _box;
 
@@ -19,11 +19,13 @@ namespace CourseCrawler
             get => lazy.Value;
         }
 
+        // Exist
         public bool Exist(string storeItemName)
         {
             return _box.ContainsKey(storeItemName);
         }
 
+        // Use
         public T Use<T>(string storeItemName)
         {
             bool hasItem = _box.TryGetValue(storeItemName, out var item);
@@ -31,6 +33,7 @@ namespace CourseCrawler
             return item;
         }
 
+        // Update
         public void Update(string storeItemName, dynamic item)
         {
             if (Exist(storeItemName))

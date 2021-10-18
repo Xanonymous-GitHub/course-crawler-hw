@@ -20,6 +20,7 @@ namespace CourseCrawler
         private readonly Uri _uri;
         private readonly HtmlWeb _webClient;
 
+        // Do this usecase
         public Result<HtmlDocument> Do()
         {
             // TODO Make request process async.

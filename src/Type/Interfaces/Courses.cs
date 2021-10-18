@@ -4,7 +4,9 @@ namespace CourseCrawler
 {
     internal interface ICourse
     {
+        // MakeSelected
         public void MakeSelected();
+        // MakeUnselected
         public void MakeUnselected();
         public bool IsSelected { get; }
         public string Serial { get; }

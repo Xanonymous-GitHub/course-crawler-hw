@@ -11,6 +11,7 @@
 
         private readonly Store _store = Store.Instance;
 
+        // Do this usecase
         public Department Do()
         {
             bool hasDepartment = _store.Exist(_departmentName);

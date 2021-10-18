@@ -17,6 +17,7 @@ namespace CourseCrawler
 
         private readonly Store _store = Store.Instance;
 
+        // FetchNeededRawHtmlTableRows
         private HtmlNodeCollection FetchNeededRawHtmlTableRows()
         {
             Uri targetUri = Utils.GetDepartmentCourseTableUri(_departmentName, _tableName);
@@ -43,6 +44,7 @@ namespace CourseCrawler
             return courseTableRows;
         }
 
+        // GenerateCourses
         private List<ICourse> GenerateCourses(HtmlNodeCollection courseTableRows)
         {
             List<ICourse> courses = new();
@@ -57,6 +59,7 @@ namespace CourseCrawler
             return courses;
         }
 
+        // GenerateDepartment
         private Department GenerateDepartment(List<ICourse> courses)
         {
             GetDepartmentUseCase getDepartmentUseCase = new(_departmentName);
@@ -76,6 +79,7 @@ namespace CourseCrawler
             return department;
         }
 
+        // Do this usecase
         public Department Do()
         {
             HtmlNodeCollection courseTableRows = FetchNeededRawHtmlTableRows();
