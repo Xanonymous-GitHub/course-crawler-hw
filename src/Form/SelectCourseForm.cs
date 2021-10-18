@@ -101,6 +101,7 @@ namespace CourseCrawler
             CourseSelectionResultForm courseSelectionResultForm = new();
             courseSelectionResultForm.ShowDialog();
             ReDrawContents();
+            _formViewModel.MarkAsDirty();
             UpdateCourseGridView();
         }
 

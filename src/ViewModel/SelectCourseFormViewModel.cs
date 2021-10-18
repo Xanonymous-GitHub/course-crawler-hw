@@ -24,6 +24,8 @@ namespace CourseCrawler
 
         public static SelectCourseFormViewModel Instance;
 
+        public void MarkAsDirty() => _displayedtableRowsDirty = true;
+
         public static SelectCourseFormViewModel UseCreateBy(string departmentName, string tableName)
         {
             if (Instance == null) Instance = new SelectCourseFormViewModel(departmentName, tableName);
