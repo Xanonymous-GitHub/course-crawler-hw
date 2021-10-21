@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
 
 namespace CourseCrawler
 {
-    internal sealed class SelectCourseFormViewModel
+    internal sealed class SelectCourseFormViewModel : INotifyPropertyChanged
     {
         private SelectCourseFormViewModel(string departmentName, string tableName)
         {
@@ -23,6 +24,8 @@ namespace CourseCrawler
         private bool _displayedtableRowsDirty = true;
 
         public static SelectCourseFormViewModel Instance;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         // MarkAsDirty
         public void MarkAsDirty() => _displayedtableRowsDirty = true;
