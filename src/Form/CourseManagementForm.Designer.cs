@@ -32,11 +32,13 @@
             this.CommingSoonLabel = new System.Windows.Forms.Label();
             this.ManagementTabControll = new System.Windows.Forms.TabControl();
             this.CourseManageTabPage = new System.Windows.Forms.TabPage();
-            this.ClassManageTabPage = new System.Windows.Forms.TabPage();
-            this.AddCourseButton = new System.Windows.Forms.Button();
-            this.EditCourseGroupBox = new System.Windows.Forms.GroupBox();
-            this.CourseListBox = new System.Windows.Forms.ListBox();
             this.SaveCourseButton = new System.Windows.Forms.Button();
+            this.CourseListBox = new System.Windows.Forms.ListBox();
+            this.EditCourseGroupBox = new System.Windows.Forms.GroupBox();
+            this.CourseLevelLabel = new System.Windows.Forms.Label();
+            this.CourseNameLabel = new System.Windows.Forms.Label();
+            this.CourseNumberLabel = new System.Windows.Forms.Label();
+            this.CourseEnabledComboBox = new System.Windows.Forms.ComboBox();
             this.CourseSectionEditGridView = new System.Windows.Forms.DataGridView();
             this.CourseSectionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SundaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -46,10 +48,27 @@
             this.ThursdaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.FridaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.SaturdaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.CourseToEditComboBox = new System.Windows.Forms.ComboBox();
-            this.CourseNumberLabel = new System.Windows.Forms.Label();
-            this.CourseNameLabel = new System.Windows.Forms.Label();
-            this.CourseLevelLabel = new System.Windows.Forms.Label();
+            this.AddCourseButton = new System.Windows.Forms.Button();
+            this.ClassManageTabPage = new System.Windows.Forms.TabPage();
+            this.CourseNumberTextBox = new System.Windows.Forms.TextBox();
+            this.CourseNameTextBox = new System.Windows.Forms.TextBox();
+            this.CourseLevelTextBox = new System.Windows.Forms.TextBox();
+            this.CourseCreditLabel = new System.Windows.Forms.Label();
+            this.CourseCreditTextBox = new System.Windows.Forms.TextBox();
+            this.CourseTeacherLabel = new System.Windows.Forms.Label();
+            this.CourseTeacherTextBox = new System.Windows.Forms.TextBox();
+            this.CourseTypeLabel = new System.Windows.Forms.Label();
+            this.CourseTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.CourseTAsLabel = new System.Windows.Forms.Label();
+            this.CourseTAsTextBox = new System.Windows.Forms.TextBox();
+            this.CourseLanguageLabel = new System.Windows.Forms.Label();
+            this.CourseLanguageTextBox = new System.Windows.Forms.TextBox();
+            this.CourseRemarkLabel = new System.Windows.Forms.Label();
+            this.CourseRemarkTextBox = new System.Windows.Forms.TextBox();
+            this.CourseHourLabel = new System.Windows.Forms.Label();
+            this.CourseHourComboBox = new System.Windows.Forms.ComboBox();
+            this.CourseClassLabel = new System.Windows.Forms.Label();
+            this.CourseClassComboBox = new System.Windows.Forms.ComboBox();
             this.ManagementTabControll.SuspendLayout();
             this.CourseManageTabPage.SuspendLayout();
             this.EditCourseGroupBox.SuspendLayout();
@@ -60,20 +79,20 @@
             // 
             this.CommingSoonLabel.AutoSize = true;
             this.CommingSoonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F);
-            this.CommingSoonLabel.Location = new System.Drawing.Point(55, 208);
-            this.CommingSoonLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.CommingSoonLabel.Location = new System.Drawing.Point(34, 130);
             this.CommingSoonLabel.Name = "CommingSoonLabel";
-            this.CommingSoonLabel.Size = new System.Drawing.Size(0, 108);
+            this.CommingSoonLabel.Size = new System.Drawing.Size(0, 69);
             this.CommingSoonLabel.TabIndex = 0;
             // 
             // ManagementTabControll
             // 
             this.ManagementTabControll.Controls.Add(this.CourseManageTabPage);
             this.ManagementTabControll.Controls.Add(this.ClassManageTabPage);
-            this.ManagementTabControll.Location = new System.Drawing.Point(12, 12);
+            this.ManagementTabControll.Location = new System.Drawing.Point(11, 11);
+            this.ManagementTabControll.Margin = new System.Windows.Forms.Padding(2);
             this.ManagementTabControll.Name = "ManagementTabControll";
             this.ManagementTabControll.SelectedIndex = 0;
-            this.ManagementTabControll.Size = new System.Drawing.Size(2413, 1372);
+            this.ManagementTabControll.Size = new System.Drawing.Size(1173, 724);
             this.ManagementTabControll.TabIndex = 1;
             // 
             // CourseManageTabPage
@@ -82,64 +101,108 @@
             this.CourseManageTabPage.Controls.Add(this.CourseListBox);
             this.CourseManageTabPage.Controls.Add(this.EditCourseGroupBox);
             this.CourseManageTabPage.Controls.Add(this.AddCourseButton);
-            this.CourseManageTabPage.Location = new System.Drawing.Point(8, 39);
+            this.CourseManageTabPage.Location = new System.Drawing.Point(4, 25);
+            this.CourseManageTabPage.Margin = new System.Windows.Forms.Padding(2);
             this.CourseManageTabPage.Name = "CourseManageTabPage";
-            this.CourseManageTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.CourseManageTabPage.Size = new System.Drawing.Size(2397, 1325);
+            this.CourseManageTabPage.Padding = new System.Windows.Forms.Padding(2);
+            this.CourseManageTabPage.Size = new System.Drawing.Size(1165, 695);
             this.CourseManageTabPage.TabIndex = 0;
             this.CourseManageTabPage.Text = "課程管理";
             this.CourseManageTabPage.UseVisualStyleBackColor = true;
             // 
-            // ClassManageTabPage
+            // SaveCourseButton
             // 
-            this.ClassManageTabPage.Location = new System.Drawing.Point(8, 39);
-            this.ClassManageTabPage.Name = "ClassManageTabPage";
-            this.ClassManageTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ClassManageTabPage.Size = new System.Drawing.Size(2397, 1325);
-            this.ClassManageTabPage.TabIndex = 1;
-            this.ClassManageTabPage.Text = "班級管理";
-            this.ClassManageTabPage.UseVisualStyleBackColor = true;
-            // 
-            // AddCourseButton
-            // 
-            this.AddCourseButton.Location = new System.Drawing.Point(6, 1222);
-            this.AddCourseButton.Name = "AddCourseButton";
-            this.AddCourseButton.Size = new System.Drawing.Size(561, 97);
-            this.AddCourseButton.TabIndex = 0;
-            this.AddCourseButton.Text = "新增課程";
-            this.AddCourseButton.UseVisualStyleBackColor = true;
-            // 
-            // EditCourseGroupBox
-            // 
-            this.EditCourseGroupBox.Controls.Add(this.CourseLevelLabel);
-            this.EditCourseGroupBox.Controls.Add(this.CourseNameLabel);
-            this.EditCourseGroupBox.Controls.Add(this.CourseNumberLabel);
-            this.EditCourseGroupBox.Controls.Add(this.CourseToEditComboBox);
-            this.EditCourseGroupBox.Controls.Add(this.CourseSectionEditGridView);
-            this.EditCourseGroupBox.Location = new System.Drawing.Point(573, 6);
-            this.EditCourseGroupBox.Name = "EditCourseGroupBox";
-            this.EditCourseGroupBox.Size = new System.Drawing.Size(1818, 1204);
-            this.EditCourseGroupBox.TabIndex = 1;
-            this.EditCourseGroupBox.TabStop = false;
-            this.EditCourseGroupBox.Text = "編輯課程";
+            this.SaveCourseButton.Location = new System.Drawing.Point(985, 626);
+            this.SaveCourseButton.Margin = new System.Windows.Forms.Padding(2);
+            this.SaveCourseButton.Name = "SaveCourseButton";
+            this.SaveCourseButton.Size = new System.Drawing.Size(174, 61);
+            this.SaveCourseButton.TabIndex = 3;
+            this.SaveCourseButton.Text = "儲存";
+            this.SaveCourseButton.UseVisualStyleBackColor = true;
             // 
             // CourseListBox
             // 
             this.CourseListBox.FormattingEnabled = true;
-            this.CourseListBox.ItemHeight = 24;
-            this.CourseListBox.Location = new System.Drawing.Point(6, 6);
+            this.CourseListBox.ItemHeight = 15;
+            this.CourseListBox.Location = new System.Drawing.Point(4, 4);
+            this.CourseListBox.Margin = new System.Windows.Forms.Padding(2);
             this.CourseListBox.Name = "CourseListBox";
-            this.CourseListBox.Size = new System.Drawing.Size(561, 1204);
+            this.CourseListBox.Size = new System.Drawing.Size(345, 619);
             this.CourseListBox.TabIndex = 2;
             // 
-            // SaveCourseButton
+            // EditCourseGroupBox
             // 
-            this.SaveCourseButton.Location = new System.Drawing.Point(2109, 1222);
-            this.SaveCourseButton.Name = "SaveCourseButton";
-            this.SaveCourseButton.Size = new System.Drawing.Size(282, 97);
-            this.SaveCourseButton.TabIndex = 3;
-            this.SaveCourseButton.Text = "儲存";
-            this.SaveCourseButton.UseVisualStyleBackColor = true;
+            this.EditCourseGroupBox.Controls.Add(this.CourseClassComboBox);
+            this.EditCourseGroupBox.Controls.Add(this.CourseClassLabel);
+            this.EditCourseGroupBox.Controls.Add(this.CourseHourComboBox);
+            this.EditCourseGroupBox.Controls.Add(this.CourseHourLabel);
+            this.EditCourseGroupBox.Controls.Add(this.CourseRemarkTextBox);
+            this.EditCourseGroupBox.Controls.Add(this.CourseRemarkLabel);
+            this.EditCourseGroupBox.Controls.Add(this.CourseLanguageTextBox);
+            this.EditCourseGroupBox.Controls.Add(this.CourseLanguageLabel);
+            this.EditCourseGroupBox.Controls.Add(this.CourseTAsTextBox);
+            this.EditCourseGroupBox.Controls.Add(this.CourseTAsLabel);
+            this.EditCourseGroupBox.Controls.Add(this.CourseTypeComboBox);
+            this.EditCourseGroupBox.Controls.Add(this.CourseTypeLabel);
+            this.EditCourseGroupBox.Controls.Add(this.CourseTeacherTextBox);
+            this.EditCourseGroupBox.Controls.Add(this.CourseTeacherLabel);
+            this.EditCourseGroupBox.Controls.Add(this.CourseCreditTextBox);
+            this.EditCourseGroupBox.Controls.Add(this.CourseCreditLabel);
+            this.EditCourseGroupBox.Controls.Add(this.CourseLevelTextBox);
+            this.EditCourseGroupBox.Controls.Add(this.CourseNameTextBox);
+            this.EditCourseGroupBox.Controls.Add(this.CourseNumberTextBox);
+            this.EditCourseGroupBox.Controls.Add(this.CourseLevelLabel);
+            this.EditCourseGroupBox.Controls.Add(this.CourseNameLabel);
+            this.EditCourseGroupBox.Controls.Add(this.CourseNumberLabel);
+            this.EditCourseGroupBox.Controls.Add(this.CourseEnabledComboBox);
+            this.EditCourseGroupBox.Controls.Add(this.CourseSectionEditGridView);
+            this.EditCourseGroupBox.Location = new System.Drawing.Point(353, 7);
+            this.EditCourseGroupBox.Margin = new System.Windows.Forms.Padding(2);
+            this.EditCourseGroupBox.Name = "EditCourseGroupBox";
+            this.EditCourseGroupBox.Padding = new System.Windows.Forms.Padding(2);
+            this.EditCourseGroupBox.Size = new System.Drawing.Size(806, 619);
+            this.EditCourseGroupBox.TabIndex = 1;
+            this.EditCourseGroupBox.TabStop = false;
+            this.EditCourseGroupBox.Text = "編輯課程";
+            // 
+            // CourseLevelLabel
+            // 
+            this.CourseLevelLabel.AutoSize = true;
+            this.CourseLevelLabel.Location = new System.Drawing.Point(4, 87);
+            this.CourseLevelLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.CourseLevelLabel.Name = "CourseLevelLabel";
+            this.CourseLevelLabel.Size = new System.Drawing.Size(54, 15);
+            this.CourseLevelLabel.TabIndex = 4;
+            this.CourseLevelLabel.Text = "階段(*)";
+            // 
+            // CourseNameLabel
+            // 
+            this.CourseNameLabel.AutoSize = true;
+            this.CourseNameLabel.Location = new System.Drawing.Point(384, 30);
+            this.CourseNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.CourseNameLabel.Name = "CourseNameLabel";
+            this.CourseNameLabel.Size = new System.Drawing.Size(84, 15);
+            this.CourseNameLabel.TabIndex = 3;
+            this.CourseNameLabel.Text = "課程名稱(*)";
+            // 
+            // CourseNumberLabel
+            // 
+            this.CourseNumberLabel.AutoSize = true;
+            this.CourseNumberLabel.Location = new System.Drawing.Point(150, 30);
+            this.CourseNumberLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.CourseNumberLabel.Name = "CourseNumberLabel";
+            this.CourseNumberLabel.Size = new System.Drawing.Size(54, 15);
+            this.CourseNumberLabel.TabIndex = 2;
+            this.CourseNumberLabel.Text = "課號(*)";
+            // 
+            // CourseEnabledComboBox
+            // 
+            this.CourseEnabledComboBox.FormattingEnabled = true;
+            this.CourseEnabledComboBox.Location = new System.Drawing.Point(4, 22);
+            this.CourseEnabledComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CourseEnabledComboBox.Name = "CourseEnabledComboBox";
+            this.CourseEnabledComboBox.Size = new System.Drawing.Size(142, 23);
+            this.CourseEnabledComboBox.TabIndex = 1;
             // 
             // CourseSectionEditGridView
             // 
@@ -157,13 +220,14 @@
             this.ThursdaySectionColumn,
             this.FridaySectionColumn,
             this.SaturdaySectionColumn});
-            this.CourseSectionEditGridView.Location = new System.Drawing.Point(6, 553);
+            this.CourseSectionEditGridView.Location = new System.Drawing.Point(4, 307);
+            this.CourseSectionEditGridView.Margin = new System.Windows.Forms.Padding(2);
             this.CourseSectionEditGridView.Name = "CourseSectionEditGridView";
             this.CourseSectionEditGridView.ReadOnly = true;
             this.CourseSectionEditGridView.RowHeadersVisible = false;
             this.CourseSectionEditGridView.RowHeadersWidth = 82;
             this.CourseSectionEditGridView.RowTemplate.Height = 38;
-            this.CourseSectionEditGridView.Size = new System.Drawing.Size(1806, 645);
+            this.CourseSectionEditGridView.Size = new System.Drawing.Size(797, 308);
             this.CourseSectionEditGridView.TabIndex = 0;
             this.CourseSectionEditGridView.VirtualMode = true;
             // 
@@ -231,51 +295,189 @@
             this.SaturdaySectionColumn.Name = "SaturdaySectionColumn";
             this.SaturdaySectionColumn.ReadOnly = true;
             // 
-            // CourseToEditComboBox
+            // AddCourseButton
             // 
-            this.CourseToEditComboBox.FormattingEnabled = true;
-            this.CourseToEditComboBox.Location = new System.Drawing.Point(40, 75);
-            this.CourseToEditComboBox.Name = "CourseToEditComboBox";
-            this.CourseToEditComboBox.Size = new System.Drawing.Size(339, 32);
-            this.CourseToEditComboBox.TabIndex = 1;
+            this.AddCourseButton.Location = new System.Drawing.Point(4, 627);
+            this.AddCourseButton.Margin = new System.Windows.Forms.Padding(2);
+            this.AddCourseButton.Name = "AddCourseButton";
+            this.AddCourseButton.Size = new System.Drawing.Size(345, 61);
+            this.AddCourseButton.TabIndex = 0;
+            this.AddCourseButton.Text = "新增課程";
+            this.AddCourseButton.UseVisualStyleBackColor = true;
             // 
-            // CourseNumberLabel
+            // ClassManageTabPage
             // 
-            this.CourseNumberLabel.AutoSize = true;
-            this.CourseNumberLabel.Location = new System.Drawing.Point(402, 78);
-            this.CourseNumberLabel.Name = "CourseNumberLabel";
-            this.CourseNumberLabel.Size = new System.Drawing.Size(85, 24);
-            this.CourseNumberLabel.TabIndex = 2;
-            this.CourseNumberLabel.Text = "課號(*)";
+            this.ClassManageTabPage.Location = new System.Drawing.Point(4, 25);
+            this.ClassManageTabPage.Margin = new System.Windows.Forms.Padding(2);
+            this.ClassManageTabPage.Name = "ClassManageTabPage";
+            this.ClassManageTabPage.Padding = new System.Windows.Forms.Padding(2);
+            this.ClassManageTabPage.Size = new System.Drawing.Size(1362, 698);
+            this.ClassManageTabPage.TabIndex = 1;
+            this.ClassManageTabPage.Text = "班級管理";
+            this.ClassManageTabPage.UseVisualStyleBackColor = true;
             // 
-            // CourseNameLabel
+            // CourseNumberTextBox
             // 
-            this.CourseNameLabel.AutoSize = true;
-            this.CourseNameLabel.Location = new System.Drawing.Point(586, 83);
-            this.CourseNameLabel.Name = "CourseNameLabel";
-            this.CourseNameLabel.Size = new System.Drawing.Size(133, 24);
-            this.CourseNameLabel.TabIndex = 3;
-            this.CourseNameLabel.Text = "課程名稱(*)";
+            this.CourseNumberTextBox.Location = new System.Drawing.Point(209, 20);
+            this.CourseNumberTextBox.Name = "CourseNumberTextBox";
+            this.CourseNumberTextBox.Size = new System.Drawing.Size(170, 25);
+            this.CourseNumberTextBox.TabIndex = 5;
             // 
-            // CourseLevelLabel
+            // CourseNameTextBox
             // 
-            this.CourseLevelLabel.AutoSize = true;
-            this.CourseLevelLabel.Location = new System.Drawing.Point(392, 241);
-            this.CourseLevelLabel.Name = "CourseLevelLabel";
-            this.CourseLevelLabel.Size = new System.Drawing.Size(85, 24);
-            this.CourseLevelLabel.TabIndex = 4;
-            this.CourseLevelLabel.Text = "階段(*)";
+            this.CourseNameTextBox.Location = new System.Drawing.Point(473, 20);
+            this.CourseNameTextBox.Name = "CourseNameTextBox";
+            this.CourseNameTextBox.Size = new System.Drawing.Size(328, 25);
+            this.CourseNameTextBox.TabIndex = 6;
+            // 
+            // CourseLevelTextBox
+            // 
+            this.CourseLevelTextBox.Location = new System.Drawing.Point(63, 77);
+            this.CourseLevelTextBox.Name = "CourseLevelTextBox";
+            this.CourseLevelTextBox.Size = new System.Drawing.Size(100, 25);
+            this.CourseLevelTextBox.TabIndex = 7;
+            // 
+            // CourseCreditLabel
+            // 
+            this.CourseCreditLabel.AutoSize = true;
+            this.CourseCreditLabel.Location = new System.Drawing.Point(169, 87);
+            this.CourseCreditLabel.Name = "CourseCreditLabel";
+            this.CourseCreditLabel.Size = new System.Drawing.Size(54, 15);
+            this.CourseCreditLabel.TabIndex = 8;
+            this.CourseCreditLabel.Text = "學分(*)";
+            // 
+            // CourseCreditTextBox
+            // 
+            this.CourseCreditTextBox.Location = new System.Drawing.Point(229, 77);
+            this.CourseCreditTextBox.Name = "CourseCreditTextBox";
+            this.CourseCreditTextBox.Size = new System.Drawing.Size(150, 25);
+            this.CourseCreditTextBox.TabIndex = 9;
+            // 
+            // CourseTeacherLabel
+            // 
+            this.CourseTeacherLabel.AutoSize = true;
+            this.CourseTeacherLabel.Location = new System.Drawing.Point(384, 87);
+            this.CourseTeacherLabel.Name = "CourseTeacherLabel";
+            this.CourseTeacherLabel.Size = new System.Drawing.Size(54, 15);
+            this.CourseTeacherLabel.TabIndex = 10;
+            this.CourseTeacherLabel.Text = "教師(*)";
+            // 
+            // CourseTeacherTextBox
+            // 
+            this.CourseTeacherTextBox.Location = new System.Drawing.Point(444, 77);
+            this.CourseTeacherTextBox.Name = "CourseTeacherTextBox";
+            this.CourseTeacherTextBox.Size = new System.Drawing.Size(172, 25);
+            this.CourseTeacherTextBox.TabIndex = 11;
+            // 
+            // CourseTypeLabel
+            // 
+            this.CourseTypeLabel.AutoSize = true;
+            this.CourseTypeLabel.Location = new System.Drawing.Point(622, 87);
+            this.CourseTypeLabel.Name = "CourseTypeLabel";
+            this.CourseTypeLabel.Size = new System.Drawing.Size(39, 15);
+            this.CourseTypeLabel.TabIndex = 12;
+            this.CourseTypeLabel.Text = "修(*)";
+            // 
+            // CourseTypeComboBox
+            // 
+            this.CourseTypeComboBox.FormattingEnabled = true;
+            this.CourseTypeComboBox.Location = new System.Drawing.Point(667, 79);
+            this.CourseTypeComboBox.Name = "CourseTypeComboBox";
+            this.CourseTypeComboBox.Size = new System.Drawing.Size(134, 23);
+            this.CourseTypeComboBox.TabIndex = 13;
+            // 
+            // CourseTAsLabel
+            // 
+            this.CourseTAsLabel.AutoSize = true;
+            this.CourseTAsLabel.Location = new System.Drawing.Point(5, 141);
+            this.CourseTAsLabel.Name = "CourseTAsLabel";
+            this.CourseTAsLabel.Size = new System.Drawing.Size(67, 15);
+            this.CourseTAsLabel.TabIndex = 14;
+            this.CourseTAsLabel.Text = "教學助理";
+            // 
+            // CourseTAsTextBox
+            // 
+            this.CourseTAsTextBox.Location = new System.Drawing.Point(78, 131);
+            this.CourseTAsTextBox.Name = "CourseTAsTextBox";
+            this.CourseTAsTextBox.Size = new System.Drawing.Size(301, 25);
+            this.CourseTAsTextBox.TabIndex = 15;
+            // 
+            // CourseLanguageLabel
+            // 
+            this.CourseLanguageLabel.AutoSize = true;
+            this.CourseLanguageLabel.Location = new System.Drawing.Point(385, 141);
+            this.CourseLanguageLabel.Name = "CourseLanguageLabel";
+            this.CourseLanguageLabel.Size = new System.Drawing.Size(67, 15);
+            this.CourseLanguageLabel.TabIndex = 4;
+            this.CourseLanguageLabel.Text = "授課語言";
+            // 
+            // CourseLanguageTextBox
+            // 
+            this.CourseLanguageTextBox.Location = new System.Drawing.Point(458, 131);
+            this.CourseLanguageTextBox.Name = "CourseLanguageTextBox";
+            this.CourseLanguageTextBox.Size = new System.Drawing.Size(343, 25);
+            this.CourseLanguageTextBox.TabIndex = 16;
+            // 
+            // CourseRemarkLabel
+            // 
+            this.CourseRemarkLabel.AutoSize = true;
+            this.CourseRemarkLabel.Location = new System.Drawing.Point(5, 198);
+            this.CourseRemarkLabel.Name = "CourseRemarkLabel";
+            this.CourseRemarkLabel.Size = new System.Drawing.Size(37, 15);
+            this.CourseRemarkLabel.TabIndex = 17;
+            this.CourseRemarkLabel.Text = "備註";
+            // 
+            // CourseRemarkTextBox
+            // 
+            this.CourseRemarkTextBox.Location = new System.Drawing.Point(48, 188);
+            this.CourseRemarkTextBox.Name = "CourseRemarkTextBox";
+            this.CourseRemarkTextBox.Size = new System.Drawing.Size(568, 25);
+            this.CourseRemarkTextBox.TabIndex = 18;
+            // 
+            // CourseHourLabel
+            // 
+            this.CourseHourLabel.AutoSize = true;
+            this.CourseHourLabel.Location = new System.Drawing.Point(5, 253);
+            this.CourseHourLabel.Name = "CourseHourLabel";
+            this.CourseHourLabel.Size = new System.Drawing.Size(54, 15);
+            this.CourseHourLabel.TabIndex = 19;
+            this.CourseHourLabel.Text = "時數(*)";
+            // 
+            // CourseHourComboBox
+            // 
+            this.CourseHourComboBox.FormattingEnabled = true;
+            this.CourseHourComboBox.Location = new System.Drawing.Point(63, 245);
+            this.CourseHourComboBox.Name = "CourseHourComboBox";
+            this.CourseHourComboBox.Size = new System.Drawing.Size(121, 23);
+            this.CourseHourComboBox.TabIndex = 20;
+            // 
+            // CourseClassLabel
+            // 
+            this.CourseClassLabel.AutoSize = true;
+            this.CourseClassLabel.Location = new System.Drawing.Point(190, 253);
+            this.CourseClassLabel.Name = "CourseClassLabel";
+            this.CourseClassLabel.Size = new System.Drawing.Size(54, 15);
+            this.CourseClassLabel.TabIndex = 21;
+            this.CourseClassLabel.Text = "班級(*)";
+            // 
+            // CourseClassComboBox
+            // 
+            this.CourseClassComboBox.FormattingEnabled = true;
+            this.CourseClassComboBox.Location = new System.Drawing.Point(250, 245);
+            this.CourseClassComboBox.Name = "CourseClassComboBox";
+            this.CourseClassComboBox.Size = new System.Drawing.Size(121, 23);
+            this.CourseClassComboBox.TabIndex = 22;
             // 
             // CourseManagementForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2437, 1396);
+            this.ClientSize = new System.Drawing.Size(1188, 746);
             this.Controls.Add(this.ManagementTabControll);
             this.Controls.Add(this.CommingSoonLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "CourseManagementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -309,9 +511,28 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn ThursdaySectionColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn FridaySectionColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn SaturdaySectionColumn;
-        private System.Windows.Forms.ComboBox CourseToEditComboBox;
+        private System.Windows.Forms.ComboBox CourseEnabledComboBox;
         private System.Windows.Forms.Label CourseLevelLabel;
         private System.Windows.Forms.Label CourseNameLabel;
         private System.Windows.Forms.Label CourseNumberLabel;
+        private System.Windows.Forms.TextBox CourseNameTextBox;
+        private System.Windows.Forms.TextBox CourseNumberTextBox;
+        private System.Windows.Forms.TextBox CourseLevelTextBox;
+        private System.Windows.Forms.Label CourseTypeLabel;
+        private System.Windows.Forms.TextBox CourseTeacherTextBox;
+        private System.Windows.Forms.Label CourseTeacherLabel;
+        private System.Windows.Forms.TextBox CourseCreditTextBox;
+        private System.Windows.Forms.Label CourseCreditLabel;
+        private System.Windows.Forms.ComboBox CourseTypeComboBox;
+        private System.Windows.Forms.Label CourseTAsLabel;
+        private System.Windows.Forms.TextBox CourseLanguageTextBox;
+        private System.Windows.Forms.Label CourseLanguageLabel;
+        private System.Windows.Forms.TextBox CourseTAsTextBox;
+        private System.Windows.Forms.Label CourseHourLabel;
+        private System.Windows.Forms.TextBox CourseRemarkTextBox;
+        private System.Windows.Forms.Label CourseRemarkLabel;
+        private System.Windows.Forms.ComboBox CourseHourComboBox;
+        private System.Windows.Forms.ComboBox CourseClassComboBox;
+        private System.Windows.Forms.Label CourseClassLabel;
     }
 }
