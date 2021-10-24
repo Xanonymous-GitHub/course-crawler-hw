@@ -125,6 +125,7 @@
     <Compile Include="src\Type\Interfaces\Courses.cs" />
     <Compile Include="src\Type\Interfaces\Result.cs" />
     <Compile Include="src\Type\Interfaces\UseCases.cs" />
+    <Compile Include="src\Type\Interfaces\Bindable.cs" />
     <Compile Include="src\UseCase\CrawlerUseCase.cs" />
     <Compile Include="src\UseCase\FetchDepartmentCourseTableUseCase.cs" />
     <Compile Include="src\UseCase\GetCourseTableUseCase.cs" />

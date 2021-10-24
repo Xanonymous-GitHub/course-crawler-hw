@@ -15,7 +15,11 @@ namespace CourseCrawler
         public StartUpForm()
         {
             InitializeComponent();
+
+            _formViewModel = new();
         }
+
+        private StartUpFormViewModel _formViewModel;
 
         // Event handler for StartUpForm FormClosed.
         private void StartUpForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -34,7 +38,9 @@ namespace CourseCrawler
         // Event handler for CourseSelectingSystemButton Click.
         private void CourseSelectingSystemButton_Click(object sender, EventArgs e)
         {
-            SelectCourseForm selectCourseForm= new();
+            SelectCourseForm selectCourseForm = new();
+            _formViewModel.AcceptToOpenSelectCourseForm = false;
+            selectCourseForm.FormClosed += new((object sender, FormClosedEventArgs e) => _formViewModel.AcceptToOpenSelectCourseForm = true);
             selectCourseForm.Show();
         }
 
@@ -42,7 +48,22 @@ namespace CourseCrawler
         private void CourseManagementSystemButton_Click(object sender, EventArgs e)
         {
             CourseManagementForm courseManagementForm = new();
+            _formViewModel.AcceptToOpenCourseManagementForm = false;
             courseManagementForm.ShowDialog();
+            _formViewModel.AcceptToOpenCourseManagementForm = true;
+        }
+
+        // StartUpForm_Load
+        private void StartUpForm_Load(object sender, EventArgs e)
+        {
+            BindComponents();
+        }
+
+        // BindComponents
+        private void BindComponents()
+        {
+            CourseSelectingSystemButton.DataBindings.Add(nameof(Enabled), _formViewModel, nameof(_formViewModel.AcceptToOpenSelectCourseForm), true);
+            CourseManagementSystemButton.DataBindings.Add(nameof(Enabled), _formViewModel, nameof(_formViewModel.AcceptToOpenCourseManagementForm), true);
         }
     }
 }
