@@ -133,6 +133,7 @@
     <Compile Include="src\Util\Utils.cs" />
     <Compile Include="src\ViewModel\CourseSelectionResultFormViewModel.cs" />
     <Compile Include="src\ViewModel\SelectCourseFormViewModel.cs" />
+    <Compile Include="src\ViewModel\StartUpFormViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

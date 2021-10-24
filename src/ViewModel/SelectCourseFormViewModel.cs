@@ -255,7 +255,7 @@ namespace CourseCrawler
 
                 foreach (WeekTime weekTime in course.WeekTimes)
                 {
-                    if (weekTime.Times == null || weekTime.Times[0] == Constants.EmptyString) continue;
+                    if (weekTime.Times == null || weekTime.Times[0] == string.Empty) continue;
 
                     foreach (string time in weekTime.Times)
                     {
@@ -291,7 +291,7 @@ namespace CourseCrawler
             }
             else
             {
-                nameConflictErrMsg = Constants.EmptyString;
+                nameConflictErrMsg = string.Empty;
             }
             
             if (timeConflictErrMsg != null)
@@ -303,7 +303,7 @@ namespace CourseCrawler
             }
             else
             {
-                timeConflictErrMsg = Constants.EmptyString;
+                timeConflictErrMsg = string.Empty;
             }
 
             return new ErrorResult<string>

@@ -30,7 +30,6 @@ namespace CourseCrawler
         public static readonly string FailToSelectCourse = "加選失敗";
         public static readonly string UnselectCourse = "退選";
         public static readonly string SelectedCourse = "SelectedCourse";
-        public static readonly string EmptyString = "";
         public static readonly string TabPageNameTitle = "tabPage";
     }
 }

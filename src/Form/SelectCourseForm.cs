@@ -86,7 +86,7 @@ namespace CourseCrawler
 
             string resultMsg = submitResult.Success ? submitResult.Data : (submitResult as ErrorResult<string>).Message;
 
-            MessageBox.Show(resultMsg, Constants.EmptyString, buttons: MessageBoxButtons.OK, icon: submitResult.Success ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+            MessageBox.Show(resultMsg, string.Empty, buttons: MessageBoxButtons.OK, icon: submitResult.Success ? MessageBoxIcon.Information : MessageBoxIcon.Error);
 
             if (submitResult.Success)
             {

@@ -35,7 +35,7 @@ namespace CourseCrawler
                     outlineAndProgressUrl: source[19].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
                     remark: source[20],
                     attachedStudentAmount: source[21],
-                    isExperiment: source[22] != Constants.EmptyString
+                    isExperiment: source[22] != string.Empty
                 );
         }
 
@@ -66,14 +66,14 @@ namespace CourseCrawler
                 string.Join(Constants.NewLineChar, course.OutlineAndProgressUrl),
                 course.Remark,
                 course.AttachedStudentAmount,
-                course.IsExperiment ? Constants.DiamondChar.ToString() : Constants.EmptyString,
+                course.IsExperiment ? Constants.DiamondChar.ToString() : string.Empty,
             };
         }
 
         // ToNumberAndName
         public static string ToNumberAndName(Course course)
         {
-            if (course.Serial == Constants.EmptyString) 
+            if (course.Serial == string.Empty) 
             {
                 return course.Name;
             }
