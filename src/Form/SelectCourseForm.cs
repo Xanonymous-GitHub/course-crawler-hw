@@ -16,9 +16,9 @@ namespace CourseCrawler
         {
             InitializeComponent();
 
-            _supportedCourseTableMapIndex.Add(new CourseTabSourceIndex(0, 2)); // 資工, 三
-            _supportedCourseTableMapIndex.Add(new CourseTabSourceIndex(1, 6)); // 電子, 三甲
-            _supportedCourseTableMapIndex.Add(new CourseTabSourceIndex(2, 10)); // 化工, 三乙
+            _supportedCourseTableMapIndex.Add(new(0, 2)); // 資工, 三
+            _supportedCourseTableMapIndex.Add(new(1, 6)); // 電子, 三甲
+            _supportedCourseTableMapIndex.Add(new(2, 10)); // 化工, 三乙
             _currentShownTabIndex = 0;
 
             _formViewModel = SelectCourseFormViewModel.UseCreateBy(_currentDepartmentName, _currentTableName);
