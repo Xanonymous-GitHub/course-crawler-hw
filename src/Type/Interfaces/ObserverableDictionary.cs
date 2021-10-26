@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CourseCrawler
 {
-    /// <summary>
-    /// Provides a dictionary for use with data binding.
-    /// </summary>
-    /// <typeparam name="TKey">Specifies the type of the keys in this collection.</typeparam>
-    /// <typeparam name="TValue">Specifies the type of the values in this collection.</typeparam>
     [DebuggerDisplay("Count={Count}")]
     public class ObservableDictionary<TKey, TValue> :
         ICollection<KeyValuePair<TKey, TValue>>, IDictionary<TKey, TValue>,
@@ -32,10 +22,7 @@ namespace CourseCrawler
         /// <summary>
         /// Initializes an instance of the class.
         /// </summary>
-        public ObservableDictionary()
-            : this(new Dictionary<TKey, TValue>())
-        {
-        }
+        public ObservableDictionary() : this(new Dictionary<TKey, TValue>()) { }
 
         /// <summary>
         /// Initializes an instance of the class using another dictionary as 
@@ -46,32 +33,26 @@ namespace CourseCrawler
             this.dictionary = dictionary;
         }
 
-        void AddWithNotification(KeyValuePair<TKey, TValue> item)
-        {
-            AddWithNotification(item.Key, item.Value);
-        }
+        void AddWithNotification(KeyValuePair<TKey, TValue> item) => AddWithNotification(item.Key, item.Value);
 
         void AddWithNotification(TKey key, TValue value)
         {
             dictionary.Add(key, value);
 
-            CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add,
-                new KeyValuePair<TKey, TValue>(key, value)));
-            PropertyChanged(this, new PropertyChangedEventArgs("Count"));
-            PropertyChanged(this, new PropertyChangedEventArgs("Keys"));
-            PropertyChanged(this, new PropertyChangedEventArgs("Values"));
+            CollectionChanged(this, new(NotifyCollectionChangedAction.Add, new KeyValuePair<TKey, TValue>(key, value)));
+            PropertyChanged(this, new(nameof(dictionary.Count)));
+            PropertyChanged(this, new(nameof(dictionary.Keys)));
+            PropertyChanged(this, new(nameof(dictionary.Values)));
         }
 
         bool RemoveWithNotification(TKey key)
         {
-            TValue value;
-            if (dictionary.TryGetValue(key, out value) && dictionary.Remove(key))
+            if (dictionary.TryGetValue(key, out TValue value) && dictionary.Remove(key))
             {
-                CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove,
-                    new KeyValuePair<TKey, TValue>(key, value)));
-                PropertyChanged(this, new PropertyChangedEventArgs("Count"));
-                PropertyChanged(this, new PropertyChangedEventArgs("Keys"));
-                PropertyChanged(this, new PropertyChangedEventArgs("Values"));
+                CollectionChanged(this, new(NotifyCollectionChangedAction.Remove, new KeyValuePair<TKey, TValue>(key, value)));
+                PropertyChanged(this, new(nameof(dictionary.Count)));
+                PropertyChanged(this, new(nameof(dictionary.Keys)));
+                PropertyChanged(this, new(nameof(dictionary.Values)));
 
                 return true;
             }
@@ -81,15 +62,17 @@ namespace CourseCrawler
 
         void UpdateWithNotification(TKey key, TValue value)
         {
-            TValue existing;
-            if (dictionary.TryGetValue(key, out existing))
+            if (dictionary.TryGetValue(key, out TValue existing))
             {
                 dictionary[key] = value;
 
-                CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace,
+                CollectionChanged(this, new(NotifyCollectionChangedAction.Replace,
                     new KeyValuePair<TKey, TValue>(key, value),
-                    new KeyValuePair<TKey, TValue>(key, existing)));
-                PropertyChanged(this, new PropertyChangedEventArgs("Values"));
+                    new KeyValuePair<TKey, TValue>(key, existing)
+                  )
+                );
+
+                PropertyChanged(this, new(nameof(dictionary.Values)));
             }
             else
             {
@@ -124,10 +107,7 @@ namespace CourseCrawler
         /// <returns>
         /// true if the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the key; otherwise, false.
         /// </returns>
-        public bool ContainsKey(TKey key)
-        {
-            return dictionary.ContainsKey(key);
-        }
+        public bool ContainsKey(TKey key) => dictionary.ContainsKey(key);
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the keys of the <see cref="T:System.Collections.Generic.IDictionary`2" />.
@@ -135,7 +115,7 @@ namespace CourseCrawler
         /// <returns>An <see cref="T:System.Collections.Generic.ICollection`1" /> containing the keys of the object that implements <see cref="T:System.Collections.Generic.IDictionary`2" />.</returns>
         public ICollection<TKey> Keys
         {
-            get { return dictionary.Keys; }
+            get => dictionary.Keys;
         }
 
         /// <summary>
@@ -145,10 +125,7 @@ namespace CourseCrawler
         /// <returns>
         /// true if the element is successfully removed; otherwise, false.  This method also returns false if <paramref name="key" /> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </returns>
-        public bool Remove(TKey key)
-        {
-            return RemoveWithNotification(key);
-        }
+        public bool Remove(TKey key) => RemoveWithNotification(key);
 
         /// <summary>
         /// Gets the value associated with the specified key.
@@ -158,10 +135,7 @@ namespace CourseCrawler
         /// <returns>
         /// true if the object that implements <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the specified key; otherwise, false.
         /// </returns>
-        public bool TryGetValue(TKey key, out TValue value)
-        {
-            return dictionary.TryGetValue(key, out value);
-        }
+        public bool TryGetValue(TKey key, out TValue value) => dictionary.TryGetValue(key, out value);
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the values in the <see cref="T:System.Collections.Generic.IDictionary`2" />.
@@ -169,7 +143,7 @@ namespace CourseCrawler
         /// <returns>An <see cref="T:System.Collections.Generic.ICollection`1" /> containing the values in the object that implements <see cref="T:System.Collections.Generic.IDictionary`2" />.</returns>
         public ICollection<TValue> Values
         {
-            get { return dictionary.Values; }
+            get => dictionary.Values;
         }
 
         /// <summary>
@@ -179,7 +153,7 @@ namespace CourseCrawler
         /// <returns></returns>
         public TValue this[TKey key]
         {
-            get { return dictionary[key]; }
+            get => dictionary[key];
             set { UpdateWithNotification(key, value); }
         }
 
@@ -194,52 +168,40 @@ namespace CourseCrawler
 
         void ICollection<KeyValuePair<TKey, TValue>>.Clear()
         {
-            ((ICollection<KeyValuePair<TKey, TValue>>)dictionary).Clear();
+            dictionary.Clear();
 
-            CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-            PropertyChanged(this, new PropertyChangedEventArgs("Count"));
-            PropertyChanged(this, new PropertyChangedEventArgs("Keys"));
-            PropertyChanged(this, new PropertyChangedEventArgs("Values"));
+            CollectionChanged(this, new(NotifyCollectionChangedAction.Reset));
+            PropertyChanged(this, new(nameof(dictionary.Count)));
+            PropertyChanged(this, new(nameof(dictionary.Keys)));
+            PropertyChanged(this, new(nameof(dictionary.Values)));
         }
 
-        bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item)
-        {
-            return ((ICollection<KeyValuePair<TKey, TValue>>)dictionary).Contains(item);
-        }
+        bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item) => dictionary.Contains(item);
 
         void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
         {
-            ((ICollection<KeyValuePair<TKey, TValue>>)dictionary).CopyTo(array, arrayIndex);
+            dictionary.CopyTo(array, arrayIndex);
         }
 
         int ICollection<KeyValuePair<TKey, TValue>>.Count
         {
-            get { return ((ICollection<KeyValuePair<TKey, TValue>>)dictionary).Count; }
+            get => dictionary.Count;
         }
 
         bool ICollection<KeyValuePair<TKey, TValue>>.IsReadOnly
         {
-            get { return ((ICollection<KeyValuePair<TKey, TValue>>)dictionary).IsReadOnly; }
+            get => dictionary.IsReadOnly;
         }
 
-        bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item)
-        {
-            return RemoveWithNotification(item.Key);
-        }
+        bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item) => RemoveWithNotification(item.Key);
 
         #endregion
 
         #region IEnumerable<KeyValuePair<TKey,TValue>> Members
 
-        IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator()
-        {
-            return ((ICollection<KeyValuePair<TKey, TValue>>)dictionary).GetEnumerator();
-        }
+        IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() => dictionary.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((ICollection<KeyValuePair<TKey, TValue>>)dictionary).GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => dictionary.GetEnumerator();
 
         #endregion
     }
