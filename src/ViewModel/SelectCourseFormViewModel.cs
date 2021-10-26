@@ -238,12 +238,12 @@ namespace CourseCrawler
         // Verify all checked courses, check if there exist any conflicts of there properties, then make them become selected state.
         public Result<string> HandleSelectCourseSubmission()
         {
-            List<Course> checkedCourse = GetCheckedCourse();
-            List<Course> unCheckedCourse = GetUncheckedCourse();
+            List<Course> checkedCourses = GetCheckedCourse();
+            List<Course> unCheckedCourses = GetUncheckedCourse();
             SortedDictionary<string, HashSet<Course>> courseClassifiedByName = new();
             SortedDictionary<string, HashSet<Course>> courseClassifiedByTime = new();
 
-            foreach (Course course in checkedCourse)
+            foreach (Course course in checkedCourses)
             {
                 if (!courseClassifiedByName.ContainsKey(course.Name))
                 {
@@ -274,8 +274,8 @@ namespace CourseCrawler
 
             if (nameConflictErrMsg == null && timeConflictErrMsg == null)
             {
-                UnselectCourses(unCheckedCourse);
-                SelectCourses(checkedCourse);
+                UnselectCourses(unCheckedCourses);
+                SelectCourses(checkedCourses);
                 MakeAllUnCheck();
                 return new SuccessResult<string>(Constants.SuccessfullySelectCourse);
             }
