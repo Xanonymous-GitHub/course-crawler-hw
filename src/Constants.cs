@@ -31,5 +31,7 @@ namespace CourseCrawler
         public static readonly string UnselectCourse = "退選";
         public static readonly string SelectedCourse = "SelectedCourse";
         public static readonly string TabPageNameTitle = "tabPage";
+        public static readonly string AllCourses = "AllCourses";
+        public static readonly string AllDepartments = "AllDepartments";
     }
 }

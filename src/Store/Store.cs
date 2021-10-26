@@ -10,9 +10,9 @@ namespace CourseCrawler
             _box = new();
         }
 
-        private static readonly Lazy<Store> lazy = new(() => new Store());
+        private static readonly Lazy<Store> lazy = new(() => new());
 
-        private readonly Dictionary<string, dynamic> _box;
+        private readonly ObservableDictionary<string, dynamic> _box;
 
         public static Store Instance 
         {

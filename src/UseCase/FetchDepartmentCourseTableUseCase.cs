@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
 using HtmlAgilityPack;
 
 namespace CourseCrawler
@@ -88,7 +89,19 @@ namespace CourseCrawler
             List<ICourse> courses = GenerateCourses(courseTableRows);
             Department department = GenerateDepartment(courses);
 
-            _store.Update(_departmentName, department);
+            ObservableDictionary<string, Department> allDepartments;
+            if (_store.Exist(Constants.AllDepartments))
+            {
+                allDepartments = _store.Use<ObservableDictionary<string, Department>>(Constants.AllDepartments);
+            }
+            else
+            {
+                allDepartments = new();
+            }
+
+            allDepartments.Add(_departmentName, department);
+            _store.Update(Constants.AllDepartments, allDepartments);
+
             return department;
         }
     }
