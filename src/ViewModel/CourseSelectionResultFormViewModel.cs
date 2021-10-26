@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,7 @@ namespace CourseCrawler
         private void GenerateSelectedCourseTable()
         {
             GetSelectedCourseUseCase getSelectedCourseUseCase = new();
-            List<ICourse> selectedCourses = getSelectedCourseUseCase.Do();
+            BindingList<ICourse> selectedCourses = getSelectedCourseUseCase.Do();
 
             _selectedCourseTable = new CourseTable(Constants.SelectedCourse, selectedCourses);
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CourseCrawler
@@ -8,22 +9,28 @@ namespace CourseCrawler
         public CourseTable(string name, List<ICourse> courses)
         {
             _name = name;
+            _courses = new(courses);
+        }
+
+        public CourseTable(string name, BindingList<ICourse> courses)
+        {
+            _name = name;
             _courses = courses;
         }
 
         public CourseTable(string name, ICourse course)
         {
             _name = name;
-            List<ICourse> courses = new();
+            BindingList<ICourse> courses = new();
             courses.Add(course);
             _courses = courses;
         }
 
         private readonly string _name;
-        private readonly List<ICourse> _courses;
+        private readonly BindingList<ICourse> _courses;
 
         public string Name => _name;
-        public List<ICourse> Courses => _courses;
+        public BindingList<ICourse> Courses => _courses;
 
         public bool IsAnyCourseSelected => _courses.Any(course => course.IsSelected);
     }

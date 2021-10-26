@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace CourseCrawler
 {
@@ -44,7 +45,7 @@ namespace CourseCrawler
     {
         public string Name { get; }
 
-        public List<ICourse> Courses { get; }
+        public BindingList<ICourse> Courses { get; }
 
         public bool IsAnyCourseSelected { get; }
     }

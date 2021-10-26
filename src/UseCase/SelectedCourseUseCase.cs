@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +8,12 @@ namespace CourseCrawler
 {
     internal sealed class SaveSelectedCourseUseCase : IUseCase<bool>
     {
-        public SaveSelectedCourseUseCase(List<ICourse> selectedCourses)
+        public SaveSelectedCourseUseCase(BindingList<ICourse> selectedCourses)
         {
             _selectedCourses = selectedCourses;
         }
 
-        private readonly List<ICourse> _selectedCourses;
+        private readonly BindingList<ICourse> _selectedCourses;
 
         private readonly Store _store = Store.Instance;
 
@@ -25,16 +25,16 @@ namespace CourseCrawler
         }
     }
 
-    internal sealed class GetSelectedCourseUseCase : IUseCase<List<ICourse>>
+    internal sealed class GetSelectedCourseUseCase : IUseCase<BindingList<ICourse>>
     {
         public GetSelectedCourseUseCase() { }
 
         private readonly Store _store = Store.Instance;
 
         // Do this usecase
-        public List<ICourse> Do()
+        public BindingList<ICourse> Do()
         {
-            return _store.Use<List<ICourse>>(Constants.SelectedCourse);
+            return _store.Use<BindingList<ICourse>>(Constants.SelectedCourse);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace CourseCrawler
 {
-    internal sealed class SelectCourseFormViewModel : INotifyPropertyChanged
+    internal sealed class SelectCourseFormViewModel
     {
         private SelectCourseFormViewModel(string departmentName, string tableName)
         {
@@ -24,8 +24,6 @@ namespace CourseCrawler
         private bool _displayedtableRowsDirty = true;
 
         public static SelectCourseFormViewModel Instance;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         // MarkAsDirty
         public void MarkAsDirty() => _displayedtableRowsDirty = true;
@@ -188,7 +186,7 @@ namespace CourseCrawler
         public List<int> GetSelectedCourseIndex()
         {
             List<int> selectedStatus = new();
-            List<ICourse> currentCourses = _cachedTables[_currentDisplayedTableNameHash].Courses;
+            BindingList<ICourse> currentCourses = _cachedTables[_currentDisplayedTableNameHash].Courses;
             for (int i = 0; i < currentCourses.Count; i++)
             {
                 if (currentCourses[i].IsSelected) selectedStatus.Add(i);
@@ -199,7 +197,7 @@ namespace CourseCrawler
         // Make all given courses to selected state and save the selected course references to Store.
         private void SelectCourses(List<Course> courses)
         {
-            List<ICourse> selectedCourses = new();
+            BindingList<ICourse> selectedCourses = new();
             foreach (Course course in courses)
             {
                 course.MakeSelected();
