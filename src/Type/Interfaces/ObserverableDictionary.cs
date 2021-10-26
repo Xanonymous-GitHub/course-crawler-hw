@@ -33,8 +33,10 @@ namespace CourseCrawler
             this.dictionary = dictionary;
         }
 
+        // AddWithNotification
         void AddWithNotification(KeyValuePair<TKey, TValue> item) => AddWithNotification(item.Key, item.Value);
 
+        // AddWithNotification
         void AddWithNotification(TKey key, TValue value)
         {
             dictionary.Add(key, value);
@@ -45,6 +47,7 @@ namespace CourseCrawler
             PropertyChanged(this, new(nameof(dictionary.Values)));
         }
 
+        // RemoveWithNotification
         bool RemoveWithNotification(TKey key)
         {
             if (dictionary.TryGetValue(key, out TValue value) && dictionary.Remove(key))
@@ -60,6 +63,7 @@ namespace CourseCrawler
             return false;
         }
 
+        // UpdateWithNotification
         void UpdateWithNotification(TKey key, TValue value)
         {
             if (dictionary.TryGetValue(key, out TValue existing))
@@ -161,11 +165,13 @@ namespace CourseCrawler
 
         #region ICollection<KeyValuePair<TKey,TValue>> Members
 
+        // ICollection
         void ICollection<KeyValuePair<TKey, TValue>>.Add(KeyValuePair<TKey, TValue> item)
         {
             AddWithNotification(item);
         }
 
+        // ICollection
         void ICollection<KeyValuePair<TKey, TValue>>.Clear()
         {
             dictionary.Clear();
@@ -176,31 +182,39 @@ namespace CourseCrawler
             PropertyChanged(this, new(nameof(dictionary.Values)));
         }
 
+        // ICollection
         bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item) => dictionary.Contains(item);
 
+        // ICollection
         void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
         {
             dictionary.CopyTo(array, arrayIndex);
         }
 
+        // ICollection
         int ICollection<KeyValuePair<TKey, TValue>>.Count
         {
             get => dictionary.Count;
         }
 
+        // ICollection
         bool ICollection<KeyValuePair<TKey, TValue>>.IsReadOnly
         {
             get => dictionary.IsReadOnly;
         }
 
+        // ICollection
         bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item) => RemoveWithNotification(item.Key);
 
         #endregion
 
         #region IEnumerable<KeyValuePair<TKey,TValue>> Members
 
+
+        // IEnumerator
         IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() => dictionary.GetEnumerator();
 
+        // IEnumerator
         IEnumerator IEnumerable.GetEnumerator() => dictionary.GetEnumerator();
 
         #endregion
