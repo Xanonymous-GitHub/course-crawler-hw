@@ -16,6 +16,8 @@ namespace CourseCrawler
         {
             InitializeComponent();
 
+            ResizeGridViewRemarkColumnWidth();
+
             _supportedCourseTableMapIndex.Add(new(0, 2)); // 資工, 三
             _supportedCourseTableMapIndex.Add(new(1, 6)); // 電子, 三甲
             _supportedCourseTableMapIndex.Add(new(2, 10)); // 化工, 三乙
@@ -33,6 +35,23 @@ namespace CourseCrawler
 
         private SelectCourseFormViewModel _formViewModel;
         
+        private void ResizeGridViewRemarkColumnWidth()
+        {
+            const int remarkColumnIndex = 21;
+
+            int columnTotalWidth = 0, gridViewWidth = 0;
+            foreach(DataGridViewColumn col in CourseGridView.Columns)
+            {
+                columnTotalWidth += col.MinimumWidth;
+                gridViewWidth += col.Width;
+            }
+
+            if (columnTotalWidth < gridViewWidth)
+            {
+                CourseGridView.Columns[remarkColumnIndex].MinimumWidth += (gridViewWidth - columnTotalWidth) / 2;
+            }
+        }
+
         // Event handler when SelectCourseForm Loaded.
         private void SelectCourseForm_Load(object sender, EventArgs e)
         {
