@@ -10,6 +10,7 @@ namespace CourseCrawler
     {
         private readonly GetAllDepartmentsUseCase _getAllDepartmentsUseCase = new();
 
+        // BindingList
         public BindingList<ICourse> Do()
         {
             ObservableDictionary<string, Department> allDepartments = _getAllDepartmentsUseCase.Do();
