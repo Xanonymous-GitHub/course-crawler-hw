@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CourseCrawler
 {
-    internal class CourseTable : ICourseTable
+    internal class CourseTable : Bindable, ICourseTable
     {
         public CourseTable(string name, List<ICourse> courses)
         {
@@ -29,8 +29,16 @@ namespace CourseCrawler
         private readonly string _name;
         private readonly BindingList<ICourse> _courses;
 
-        public string Name => _name;
-        public BindingList<ICourse> Courses => _courses;
+        public string Name
+        {
+            get => _name;
+            set => SetField(ref _name, value);
+        }
+        public BindingList<ICourse> Courses
+        {
+            get => _courses;
+            set => SetField(ref _courses, value);
+        }
 
         public bool IsAnyCourseSelected => _courses.Any(course => course.IsSelected);
     }
