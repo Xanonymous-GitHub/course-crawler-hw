@@ -71,9 +71,9 @@ namespace CourseCrawler
                 dictionary[key] = value;
 
                 CollectionChanged(this, new(NotifyCollectionChangedAction.Replace,
-                    new KeyValuePair<TKey, TValue>(key, value),
-                    new KeyValuePair<TKey, TValue>(key, existing)
-                  )
+                        new KeyValuePair<TKey, TValue>(key, value),
+                        new KeyValuePair<TKey, TValue>(key, existing)
+                    )
                 );
 
                 PropertyChanged(this, new(nameof(dictionary.Values)));
