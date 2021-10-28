@@ -21,8 +21,16 @@ namespace CourseCrawler
         private readonly string _name;
         private readonly Dictionary<string, ICourseTable> _tables;
 
-        public string Name => _name;
+        public string Name
+        {
+            get => _name;
+            set => SetField(ref _name, value);
+        }
 
-        public Dictionary<string, ICourseTable> CourseTables => _tables;
+        public Dictionary<string, ICourseTable> CourseTables
+        {
+            get => _tables;
+            set => SetField(ref _tables, value);
+        }
     }
 }
