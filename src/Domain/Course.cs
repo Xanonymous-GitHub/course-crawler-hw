@@ -2,7 +2,7 @@
 
 namespace CourseCrawler
 {
-    internal class Course : ICourse
+    internal class Course : Bindable, ICourse
     {
         public Course(
             string serial,
@@ -83,68 +83,164 @@ namespace CourseCrawler
         private bool _isExperiment;
 
         // MakeSelected
-        public void MakeSelected() => _isSelected = true;
+        public void MakeSelected() => IsSelected = true;
 
         // MakeUnselected
-        public void MakeUnselected() => _isSelected = false;
+        public void MakeUnselected() => IsSelected = false;
 
-        public bool IsSelected => _isSelected;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set => SetField(ref _isSelected, value);
+        }
 
-        public string Serial => _serial;
+        public string Serial
+        {
+            get => _serial;
+            set => SetField(ref _serial, value);
+        }
 
-        public string Name => _name;
+        public string Name
+        {
+            get => _name;
+            set => SetField(ref _name, value);
+        }
 
-        public string Level => _level;
+        public string Level
+        {
+            get => _level;
+            set => SetField(ref _level, value);
+        }
 
-        public string Credit => _credit;
+        public string Credit
+        {
+            get => _credit;
+            set => SetField(ref _credit, value);
+        }
 
-        public string Hour => _hour;
+        public string Hour
+        {
+            get => _hour;
+            set => SetField(ref _hour, value);
+        }
 
-        public CourseType Type => _type;
+        public CourseType Type
+        {
+            get => _type;
+            set => SetField(ref _type, value);
+        }
 
-        public string[] Teachers => _teachers;
+        public string[] Teachers
+        {
+            get => _teachers;
+            set => SetField(ref _teachers, value);
+        }
 
         public List<WeekTime> WeekTimes => new()
         {
-            new WeekTime(Constants.Monday, MondayTimes),
-            new WeekTime(Constants.Tuesday, TuesdayTimes),
-            new WeekTime(Constants.Wednesday, WednesdayTimes),
-            new WeekTime(Constants.Thursday, ThursdayTimes),
-            new WeekTime(Constants.Friday, FridayTimes),
-            new WeekTime(Constants.Saturday, SaturdayTimes),
-            new WeekTime(Constants.Sunday, SundayTimes),
+            new(Constants.Monday, MondayTimes),
+            new(Constants.Tuesday, TuesdayTimes),
+            new(Constants.Wednesday, WednesdayTimes),
+            new(Constants.Thursday, ThursdayTimes),
+            new(Constants.Friday, FridayTimes),
+            new(Constants.Saturday, SaturdayTimes),
+            new(Constants.Sunday, SundayTimes),
         };
 
-        public string[] MondayTimes => _mondayTimes;
+        public string[] MondayTimes
+        {
+            get => _mondayTimes;
+            set => SetField(ref _mondayTimes, value);
+        }
 
-        public string[] TuesdayTimes => _tuesdayTimes;
+        public string[] TuesdayTimes
+        {
+            get => _tuesdayTimes;
+            set => SetField(ref _tuesdayTimes, value);
+        }
 
-        public string[] WednesdayTimes => _wednesdayTimes;
+        public string[] WednesdayTimes
+        {
+            get => _wednesdayTimes;
+            set => SetField(ref _wednesdayTimes, value);
+        }
 
-        public string[] ThursdayTimes => _thursdayTimes;
+        public string[] ThursdayTimes
+        {
+            get => _thursdayTimes;
+            set => SetField(ref _thursdayTimes, value);
+        }
 
-        public string[] FridayTimes => _fridayTimes;
+        public string[] FridayTimes
+        {
+            get => _fridayTimes;
+            set => SetField(ref _fridayTimes, value);
+        }
 
-        public string[] SaturdayTimes => _saturdayTimes;
+        public string[] SaturdayTimes
+        {
+            get => _saturdayTimes;
+            set => SetField(ref _saturdayTimes, value);
+        }
 
-        public string[] SundayTimes => _sundayTimes;
+        public string[] SundayTimes
+        {
+            get => _sundayTimes;
+            set => SetField(ref _sundayTimes, value);
+        }
 
-        public string[] Classrooms => _classrooms;
+        public string[] Classrooms
+        {
+            get => _classrooms;
+            set => SetField(ref _classrooms, value);
+        }
 
-        public string StudentAmount => _studentAmount;
+        public string StudentAmount
+        {
+            get => _studentAmount;
+            set => SetField(ref _studentAmount, value);
+        }
 
-        public string GivenUpStudentAmount => _givenUpStudentAmount;
+        public string GivenUpStudentAmount
+        {
+            get => _givenUpStudentAmount;
+            set => SetField(ref _givenUpStudentAmount, value);
+        }
 
-        public string[] TAs => _tas;
+        public string[] TAs
+        {
+            get => _tas;
+            set => SetField(ref _tas, value);
+        }
 
-        public CourseLanguage Language => _language;
+        public CourseLanguage Language
+        {
+            get => _language;
+            set => SetField(ref _language, value);
+        }
 
-        public string[] OutlineAndProgressUrl => _outlineAndProgressUrl;
+        public string[] OutlineAndProgressUrl
+        {
+            get => _outlineAndProgressUrl;
+            set => SetField(ref _outlineAndProgressUrl, value);
+        }
 
-        public string Remark => _remark;
+        public string Remark
+        {
+            get => _remark;
+            set => SetField(ref _remark, value);
+        }
 
-        public string AttachedStudentAmount => _attachedStudentAmount;
+        public string AttachedStudentAmount
+        {
+            get => _attachedStudentAmount;
+            set => SetField(ref _attachedStudentAmount, value);
+        }
 
-        public bool IsExperiment => _isExperiment;
+        public bool IsExperiment
+        {
+            get => _isExperiment;
+            set => SetField(ref _isExperiment, value);
+        }
     }
 }
