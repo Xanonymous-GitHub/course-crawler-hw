@@ -26,8 +26,8 @@ namespace CourseCrawler
             _courses = courses;
         }
 
-        private readonly string _name;
-        private readonly BindingList<ICourse> _courses;
+        private string _name;
+        private BindingList<ICourse> _courses;
 
         public string Name
         {

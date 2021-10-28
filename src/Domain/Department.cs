@@ -18,8 +18,8 @@ namespace CourseCrawler
             _tables = tables;
         }
 
-        private readonly string _name;
-        private readonly Dictionary<string, ICourseTable> _tables;
+        private string _name;
+        private Dictionary<string, ICourseTable> _tables;
 
         public string Name
         {
