@@ -26,6 +26,12 @@ namespace CourseCrawler
         // LoadCourses
         public void LoadCourses()
         {
+            for (int dataSourceIndex = 0; dataSourceIndex < SupportedDataSourceInfo.Amount; dataSourceIndex++)
+            {
+                GetCourseTableUseCase getCourseTableUseCase = new(dataSourceIndex);
+                getCourseTableUseCase.Do();
+            }
+
             GetAllCourseUseCase getAllCourseUseCase = new();
             CoursesToBeEdit = getAllCourseUseCase.Do();
         }

@@ -23,9 +23,9 @@ namespace CourseCrawler
             {
                 foreach (CourseTable table in department.CourseTables.Values)
                 {
-                    foreach(ICourse Course in table.Courses)
+                    foreach (ICourse Course in table.Courses)
                     {
-                        allCourses.Append(Course);
+                        allCourses.Add(Course);
                     }
                 }
             }

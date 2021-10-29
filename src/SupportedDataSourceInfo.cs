@@ -15,6 +15,8 @@ namespace CourseCrawler
             ("化工", "三乙", "2416")
         };
 
+        public static int Amount => Current.Count;
+
         // GetDepartmentName
         public static string GetDepartmentName(int supportedDataSourceIndex) => Current[supportedDataSourceIndex].departmentName;
 
