@@ -29,6 +29,25 @@ namespace CourseCrawler
         public bool IsExperiment { get; }
     }
 
+    internal interface ICourseDayTime
+    {
+        public bool One { get; set; }
+        public bool Two { get; set; }
+        public bool Three { get; set; }
+        public bool Four { get; set; }
+        public bool N { get; set; }
+        public bool Five { get; set; }
+        public bool Six { get; set; }
+        public bool Seven { get; set; }
+        public bool Eight { get; set; }
+        public bool Nine { get; set; }
+        public bool A { get; set; }
+        public bool B { get; set; }
+        public bool C { get; set; }
+        public bool D { get; set; }
+        public List<bool> WholeDayList { get; }
+    }
+
     internal readonly struct WeekTime
     {
         public WeekTime(string name, string[] times) 

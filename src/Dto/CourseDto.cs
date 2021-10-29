@@ -11,7 +11,7 @@ namespace CourseCrawler
         {
             source = source.Select(data => data.Trim()).ToArray();
 
-            return new Course
+            return new
                 (
                     serial: source[0],
                     name: source[1],
@@ -19,20 +19,20 @@ namespace CourseCrawler
                     credit: source[3],
                     hour: source[4],
                     type: ToCourseTypeFromString(source[5]),
-                    teachers: source[6].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
-                    mondayTimes: source[7].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
-                    tuesdayTimes: source[8].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
-                    wednesdayTimes: source[9].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
-                    thursdayTimes: source[10].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
-                    fridayTimes: source[11].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
-                    saturdayTimes: source[12].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
-                    sundayTimes: source[13].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
-                    classrooms: source[14].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    teachers: Utils.SplitStr(source[6]),
+                    mondayTimes: CourseDayTimeDto.FromStringArray(Utils.SplitStr(source[7])),
+                    tuesdayTimes: CourseDayTimeDto.FromStringArray(Utils.SplitStr(source[8])),
+                    wednesdayTimes: CourseDayTimeDto.FromStringArray(Utils.SplitStr(source[9])),
+                    thursdayTimes: CourseDayTimeDto.FromStringArray(Utils.SplitStr(source[10])),
+                    fridayTimes: CourseDayTimeDto.FromStringArray(Utils.SplitStr(source[11])),
+                    saturdayTimes: CourseDayTimeDto.FromStringArray(Utils.SplitStr(source[12])),
+                    sundayTimes: CourseDayTimeDto.FromStringArray(Utils.SplitStr(source[13])),
+                    classrooms: Utils.SplitStr(source[14]),
                     studentAmount: source[15],
                     givenUpStudentAmount: source[16],
-                    tas: source[17].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    tas: Utils.SplitStr(source[17]),
                     language: ToCourseLanguageFromString(source[18]),
-                    outlineAndProgressUrl: source[19].Split(Constants.StringSplitSeperators, StringSplitOptions.None),
+                    outlineAndProgressUrl: Utils.SplitStr(source[19]),
                     remark: source[20],
                     attachedStudentAmount: source[21],
                     isExperiment: source[22] != string.Empty
@@ -42,7 +42,7 @@ namespace CourseCrawler
         // ToStringList
         public static List<string> ToStringList(Course course)
         {
-            return new List<string>()
+            return new()
             {
                 course.Serial,
                 course.Name,
@@ -50,23 +50,23 @@ namespace CourseCrawler
                 course.Credit,
                 course.Hour,
                 course.Type.ToOriginString(),
-                string.Join(Constants.NewLineChar, course.Teachers),
-                string.Join(Constants.SpaceChar, course.MondayTimes),
-                string.Join(Constants.SpaceChar, course.TuesdayTimes),
-                string.Join(Constants.SpaceChar, course.WednesdayTimes),
-                string.Join(Constants.SpaceChar, course.ThursdayTimes),
-                string.Join(Constants.SpaceChar, course.FridayTimes),
-                string.Join(Constants.SpaceChar, course.SaturdayTimes),
-                string.Join(Constants.SpaceChar, course.SundayTimes),
-                string.Join(Constants.NewLineChar, course.Classrooms),
+                string.Join(Consts.NewLineChar, course.Teachers),
+                string.Join(Consts.SpaceChar, CourseDayTimeDto.ToStringArray(course.MondayTimes)),
+                string.Join(Consts.SpaceChar, CourseDayTimeDto.ToStringArray(course.TuesdayTimes)),
+                string.Join(Consts.SpaceChar, CourseDayTimeDto.ToStringArray(course.WednesdayTimes)),
+                string.Join(Consts.SpaceChar, CourseDayTimeDto.ToStringArray(course.ThursdayTimes)),
+                string.Join(Consts.SpaceChar, CourseDayTimeDto.ToStringArray(course.FridayTimes)),
+                string.Join(Consts.SpaceChar, CourseDayTimeDto.ToStringArray(course.SaturdayTimes)),
+                string.Join(Consts.SpaceChar, CourseDayTimeDto.ToStringArray(course.SundayTimes)),
+                string.Join(Consts.NewLineChar, course.Classrooms),
                 course.StudentAmount,
                 course.GivenUpStudentAmount,
-                string.Join(Constants.NewLineChar, course.TAs),
+                string.Join(Consts.NewLineChar, course.TAs),
                 course.Language.ToOriginString(),
-                string.Join(Constants.NewLineChar, course.OutlineAndProgressUrl),
+                string.Join(Consts.NewLineChar, course.OutlineAndProgressUrl),
                 course.Remark,
                 course.AttachedStudentAmount,
-                course.IsExperiment ? Constants.DiamondChar.ToString() : string.Empty,
+                course.IsExperiment ? Consts.DiamondChar.ToString() : string.Empty,
             };
         }
 
@@ -78,31 +78,31 @@ namespace CourseCrawler
                 return course.Name;
             }
 
-            return course.Serial + Constants.Dash + course.Name;
+            return course.Serial + Consts.Dash + course.Name;
         }
 
         // ToCourseTypeFromString
         public static CourseType ToCourseTypeFromString(string symbolText)
         {
-            return (CourseType)Constants.CourseSymbols.IndexOf(symbolText);
+            return (CourseType)Consts.CourseSymbols.IndexOf(symbolText);
         }
 
         // ToOriginString
         public static string ToOriginString(this CourseType courseType)
         {
-            return Constants.CourseSymbols[(int)courseType];
+            return Consts.CourseSymbols[(int)courseType];
         }
 
         // ToCourseLanguageFromString
         public static CourseLanguage ToCourseLanguageFromString(string symbolText)
         {
-            return (CourseLanguage)Constants.LanguageSymbols.IndexOf(symbolText);
+            return (CourseLanguage)Consts.LanguageSymbols.IndexOf(symbolText);
         }
 
         // ToOriginString
         public static string ToOriginString(this CourseLanguage courseLanguage)
         {
-            return Constants.LanguageSymbols[(int)courseLanguage];
+            return Consts.LanguageSymbols[(int)courseLanguage];
         }
     }
 }

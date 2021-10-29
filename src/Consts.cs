@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CourseCrawler
 {
-    internal static class Constants
+    internal static class Consts
     {
         public static readonly string CoursePagePath = "https://aps.ntut.edu.tw/course/tw/Subj.jsp?format=-4&year=110&sem=1&code=";
         public static readonly string[] StringSplitSeperators = new[] { "\r\n", "\r", "\n", " ", "\n\r" };
@@ -34,5 +34,8 @@ namespace CourseCrawler
         public static readonly string AllCourses = "AllCourses";
         public static readonly string AllDepartments = "AllDepartments";
         public static readonly int Big5EncodingCodePage = 950;
+        public static readonly int CourseAmountPerDay = 14;
+        public static readonly string MsgCourseDayTimeStringArraySizeNotAllowed = "Time string array has invalid length.";
+        public static readonly string MsgArrayLengthMustBeNonnegative = "Array length must be nonnegative";
     }
 }

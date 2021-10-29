@@ -14,11 +14,11 @@
         // Do this usecase
         public Department Do()
         {
-            bool hasSettedUpDepartment = _store.Exist(Constants.AllDepartments);
+            bool hasSettedUpDepartment = _store.Exist(Consts.AllDepartments);
 
             if (!hasSettedUpDepartment) return null;
 
-            ObservableDictionary<string, Department> allDepartments = _store.Use<ObservableDictionary<string, Department>>(Constants.AllDepartments);
+            ObservableDictionary<string, Department> allDepartments = _store.Use<ObservableDictionary<string, Department>>(Consts.AllDepartments);
 
             if (!allDepartments.ContainsKey(_departmentName)) return null;
 

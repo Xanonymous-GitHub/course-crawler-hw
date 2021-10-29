@@ -130,7 +130,7 @@ namespace CourseCrawler
             _currentShownTabIndex = CourseTableTabControl.SelectedIndex;
             UpdateCourseGridView();
 
-            TabPage newTabPage = CourseTableTabControl.TabPages[Constants.TabPageNameTitle + (_currentShownTabIndex + 1).ToString()];
+            TabPage newTabPage = CourseTableTabControl.TabPages[Consts.TabPageNameTitle + (_currentShownTabIndex + 1).ToString()];
             
             if (newTabPage.Controls.Count != 0) return;
 

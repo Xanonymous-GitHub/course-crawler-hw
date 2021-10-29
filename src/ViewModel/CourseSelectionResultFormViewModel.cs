@@ -21,7 +21,7 @@ namespace CourseCrawler
             GetSelectedCourseUseCase getSelectedCourseUseCase = new();
             BindingList<ICourse> selectedCourses = getSelectedCourseUseCase.Do();
 
-            _selectedCourseTable = new CourseTable(Constants.SelectedCourse, selectedCourses);
+            _selectedCourseTable = new CourseTable(Consts.SelectedCourse, selectedCourses);
         }
 
         // GetSelectedCourseTableRows
@@ -32,7 +32,7 @@ namespace CourseCrawler
 
             for (int i = 0; i < tableRows.Count; i++)
             {
-                List<string> rowWithUnselectButton = new() { Constants.UnselectCourse };
+                List<string> rowWithUnselectButton = new() { Consts.UnselectCourse };
                 foreach (string colValue in tableRows[i])
                 {
                     rowWithUnselectButton.Add(colValue);

@@ -226,15 +226,15 @@ namespace CourseCrawler
             {
                 if (kvp.Value != null && kvp.Value.Count < 2) continue;
                 result.Add(string.Join(
-                    Constants.IdeographicComma,
+                    Consts.IdeographicComma,
                     kvp.Value.Select(course =>
-                        Constants.UpperQuoteTw +
+                        Consts.UpperQuoteTw +
                         CourseDto.ToNumberAndName(course) +
-                        Constants.LowerQuoteTw
+                        Consts.LowerQuoteTw
                     ).ToArray()
                 ));
             }
-            return result.Count > 0 ? string.Join(Constants.Comma, result) : null;
+            return result.Count > 0 ? string.Join(Consts.Comma, result) : null;
         }
 
         // Verify all checked courses, check if there exist any conflicts of there properties, then make them become selected state.
@@ -279,14 +279,14 @@ namespace CourseCrawler
                 UnselectCourses(unCheckedCourses);
                 SelectCourses(checkedCourses);
                 MakeAllUnCheck();
-                return new SuccessResult<string>(Constants.SuccessfullySelectCourse);
+                return new SuccessResult<string>(Consts.SuccessfullySelectCourse);
             }
 
             if (nameConflictErrMsg != null)
             {
                 nameConflictErrMsg =
-                    Constants.NewLineChar +
-                    Constants.NameConflictErrMsgHead +
+                    Consts.NewLineChar +
+                    Consts.NameConflictErrMsgHead +
                     nameConflictErrMsg;
             }
             else
@@ -297,8 +297,8 @@ namespace CourseCrawler
             if (timeConflictErrMsg != null)
             {
                 timeConflictErrMsg =
-                    Constants.NewLineChar +
-                    Constants.TimeConflictErrMsgHead + 
+                    Consts.NewLineChar +
+                    Consts.TimeConflictErrMsgHead + 
                     timeConflictErrMsg;
             }
             else
@@ -308,7 +308,7 @@ namespace CourseCrawler
 
             return new ErrorResult<string>
             (
-                Constants.FailToSelectCourse +
+                Consts.FailToSelectCourse +
                 timeConflictErrMsg +
                 nameConflictErrMsg
             );

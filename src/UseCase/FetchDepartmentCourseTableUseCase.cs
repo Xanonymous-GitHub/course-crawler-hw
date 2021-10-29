@@ -93,9 +93,9 @@ namespace CourseCrawler
             Department department = GenerateDepartment(courses);
 
             ObservableDictionary<string, Department> allDepartments;
-            if (_store.Exist(Constants.AllDepartments))
+            if (_store.Exist(Consts.AllDepartments))
             {
-                allDepartments = _store.Use<ObservableDictionary<string, Department>>(Constants.AllDepartments);
+                allDepartments = _store.Use<ObservableDictionary<string, Department>>(Consts.AllDepartments);
             }
             else
             {
@@ -103,7 +103,7 @@ namespace CourseCrawler
             }
 
             allDepartments.Add(_departmentName, department);
-            _store.Update(Constants.AllDepartments, allDepartments);
+            _store.Update(Consts.AllDepartments, allDepartments);
 
             return department;
         }

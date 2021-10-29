@@ -12,13 +12,13 @@ namespace CourseCrawler
             string hour,
             CourseType type,
             string[] teachers = null,
-            string[] mondayTimes = null,
-            string[] tuesdayTimes = null,
-            string[] wednesdayTimes = null,
-            string[] thursdayTimes = null,
-            string[] fridayTimes = null,
-            string[] saturdayTimes = null,
-            string[] sundayTimes = null,
+            CourseDayTime mondayTimes = null,
+            CourseDayTime tuesdayTimes = null,
+            CourseDayTime wednesdayTimes = null,
+            CourseDayTime thursdayTimes = null,
+            CourseDayTime fridayTimes = null,
+            CourseDayTime saturdayTimes = null,
+            CourseDayTime sundayTimes = null,
             string[] classrooms = null,
             string studentAmount = "0",
             string givenUpStudentAmount = "0",
@@ -65,13 +65,13 @@ namespace CourseCrawler
         private string _hour;
         private CourseType _type;
         private string[] _teachers;
-        private string[] _mondayTimes;
-        private string[] _tuesdayTimes;
-        private string[] _wednesdayTimes;
-        private string[] _thursdayTimes;
-        private string[] _fridayTimes;
-        private string[] _saturdayTimes;
-        private string[] _sundayTimes;
+        private CourseDayTime _mondayTimes;
+        private CourseDayTime _tuesdayTimes;
+        private CourseDayTime _wednesdayTimes;
+        private CourseDayTime _thursdayTimes;
+        private CourseDayTime _fridayTimes;
+        private CourseDayTime _saturdayTimes;
+        private CourseDayTime _sundayTimes;
         private string[] _classrooms;
         private string _studentAmount;
         private string _givenUpStudentAmount;
@@ -138,52 +138,52 @@ namespace CourseCrawler
 
         public List<WeekTime> WeekTimes => new()
         {
-            new(Constants.Monday, MondayTimes),
-            new(Constants.Tuesday, TuesdayTimes),
-            new(Constants.Wednesday, WednesdayTimes),
-            new(Constants.Thursday, ThursdayTimes),
-            new(Constants.Friday, FridayTimes),
-            new(Constants.Saturday, SaturdayTimes),
-            new(Constants.Sunday, SundayTimes),
+            new(Consts.Monday, CourseDayTimeDto.ToStringArray(MondayTimes)),
+            new(Consts.Tuesday, CourseDayTimeDto.ToStringArray(TuesdayTimes)),
+            new(Consts.Wednesday, CourseDayTimeDto.ToStringArray(WednesdayTimes)),
+            new(Consts.Thursday, CourseDayTimeDto.ToStringArray(ThursdayTimes)),
+            new(Consts.Friday, CourseDayTimeDto.ToStringArray(FridayTimes)),
+            new(Consts.Saturday, CourseDayTimeDto.ToStringArray(SaturdayTimes)),
+            new(Consts.Sunday, CourseDayTimeDto.ToStringArray(SundayTimes)),
         };
 
-        public string[] MondayTimes
+        public CourseDayTime MondayTimes
         {
             get => _mondayTimes;
             set => SetField(ref _mondayTimes, value);
         }
 
-        public string[] TuesdayTimes
+        public CourseDayTime TuesdayTimes
         {
             get => _tuesdayTimes;
             set => SetField(ref _tuesdayTimes, value);
         }
 
-        public string[] WednesdayTimes
+        public CourseDayTime WednesdayTimes
         {
             get => _wednesdayTimes;
             set => SetField(ref _wednesdayTimes, value);
         }
 
-        public string[] ThursdayTimes
+        public CourseDayTime ThursdayTimes
         {
             get => _thursdayTimes;
             set => SetField(ref _thursdayTimes, value);
         }
 
-        public string[] FridayTimes
+        public CourseDayTime FridayTimes
         {
             get => _fridayTimes;
             set => SetField(ref _fridayTimes, value);
         }
 
-        public string[] SaturdayTimes
+        public CourseDayTime SaturdayTimes
         {
             get => _saturdayTimes;
             set => SetField(ref _saturdayTimes, value);
         }
 
-        public string[] SundayTimes
+        public CourseDayTime SundayTimes
         {
             get => _sundayTimes;
             set => SetField(ref _sundayTimes, value);

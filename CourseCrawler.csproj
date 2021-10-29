@@ -87,12 +87,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\Constants.cs" />
+    <Compile Include="src\Consts.cs" />
     <Compile Include="src\Domain\Course.cs" />
+    <Compile Include="src\Domain\CourseDayTime.cs" />
     <Compile Include="src\Domain\CourseTable.cs" />
     <Compile Include="src\Domain\Department.cs" />
     <Compile Include="src\Dto\CourseDto.cs" />
     <Compile Include="src\Dto\CourseTableDto.cs" />
+    <Compile Include="src\Dto\CourseDayTimeDto.cs" />
     <Compile Include="src\Form\CourseManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
