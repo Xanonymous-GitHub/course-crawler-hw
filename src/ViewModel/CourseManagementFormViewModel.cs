@@ -15,13 +15,7 @@ namespace CourseCrawler
 
         private BindingList<ICourse> _courses;
 
-        public BindingList<ICourse> CoursesToBeEdit
-        {
-            get => _courses;
-            set => SetField(ref _courses, value);
-        }
-
-        public List<string> CoursesToBeEditStr => CoursesToBeEdit.Select(course => course.Name).ToList();
+        public List<string> CoursesToBeEditStr => _courses.Select(course => course.Name).ToList();
 
         // LoadCourses
         public void LoadCourses()
@@ -33,7 +27,7 @@ namespace CourseCrawler
             }
 
             GetAllCourseUseCase getAllCourseUseCase = new();
-            CoursesToBeEdit = getAllCourseUseCase.Do();
+            _courses = getAllCourseUseCase.Do();
         }
     }
 }

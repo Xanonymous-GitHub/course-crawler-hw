@@ -49,8 +49,8 @@ namespace CourseCrawler
         {
             CourseManagementForm courseManagementForm = new();
             _formViewModel.AcceptToOpenCourseManagementForm = false;
-            courseManagementForm.ShowDialog();
-            _formViewModel.AcceptToOpenCourseManagementForm = true;
+            courseManagementForm.FormClosed += new((object sender, FormClosedEventArgs e) => _formViewModel.AcceptToOpenCourseManagementForm = true);
+            courseManagementForm.Show();
         }
 
         // StartUpForm_Load
