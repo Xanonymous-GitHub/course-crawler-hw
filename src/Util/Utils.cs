@@ -7,10 +7,10 @@ namespace CourseCrawler
     internal static class Utils
     {
         // GetDepartmentCourseTableUri
-        public static Uri GetDepartmentCourseTableUri(string departmentName, string tableName)
+        public static Uri GetDepartmentCourseTableUri(int supportedDataSourceIndex)
         {
             // TODO: implement the converter.
-            Uri uri = new(Constants.CoursePagePath + SupportedRange.TableNumber[departmentName + tableName]);
+            Uri uri = new(Constants.CoursePagePath + SupportedDataSourceInfo.GetAccessNumberStr(supportedDataSourceIndex));
             return uri;
         }
 

@@ -120,7 +120,7 @@
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Store\Store.cs" />
-    <Compile Include="src\SupportedRange.cs" />
+    <Compile Include="src\SupportedDataSourceInfo.cs" />
     <Compile Include="src\Type\Enums.cs" />
     <Compile Include="src\Type\Interfaces\Courses.cs" />
     <Compile Include="src\Type\Interfaces\ObserverableDictionary.cs" />

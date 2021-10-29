@@ -15,6 +15,22 @@ namespace CourseCrawler
         public CourseManagementForm()
         {
             InitializeComponent();
+
+            _formViewModel = new();
+        }
+
+        private readonly CourseManagementFormViewModel _formViewModel;
+
+        // CourseManagementForm_Load
+        private void CourseManagementForm_Load(object sender, EventArgs e)
+        {
+            BindCompomentsToData();
+        }
+
+        // BindCompomentsToData
+        private void BindCompomentsToData()
+        {
+            CourseListBox.DataBindings.Add(nameof(CourseListBox.DataSource), _formViewModel, nameof(_formViewModel.CoursesToBeEditStr));
         }
     }
 }

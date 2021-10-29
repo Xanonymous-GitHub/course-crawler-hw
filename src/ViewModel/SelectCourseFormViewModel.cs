@@ -6,9 +6,9 @@ namespace CourseCrawler
 {
     internal sealed class SelectCourseFormViewModel
     {
-        private SelectCourseFormViewModel(string departmentName, string tableName)
+        private SelectCourseFormViewModel(int dataSourceIndex)
         {
-            ChangeDisplayTable(departmentName, tableName);
+            ChangeDisplayTable(dataSourceIndex);
         }
 
         private string _currentDisplayedTableNameHash;
@@ -29,22 +29,24 @@ namespace CourseCrawler
         public void MarkAsDirty() => _displayedtableRowsDirty = true;
 
         // UseCreateBy
-        public static SelectCourseFormViewModel UseCreateBy(string departmentName, string tableName)
+        public static SelectCourseFormViewModel UseCreateBy(int dataSourceIndex)
         {
-            if (Instance == null) Instance = new SelectCourseFormViewModel(departmentName, tableName);
+            if (Instance == null) Instance = new SelectCourseFormViewModel(dataSourceIndex);
             return Instance;
         }
 
         // Use the given departname & tablename to generate a course table then cached it.
-        public void ChangeDisplayTable(string departmentName, string tableName)
+        public void ChangeDisplayTable(int dataSourceIndex)
         {
+            string departmentName = SupportedDataSourceInfo.GetDepartmentName(dataSourceIndex);
+            string tableName = SupportedDataSourceInfo.GetTableName(dataSourceIndex);
             string nextDisplayedTableNameHash = departmentName + tableName;
 
             if (_currentDisplayedTableNameHash == nextDisplayedTableNameHash) return;
             
             if (!_cachedTables.ContainsKey(nextDisplayedTableNameHash))
             {
-                GetCourseTableUseCase getTableUseCase = new(departmentName, tableName);
+                GetCourseTableUseCase getTableUseCase = new(dataSourceIndex);
                 CourseTable newTable = getTableUseCase.Do();
 
                 _cachedTables.Add(nextDisplayedTableNameHash, newTable);

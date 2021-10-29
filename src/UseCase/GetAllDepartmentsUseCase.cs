@@ -4,6 +4,7 @@
     {
         private readonly Store _store = Store.Instance;
 
+        // Do this usecase
         public ObservableDictionary<string, Department> Do()
         {
             if (!_store.Exist(Constants.AllDepartments)) return null;

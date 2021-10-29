@@ -18,23 +18,16 @@ namespace CourseCrawler
 
             ResizeGridViewRemarkColumnWidth();
 
-            _supportedCourseTableMapIndex.Add(new(0, 2)); // 資工, 三
-            _supportedCourseTableMapIndex.Add(new(1, 6)); // 電子, 三甲
-            _supportedCourseTableMapIndex.Add(new(2, 10)); // 化工, 三乙
             _currentShownTabIndex = 0;
 
-            _formViewModel = SelectCourseFormViewModel.UseCreateBy(_currentDepartmentName, _currentTableName);
+            _formViewModel = SelectCourseFormViewModel.UseCreateBy(_currentShownTabIndex);
         }
-
-        private readonly List<CourseTabSourceIndex> _supportedCourseTableMapIndex = new();
 
         private static int _currentShownTabIndex = 0;
 
-        private string _currentDepartmentName => SupportedRange.DepartmentNames[_supportedCourseTableMapIndex[_currentShownTabIndex].DepartmentIndex];
-        private string _currentTableName => SupportedRange.TableNames[_supportedCourseTableMapIndex[_currentShownTabIndex].TableIIndex];
-
         private SelectCourseFormViewModel _formViewModel;
-        
+
+        // ResizeGridViewRemarkColumnWidth
         private void ResizeGridViewRemarkColumnWidth()
         {
             const int remarkColumnIndex = 21;
@@ -61,7 +54,7 @@ namespace CourseCrawler
         // Use _currentDepartmentName & _currentTableName to fetch new course table data then redraw the gridview.
         private void UpdateCourseGridView()
         {
-            _formViewModel.ChangeDisplayTable(_currentDepartmentName, _currentTableName);
+            _formViewModel.ChangeDisplayTable(_currentShownTabIndex);
             List<string[]> courseRows = _formViewModel.GetCourseTableRows();
             if (courseRows != null)
             {

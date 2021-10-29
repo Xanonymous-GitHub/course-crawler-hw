@@ -13,7 +13,7 @@ namespace CourseCrawler
 
             _webClient = new HtmlWeb
             {
-                OverrideEncoding = Encoding.GetEncoding(950)
+                OverrideEncoding = Encoding.GetEncoding(Constants.Big5EncodingCodePage)
             };
         }
 

@@ -10,20 +10,24 @@ namespace CourseCrawler
     {
         public CourseManagementFormViewModel()
         {
-
+            LoadCourses();
         }
 
-        private List<ICourse> _courses;
+        private BindingList<ICourse> _courses;
 
-        public List<ICourse> CoursesToBeEdit
+        public BindingList<ICourse> CoursesToBeEdit
         {
             get => _courses;
             set => SetField(ref _courses, value);
         }
 
+        public List<string> CoursesToBeEditStr => CoursesToBeEdit.Select(course => course.Name).ToList();
+
+        // LoadCourses
         public void LoadCourses()
         {
-
+            GetAllCourseUseCase getAllCourseUseCase = new();
+            CoursesToBeEdit = getAllCourseUseCase.Do();
         }
     }
 }

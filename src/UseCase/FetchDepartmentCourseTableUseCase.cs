@@ -8,11 +8,14 @@ namespace CourseCrawler
 {
     internal sealed class FetchDepartmentCourseTableUseCase : IUseCase<Department>
     {
-        public FetchDepartmentCourseTableUseCase(string departmentName, string tableName)
+        public FetchDepartmentCourseTableUseCase(int supportedDataSourceIndex)
         {
-            _departmentName = departmentName;
-            _tableName = tableName;
+            _supportedDataSourceIndex = supportedDataSourceIndex;
+            _departmentName = SupportedDataSourceInfo.GetDepartmentName(_supportedDataSourceIndex);
+            _tableName = SupportedDataSourceInfo.GetTableName(_supportedDataSourceIndex);
         }
+
+        private readonly int _supportedDataSourceIndex;
 
         private readonly string _departmentName, _tableName;
 
@@ -21,7 +24,7 @@ namespace CourseCrawler
         // FetchNeededRawHtmlTableRows
         private HtmlNodeCollection FetchNeededRawHtmlTableRows()
         {
-            Uri targetUri = Utils.GetDepartmentCourseTableUri(_departmentName, _tableName);
+            Uri targetUri = Utils.GetDepartmentCourseTableUri(_supportedDataSourceIndex);
             CrawlerUseCase crawlerUseCase = new(targetUri);
 
             Result<HtmlDocument> crawledResult = crawlerUseCase.Do();
