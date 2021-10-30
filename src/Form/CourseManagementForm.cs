@@ -25,12 +25,25 @@ namespace CourseCrawler
         private void CourseManagementForm_Load(object sender, EventArgs e)
         {
             BindCompomentsToData();
+            CourseListBox.ClearSelected();
+            SupportedDataSourceInfo.GetAllCombinedNames.ForEach(name => CourseClassComboBox.Items.Add(name));
         }
 
         // BindCompomentsToData
         private void BindCompomentsToData()
         {
-            CourseListBox.DataBindings.Add(nameof(CourseListBox.DataSource), _formViewModel, nameof(_formViewModel.CoursesToBeEditStr));
+            CourseListBox.DataSource = _formViewModel.CoursesToBeEditStr;
+        }
+
+        private void CourseListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CourseListBox.SelectedIndex < 0) return;
+            (int dataSourceIndex, ICourse course) = _formViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
+            
+            CourseNumberTextBox.Text = course.Serial;
+            CourseNameTextBox.Text = course.Name;
+            CourseLevelTextBox.Text = course.Level;
+            CourseCreditTextBox.Text = course.Credit;
         }
     }
 }

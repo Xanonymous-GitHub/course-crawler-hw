@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace CourseCrawler
 {
@@ -89,6 +90,27 @@ namespace CourseCrawler
                 }
             }
             return key;
+        }
+
+        // FindGroupIndexPairIn2dList
+        // FIXME replace `BindingList` type for a List-like generic type.
+        public static (int groupIndex, int childIndex) FindGroupIndexPairIn2dList<T>(IList<BindingList<T>> source, int targetIndex)
+        {
+            int groupIndex = 0, childIndex = 0, total = 0;
+
+            for (; groupIndex < source.Count; groupIndex++)
+            {
+                for (childIndex = 0; childIndex < source[groupIndex].Count; childIndex++)
+                {
+                    if (total == targetIndex) return (groupIndex, childIndex);
+                    total++;
+                }
+            }
+
+            // FIXME prevent invalid targetIndex.
+            // if this return be called, means expected index is not found in source
+            // this line should not be called.
+            return (groupIndex, childIndex);
         }
     }
 }

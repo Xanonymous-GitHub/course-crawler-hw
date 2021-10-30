@@ -8,7 +8,7 @@ namespace CourseCrawler
 {
     internal static class SupportedDataSourceInfo
     {
-        private static List<(string departmentName, string tableName, string accessNumberStr)> Current = new()
+        private static readonly List<(string departmentName, string tableName, string accessNumberStr)> Current = new()
         {
             ("資工", "三", "2433"),
             ("電子", "三甲", "2423"),
@@ -16,6 +16,8 @@ namespace CourseCrawler
         };
 
         public static int Amount => Current.Count;
+
+        public static List<string> GetAllCombinedNames => Current.Select(info => string.Concat(info.departmentName, info.tableName)).ToList();
 
         // GetDepartmentName
         public static string GetDepartmentName(int supportedDataSourceIndex) => Current[supportedDataSourceIndex].departmentName;

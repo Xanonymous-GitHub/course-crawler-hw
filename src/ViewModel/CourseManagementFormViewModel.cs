@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace CourseCrawler
@@ -13,9 +14,12 @@ namespace CourseCrawler
             LoadCourses();
         }
 
-        private BindingList<ICourse> _coursesToBeEdit;
+        private List<BindingList<ICourse>> _coursesToBeEdit;
 
-        public List<string> CoursesToBeEditStr => _coursesToBeEdit.Select(course => course.Name).ToList();
+        public List<string> CoursesToBeEditStr
+        {
+            get => _coursesToBeEdit.Select(courses => courses.Select(course => course.Name).ToList()).ToList().SelectMany(x => x).ToList();
+        }
 
         // LoadCourses
         public void LoadCourses()
@@ -28,6 +32,12 @@ namespace CourseCrawler
 
             GetAllCourseUseCase getAllCourseUseCase = new();
             _coursesToBeEdit = getAllCourseUseCase.Do();
+        }
+
+        public (int dataSourceIndex, ICourse course) GenerateEditableFieldContens(int selectedIndex)
+        {
+            (int groupIndex, int childIndex) = Utils.FindGroupIndexPairIn2dList(_coursesToBeEdit, selectedIndex);
+            return (groupIndex, _coursesToBeEdit[groupIndex][childIndex]);
         }
     }
 }
