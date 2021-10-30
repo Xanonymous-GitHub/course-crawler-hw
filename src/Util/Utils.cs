@@ -27,6 +27,8 @@ namespace CourseCrawler
         // BooleansToStrNumbers
         public static string[] PositiveBooleansToStrNumbers(List<bool> source)
         {
+            if (source == null) return null;
+
             List<string> result = new();
 
             for(int i = 0; i < source.Count; i++)
@@ -40,8 +42,11 @@ namespace CourseCrawler
         // BooleansToStrNumbers
         public static List<bool> StrNumbersToPositiveBooleans(string[] source, [Optional] int? capacity)
         {
-            List<int> positiveIndexes = source.ToList().Select(str => Convert.ToInt32(str)).ToList();
-            int resultLength = positiveIndexes.Max();
+            if (source == null) return null;
+
+            List<int> positiveIndexes = source.ToList().Select(str => Convert.ToInt32(str) - 1).ToList();
+            
+            int resultLength = positiveIndexes.Count > 0 ? positiveIndexes.Max() : 0;
 
             if (capacity != null) resultLength = Math.Max(resultLength, (int)capacity);
 
@@ -69,6 +74,21 @@ namespace CourseCrawler
                 array[i] = initialValue;
             }
             return array;
+        }
+
+        // KeyByValue
+        public static T KeyByValue<T, W>(this Dictionary<T, W> dict, W val)
+        {
+            T key = default;
+            foreach (KeyValuePair<T, W> pair in dict)
+            {
+                if (EqualityComparer<W>.Default.Equals(pair.Value, val))
+                {
+                    key = pair.Key;
+                    break;
+                }
+            }
+            return key;
         }
     }
 }

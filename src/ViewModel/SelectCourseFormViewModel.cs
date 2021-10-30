@@ -255,8 +255,7 @@ namespace CourseCrawler
 
                 foreach (WeekTime weekTime in course.WeekTimes)
                 {
-                    if (weekTime.Times == null || weekTime.Times[0] == string.Empty) continue;
-
+                    if (weekTime.Times == null || weekTime.Times.Length == 0 || weekTime.Times[0] == string.Empty) continue;
                     foreach (string time in weekTime.Times)
                     {
                         string classifyKey = weekTime.Name + time;
@@ -268,7 +267,7 @@ namespace CourseCrawler
                     }
                 }
             }
-
+            
             string nameConflictErrMsg = GenerateConflictErrMsg(courseClassifiedByName);
             string timeConflictErrMsg = GenerateConflictErrMsg(courseClassifiedByTime);
 
