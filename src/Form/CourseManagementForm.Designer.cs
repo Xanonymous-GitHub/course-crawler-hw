@@ -89,7 +89,7 @@
             this.ManagementTabControll.Controls.Add(this.CourseManageTabPage);
             this.ManagementTabControll.Controls.Add(this.ClassManageTabPage);
             this.ManagementTabControll.Location = new System.Drawing.Point(11, 11);
-            this.ManagementTabControll.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ManagementTabControll.Margin = new System.Windows.Forms.Padding(2);
             this.ManagementTabControll.Name = "ManagementTabControll";
             this.ManagementTabControll.SelectedIndex = 0;
             this.ManagementTabControll.Size = new System.Drawing.Size(1173, 724);
@@ -102,9 +102,9 @@
             this.CourseManageTabPage.Controls.Add(this.EditCourseGroupBox);
             this.CourseManageTabPage.Controls.Add(this.AddCourseButton);
             this.CourseManageTabPage.Location = new System.Drawing.Point(4, 25);
-            this.CourseManageTabPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CourseManageTabPage.Margin = new System.Windows.Forms.Padding(2);
             this.CourseManageTabPage.Name = "CourseManageTabPage";
-            this.CourseManageTabPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CourseManageTabPage.Padding = new System.Windows.Forms.Padding(2);
             this.CourseManageTabPage.Size = new System.Drawing.Size(1165, 695);
             this.CourseManageTabPage.TabIndex = 0;
             this.CourseManageTabPage.Text = "課程管理";
@@ -113,7 +113,7 @@
             // SaveCourseButton
             // 
             this.SaveCourseButton.Location = new System.Drawing.Point(985, 626);
-            this.SaveCourseButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SaveCourseButton.Margin = new System.Windows.Forms.Padding(2);
             this.SaveCourseButton.Name = "SaveCourseButton";
             this.SaveCourseButton.Size = new System.Drawing.Size(174, 61);
             this.SaveCourseButton.TabIndex = 3;
@@ -125,7 +125,7 @@
             this.CourseListBox.FormattingEnabled = true;
             this.CourseListBox.ItemHeight = 15;
             this.CourseListBox.Location = new System.Drawing.Point(4, 4);
-            this.CourseListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CourseListBox.Margin = new System.Windows.Forms.Padding(2);
             this.CourseListBox.Name = "CourseListBox";
             this.CourseListBox.Size = new System.Drawing.Size(345, 619);
             this.CourseListBox.TabIndex = 2;
@@ -158,9 +158,9 @@
             this.EditCourseGroupBox.Controls.Add(this.CourseEnabledComboBox);
             this.EditCourseGroupBox.Controls.Add(this.CourseSectionEditGridView);
             this.EditCourseGroupBox.Location = new System.Drawing.Point(353, 7);
-            this.EditCourseGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EditCourseGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.EditCourseGroupBox.Name = "EditCourseGroupBox";
-            this.EditCourseGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EditCourseGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.EditCourseGroupBox.Size = new System.Drawing.Size(806, 619);
             this.EditCourseGroupBox.TabIndex = 1;
             this.EditCourseGroupBox.TabStop = false;
@@ -188,6 +188,10 @@
             // 
             this.CourseHourComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CourseHourComboBox.FormattingEnabled = true;
+            this.CourseHourComboBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
             this.CourseHourComboBox.Location = new System.Drawing.Point(63, 245);
             this.CourseHourComboBox.Name = "CourseHourComboBox";
             this.CourseHourComboBox.Size = new System.Drawing.Size(121, 23);
@@ -354,12 +358,13 @@
             // CourseEnabledComboBox
             // 
             this.CourseEnabledComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CourseEnabledComboBox.Enabled = false;
             this.CourseEnabledComboBox.FormattingEnabled = true;
             this.CourseEnabledComboBox.Items.AddRange(new object[] {
             "開課",
             "停開"});
             this.CourseEnabledComboBox.Location = new System.Drawing.Point(4, 22);
-            this.CourseEnabledComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CourseEnabledComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.CourseEnabledComboBox.Name = "CourseEnabledComboBox";
             this.CourseEnabledComboBox.Size = new System.Drawing.Size(142, 23);
             this.CourseEnabledComboBox.TabIndex = 1;
@@ -381,7 +386,7 @@
             this.FridaySectionColumn,
             this.SaturdaySectionColumn});
             this.CourseSectionEditGridView.Location = new System.Drawing.Point(4, 307);
-            this.CourseSectionEditGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CourseSectionEditGridView.Margin = new System.Windows.Forms.Padding(2);
             this.CourseSectionEditGridView.Name = "CourseSectionEditGridView";
             this.CourseSectionEditGridView.ReadOnly = true;
             this.CourseSectionEditGridView.RowHeadersVisible = false;
@@ -459,7 +464,7 @@
             // AddCourseButton
             // 
             this.AddCourseButton.Location = new System.Drawing.Point(4, 627);
-            this.AddCourseButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddCourseButton.Margin = new System.Windows.Forms.Padding(2);
             this.AddCourseButton.Name = "AddCourseButton";
             this.AddCourseButton.Size = new System.Drawing.Size(345, 61);
             this.AddCourseButton.TabIndex = 0;
@@ -469,9 +474,9 @@
             // ClassManageTabPage
             // 
             this.ClassManageTabPage.Location = new System.Drawing.Point(4, 25);
-            this.ClassManageTabPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClassManageTabPage.Margin = new System.Windows.Forms.Padding(2);
             this.ClassManageTabPage.Name = "ClassManageTabPage";
-            this.ClassManageTabPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClassManageTabPage.Padding = new System.Windows.Forms.Padding(2);
             this.ClassManageTabPage.Size = new System.Drawing.Size(1165, 695);
             this.ClassManageTabPage.TabIndex = 1;
             this.ClassManageTabPage.Text = "班級管理";

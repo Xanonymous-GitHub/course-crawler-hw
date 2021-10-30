@@ -26,7 +26,9 @@ namespace CourseCrawler
         {
             BindCompomentsToData();
             CourseListBox.ClearSelected();
+            CourseEnabledComboBox.SelectedIndex = 0;
             SupportedDataSourceInfo.GetAllCombinedNames.ForEach(name => CourseClassComboBox.Items.Add(name));
+            Consts.CourseSymbols.Skip(1).ToList().ForEach(symbol => CourseTypeComboBox.Items.Add(symbol));
         }
 
         // BindCompomentsToData
@@ -45,6 +47,12 @@ namespace CourseCrawler
             CourseNameTextBox.Text = course.Name;
             CourseLevelTextBox.Text = course.Level;
             CourseCreditTextBox.Text = course.Credit;
+            CourseRemarkTextBox.Text = course.Remark;
+            CourseTeacherTextBox.Text = string.Join(string.Empty, course.Teachers);
+            CourseTAsTextBox.Text = string.Join(string.Empty, course.TAs);
+            CourseLanguageTextBox.Text = course.Language.ToOriginString();
+            CourseTypeComboBox.SelectedIndex = Consts.CourseSymbols.Skip(1).ToList().IndexOf(course.Type.ToOriginString());
+            CourseClassComboBox.SelectedIndex = dataSourceIndex;
         }
     }
 }
