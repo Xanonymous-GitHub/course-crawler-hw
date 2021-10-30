@@ -35,6 +35,7 @@ namespace CourseCrawler
             CourseListBox.DataSource = _formViewModel.CoursesToBeEditStr;
         }
 
+        // CourseListBox_SelectedIndexChanged
         private void CourseListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CourseListBox.SelectedIndex < 0) return;

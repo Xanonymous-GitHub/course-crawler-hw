@@ -34,6 +34,7 @@ namespace CourseCrawler
             _coursesToBeEdit = getAllCourseUseCase.Do();
         }
 
+        // GenerateEditableFieldContens
         public (int dataSourceIndex, ICourse course) GenerateEditableFieldContens(int selectedIndex)
         {
             (int groupIndex, int childIndex) = Utils.FindGroupIndexPairIn2dList(_coursesToBeEdit, selectedIndex);
