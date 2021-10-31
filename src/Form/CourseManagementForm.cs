@@ -25,16 +25,16 @@ namespace CourseCrawler
         private void CourseManagementForm_Load(object sender, EventArgs e)
         {
             BindCompomentsToData();
-            SetupDefaultState();
+            SetupDefaultStates();
         }
 
         // SetupDefaultState
-        private void SetupDefaultState()
+        private void SetupDefaultStates()
         {
             CourseListBox.ClearSelected();
-            CourseEnabledComboBox.SelectedIndex = 0;
-            SupportedDataSourceInfo.GetAllCombinedNames.ForEach(name => CourseClassComboBox.Items.Add(name));
-            Consts.CourseSymbols.Skip(1).ToList().ForEach(symbol => CourseTypeComboBox.Items.Add(symbol));
+            CourseEnabledComboBox.SelectedIndex = _formViewModel.DefaultCourseEnabledComboBoxSelectedIndex;
+            _formViewModel.CourseClassComboBoxItems.ForEach(name => CourseClassComboBox.Items.Add(name));
+            _formViewModel.CourseTypeComboBoxItems.ForEach(symbol => CourseTypeComboBox.Items.Add(symbol));
         }
 
         // BindCompomentsToData
@@ -43,13 +43,6 @@ namespace CourseCrawler
             CourseListBox.DataSource = _formViewModel.CoursesToBeEditStrList;
             _formViewModel.PropertyChanged += UpdateDisplayedCompoments;
         }
-
-        // GenerateCourseSectionCheckBoxGridView
-        private void GenerateCourseSectionCheckBoxGridView(List<List<bool>> weekTimeStates)
-        {
-            
-        }
-
 
         // UpdateDisplayedCompoments
         private void UpdateDisplayedCompoments(object sender, PropertyChangedEventArgs e)
@@ -65,7 +58,7 @@ namespace CourseCrawler
             CourseTeacherTextBox.Text = string.Join(string.Empty, course.Teachers);
             CourseTAsTextBox.Text = string.Join(string.Empty, course.TAs);
             CourseLanguageTextBox.Text = course.Language.ToOriginString();
-            CourseTypeComboBox.SelectedIndex = Consts.CourseSymbols.Skip(1).ToList().IndexOf(course.Type.ToOriginString());
+            CourseTypeComboBox.SelectedIndex = CourseTypeComboBox.Items.IndexOf(course.Type.ToOriginString());
             CourseClassComboBox.SelectedIndex = dataSourceIndex;
         }
 
