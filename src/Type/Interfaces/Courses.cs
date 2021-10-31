@@ -27,6 +27,13 @@ namespace CourseCrawler
         public string Remark { get; }
         public string AttachedStudentAmount { get; }
         public bool IsExperiment { get; }
+        public CourseDayTime MondayTimes { get; set; }
+        public CourseDayTime TuesdayTimes { get; set; }
+        public CourseDayTime WednesdayTimes { get; set; }
+        public CourseDayTime ThursdayTimes { get; set; }
+        public CourseDayTime FridayTimes { get; set; }
+        public CourseDayTime SaturdayTimes { get; set; }
+        public CourseDayTime SundayTimes { get; set; }
     }
 
     internal interface ICourseDayTime

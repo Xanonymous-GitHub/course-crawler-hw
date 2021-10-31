@@ -17,6 +17,8 @@ namespace CourseCrawler
             InitializeComponent();
 
             _formViewModel = new();
+
+            SetupDefaultStates();
         }
 
         private readonly CourseManagementFormViewModel _formViewModel;
@@ -25,16 +27,16 @@ namespace CourseCrawler
         private void CourseManagementForm_Load(object sender, EventArgs e)
         {
             BindCompomentsToData();
-            SetupDefaultStates();
+            CourseListBox.ClearSelected();
         }
 
         // SetupDefaultState
         private void SetupDefaultStates()
         {
-            CourseListBox.ClearSelected();
             CourseEnabledComboBox.SelectedIndex = _formViewModel.DefaultCourseEnabledComboBoxSelectedIndex;
             _formViewModel.CourseClassComboBoxItems.ForEach(name => CourseClassComboBox.Items.Add(name));
             _formViewModel.CourseTypeComboBoxItems.ForEach(symbol => CourseTypeComboBox.Items.Add(symbol));
+            UpdateCourseWeekTimeCheckBoxGridView();
         }
 
         // BindCompomentsToData
@@ -42,6 +44,16 @@ namespace CourseCrawler
         {
             CourseListBox.DataSource = _formViewModel.CoursesToBeEditStrList;
             _formViewModel.PropertyChanged += UpdateDisplayedCompoments;
+        }
+
+        // UpdateCourseWeekTimeCheckBoxGridView
+        private void UpdateCourseWeekTimeCheckBoxGridView()
+        {
+            List<string[]> newRows = _formViewModel.CourseWeekTimeCheckBoxRows;
+            if (newRows == null || CourseWeekTimeCheckBoxGridView.VirtualMode) return;
+            
+            CourseWeekTimeCheckBoxGridView.Rows.Clear();
+            newRows.ForEach(row => CourseWeekTimeCheckBoxGridView.Rows.Add(row));
         }
 
         // UpdateDisplayedCompoments
@@ -60,6 +72,8 @@ namespace CourseCrawler
             CourseLanguageTextBox.Text = course.Language.ToOriginString();
             CourseTypeComboBox.SelectedIndex = CourseTypeComboBox.Items.IndexOf(course.Type.ToOriginString());
             CourseClassComboBox.SelectedIndex = dataSourceIndex;
+
+            UpdateCourseWeekTimeCheckBoxGridView();
         }
 
         // CourseListBox_SelectedIndexChanged

@@ -58,7 +58,9 @@
             this.CourseNameLabel = new System.Windows.Forms.Label();
             this.CourseNumberLabel = new System.Windows.Forms.Label();
             this.CourseEnabledComboBox = new System.Windows.Forms.ComboBox();
-            this.CourseSectionEditGridView = new System.Windows.Forms.DataGridView();
+            this.CourseWeekTimeCheckBoxGridView = new System.Windows.Forms.DataGridView();
+            this.AddCourseButton = new System.Windows.Forms.Button();
+            this.ClassManageTabPage = new System.Windows.Forms.TabPage();
             this.CourseSectionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SundaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MondaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -67,12 +69,10 @@
             this.ThursdaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.FridaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.SaturdaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.AddCourseButton = new System.Windows.Forms.Button();
-            this.ClassManageTabPage = new System.Windows.Forms.TabPage();
             this.ManagementTabControll.SuspendLayout();
             this.CourseManageTabPage.SuspendLayout();
             this.EditCourseGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CourseSectionEditGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CourseWeekTimeCheckBoxGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // CommingSoonLabel
@@ -156,7 +156,7 @@
             this.EditCourseGroupBox.Controls.Add(this.CourseNameLabel);
             this.EditCourseGroupBox.Controls.Add(this.CourseNumberLabel);
             this.EditCourseGroupBox.Controls.Add(this.CourseEnabledComboBox);
-            this.EditCourseGroupBox.Controls.Add(this.CourseSectionEditGridView);
+            this.EditCourseGroupBox.Controls.Add(this.CourseWeekTimeCheckBoxGridView);
             this.EditCourseGroupBox.Location = new System.Drawing.Point(353, 7);
             this.EditCourseGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.EditCourseGroupBox.Name = "EditCourseGroupBox";
@@ -369,14 +369,17 @@
             this.CourseEnabledComboBox.Size = new System.Drawing.Size(142, 23);
             this.CourseEnabledComboBox.TabIndex = 1;
             // 
-            // CourseSectionEditGridView
+            // CourseWeekTimeCheckBoxGridView
             // 
-            this.CourseSectionEditGridView.AllowUserToAddRows = false;
-            this.CourseSectionEditGridView.AllowUserToDeleteRows = false;
-            this.CourseSectionEditGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.CourseSectionEditGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.CourseSectionEditGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CourseSectionEditGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CourseWeekTimeCheckBoxGridView.AllowUserToAddRows = false;
+            this.CourseWeekTimeCheckBoxGridView.AllowUserToDeleteRows = false;
+            this.CourseWeekTimeCheckBoxGridView.AllowUserToResizeColumns = false;
+            this.CourseWeekTimeCheckBoxGridView.AllowUserToResizeRows = false;
+            this.CourseWeekTimeCheckBoxGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.CourseWeekTimeCheckBoxGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.CourseWeekTimeCheckBoxGridView.ColumnHeadersHeight = 29;
+            this.CourseWeekTimeCheckBoxGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.CourseWeekTimeCheckBoxGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CourseSectionColumn,
             this.SundaySectionColumn,
             this.MondaySectionColumn,
@@ -385,16 +388,39 @@
             this.ThursdaySectionColumn,
             this.FridaySectionColumn,
             this.SaturdaySectionColumn});
-            this.CourseSectionEditGridView.Location = new System.Drawing.Point(4, 307);
-            this.CourseSectionEditGridView.Margin = new System.Windows.Forms.Padding(2);
-            this.CourseSectionEditGridView.Name = "CourseSectionEditGridView";
-            this.CourseSectionEditGridView.ReadOnly = true;
-            this.CourseSectionEditGridView.RowHeadersVisible = false;
-            this.CourseSectionEditGridView.RowHeadersWidth = 82;
-            this.CourseSectionEditGridView.RowTemplate.Height = 38;
-            this.CourseSectionEditGridView.Size = new System.Drawing.Size(797, 308);
-            this.CourseSectionEditGridView.TabIndex = 0;
-            this.CourseSectionEditGridView.VirtualMode = true;
+            this.CourseWeekTimeCheckBoxGridView.Location = new System.Drawing.Point(4, 307);
+            this.CourseWeekTimeCheckBoxGridView.Margin = new System.Windows.Forms.Padding(2);
+            this.CourseWeekTimeCheckBoxGridView.MultiSelect = false;
+            this.CourseWeekTimeCheckBoxGridView.Name = "CourseWeekTimeCheckBoxGridView";
+            this.CourseWeekTimeCheckBoxGridView.ReadOnly = true;
+            this.CourseWeekTimeCheckBoxGridView.RowHeadersVisible = false;
+            this.CourseWeekTimeCheckBoxGridView.RowHeadersWidth = 82;
+            this.CourseWeekTimeCheckBoxGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.CourseWeekTimeCheckBoxGridView.RowTemplate.Height = 38;
+            this.CourseWeekTimeCheckBoxGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullColumnSelect;
+            this.CourseWeekTimeCheckBoxGridView.Size = new System.Drawing.Size(797, 308);
+            this.CourseWeekTimeCheckBoxGridView.TabIndex = 0;
+            // 
+            // AddCourseButton
+            // 
+            this.AddCourseButton.Location = new System.Drawing.Point(4, 627);
+            this.AddCourseButton.Margin = new System.Windows.Forms.Padding(2);
+            this.AddCourseButton.Name = "AddCourseButton";
+            this.AddCourseButton.Size = new System.Drawing.Size(345, 61);
+            this.AddCourseButton.TabIndex = 0;
+            this.AddCourseButton.Text = "新增課程";
+            this.AddCourseButton.UseVisualStyleBackColor = true;
+            // 
+            // ClassManageTabPage
+            // 
+            this.ClassManageTabPage.Location = new System.Drawing.Point(4, 25);
+            this.ClassManageTabPage.Margin = new System.Windows.Forms.Padding(2);
+            this.ClassManageTabPage.Name = "ClassManageTabPage";
+            this.ClassManageTabPage.Padding = new System.Windows.Forms.Padding(2);
+            this.ClassManageTabPage.Size = new System.Drawing.Size(1165, 695);
+            this.ClassManageTabPage.TabIndex = 1;
+            this.ClassManageTabPage.Text = "班級管理";
+            this.ClassManageTabPage.UseVisualStyleBackColor = true;
             // 
             // CourseSectionColumn
             // 
@@ -461,27 +487,6 @@
             this.SaturdaySectionColumn.ReadOnly = true;
             this.SaturdaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // AddCourseButton
-            // 
-            this.AddCourseButton.Location = new System.Drawing.Point(4, 627);
-            this.AddCourseButton.Margin = new System.Windows.Forms.Padding(2);
-            this.AddCourseButton.Name = "AddCourseButton";
-            this.AddCourseButton.Size = new System.Drawing.Size(345, 61);
-            this.AddCourseButton.TabIndex = 0;
-            this.AddCourseButton.Text = "新增課程";
-            this.AddCourseButton.UseVisualStyleBackColor = true;
-            // 
-            // ClassManageTabPage
-            // 
-            this.ClassManageTabPage.Location = new System.Drawing.Point(4, 25);
-            this.ClassManageTabPage.Margin = new System.Windows.Forms.Padding(2);
-            this.ClassManageTabPage.Name = "ClassManageTabPage";
-            this.ClassManageTabPage.Padding = new System.Windows.Forms.Padding(2);
-            this.ClassManageTabPage.Size = new System.Drawing.Size(1165, 695);
-            this.ClassManageTabPage.TabIndex = 1;
-            this.ClassManageTabPage.Text = "班級管理";
-            this.ClassManageTabPage.UseVisualStyleBackColor = true;
-            // 
             // CourseManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -503,7 +508,7 @@
             this.CourseManageTabPage.ResumeLayout(false);
             this.EditCourseGroupBox.ResumeLayout(false);
             this.EditCourseGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CourseSectionEditGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CourseWeekTimeCheckBoxGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -519,7 +524,7 @@
         private System.Windows.Forms.GroupBox EditCourseGroupBox;
         private System.Windows.Forms.Button AddCourseButton;
         private System.Windows.Forms.Button SaveCourseButton;
-        private System.Windows.Forms.DataGridView CourseSectionEditGridView;
+        private System.Windows.Forms.DataGridView CourseWeekTimeCheckBoxGridView;
         private System.Windows.Forms.ComboBox CourseEnabledComboBox;
         private System.Windows.Forms.Label CourseLevelLabel;
         private System.Windows.Forms.Label CourseNameLabel;
