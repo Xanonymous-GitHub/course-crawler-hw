@@ -59,6 +59,8 @@
             this.CourseNumberLabel = new System.Windows.Forms.Label();
             this.CourseEnabledComboBox = new System.Windows.Forms.ComboBox();
             this.CourseWeekTimeCheckBoxGridView = new System.Windows.Forms.DataGridView();
+            this.AddCourseButton = new System.Windows.Forms.Button();
+            this.ClassManageTabPage = new System.Windows.Forms.TabPage();
             this.CourseSectionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SundaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MondaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -67,8 +69,6 @@
             this.ThursdaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.FridaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.SaturdaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.AddCourseButton = new System.Windows.Forms.Button();
-            this.ClassManageTabPage = new System.Windows.Forms.TabPage();
             this.ManagementTabControll.SuspendLayout();
             this.CourseManageTabPage.SuspendLayout();
             this.EditCourseGroupBox.SuspendLayout();
@@ -413,71 +413,7 @@
             this.CourseWeekTimeCheckBoxGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullColumnSelect;
             this.CourseWeekTimeCheckBoxGridView.Size = new System.Drawing.Size(797, 308);
             this.CourseWeekTimeCheckBoxGridView.TabIndex = 0;
-            // 
-            // CourseSectionColumn
-            // 
-            this.CourseSectionColumn.HeaderText = "節數";
-            this.CourseSectionColumn.MinimumWidth = 10;
-            this.CourseSectionColumn.Name = "CourseSectionColumn";
-            this.CourseSectionColumn.ReadOnly = true;
-            this.CourseSectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CourseSectionColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // SundaySectionColumn
-            // 
-            this.SundaySectionColumn.HeaderText = "日";
-            this.SundaySectionColumn.MinimumWidth = 10;
-            this.SundaySectionColumn.Name = "SundaySectionColumn";
-            this.SundaySectionColumn.ReadOnly = true;
-            this.SundaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // MondaySectionColumn
-            // 
-            this.MondaySectionColumn.HeaderText = "一";
-            this.MondaySectionColumn.MinimumWidth = 10;
-            this.MondaySectionColumn.Name = "MondaySectionColumn";
-            this.MondaySectionColumn.ReadOnly = true;
-            this.MondaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // TuesdaySectionColumn
-            // 
-            this.TuesdaySectionColumn.HeaderText = "二";
-            this.TuesdaySectionColumn.MinimumWidth = 10;
-            this.TuesdaySectionColumn.Name = "TuesdaySectionColumn";
-            this.TuesdaySectionColumn.ReadOnly = true;
-            this.TuesdaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // WednesdaySectionColumn
-            // 
-            this.WednesdaySectionColumn.HeaderText = "三";
-            this.WednesdaySectionColumn.MinimumWidth = 10;
-            this.WednesdaySectionColumn.Name = "WednesdaySectionColumn";
-            this.WednesdaySectionColumn.ReadOnly = true;
-            this.WednesdaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // ThursdaySectionColumn
-            // 
-            this.ThursdaySectionColumn.HeaderText = "四";
-            this.ThursdaySectionColumn.MinimumWidth = 10;
-            this.ThursdaySectionColumn.Name = "ThursdaySectionColumn";
-            this.ThursdaySectionColumn.ReadOnly = true;
-            this.ThursdaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // FridaySectionColumn
-            // 
-            this.FridaySectionColumn.HeaderText = "五";
-            this.FridaySectionColumn.MinimumWidth = 10;
-            this.FridaySectionColumn.Name = "FridaySectionColumn";
-            this.FridaySectionColumn.ReadOnly = true;
-            this.FridaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // SaturdaySectionColumn
-            // 
-            this.SaturdaySectionColumn.HeaderText = "六";
-            this.SaturdaySectionColumn.MinimumWidth = 10;
-            this.SaturdaySectionColumn.Name = "SaturdaySectionColumn";
-            this.SaturdaySectionColumn.ReadOnly = true;
-            this.SaturdaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CourseWeekTimeCheckBoxGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CourseWeekTimeCheckBoxGridView_CellContentClick);
             // 
             // AddCourseButton
             // 
@@ -499,6 +435,85 @@
             this.ClassManageTabPage.TabIndex = 1;
             this.ClassManageTabPage.Text = "班級管理";
             this.ClassManageTabPage.UseVisualStyleBackColor = true;
+            // 
+            // CourseSectionColumn
+            // 
+            this.CourseSectionColumn.HeaderText = "節數";
+            this.CourseSectionColumn.MinimumWidth = 10;
+            this.CourseSectionColumn.Name = "CourseSectionColumn";
+            this.CourseSectionColumn.ReadOnly = true;
+            this.CourseSectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CourseSectionColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // SundaySectionColumn
+            // 
+            this.SundaySectionColumn.FalseValue = "False";
+            this.SundaySectionColumn.HeaderText = "日";
+            this.SundaySectionColumn.MinimumWidth = 10;
+            this.SundaySectionColumn.Name = "SundaySectionColumn";
+            this.SundaySectionColumn.ReadOnly = true;
+            this.SundaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SundaySectionColumn.TrueValue = "True";
+            // 
+            // MondaySectionColumn
+            // 
+            this.MondaySectionColumn.FalseValue = "False";
+            this.MondaySectionColumn.HeaderText = "一";
+            this.MondaySectionColumn.MinimumWidth = 10;
+            this.MondaySectionColumn.Name = "MondaySectionColumn";
+            this.MondaySectionColumn.ReadOnly = true;
+            this.MondaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.MondaySectionColumn.TrueValue = "True";
+            // 
+            // TuesdaySectionColumn
+            // 
+            this.TuesdaySectionColumn.FalseValue = "False";
+            this.TuesdaySectionColumn.HeaderText = "二";
+            this.TuesdaySectionColumn.MinimumWidth = 10;
+            this.TuesdaySectionColumn.Name = "TuesdaySectionColumn";
+            this.TuesdaySectionColumn.ReadOnly = true;
+            this.TuesdaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TuesdaySectionColumn.TrueValue = "True";
+            // 
+            // WednesdaySectionColumn
+            // 
+            this.WednesdaySectionColumn.FalseValue = "False";
+            this.WednesdaySectionColumn.HeaderText = "三";
+            this.WednesdaySectionColumn.MinimumWidth = 10;
+            this.WednesdaySectionColumn.Name = "WednesdaySectionColumn";
+            this.WednesdaySectionColumn.ReadOnly = true;
+            this.WednesdaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.WednesdaySectionColumn.TrueValue = "True";
+            // 
+            // ThursdaySectionColumn
+            // 
+            this.ThursdaySectionColumn.FalseValue = "False";
+            this.ThursdaySectionColumn.HeaderText = "四";
+            this.ThursdaySectionColumn.MinimumWidth = 10;
+            this.ThursdaySectionColumn.Name = "ThursdaySectionColumn";
+            this.ThursdaySectionColumn.ReadOnly = true;
+            this.ThursdaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ThursdaySectionColumn.TrueValue = "True";
+            // 
+            // FridaySectionColumn
+            // 
+            this.FridaySectionColumn.FalseValue = "False";
+            this.FridaySectionColumn.HeaderText = "五";
+            this.FridaySectionColumn.MinimumWidth = 10;
+            this.FridaySectionColumn.Name = "FridaySectionColumn";
+            this.FridaySectionColumn.ReadOnly = true;
+            this.FridaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.FridaySectionColumn.TrueValue = "True";
+            // 
+            // SaturdaySectionColumn
+            // 
+            this.SaturdaySectionColumn.FalseValue = "False";
+            this.SaturdaySectionColumn.HeaderText = "六";
+            this.SaturdaySectionColumn.MinimumWidth = 10;
+            this.SaturdaySectionColumn.Name = "SaturdaySectionColumn";
+            this.SaturdaySectionColumn.ReadOnly = true;
+            this.SaturdaySectionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SaturdaySectionColumn.TrueValue = "True";
             // 
             // CourseManagementForm
             // 

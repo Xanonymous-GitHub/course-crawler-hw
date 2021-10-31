@@ -124,6 +124,21 @@ namespace CourseCrawler
             _formViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
         }
 
+        // CourseWeekTimeCheckBoxGridView_CellContentClick
+        private void CourseWeekTimeCheckBoxGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex > 0)
+            {
+                DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)CourseWeekTimeCheckBoxGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                bool isCurrentCheckBoxSelected = checkCell.Value == checkCell.TrueValue;
+
+                checkCell.Value = !isCurrentCheckBoxSelected ? checkCell.TrueValue : checkCell.FalseValue;
+
+                CourseWeekTimeCheckBoxGridView.NotifyCurrentCellDirty(true);
+                CourseWeekTimeCheckBoxGridView.Invalidate();
+            }
+        }
+
         // CourseNumberTextBox_TextChanged
         private void CourseNumberTextBox_TextChanged(object sender, EventArgs e)
         {
