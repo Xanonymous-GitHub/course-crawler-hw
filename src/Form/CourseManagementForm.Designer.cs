@@ -191,7 +191,10 @@
             this.CourseHourComboBox.Items.AddRange(new object[] {
             "1",
             "2",
-            "3"});
+            "3",
+            "4",
+            "5",
+            "6"});
             this.CourseHourComboBox.Location = new System.Drawing.Point(63, 245);
             this.CourseHourComboBox.Name = "CourseHourComboBox";
             this.CourseHourComboBox.Size = new System.Drawing.Size(121, 23);

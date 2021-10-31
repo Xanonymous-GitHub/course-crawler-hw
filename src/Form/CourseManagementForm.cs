@@ -73,6 +73,9 @@ namespace CourseCrawler
             CourseTypeComboBox.SelectedIndex = CourseTypeComboBox.Items.IndexOf(course.Type.ToOriginString());
             CourseClassComboBox.SelectedIndex = dataSourceIndex;
 
+            bool hasCourseHour = int.TryParse(course.Hour, out int hour);
+            CourseHourComboBox.SelectedIndex = hasCourseHour ? hour - 1 : -1;
+
             UpdateCourseWeekTimeCheckBoxGridView();
         }
 
