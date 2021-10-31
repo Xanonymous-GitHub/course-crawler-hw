@@ -23,6 +23,7 @@ namespace CourseCrawler
 
         private readonly CourseManagementFormViewModel _formViewModel;
         private bool shouldSkipValidation = false;
+        private int currentCheckedCourseTimes;
 
         // CourseManagementForm_Load
         private void CourseManagementForm_Load(object sender, EventArgs e)
@@ -55,6 +56,7 @@ namespace CourseCrawler
             
             CourseWeekTimeCheckBoxGridView.Rows.Clear();
             newRows.ForEach(row => CourseWeekTimeCheckBoxGridView.Rows.Add(row));
+            currentCheckedCourseTimes = _formViewModel.CourseWeekTimeCheckBoxInitialCheckedAmount;
         }
 
         // UpdateDisplayedCompoments
@@ -113,7 +115,8 @@ namespace CourseCrawler
 
             if (courseNumberIsNaN || courseLevelIsNaN || courseCreditIsNaN) return false;
 
-            // TODO: validate if checked course time amount is equal the courseTime combobox.
+            if (currentCheckedCourseTimes != CourseHourComboBox.SelectedIndex + 1) return false;
+
             return true;
         }
 
@@ -130,12 +133,13 @@ namespace CourseCrawler
             if (e.ColumnIndex > 0)
             {
                 DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)CourseWeekTimeCheckBoxGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                bool isCurrentCheckBoxSelected = checkCell.Value == checkCell.TrueValue;
+                bool isCurrentCheckBoxSelected = checkCell.Value.ToString() == checkCell.TrueValue.ToString();
 
                 checkCell.Value = !isCurrentCheckBoxSelected ? checkCell.TrueValue : checkCell.FalseValue;
 
-                CourseWeekTimeCheckBoxGridView.NotifyCurrentCellDirty(true);
-                CourseWeekTimeCheckBoxGridView.Invalidate();
+                currentCheckedCourseTimes += !isCurrentCheckBoxSelected ? 1 : -1;
+
+                SaveCourseButton.Enabled = ValidateEditingCompomentValues();
             }
         }
 

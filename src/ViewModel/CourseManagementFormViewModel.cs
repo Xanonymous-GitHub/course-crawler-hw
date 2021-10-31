@@ -29,6 +29,8 @@ namespace CourseCrawler
             get => _coursesToBeEdit.Select(courses => courses.Select(course => course.Name).ToList()).ToList().SelectMany(x => x).ToList();
         }
 
+        public int CourseWeekTimeCheckBoxInitialCheckedAmount = 0;
+
         public (int dataSourceIndex, ICourse course) CurrentEditingCourse
         {
             get => _currentEditingContent;
@@ -81,6 +83,8 @@ namespace CourseCrawler
             List<string> tmpRow = new();
             List<string[]> rows = new();
 
+            CourseWeekTimeCheckBoxInitialCheckedAmount = 0;
+
             for (int i = 0; i < titles.Length; i++)
             {
                 tmpRow.Clear();
@@ -96,13 +100,29 @@ namespace CourseCrawler
                 }
                 else
                 {
-                    tmpRow.Add(course.MondayTimes.WholeDayList[i].ToString());
-                    tmpRow.Add(course.TuesdayTimes.WholeDayList[i].ToString());
-                    tmpRow.Add(course.WednesdayTimes.WholeDayList[i].ToString());
-                    tmpRow.Add(course.ThursdayTimes.WholeDayList[i].ToString());
-                    tmpRow.Add(course.FridayTimes.WholeDayList[i].ToString());
-                    tmpRow.Add(course.SaturdayTimes.WholeDayList[i].ToString());
-                    tmpRow.Add(course.SundayTimes.WholeDayList[i].ToString());
+                    bool monday = course.MondayTimes.WholeDayList[i];
+                    bool tuesday = course.TuesdayTimes.WholeDayList[i];
+                    bool wednesday = course.WednesdayTimes.WholeDayList[i];
+                    bool thursday = course.ThursdayTimes.WholeDayList[i];
+                    bool friday = course.FridayTimes.WholeDayList[i];
+                    bool saturday = course.SaturdayTimes.WholeDayList[i];
+                    bool sunday = course.SundayTimes.WholeDayList[i];
+
+                    tmpRow.Add(monday.ToString());
+                    tmpRow.Add(tuesday.ToString());
+                    tmpRow.Add(wednesday.ToString());
+                    tmpRow.Add(thursday.ToString());
+                    tmpRow.Add(friday.ToString());
+                    tmpRow.Add(saturday.ToString());
+                    tmpRow.Add(sunday.ToString());
+
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(monday);
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(tuesday);
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(wednesday);
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(thursday);
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(friday);
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(saturday);
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(sunday);
                 }
 
                 rows.Add(tmpRow.ToArray());
