@@ -72,11 +72,11 @@ namespace CourseCrawler
             {
                 DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)CourseGridView.Rows[e.RowIndex].Cells[CourseSelectionBoxColumn.Name];
 
-                bool isCurrentCheckBoxSelected = Convert.ToBoolean(checkCell.Value);
+                bool isCurrentCheckBoxSelected = Convert.ToBoolean(checkCell.Value == checkCell.TrueValue);
 
                 _formViewModel.ChangeCourseCheckStatus(e.RowIndex, !isCurrentCheckBoxSelected);
 
-                checkCell.Value = !isCurrentCheckBoxSelected;
+                checkCell.Value = !isCurrentCheckBoxSelected ? checkCell.TrueValue : checkCell.FalseValue;
 
                 CourseGridView.NotifyCurrentCellDirty(true);
                 CourseGridView.Invalidate();
