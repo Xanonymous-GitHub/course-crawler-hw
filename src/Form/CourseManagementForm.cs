@@ -25,6 +25,12 @@ namespace CourseCrawler
         private void CourseManagementForm_Load(object sender, EventArgs e)
         {
             BindCompomentsToData();
+            SetupDefaultState();
+        }
+
+        // SetupDefaultState
+        private void SetupDefaultState()
+        {
             CourseListBox.ClearSelected();
             CourseEnabledComboBox.SelectedIndex = 0;
             SupportedDataSourceInfo.GetAllCombinedNames.ForEach(name => CourseClassComboBox.Items.Add(name));
@@ -34,15 +40,23 @@ namespace CourseCrawler
         // BindCompomentsToData
         private void BindCompomentsToData()
         {
-            CourseListBox.DataSource = _formViewModel.CoursesToBeEditStr;
+            CourseListBox.DataSource = _formViewModel.CoursesToBeEditStrList;
+            _formViewModel.PropertyChanged += UpdateDisplayedCompoments;
         }
 
-        // CourseListBox_SelectedIndexChanged
-        private void CourseListBox_SelectedIndexChanged(object sender, EventArgs e)
+        // GenerateCourseSectionCheckBoxGridView
+        private void GenerateCourseSectionCheckBoxGridView(List<List<bool>> weekTimeStates)
         {
-            if (CourseListBox.SelectedIndex < 0) return;
-            (int dataSourceIndex, ICourse course) = _formViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
             
+        }
+
+
+        // UpdateDisplayedCompoments
+        private void UpdateDisplayedCompoments(object sender, PropertyChangedEventArgs e)
+        {
+            ICourse course = _formViewModel.CurrentEditingCourse.course;
+            int dataSourceIndex = _formViewModel.CurrentEditingCourse.dataSourceIndex;
+
             CourseNumberTextBox.Text = course.Serial;
             CourseNameTextBox.Text = course.Name;
             CourseLevelTextBox.Text = course.Level;
@@ -53,6 +67,13 @@ namespace CourseCrawler
             CourseLanguageTextBox.Text = course.Language.ToOriginString();
             CourseTypeComboBox.SelectedIndex = Consts.CourseSymbols.Skip(1).ToList().IndexOf(course.Type.ToOriginString());
             CourseClassComboBox.SelectedIndex = dataSourceIndex;
+        }
+
+        // CourseListBox_SelectedIndexChanged
+        private void CourseListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CourseListBox.SelectedIndex < 0) return;
+            _formViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
         }
     }
 }
