@@ -16,7 +16,8 @@ namespace CourseCrawler
             CourseWeekTimeCheckStates = GenerateCourseWeekTimeCheckBoxGridView();
         }
 
-        public readonly int DefaultCourseEnabledComboBoxSelectedIndex = 0;
+        public int DefaultCourseEnabledComboBoxSelectedIndex = 0;
+        public int DefaultCourseListBoxSelectedIndex = -1;
         public readonly List<string> CourseClassComboBoxItems = SupportedDataSourceInfo.GetAllCombinedNames;
         public readonly List<string> CourseTypeComboBoxItems = Consts.CourseSymbols.Skip(1).ToList();
 
@@ -164,6 +165,21 @@ namespace CourseCrawler
             }
 
             LoadCourses();
+            GenerateDefaultCourseListBoxSelectedIndex(newDataSourceIndex, modifiedCourse);
+        }
+
+        // GenerateDefaultCourseListBoxSelectedIndex
+        public void GenerateDefaultCourseListBoxSelectedIndex(int targetDataSourceIndex, ICourse targetCourse)
+        {
+            int previousGroupsTotalLength = 0;
+            for (int i = 0; i < targetDataSourceIndex; i++)
+            {
+                previousGroupsTotalLength += _coursesToBeEdit[i].Count;
+            }
+
+            int targetIndexInItsGroup = _coursesToBeEdit[targetDataSourceIndex].ToList().FindIndex(course => course.GetHashCode() == targetCourse.GetHashCode());
+
+            DefaultCourseListBoxSelectedIndex = previousGroupsTotalLength + targetIndexInItsGroup;
         }
     }
 }

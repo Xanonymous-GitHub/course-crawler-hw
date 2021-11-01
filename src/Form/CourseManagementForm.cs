@@ -49,7 +49,7 @@ namespace CourseCrawler
         // BindCompomentsToData
         private void BindCompomentsToData()
         {
-            CourseListBox.DataSource = _formViewModel.CoursesToBeEditStrList;
+            CourseListBox.DataBindings.Add(nameof(CourseListBox.DataSource), _formViewModel, nameof(_formViewModel.CoursesToBeEditStrList));
             _formViewModel.PropertyChanged += UpdateDisplayedCompoments;
         }
 
@@ -243,6 +243,7 @@ namespace CourseCrawler
                 _displayStatus == CourseManagementFormDisplayStatus.EditingNewCourseAndValid
             );
 
+            CourseListBox.SelectedIndex = _formViewModel.DefaultCourseListBoxSelectedIndex;
             _formViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
             _displayStatus = CourseManagementFormDisplayStatus.EditingFiledsNotChangedOrSaved;
             UpdateDisplayedCompomentEnabledStatus();
