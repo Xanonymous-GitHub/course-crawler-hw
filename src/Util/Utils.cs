@@ -23,7 +23,7 @@ namespace CourseCrawler
         }
 
         // SplitStr
-        public static string[] SplitStr(string source) => source.Split(Consts.StringSplitSeperators, StringSplitOptions.None);
+        public static string[] SplitStr(string source) => source?.Split(Consts.StringSplitSeperators, StringSplitOptions.None);
 
         // BooleansToStrNumbers
         public static string[] PositiveBooleansToStrNumbers(List<bool> source)

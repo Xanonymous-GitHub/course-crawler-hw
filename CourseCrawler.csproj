@@ -129,12 +129,14 @@
     <Compile Include="src\Type\Interfaces\Result.cs" />
     <Compile Include="src\Type\Interfaces\UseCases.cs" />
     <Compile Include="src\Type\Interfaces\Bindable.cs" />
+    <Compile Include="src\UseCase\AddCourseUseCase.cs" />
     <Compile Include="src\UseCase\CrawlerUseCase.cs" />
     <Compile Include="src\UseCase\FetchDepartmentCourseTableUseCase.cs" />
     <Compile Include="src\UseCase\GetAllCourseUseCase.cs" />
     <Compile Include="src\UseCase\GetAllDepartmentsUseCase.cs" />
     <Compile Include="src\UseCase\GetCourseTableUseCase.cs" />
     <Compile Include="src\UseCase\GetDepartmentUseCase.cs" />
+    <Compile Include="src\UseCase\RemoveCourseUseCase.cs" />
     <Compile Include="src\UseCase\SelectedCourseUseCase.cs" />
     <Compile Include="src\UseCase\UpdateCourseUseCase.cs" />
     <Compile Include="src\Util\Utils.cs" />

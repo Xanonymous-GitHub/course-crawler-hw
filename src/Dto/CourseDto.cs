@@ -9,7 +9,7 @@ namespace CourseCrawler
         // FromElementStrings
         public static Course FromElementStrings(params string[] source)
         {
-            source = source.Select(data => data.Trim()).ToArray();
+            source = source.Select(data => data?.Trim()).ToArray();
 
             return new
                 (

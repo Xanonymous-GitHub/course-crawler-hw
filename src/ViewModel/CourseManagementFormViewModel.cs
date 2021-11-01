@@ -105,30 +105,53 @@ namespace CourseCrawler
             string newSerial, string newName, string newLevel,
             string newCredit, string newTeachers, string newType,
             string newTas, string newLanguage, string newRemark,
-            string newHour, int newClassIndex, List<List<bool>> newTimes
+            string newHour, int newDataSourceIndex, List<List<bool>> newTimes,
+            bool isNewCouse = false
         )
         {
             // FIXME: Don't write this ugly code ...
-            Course course = (Course)CurrentEditingContent.course;
-            course.ShouldNotifyPropertyChanged = false;
-            course.Serial = newSerial;
-            course.Name = newName;
-            course.Level = newLevel;
-            course.Credit = newCredit;
-            course.Teachers = Utils.SplitStr(newTeachers);
-            course.Type = CourseDto.ToCourseTypeFromString(newType);
-            course.TAs = Utils.SplitStr(newTas);
-            course.Language = CourseDto.ToCourseLanguageFromString(newLanguage);
-            course.Remark = newRemark;
-            course.Hour = newHour;
-            course.SundayTimes = new(newTimes[0].ToArray());
-            course.MondayTimes = new(newTimes[1].ToArray());
-            course.TuesdayTimes = new(newTimes[2].ToArray());
-            course.WednesdayTimes = new(newTimes[3].ToArray());
-            course.ThursdayTimes = new(newTimes[4].ToArray());
-            course.FridayTimes = new(newTimes[5].ToArray());
-            course.SaturdayTimes = new(newTimes[6].ToArray());
-            course.ShouldNotifyPropertyChanged = true;
+            Course originCourse = (Course)CurrentEditingContent.course;
+
+            string[] modifiedCourseElementStrings = new string[]
+            {
+                newSerial, newName, newLevel, newCredit, newHour, newType, newTeachers,
+                null, null, null, null, null, null, null,
+                string.Join(Consts.NewLineChar, originCourse.Classrooms), // Non changed.
+                originCourse.StudentAmount, // Non changed.
+                originCourse.GivenUpStudentAmount, // Non changed.
+                newTas, newLanguage,
+                string.Join(Consts.NewLineChar, originCourse.OutlineAndProgressUrl), // Non changed.
+                newRemark,
+                originCourse.AttachedStudentAmount, // Non changed.
+                originCourse.IsExperiment ? Consts.DiamondChar.ToString() : string.Empty // Non changed.
+            };
+
+            Course modifiedCourse = CourseDto.FromElementStrings(modifiedCourseElementStrings);
+            
+            modifiedCourse.SundayTimes = new(newTimes[0].ToArray());
+            modifiedCourse.MondayTimes = new(newTimes[1].ToArray());
+            modifiedCourse.TuesdayTimes = new(newTimes[2].ToArray());
+            modifiedCourse.WednesdayTimes = new(newTimes[3].ToArray());
+            modifiedCourse.ThursdayTimes = new(newTimes[4].ToArray());
+            modifiedCourse.FridayTimes = new(newTimes[5].ToArray());
+            modifiedCourse.SaturdayTimes = new(newTimes[6].ToArray());
+
+            if (isNewCouse || newDataSourceIndex != CurrentEditingContent.dataSourceIndex)
+            {
+                if (!isNewCouse)
+                {
+                    RemoveCourseUseCase removeCourseUseCase = new(CurrentEditingContent.dataSourceIndex, CurrentEditingContent.course);
+                    removeCourseUseCase.Do();
+                }
+
+                AddCourseUseCase addCourseUseCase = new(newDataSourceIndex, modifiedCourse);
+                addCourseUseCase.Do();
+            }
+            else
+            {
+                UpdateCourseUseCase updateCourseUseCase = new(CurrentEditingContent.dataSourceIndex, CurrentEditingContent.course, modifiedCourse);
+                updateCourseUseCase.Do();
+            }
         }
     }
 }

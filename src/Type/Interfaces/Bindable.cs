@@ -18,8 +18,14 @@ namespace CourseCrawler
         {
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
             field = value;
-            if (ShouldNotifyPropertyChanged) NotifyPropertyChanged(propertyName);
+            DirectlyNotifyPropertyChanged(propertyName);
             return true;
+        }
+
+        // MarkAsDirty
+        public void DirectlyNotifyPropertyChanged(string dirtyPropertyName = "")
+        {
+            if (ShouldNotifyPropertyChanged) NotifyPropertyChanged(dirtyPropertyName);
         }
     }
 }
