@@ -41,5 +41,6 @@ namespace CourseCrawler
         public static readonly string CourseTimePeriodNameChars = "1234N56789ABCD";
         public static readonly string MsgElementNotFound = "Member Not Found!";
         public static readonly string MsgElementShouldNotBeFound = "Member Should Not Be Found!";
+        public static readonly string MsgDeadArea = "This area should not be proccessed!";
     }
 }

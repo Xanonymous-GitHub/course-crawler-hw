@@ -54,15 +54,20 @@ namespace CourseCrawler
 
             GetAllCourseUseCase getAllCourseUseCase = new();
             _coursesToBeEdit = getAllCourseUseCase.Do();
+
+            DirectlyNotifyPropertyChanged(nameof(CoursesToBeEditStrList));
         }
 
         // FindGroupIndexPairIn2dList
         private (int groupIndex, int childIndex) FindGroupIndexPairIn2dList<T>(List<BindingList<T>> source, int targetIndex)
         {
-            int groupIndex = 0, childIndex = 0, total = 0;
+            if (targetIndex < 0) return (0, 0);
+
+            int groupIndex = 0, total = 0;
 
             for (; groupIndex < source.Count; groupIndex++)
             {
+                int childIndex;
                 for (childIndex = 0; childIndex < source[groupIndex].Count; childIndex++)
                 {
                     if (total == targetIndex) return (groupIndex, childIndex);
@@ -70,24 +75,22 @@ namespace CourseCrawler
                 }
             }
 
-            // FIXME prevent invalid targetIndex.
-            // if this return be called, means expected index is not found in source
-            // this line should not be called.
-            return (groupIndex, childIndex);
+            throw new Exception(Consts.MsgDeadArea);
         }
 
         // GenerateCourseWeekTimeCheckBoxGridView
         private List<List<bool>> GenerateCourseWeekTimeCheckBoxGridView(ICourse course = null)
         {
+            int wholeDayTimeAmount = Consts.CourseTimePeriodNameChars.Length;
             return new()
             {
-                course?.SundayTimes.WholeDayList,
-                course?.MondayTimes.WholeDayList,
-                course?.TuesdayTimes.WholeDayList,
-                course?.WednesdayTimes.WholeDayList,
-                course?.ThursdayTimes.WholeDayList,
-                course?.FridayTimes.WholeDayList,
-                course?.SaturdayTimes.WholeDayList
+                course?.SundayTimes.WholeDayList ?? new(new bool[wholeDayTimeAmount]),
+                course?.MondayTimes.WholeDayList ?? new(new bool[wholeDayTimeAmount]),
+                course?.TuesdayTimes.WholeDayList ?? new(new bool[wholeDayTimeAmount]),
+                course?.WednesdayTimes.WholeDayList ?? new(new bool[wholeDayTimeAmount]),
+                course?.ThursdayTimes.WholeDayList ?? new(new bool[wholeDayTimeAmount]),
+                course?.FridayTimes.WholeDayList ?? new(new bool[wholeDayTimeAmount]),
+                course?.SaturdayTimes.WholeDayList ?? new(new bool[wholeDayTimeAmount]),
             };
         }
 
@@ -99,6 +102,13 @@ namespace CourseCrawler
             CourseWeekTimeCheckStates = GenerateCourseWeekTimeCheckBoxGridView(CurrentEditingContent.course);
         }
 
+        // GenerateEmptyFieldContens
+        public void GenerateEmptyFieldContens()
+        {
+            CurrentEditingContent = (-1, null);
+            CourseWeekTimeCheckStates = GenerateCourseWeekTimeCheckBoxGridView();
+        }
+
         // UpdateCourse
         public void UpdateCourse
         (
@@ -106,7 +116,7 @@ namespace CourseCrawler
             string newCredit, string newTeachers, string newType,
             string newTas, string newLanguage, string newRemark,
             string newHour, int newDataSourceIndex, List<List<bool>> newTimes,
-            bool isNewCouse = false
+            bool isNewCourse = false
         )
         {
             // FIXME: Don't write this ugly code ...
@@ -116,14 +126,14 @@ namespace CourseCrawler
             {
                 newSerial, newName, newLevel, newCredit, newHour, newType, newTeachers,
                 null, null, null, null, null, null, null,
-                string.Join(Consts.NewLineChar, originCourse.Classrooms), // Non changed.
-                originCourse.StudentAmount, // Non changed.
-                originCourse.GivenUpStudentAmount, // Non changed.
+                string.Join(Consts.NewLineChar, originCourse?.Classrooms ?? new string[] { }), // Non changed.
+                originCourse?.StudentAmount ?? string.Empty, // Non changed.
+                originCourse?.GivenUpStudentAmount ?? string.Empty, // Non changed.
                 newTas, newLanguage,
-                string.Join(Consts.NewLineChar, originCourse.OutlineAndProgressUrl), // Non changed.
+                string.Join(Consts.NewLineChar, originCourse?.OutlineAndProgressUrl ?? new string[] { }), // Non changed.
                 newRemark,
-                originCourse.AttachedStudentAmount, // Non changed.
-                originCourse.IsExperiment ? Consts.DiamondChar.ToString() : string.Empty // Non changed.
+                originCourse?.AttachedStudentAmount ?? string.Empty, // Non changed.
+                originCourse?.IsExperiment ?? false ? Consts.DiamondChar.ToString() : string.Empty // Non changed.
             };
 
             Course modifiedCourse = CourseDto.FromElementStrings(modifiedCourseElementStrings);
@@ -136,9 +146,9 @@ namespace CourseCrawler
             modifiedCourse.FridayTimes = new(newTimes[5].ToArray());
             modifiedCourse.SaturdayTimes = new(newTimes[6].ToArray());
 
-            if (isNewCouse || newDataSourceIndex != CurrentEditingContent.dataSourceIndex)
+            if (isNewCourse || newDataSourceIndex != CurrentEditingContent.dataSourceIndex)
             {
-                if (!isNewCouse)
+                if (!isNewCourse)
                 {
                     RemoveCourseUseCase removeCourseUseCase = new(CurrentEditingContent.dataSourceIndex, CurrentEditingContent.course);
                     removeCourseUseCase.Do();
@@ -152,6 +162,8 @@ namespace CourseCrawler
                 UpdateCourseUseCase updateCourseUseCase = new(CurrentEditingContent.dataSourceIndex, CurrentEditingContent.course, modifiedCourse);
                 updateCourseUseCase.Do();
             }
+
+            LoadCourses();
         }
     }
 }

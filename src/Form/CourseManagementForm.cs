@@ -105,18 +105,18 @@ namespace CourseCrawler
             int dataSourceIndex = _formViewModel.CurrentEditingContent.dataSourceIndex;
             _shouldSkipValidation = true;
 
-            CourseNumberTextBox.Text = course.Serial;
-            CourseNameTextBox.Text = course.Name;
-            CourseLevelTextBox.Text = course.Level;
-            CourseCreditTextBox.Text = course.Credit;
-            CourseRemarkTextBox.Text = course.Remark;
-            CourseTeacherTextBox.Text = string.Join(string.Empty, course.Teachers);
-            CourseTAsTextBox.Text = string.Join(string.Empty, course.TAs);
-            CourseLanguageTextBox.Text = course.Language.ToOriginString();
-            CourseTypeComboBox.SelectedIndex = CourseTypeComboBox.Items.IndexOf(course.Type.ToOriginString());
+            CourseNumberTextBox.Text = course?.Serial;
+            CourseNameTextBox.Text = course?.Name;
+            CourseLevelTextBox.Text = course?.Level;
+            CourseCreditTextBox.Text = course?.Credit;
+            CourseRemarkTextBox.Text = course?.Remark;
+            CourseTeacherTextBox.Text = string.Join(string.Empty, course?.Teachers ?? new string[] { });
+            CourseTAsTextBox.Text = string.Join(string.Empty, course?.TAs ?? new string[] { });
+            CourseLanguageTextBox.Text = course?.Language.ToOriginString();
+            CourseTypeComboBox.SelectedIndex = CourseTypeComboBox.Items.IndexOf(course?.Type.ToOriginString() ?? string.Empty);
             CourseClassComboBox.SelectedIndex = dataSourceIndex;
 
-            bool hasCourseHour = int.TryParse(course.Hour, out int hour);
+            bool hasCourseHour = int.TryParse(course?.Hour, out int hour);
             CourseHourComboBox.SelectedIndex = hasCourseHour ? hour - 1 : -1;
 
             UpdateCourseWeekTimeCheckBoxGridView();
@@ -204,7 +204,22 @@ namespace CourseCrawler
         {
             if (_shouldSkipValidation) return;
             bool isValid = ValidateEditingCompomentValues();
-            _displayStatus = isValid ? CourseManagementFormDisplayStatus.EditingCourseAndValid : CourseManagementFormDisplayStatus.EditingCourseButInvalid;
+
+            if (isValid)
+            {
+                if (Utils.OR((int)_displayStatus, 3, 4))
+                    _displayStatus = CourseManagementFormDisplayStatus.EditingNewCourseAndValid;
+                else
+                    _displayStatus = CourseManagementFormDisplayStatus.EditingCourseAndValid;
+            }
+            else
+            {
+                if (Utils.OR((int)_displayStatus, 3, 4))
+                    _displayStatus = CourseManagementFormDisplayStatus.EditingNewCourseButInvalid;
+                else
+                    _displayStatus = CourseManagementFormDisplayStatus.EditingCourseButInvalid;
+            }
+
             UpdateDisplayedCompomentEnabledStatus();
         }
 
@@ -224,11 +239,22 @@ namespace CourseCrawler
                 CourseRemarkTextBox.Text.Trim(),
                 CourseHourComboBox.Items[CourseHourComboBox.SelectedIndex].ToString(),
                 CourseClassComboBox.SelectedIndex,
-                _courseTimeStates
+                _courseTimeStates,
+                _displayStatus == CourseManagementFormDisplayStatus.EditingNewCourseAndValid
             );
+
+            _formViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
             _displayStatus = CourseManagementFormDisplayStatus.EditingFiledsNotChangedOrSaved;
             UpdateDisplayedCompomentEnabledStatus();
             MessageBox.Show(Consts.SuccessfullySaveCourse);
+        }
+
+        // AddCourseButton_Click
+        private void AddCourseButton_Click(object sender, EventArgs e)
+        {
+            _formViewModel.GenerateEmptyFieldContens();
+            _displayStatus = CourseManagementFormDisplayStatus.EditingNewCourseButInvalid;
+            UpdateDisplayedCompomentEnabledStatus();
         }
 
         // CourseNumberTextBox_TextChanged
