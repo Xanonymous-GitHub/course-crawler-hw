@@ -27,6 +27,7 @@ namespace CourseCrawler
         public static readonly string NameConflictErrMsgHead = "課程名稱相同：";
         public static readonly string TimeConflictErrMsgHead = "衝堂：";
         public static readonly string SuccessfullySelectCourse = "加選成功";
+        public static readonly string SuccessfullySaveCourse = "儲存成功";
         public static readonly string FailToSelectCourse = "加選失敗";
         public static readonly string UnselectCourse = "退選";
         public static readonly string SelectedCourse = "SelectedCourse";

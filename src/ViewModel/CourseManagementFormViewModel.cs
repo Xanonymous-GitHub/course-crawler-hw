@@ -79,40 +79,16 @@ namespace CourseCrawler
         // GenerateCourseWeekTimeCheckBoxGridView
         private List<List<bool>> GenerateCourseWeekTimeCheckBoxGridView(ICourse course = null)
         {
-            // CourseWeekTimeCheckBoxInitialCheckedAmount
-            List<List<bool>> result = new();
-
-            CourseWeekTimeCheckBoxInitialCheckedAmount = 0;
-
-            for (int i = 0; i < Consts.CourseTimePeriodNameChars.Length; i++)
+            return new()
             {
-                if (course == null)
-                {
-                    result.Add(null);
-                }
-                else
-                {
-                    bool mondayTimes = course.MondayTimes.WholeDayList[i];
-                    bool tuesdayTimes = course.TuesdayTimes.WholeDayList[i];
-                    bool wednesdayTimes = course.WednesdayTimes.WholeDayList[i];
-                    bool thursdayTimes = course.ThursdayTimes.WholeDayList[i];
-                    bool fridayTimes = course.FridayTimes.WholeDayList[i];
-                    bool saturdayTimes = course.SaturdayTimes.WholeDayList[i];
-                    bool sundayTimes = course.SundayTimes.WholeDayList[i];
-
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(mondayTimes);
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(tuesdayTimes);
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(wednesdayTimes);
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(thursdayTimes);
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(fridayTimes);
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(saturdayTimes);
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(sundayTimes);
-
-                    result.Add(new() { mondayTimes, tuesdayTimes, wednesdayTimes, thursdayTimes, fridayTimes, saturdayTimes, sundayTimes });
-                }
-            }
-
-            return result;
+                course?.SundayTimes.WholeDayList,
+                course?.MondayTimes.WholeDayList,
+                course?.TuesdayTimes.WholeDayList,
+                course?.WednesdayTimes.WholeDayList,
+                course?.ThursdayTimes.WholeDayList,
+                course?.FridayTimes.WholeDayList,
+                course?.SaturdayTimes.WholeDayList
+            };
         }
 
         // GenerateEditableFieldContens
@@ -124,7 +100,7 @@ namespace CourseCrawler
         }
 
         // UpdateCourse
-        private void UpdateCourse
+        public void UpdateCourse
         (
             string newSerial, string newName, string newLevel,
             string newCredit, string newTeachers, string newType,
@@ -132,8 +108,27 @@ namespace CourseCrawler
             string newHour, int newClassIndex, List<List<bool>> newTimes
         )
         {
-            // generate a new course                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-            // use classIndex to check if it needs to be move to new table.
+            // FIXME: Don't write this ugly code ...
+            Course course = (Course)CurrentEditingContent.course;
+            course.ShouldNotifyPropertyChanged = false;
+            course.Serial = newSerial;
+            course.Name = newName;
+            course.Level = newLevel;
+            course.Credit = newCredit;
+            course.Teachers = Utils.SplitStr(newTeachers);
+            course.Type = CourseDto.ToCourseTypeFromString(newType);
+            course.TAs = Utils.SplitStr(newTas);
+            course.Language = CourseDto.ToCourseLanguageFromString(newLanguage);
+            course.Remark = newRemark;
+            course.Hour = newHour;
+            course.SundayTimes = new(newTimes[0].ToArray());
+            course.MondayTimes = new(newTimes[1].ToArray());
+            course.TuesdayTimes = new(newTimes[2].ToArray());
+            course.WednesdayTimes = new(newTimes[3].ToArray());
+            course.ThursdayTimes = new(newTimes[4].ToArray());
+            course.FridayTimes = new(newTimes[5].ToArray());
+            course.SaturdayTimes = new(newTimes[6].ToArray());
+            course.ShouldNotifyPropertyChanged = true;
         }
     }
 }

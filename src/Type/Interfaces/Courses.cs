@@ -9,24 +9,24 @@ namespace CourseCrawler
         public void MakeSelected();
         // MakeUnselected
         public void MakeUnselected();
-        public bool IsSelected { get; }
-        public string Serial { get; }
-        public string Name { get; }
-        public string Level { get; }
-        public string Credit { get; }
-        public string Hour { get; }
-        public CourseType Type { get; }
-        public string[] Teachers { get; }
+        public bool IsSelected { get; set; }
+        public string Serial { get; set; }
+        public string Name { get; set; }
+        public string Level { get; set; }
+        public string Credit { get; set; }
+        public string Hour { get; set; }
+        public CourseType Type { get; set; }
+        public string[] Teachers { get; set; }
         public List<WeekTime> WeekTimes { get; }
-        public string[] Classrooms { get; }
-        public string StudentAmount { get; }
-        public string GivenUpStudentAmount { get; }
-        public string[] TAs { get; }
-        public CourseLanguage Language { get; }
-        public string[] OutlineAndProgressUrl { get; }
-        public string Remark { get; }
-        public string AttachedStudentAmount { get; }
-        public bool IsExperiment { get; }
+        public string[] Classrooms { get; set; }
+        public string StudentAmount { get; set; }
+        public string GivenUpStudentAmount { get; set; }
+        public string[] TAs { get; set; }
+        public CourseLanguage Language { get; set; }
+        public string[] OutlineAndProgressUrl { get; set; }
+        public string Remark { get; set; }
+        public string AttachedStudentAmount { get; set; }
+        public bool IsExperiment { get; set; }
         public CourseDayTime MondayTimes { get; set; }
         public CourseDayTime TuesdayTimes { get; set; }
         public CourseDayTime WednesdayTimes { get; set; }

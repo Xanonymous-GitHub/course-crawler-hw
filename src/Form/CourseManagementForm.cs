@@ -25,6 +25,7 @@ namespace CourseCrawler
         private bool _shouldSkipValidation = true;
         private int _currentCheckedCourseTimes;
         private CourseManagementFormDisplayStatus _displayStatus;
+        private List<List<bool>> _courseTimeStates;
 
         // CourseManagementForm_Load
         private void CourseManagementForm_Load(object sender, EventArgs e)
@@ -57,16 +58,44 @@ namespace CourseCrawler
         {
             List<List<bool>> newStates = _formViewModel.CourseWeekTimeCheckStates;
             if (newStates == null || CourseWeekTimeCheckBoxGridView.VirtualMode) return;
-            
+
+            _courseTimeStates = newStates;
+
             CourseWeekTimeCheckBoxGridView.Rows.Clear();
-            for (int i = 0; i < newStates.Count; i++)
+            int totalCheckedAmount = 0;
+
+            for (int i = 0; i < Consts.CourseTimePeriodNameChars.Length; i++)
             {
-                CourseWeekTimeCheckBoxGridView.Rows.Add
-                (
-                    GenerateCourseWeekTimeCheckBoxGridViewSingleRowContents(Consts.CourseTimePeriodNameChars[i].ToString(), newStates[i])
-                );
+                (DataGridViewRow row, int checkedAmountInRow) = GenerateCourseWeekTimeCheckBoxGridViewSingleRowContents(i, _courseTimeStates);
+                CourseWeekTimeCheckBoxGridView.Rows.Add(row);
+                totalCheckedAmount += checkedAmountInRow;
             }
-            _currentCheckedCourseTimes = _formViewModel.CourseWeekTimeCheckBoxInitialCheckedAmount;
+            _currentCheckedCourseTimes = totalCheckedAmount;
+        }
+
+        // GenerateCourseWeekTimeCheckBoxGridViewSingleRowContents
+        private (DataGridViewRow row, int checkedAmountInRow) GenerateCourseWeekTimeCheckBoxGridViewSingleRowContents(int periodIndex, List<List<bool>> checkStates)
+        {
+            DataGridViewRow row = new();
+            int checkAmount = 0;
+            string periodName = Consts.CourseTimePeriodNameChars[periodIndex].ToString();
+
+            row.Cells.Add(new DataGridViewTextBoxCell { Value = periodName });
+
+            foreach (List<bool> dailyStates in checkStates)
+            {
+                if (dailyStates == null)
+                {
+                    row.Cells.Add(new DataGridViewCheckBoxCell { Value = false });
+                    continue;
+                }
+
+                bool state = dailyStates[periodIndex];
+                checkAmount += Convert.ToInt32(state);
+                row.Cells.Add(new DataGridViewCheckBoxCell { Value = state });
+            }
+
+            return (row, checkAmount);
         }
 
         // UpdateDisplayedCompoments
@@ -162,6 +191,7 @@ namespace CourseCrawler
                 bool isCurrentCheckBoxSelected = (bool)checkCell.Value;
 
                 checkCell.Value = !isCurrentCheckBoxSelected;
+                _courseTimeStates[e.ColumnIndex - 1][e.RowIndex] = !isCurrentCheckBoxSelected;
 
                 _currentCheckedCourseTimes += !isCurrentCheckBoxSelected ? 1 : -1;
 
@@ -178,33 +208,27 @@ namespace CourseCrawler
             UpdateDisplayedCompomentEnabledStatus();
         }
 
-        private DataGridViewRow GenerateCourseWeekTimeCheckBoxGridViewSingleRowContents(string periodName, List<bool> singleRowCheckStates)
-        {
-            DataGridViewRow row = new();
-            row.Cells.Add(new DataGridViewTextBoxCell{ Value = periodName });
-
-            if (singleRowCheckStates == null)
-            {
-                for(int i = 0; i < 7; i++)
-                {
-                    row.Cells.Add(new DataGridViewCheckBoxCell { Value = false });
-                }
-            }
-            else
-            {
-                foreach (bool state in singleRowCheckStates)
-                {
-                    row.Cells.Add(new DataGridViewCheckBoxCell { Value = state });
-                }
-            }
-            
-            return row;
-        }
-
         // SaveCourseButton_Click
         private void SaveCourseButton_Click(object sender, EventArgs e)
         {
-
+            _formViewModel.UpdateCourse
+            (
+                CourseNumberTextBox.Text.Trim(),
+                CourseNameTextBox.Text.Trim(),
+                CourseLevelTextBox.Text.Trim(),
+                CourseCreditTextBox.Text.Trim(),
+                CourseTeacherTextBox.Text.Trim(),
+                CourseTypeComboBox.Items[CourseTypeComboBox.SelectedIndex].ToString(),
+                CourseTAsTextBox.Text.Trim(),
+                CourseLanguageTextBox.Text.Trim(),
+                CourseRemarkTextBox.Text.Trim(),
+                CourseHourComboBox.Items[CourseHourComboBox.SelectedIndex].ToString(),
+                CourseClassComboBox.SelectedIndex,
+                _courseTimeStates
+            );
+            _displayStatus = CourseManagementFormDisplayStatus.EditingFiledsNotChangedOrSaved;
+            UpdateDisplayedCompomentEnabledStatus();
+            MessageBox.Show(Consts.SuccessfullySaveCourse);
         }
 
         // CourseNumberTextBox_TextChanged

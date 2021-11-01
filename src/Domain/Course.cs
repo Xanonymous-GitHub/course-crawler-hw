@@ -12,13 +12,13 @@ namespace CourseCrawler
             string hour,
             CourseType type,
             string[] teachers = null,
+            CourseDayTime sundayTimes = null,
             CourseDayTime mondayTimes = null,
             CourseDayTime tuesdayTimes = null,
             CourseDayTime wednesdayTimes = null,
             CourseDayTime thursdayTimes = null,
             CourseDayTime fridayTimes = null,
             CourseDayTime saturdayTimes = null,
-            CourseDayTime sundayTimes = null,
             string[] classrooms = null,
             string studentAmount = "0",
             string givenUpStudentAmount = "0",
@@ -138,13 +138,13 @@ namespace CourseCrawler
 
         public List<WeekTime> WeekTimes => new()
         {
+            new(Consts.Sunday, CourseDayTimeDto.ToStringArray(SundayTimes)),
             new(Consts.Monday, CourseDayTimeDto.ToStringArray(MondayTimes)),
             new(Consts.Tuesday, CourseDayTimeDto.ToStringArray(TuesdayTimes)),
             new(Consts.Wednesday, CourseDayTimeDto.ToStringArray(WednesdayTimes)),
             new(Consts.Thursday, CourseDayTimeDto.ToStringArray(ThursdayTimes)),
             new(Consts.Friday, CourseDayTimeDto.ToStringArray(FridayTimes)),
             new(Consts.Saturday, CourseDayTimeDto.ToStringArray(SaturdayTimes)),
-            new(Consts.Sunday, CourseDayTimeDto.ToStringArray(SundayTimes)),
         };
 
         public CourseDayTime MondayTimes
