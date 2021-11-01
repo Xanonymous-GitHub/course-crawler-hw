@@ -8,6 +8,8 @@ namespace CourseCrawler
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public bool ShouldNotifyPropertyChanged = true;
+
         // NotifyPropertyChanged
         private void NotifyPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new(propertyName));
 
@@ -16,7 +18,7 @@ namespace CourseCrawler
         {
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
             field = value;
-            NotifyPropertyChanged(propertyName);
+            if (ShouldNotifyPropertyChanged) NotifyPropertyChanged(propertyName);
             return true;
         }
     }

@@ -31,7 +31,7 @@ namespace CourseCrawler
 
         public int CourseWeekTimeCheckBoxInitialCheckedAmount = 0;
 
-        public (int dataSourceIndex, ICourse course) CurrentEditingCourse
+        public (int dataSourceIndex, ICourse course) CurrentEditingContent
         {
             get => _currentEditingContent;
             set => SetField(ref _currentEditingContent, value);
@@ -119,8 +119,21 @@ namespace CourseCrawler
         public void GenerateEditableFieldContens(int selectedIndex)
         {
             (int groupIndex, int childIndex) = FindGroupIndexPairIn2dList(_coursesToBeEdit, selectedIndex);
-            CurrentEditingCourse = (groupIndex, _coursesToBeEdit[groupIndex][childIndex]);
-            CourseWeekTimeCheckStates = GenerateCourseWeekTimeCheckBoxGridView(CurrentEditingCourse.course);
+            CurrentEditingContent = (groupIndex, _coursesToBeEdit[groupIndex][childIndex]);
+            CourseWeekTimeCheckStates = GenerateCourseWeekTimeCheckBoxGridView(CurrentEditingContent.course);
+        }
+
+        // UpdateCourse
+        private void UpdateCourse
+        (
+            string newSerial, string newName, string newLevel,
+            string newCredit, string newTeachers, string newType,
+            string newTas, string newLanguage, string newRemark,
+            string newHour, int newClassIndex, List<List<bool>> newTimes
+        )
+        {
+            // generate a new course                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+            // use classIndex to check if it needs to be move to new table.
         }
     }
 }

@@ -72,8 +72,8 @@ namespace CourseCrawler
         // UpdateDisplayedCompoments
         private void UpdateDisplayedCompoments(object sender, PropertyChangedEventArgs e)
         {
-            ICourse course = _formViewModel.CurrentEditingCourse.course;
-            int dataSourceIndex = _formViewModel.CurrentEditingCourse.dataSourceIndex;
+            ICourse course = _formViewModel.CurrentEditingContent.course;
+            int dataSourceIndex = _formViewModel.CurrentEditingContent.dataSourceIndex;
             _shouldSkipValidation = true;
 
             CourseNumberTextBox.Text = course.Serial;
