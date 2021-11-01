@@ -91,5 +91,36 @@ namespace CourseCrawler
             }
             return key;
         }
+
+        /// <summary>
+        /// Compute the OR result for each comparator and the subject's equivalence.
+        /// 
+        /// It is equal to (subject == comparator1 || subject == comparator2 || subject == comparator3 || ...)
+        /// </summary>
+        public static bool OR<T>(T subject, params T[] comparators)
+        {
+            bool result = false;
+            foreach(T comparator in comparators)
+            {
+                result = result || Equals(subject, comparator);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Compute the AND result for each comparator and the subject's equivalence.
+        /// 
+        /// It is equal to (subject == comparator1 && subject == comparator2 && subject == comparator3 && ...)
+        /// </summary>
+        public static bool AND<T>(T subject, params T[] comparators)
+        {
+            bool result = true;
+            foreach (T comparator in comparators)
+            {
+                result = result && Equals(subject, comparator);
+            }
+            return result;
+        }
     }
 }

@@ -15,30 +15,34 @@ namespace CourseCrawler
         public CourseManagementForm()
         {
             InitializeComponent();
-
+            
             _formViewModel = new();
 
             SetupDefaultStates();
         }
 
         private readonly CourseManagementFormViewModel _formViewModel;
-        private bool shouldSkipValidation = false;
-        private int currentCheckedCourseTimes;
+        private bool _shouldSkipValidation = true;
+        private int _currentCheckedCourseTimes;
+        private CourseManagementFormDisplayStatus _displayStatus;
 
         // CourseManagementForm_Load
         private void CourseManagementForm_Load(object sender, EventArgs e)
         {
             BindCompomentsToData();
             CourseListBox.ClearSelected();
+            _shouldSkipValidation = false;
         }
 
         // SetupDefaultState
         private void SetupDefaultStates()
         {
+            _displayStatus = CourseManagementFormDisplayStatus.NotSpecifiedCourseToBeEdited;
             CourseEnabledComboBox.SelectedIndex = _formViewModel.DefaultCourseEnabledComboBoxSelectedIndex;
             _formViewModel.CourseClassComboBoxItems.ForEach(name => CourseClassComboBox.Items.Add(name));
             _formViewModel.CourseTypeComboBoxItems.ForEach(symbol => CourseTypeComboBox.Items.Add(symbol));
             UpdateCourseWeekTimeCheckBoxGridView();
+            TriggerFieldValidationAndUseResult();
         }
 
         // BindCompomentsToData
@@ -56,7 +60,7 @@ namespace CourseCrawler
             
             CourseWeekTimeCheckBoxGridView.Rows.Clear();
             newRows.ForEach(row => CourseWeekTimeCheckBoxGridView.Rows.Add(row));
-            currentCheckedCourseTimes = _formViewModel.CourseWeekTimeCheckBoxInitialCheckedAmount;
+            _currentCheckedCourseTimes = _formViewModel.CourseWeekTimeCheckBoxInitialCheckedAmount;
         }
 
         // UpdateDisplayedCompoments
@@ -64,7 +68,7 @@ namespace CourseCrawler
         {
             ICourse course = _formViewModel.CurrentEditingCourse.course;
             int dataSourceIndex = _formViewModel.CurrentEditingCourse.dataSourceIndex;
-            shouldSkipValidation = true;
+            _shouldSkipValidation = true;
 
             CourseNumberTextBox.Text = course.Serial;
             CourseNameTextBox.Text = course.Name;
@@ -81,14 +85,22 @@ namespace CourseCrawler
             CourseHourComboBox.SelectedIndex = hasCourseHour ? hour - 1 : -1;
 
             UpdateCourseWeekTimeCheckBoxGridView();
-            shouldSkipValidation = false;
+            _shouldSkipValidation = false;
+        }
+
+        // UpdateDisplayedCompomentEnabledStatus
+        private void UpdateDisplayedCompomentEnabledStatus()
+        {
+            SaveCourseButton.Enabled = Utils.OR(_displayStatus, CourseManagementFormDisplayStatus.EditingCourseAndValid, CourseManagementFormDisplayStatus.EditingNewCourseAndValid);
+            AddCourseButton.Enabled = !Utils.OR(_displayStatus, CourseManagementFormDisplayStatus.EditingNewCourseAndValid, CourseManagementFormDisplayStatus.EditingNewCourseButInvalid);
+
+            EditCourseGroupBox.Enabled = _displayStatus != CourseManagementFormDisplayStatus.NotSpecifiedCourseToBeEdited;
+            CourseWeekTimeCheckBoxGridView.Enabled = _displayStatus != CourseManagementFormDisplayStatus.NotSpecifiedCourseToBeEdited;
         }
 
         // ValidateEditingCompomentValues
         private bool ValidateEditingCompomentValues()
         {
-            if (shouldSkipValidation) return true;
-
             List<string> expectNonEmptyTextBoxTexts = new()
             {
                 CourseNumberTextBox.Text.Trim(),
@@ -115,7 +127,7 @@ namespace CourseCrawler
 
             if (courseNumberIsNaN || courseLevelIsNaN || courseCreditIsNaN) return false;
 
-            if (currentCheckedCourseTimes != CourseHourComboBox.SelectedIndex + 1) return false;
+            if (_currentCheckedCourseTimes != CourseHourComboBox.SelectedIndex + 1) return false;
 
             return true;
         }
@@ -123,7 +135,15 @@ namespace CourseCrawler
         // CourseListBox_SelectedIndexChanged
         private void CourseListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CourseListBox.SelectedIndex < 0) return;
+            if (CourseListBox.SelectedIndex < 0)
+            {
+                _displayStatus = CourseManagementFormDisplayStatus.NotSpecifiedCourseToBeEdited;
+                UpdateDisplayedCompomentEnabledStatus();
+                return;
+            }
+
+            _displayStatus = CourseManagementFormDisplayStatus.EditingFiledsNotChangedOrSaved;
+            UpdateDisplayedCompomentEnabledStatus();
             _formViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
         }
 
@@ -137,76 +157,52 @@ namespace CourseCrawler
 
                 checkCell.Value = !isCurrentCheckBoxSelected ? checkCell.TrueValue : checkCell.FalseValue;
 
-                currentCheckedCourseTimes += !isCurrentCheckBoxSelected ? 1 : -1;
+                _currentCheckedCourseTimes += !isCurrentCheckBoxSelected ? 1 : -1;
 
-                SaveCourseButton.Enabled = ValidateEditingCompomentValues();
+                TriggerFieldValidationAndUseResult();
             }
         }
 
-        // CourseNumberTextBox_TextChanged
-        private void CourseNumberTextBox_TextChanged(object sender, EventArgs e)
+        // TriggerFieldValidationAndUseResult
+        private void TriggerFieldValidationAndUseResult()
         {
-            SaveCourseButton.Enabled = ValidateEditingCompomentValues();
+            if (_shouldSkipValidation) return;
+            bool isValid = ValidateEditingCompomentValues();
+            _displayStatus = isValid ? CourseManagementFormDisplayStatus.EditingCourseAndValid : CourseManagementFormDisplayStatus.EditingCourseButInvalid;
+            UpdateDisplayedCompomentEnabledStatus();
         }
+
+        // CourseNumberTextBox_TextChanged
+        private void CourseNumberTextBox_TextChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
 
         // CourseNameTextBox_TextChanged
-        private void CourseNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            SaveCourseButton.Enabled = ValidateEditingCompomentValues();
-        }
+        private void CourseNameTextBox_TextChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
 
         // CourseLevelTextBox_TextChanged
-        private void CourseLevelTextBox_TextChanged(object sender, EventArgs e)
-        {
-            SaveCourseButton.Enabled = ValidateEditingCompomentValues();
-        }
+        private void CourseLevelTextBox_TextChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
 
         // CourseCreditTextBox_TextChanged
-        private void CourseCreditTextBox_TextChanged(object sender, EventArgs e)
-        {
-            SaveCourseButton.Enabled = ValidateEditingCompomentValues();
-        }
+        private void CourseCreditTextBox_TextChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
 
         // CourseTeacherTextBox_TextChanged
-        private void CourseTeacherTextBox_TextChanged(object sender, EventArgs e)
-        {
-            SaveCourseButton.Enabled = ValidateEditingCompomentValues();
-        }
+        private void CourseTeacherTextBox_TextChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
 
         // CourseTypeComboBox_SelectedIndexChanged
-        private void CourseTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveCourseButton.Enabled = ValidateEditingCompomentValues();
-        }
+        private void CourseTypeComboBox_SelectedIndexChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
 
         // CourseTAsTextBox_TextChanged
-        private void CourseTAsTextBox_TextChanged(object sender, EventArgs e)
-        {
-            SaveCourseButton.Enabled = ValidateEditingCompomentValues();
-        }
+        private void CourseTAsTextBox_TextChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
 
         // CourseLanguageTextBox_TextChanged
-        private void CourseLanguageTextBox_TextChanged(object sender, EventArgs e)
-        {
-            SaveCourseButton.Enabled = ValidateEditingCompomentValues();
-        }
+        private void CourseLanguageTextBox_TextChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
 
         // CourseRemarkTextBox_TextChanged
-        private void CourseRemarkTextBox_TextChanged(object sender, EventArgs e)
-        {
-            SaveCourseButton.Enabled = ValidateEditingCompomentValues();
-        }
+        private void CourseRemarkTextBox_TextChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
 
         // CourseHourComboBox_SelectedIndexChanged
-        private void CourseHourComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveCourseButton.Enabled = ValidateEditingCompomentValues();
-        }
+        private void CourseHourComboBox_SelectedIndexChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
 
         // CourseClassComboBox_SelectedIndexChanged
-        private void CourseClassComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveCourseButton.Enabled = ValidateEditingCompomentValues();
-        }
+        private void CourseClassComboBox_SelectedIndexChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
     }
 }
