@@ -13,7 +13,7 @@ namespace CourseCrawler
         public CourseManagementFormViewModel()
         {
             LoadCourses();
-            CourseWeekTimeCheckBoxRows = GenerateCourseWeekTimeCheckBoxGridView();
+            CourseWeekTimeCheckStates = GenerateCourseWeekTimeCheckBoxGridView();
         }
 
         public readonly int DefaultCourseEnabledComboBoxSelectedIndex = 0;
@@ -22,7 +22,7 @@ namespace CourseCrawler
 
         private List<BindingList<ICourse>> _coursesToBeEdit;
         private (int dataSourceIndex, ICourse course) _currentEditingContent;
-        private List<string[]> _courseWeekTimeCheckBoxRows;
+        private List<List<bool>> _courseWeekTimeCheckStates;
 
         public List<string> CoursesToBeEditStrList
         {
@@ -37,10 +37,10 @@ namespace CourseCrawler
             set => SetField(ref _currentEditingContent, value);
         }
 
-        public List<string[]> CourseWeekTimeCheckBoxRows
+        public List<List<bool>> CourseWeekTimeCheckStates
         {
-            get => _courseWeekTimeCheckBoxRows;
-            set => SetField(ref _courseWeekTimeCheckBoxRows, value);
+            get => _courseWeekTimeCheckStates;
+            set => SetField(ref _courseWeekTimeCheckStates, value);
         }
 
         // LoadCourses
@@ -77,58 +77,42 @@ namespace CourseCrawler
         }
 
         // GenerateCourseWeekTimeCheckBoxGridView
-        private List<string[]> GenerateCourseWeekTimeCheckBoxGridView(ICourse course = null)
+        private List<List<bool>> GenerateCourseWeekTimeCheckBoxGridView(ICourse course = null)
         {
-            string titles = Consts.CourseTimePeriodNameChars;
-            List<string> tmpRow = new();
-            List<string[]> rows = new();
+            // CourseWeekTimeCheckBoxInitialCheckedAmount
+            List<List<bool>> result = new();
 
             CourseWeekTimeCheckBoxInitialCheckedAmount = 0;
 
-            for (int i = 0; i < titles.Length; i++)
+            for (int i = 0; i < Consts.CourseTimePeriodNameChars.Length; i++)
             {
-                tmpRow.Clear();
-
-                tmpRow.Add(titles[i].ToString());
-
                 if (course == null)
                 {
-                    for (int j = 0; j < 7; j++)
-                    {
-                        tmpRow.Add(false.ToString());
-                    }
+                    result.Add(null);
                 }
                 else
                 {
-                    bool monday = course.MondayTimes.WholeDayList[i];
-                    bool tuesday = course.TuesdayTimes.WholeDayList[i];
-                    bool wednesday = course.WednesdayTimes.WholeDayList[i];
-                    bool thursday = course.ThursdayTimes.WholeDayList[i];
-                    bool friday = course.FridayTimes.WholeDayList[i];
-                    bool saturday = course.SaturdayTimes.WholeDayList[i];
-                    bool sunday = course.SundayTimes.WholeDayList[i];
+                    bool mondayTimes = course.MondayTimes.WholeDayList[i];
+                    bool tuesdayTimes = course.TuesdayTimes.WholeDayList[i];
+                    bool wednesdayTimes = course.WednesdayTimes.WholeDayList[i];
+                    bool thursdayTimes = course.ThursdayTimes.WholeDayList[i];
+                    bool fridayTimes = course.FridayTimes.WholeDayList[i];
+                    bool saturdayTimes = course.SaturdayTimes.WholeDayList[i];
+                    bool sundayTimes = course.SundayTimes.WholeDayList[i];
 
-                    tmpRow.Add(monday.ToString());
-                    tmpRow.Add(tuesday.ToString());
-                    tmpRow.Add(wednesday.ToString());
-                    tmpRow.Add(thursday.ToString());
-                    tmpRow.Add(friday.ToString());
-                    tmpRow.Add(saturday.ToString());
-                    tmpRow.Add(sunday.ToString());
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(mondayTimes);
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(tuesdayTimes);
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(wednesdayTimes);
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(thursdayTimes);
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(fridayTimes);
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(saturdayTimes);
+                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(sundayTimes);
 
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(monday);
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(tuesday);
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(wednesday);
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(thursday);
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(friday);
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(saturday);
-                    CourseWeekTimeCheckBoxInitialCheckedAmount += Convert.ToInt32(sunday);
+                    result.Add(new() { mondayTimes, tuesdayTimes, wednesdayTimes, thursdayTimes, fridayTimes, saturdayTimes, sundayTimes });
                 }
-
-                rows.Add(tmpRow.ToArray());
             }
 
-            return rows;
+            return result;
         }
 
         // GenerateEditableFieldContens
@@ -136,7 +120,7 @@ namespace CourseCrawler
         {
             (int groupIndex, int childIndex) = FindGroupIndexPairIn2dList(_coursesToBeEdit, selectedIndex);
             CurrentEditingCourse = (groupIndex, _coursesToBeEdit[groupIndex][childIndex]);
-            CourseWeekTimeCheckBoxRows = GenerateCourseWeekTimeCheckBoxGridView(CurrentEditingCourse.course);
+            CourseWeekTimeCheckStates = GenerateCourseWeekTimeCheckBoxGridView(CurrentEditingCourse.course);
         }
     }
 }

@@ -55,11 +55,17 @@ namespace CourseCrawler
         // UpdateCourseWeekTimeCheckBoxGridView
         private void UpdateCourseWeekTimeCheckBoxGridView()
         {
-            List<string[]> newRows = _formViewModel.CourseWeekTimeCheckBoxRows;
-            if (newRows == null || CourseWeekTimeCheckBoxGridView.VirtualMode) return;
+            List<List<bool>> newStates = _formViewModel.CourseWeekTimeCheckStates;
+            if (newStates == null || CourseWeekTimeCheckBoxGridView.VirtualMode) return;
             
             CourseWeekTimeCheckBoxGridView.Rows.Clear();
-            newRows.ForEach(row => CourseWeekTimeCheckBoxGridView.Rows.Add(row));
+            for (int i = 0; i < newStates.Count; i++)
+            {
+                CourseWeekTimeCheckBoxGridView.Rows.Add
+                (
+                    GenerateCourseWeekTimeCheckBoxGridViewSingleRowContents(Consts.CourseTimePeriodNameChars[i].ToString(), newStates[i])
+                );
+            }
             _currentCheckedCourseTimes = _formViewModel.CourseWeekTimeCheckBoxInitialCheckedAmount;
         }
 
@@ -153,9 +159,9 @@ namespace CourseCrawler
             if (e.ColumnIndex > 0)
             {
                 DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)CourseWeekTimeCheckBoxGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                bool isCurrentCheckBoxSelected = checkCell.Value.ToString() == checkCell.TrueValue.ToString();
+                bool isCurrentCheckBoxSelected = (bool)checkCell.Value;
 
-                checkCell.Value = !isCurrentCheckBoxSelected ? checkCell.TrueValue : checkCell.FalseValue;
+                checkCell.Value = !isCurrentCheckBoxSelected;
 
                 _currentCheckedCourseTimes += !isCurrentCheckBoxSelected ? 1 : -1;
 
@@ -170,6 +176,35 @@ namespace CourseCrawler
             bool isValid = ValidateEditingCompomentValues();
             _displayStatus = isValid ? CourseManagementFormDisplayStatus.EditingCourseAndValid : CourseManagementFormDisplayStatus.EditingCourseButInvalid;
             UpdateDisplayedCompomentEnabledStatus();
+        }
+
+        private DataGridViewRow GenerateCourseWeekTimeCheckBoxGridViewSingleRowContents(string periodName, List<bool> singleRowCheckStates)
+        {
+            DataGridViewRow row = new();
+            row.Cells.Add(new DataGridViewTextBoxCell{ Value = periodName });
+
+            if (singleRowCheckStates == null)
+            {
+                for(int i = 0; i < 7; i++)
+                {
+                    row.Cells.Add(new DataGridViewCheckBoxCell { Value = false });
+                }
+            }
+            else
+            {
+                foreach (bool state in singleRowCheckStates)
+                {
+                    row.Cells.Add(new DataGridViewCheckBoxCell { Value = state });
+                }
+            }
+            
+            return row;
+        }
+
+        // SaveCourseButton_Click
+        private void SaveCourseButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         // CourseNumberTextBox_TextChanged
