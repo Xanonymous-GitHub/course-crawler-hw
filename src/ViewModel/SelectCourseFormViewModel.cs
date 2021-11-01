@@ -35,6 +35,14 @@ namespace CourseCrawler
             return Instance;
         }
 
+        // InvalidCaches
+        public void InvalidCaches()
+        {
+            _cachedTables.Clear();
+            _cachedshouldDisplayedtableRowsStr.Clear();
+            _displayedtableRowsDirty = true;
+        }
+
         // Use the given departname & tablename to generate a course table then cached it.
         public void ChangeDisplayTable(int dataSourceIndex)
         {

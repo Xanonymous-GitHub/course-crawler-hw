@@ -31,12 +31,17 @@ namespace CourseCrawler
 
             if (crawledResult.Success != true)
             {
-                Utils.ShowDebugBox("Fail to Fetch course tables !!");
+                Utils.ShowDebugBox(Consts.MsgFailToFetchResources);
                 return null;
             }
 
             const string neededContentFilterString = "//body/table";
             HtmlNodeCollection courseTableRows = (crawledResult as SuccessResult<HtmlDocument>).Data.DocumentNode.SelectSingleNode(neededContentFilterString).ChildNodes;
+            if (courseTableRows == null)
+            {
+                Utils.ShowDebugBox(Consts.MsgFailToFetchResources);
+                return null;
+            }
 
             const int unneededCourseTableRowOnTopAmount = 3;
             for (int i = 0; i < unneededCourseTableRowOnTopAmount; i++)
@@ -45,7 +50,15 @@ namespace CourseCrawler
             }
 
             courseTableRows.RemoveAt(courseTableRows.Count - 1);
-            return courseTableRows;
+
+            try
+            {
+                return courseTableRows;
+            } 
+            catch
+            {
+                return null;
+            };
         }
 
         // GenerateCourses

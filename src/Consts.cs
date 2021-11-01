@@ -42,5 +42,6 @@ namespace CourseCrawler
         public static readonly string MsgElementNotFound = "Member Not Found!";
         public static readonly string MsgElementShouldNotBeFound = "Member Should Not Be Found!";
         public static readonly string MsgDeadArea = "This area should not be proccessed!";
+        public static readonly string MsgFailToFetchResources = "Fail to fetch resources. Is the Internet works normally??";
     }
 }
