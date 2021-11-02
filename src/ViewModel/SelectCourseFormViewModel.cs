@@ -20,6 +20,8 @@ namespace CourseCrawler
 
         public static SelectCourseFormViewModel Instance;
 
+        private bool cacheAccessLocked = false;
+
         // UseCreateBy
         public static SelectCourseFormViewModel UseCreateBy(int dataSourceIndex)
         {
@@ -54,12 +56,15 @@ namespace CourseCrawler
             string tableName = SupportedDataSourceInfo.GetTableName(dataSourceIndex);
             string nextDisplayedTableNameHash = departmentName + tableName;
             
-            if (!_cachedTables.ContainsKey(nextDisplayedTableNameHash))
+            if (!_cachedTables.ContainsKey(nextDisplayedTableNameHash) && !cacheAccessLocked)
             {
+                cacheAccessLocked = true;
                 GetCourseTableUseCase getTableUseCase = new(dataSourceIndex);
                 CourseTable newTable = getTableUseCase.Do();
 
                 _cachedTables.Add(nextDisplayedTableNameHash, newTable);
+
+                cacheAccessLocked = false;
                 if (newTable == null) return;
             }
 

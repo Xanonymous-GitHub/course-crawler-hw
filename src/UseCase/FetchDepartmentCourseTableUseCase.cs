@@ -115,7 +115,10 @@ namespace CourseCrawler
                 allDepartments = new();
             }
 
+            allDepartments.ShouldNotifyChanges = false;
             allDepartments.Add(_departmentName, department);
+            allDepartments.ShouldNotifyChanges = true;
+
             _store.Update(Consts.AllDepartments, allDepartments);
 
             return department;

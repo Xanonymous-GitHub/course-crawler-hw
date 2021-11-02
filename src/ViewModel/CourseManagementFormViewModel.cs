@@ -147,6 +147,9 @@ namespace CourseCrawler
             modifiedCourse.FridayTimes = new(newTimes[5].ToArray());
             modifiedCourse.SaturdayTimes = new(newTimes[6].ToArray());
 
+            modifiedCourse.IsChecked = originCourse?.IsChecked ?? false;
+            modifiedCourse.IsSelected = originCourse?.IsSelected ?? false;
+
             if (isNewCourse || newDataSourceIndex != CurrentEditingContent.dataSourceIndex)
             {
                 if (!isNewCourse)
