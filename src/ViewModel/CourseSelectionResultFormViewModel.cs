@@ -6,22 +6,51 @@ using System.Threading.Tasks;
 
 namespace CourseCrawler
 {
-    internal sealed class CourseSelectionResultFormViewModel
+    internal sealed class CourseSelectionResultFormViewModel : Bindable
     {
         public CourseSelectionResultFormViewModel()
         {
             GenerateSelectedCourseTable();
+            RegistryDepartmentPropertyChangedEventHandlers();
         }
 
         private CourseTable _selectedCourseTable;
+        private ObservableDictionary<string, Department> _allDepartments;
 
         // GenerateSelectedCourseTable
         private void GenerateSelectedCourseTable()
         {
-            GetSelectedCourseUseCase getSelectedCourseUseCase = new();
-            BindingList<ICourse> selectedCourses = getSelectedCourseUseCase.Do();
+            List<ICourse> checkedCourse = new();
 
-            _selectedCourseTable = new CourseTable(Consts.SelectedCourse, selectedCourses);
+            GetAllDepartmentsUseCase getAllDepartmentsUseCase = new();
+            _allDepartments = getAllDepartmentsUseCase.Do();
+
+            foreach (KeyValuePair<string, Department> kvp in _allDepartments)
+            {
+                foreach (KeyValuePair<string, ICourseTable> _kvp in kvp.Value.CourseTables)
+                {
+                    foreach (ICourse course in _kvp.Value.Courses)
+                    {
+                        if (course.IsSelected)
+                            checkedCourse.Add(course);
+                    }
+                }
+            }
+
+            _selectedCourseTable = new(Consts.SelectedCourse, checkedCourse);
+        }
+
+        // RegistryDepartmentPropertyChangedEventHandlers
+        public void RegistryDepartmentPropertyChangedEventHandlers()
+        {
+            _allDepartments.PropertyChanged += HandleDepartmentPropertyChanged;
+        }
+
+        // HandleDepartmentPropertyChanged
+        public void HandleDepartmentPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            GenerateSelectedCourseTable();
+            DirectlyNotifyPropertyChanged();
         }
 
         // GetSelectedCourseTableRows
@@ -48,10 +77,7 @@ namespace CourseCrawler
         public void UnselectedCourse(int unselectIndex)
         {
             _selectedCourseTable.Courses[unselectIndex].MakeUnselected();
-            _selectedCourseTable.Courses.RemoveAt(unselectIndex);
-            SaveSelectedCourseUseCase saveSelectedCourseUseCase = new(_selectedCourseTable.Courses);
-            saveSelectedCourseUseCase.Do();
-            GenerateSelectedCourseTable();
+            _allDepartments.DirectlyNotifyPropertyChanged();
         }
     }
 }

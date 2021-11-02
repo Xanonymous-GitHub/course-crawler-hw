@@ -6,21 +6,10 @@ namespace CourseCrawler
 {
     internal sealed class SelectCourseFormViewModel : Bindable
     {
-        private SelectCourseFormViewModel(int dataSourceIndex)
+        public SelectCourseFormViewModel()
         {
             LoadCourses();
             RegistryDepartmentPropertyChangedEventHandlers();
-        }
-
-        private readonly Dictionary<string, CourseTable> _cachedTables = new();
-
-        public static SelectCourseFormViewModel Instance;
-
-        // UseCreateBy
-        public static SelectCourseFormViewModel UseCreateBy(int dataSourceIndex)
-        {
-            if (Instance == null) Instance = new SelectCourseFormViewModel(dataSourceIndex);
-            return Instance;
         }
 
         // LoadCourses
@@ -46,14 +35,7 @@ namespace CourseCrawler
         // HandleDepartmentPropertyChanged
         public void HandleDepartmentPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            InvalidCaches();
             DirectlyNotifyPropertyChanged();
-        }
-
-        // InvalidCaches
-        public void InvalidCaches()
-        {
-            _cachedTables.Clear();
         }
 
         public CourseTable GetCourseTable(int dataSourceIndex) => new GetCourseTableUseCase(dataSourceIndex).Do();

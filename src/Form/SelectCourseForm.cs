@@ -20,7 +20,7 @@ namespace CourseCrawler
 
             _currentShownTabIndex = 0;
 
-            _formViewModel = SelectCourseFormViewModel.UseCreateBy(_currentShownTabIndex);
+            _formViewModel = new();
         }
 
         private static int _currentShownTabIndex = 0;
@@ -114,9 +114,7 @@ namespace CourseCrawler
         private void GetCourseSelectResultbutton_Click(object sender, EventArgs e)
         {
             CourseSelectionResultForm courseSelectionResultForm = new();
-            courseSelectionResultForm.ShowDialog();
-            ReDrawContents();
-            UpdateCourseGridView();
+            courseSelectionResultForm.Show();
         }
 
         // ReConfigure the properties of Controllers in the form, exclude the gridView.
