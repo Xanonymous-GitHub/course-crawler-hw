@@ -207,14 +207,14 @@ namespace CourseCrawler
 
             if (isValid)
             {
-                if (Utils.OR((int)_displayStatus, 3, 4))
+                if (Utils.OR((int)_displayStatus, 4, 5))
                     _displayStatus = CourseManagementFormDisplayStatus.EditingNewCourseAndValid;
                 else
                     _displayStatus = CourseManagementFormDisplayStatus.EditingCourseAndValid;
             }
             else
             {
-                if (Utils.OR((int)_displayStatus, 3, 4))
+                if (Utils.OR((int)_displayStatus, 4, 5))
                     _displayStatus = CourseManagementFormDisplayStatus.EditingNewCourseButInvalid;
                 else
                     _displayStatus = CourseManagementFormDisplayStatus.EditingCourseButInvalid;
