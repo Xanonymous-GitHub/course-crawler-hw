@@ -2,7 +2,7 @@
 
 namespace CourseCrawler
 {
-    internal class Course : ICourse
+    internal class Course : Bindable, ICourse
     {
         public Course(
             string serial,
@@ -12,13 +12,13 @@ namespace CourseCrawler
             string hour,
             CourseType type,
             string[] teachers = null,
-            string[] mondayTimes = null,
-            string[] tuesdayTimes = null,
-            string[] wednesdayTimes = null,
-            string[] thursdayTimes = null,
-            string[] fridayTimes = null,
-            string[] saturdayTimes = null,
-            string[] sundayTimes = null,
+            CourseDayTime sundayTimes = null,
+            CourseDayTime mondayTimes = null,
+            CourseDayTime tuesdayTimes = null,
+            CourseDayTime wednesdayTimes = null,
+            CourseDayTime thursdayTimes = null,
+            CourseDayTime fridayTimes = null,
+            CourseDayTime saturdayTimes = null,
             string[] classrooms = null,
             string studentAmount = "0",
             string givenUpStudentAmount = "0",
@@ -28,10 +28,12 @@ namespace CourseCrawler
             string remark = "",
             string attachedStudentAmount = "0",
             bool isExperiment = false,
-            bool isSelected = false
+            bool isSelected = false,
+            bool isChecked = false
         )
         {
             _isSelected = isSelected;
+            _isChecked = isChecked;
             _serial = serial;
             _name = name;
             _level = level;
@@ -58,6 +60,7 @@ namespace CourseCrawler
         }
 
         private bool _isSelected = false;
+        private bool _isChecked = false;
         private string _serial;
         private string _name;
         private string _level;
@@ -65,13 +68,13 @@ namespace CourseCrawler
         private string _hour;
         private CourseType _type;
         private string[] _teachers;
-        private string[] _mondayTimes;
-        private string[] _tuesdayTimes;
-        private string[] _wednesdayTimes;
-        private string[] _thursdayTimes;
-        private string[] _fridayTimes;
-        private string[] _saturdayTimes;
-        private string[] _sundayTimes;
+        private CourseDayTime _mondayTimes;
+        private CourseDayTime _tuesdayTimes;
+        private CourseDayTime _wednesdayTimes;
+        private CourseDayTime _thursdayTimes;
+        private CourseDayTime _fridayTimes;
+        private CourseDayTime _saturdayTimes;
+        private CourseDayTime _sundayTimes;
         private string[] _classrooms;
         private string _studentAmount;
         private string _givenUpStudentAmount;
@@ -83,68 +86,170 @@ namespace CourseCrawler
         private bool _isExperiment;
 
         // MakeSelected
-        public void MakeSelected() => _isSelected = true;
+        public void MakeSelected() => IsSelected = true;
 
         // MakeUnselected
-        public void MakeUnselected() => _isSelected = false;
+        public void MakeUnselected() => IsSelected = false;
 
-        public bool IsSelected => _isSelected;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set => SetField(ref _isSelected, value);
+        }
 
-        public string Serial => _serial;
+        public bool IsChecked
+        {
+            get => _isChecked;
+            set => SetField(ref _isChecked, value);
+        }
 
-        public string Name => _name;
+        public string Serial
+        {
+            get => _serial;
+            set => SetField(ref _serial, value);
+        }
 
-        public string Level => _level;
+        public string Name
+        {
+            get => _name;
+            set => SetField(ref _name, value);
+        }
 
-        public string Credit => _credit;
+        public string Level
+        {
+            get => _level;
+            set => SetField(ref _level, value);
+        }
 
-        public string Hour => _hour;
+        public string Credit
+        {
+            get => _credit;
+            set => SetField(ref _credit, value);
+        }
 
-        public CourseType Type => _type;
+        public string Hour
+        {
+            get => _hour;
+            set => SetField(ref _hour, value);
+        }
 
-        public string[] Teachers => _teachers;
+        public CourseType Type
+        {
+            get => _type;
+            set => SetField(ref _type, value);
+        }
+
+        public string[] Teachers
+        {
+            get => _teachers;
+            set => SetField(ref _teachers, value);
+        }
 
         public List<WeekTime> WeekTimes => new()
         {
-            new WeekTime(Constants.Monday, MondayTimes),
-            new WeekTime(Constants.Tuesday, TuesdayTimes),
-            new WeekTime(Constants.Wednesday, WednesdayTimes),
-            new WeekTime(Constants.Thursday, ThursdayTimes),
-            new WeekTime(Constants.Friday, FridayTimes),
-            new WeekTime(Constants.Saturday, SaturdayTimes),
-            new WeekTime(Constants.Sunday, SundayTimes),
+            new(Consts.Sunday, CourseDayTimeDto.ToStringArray(SundayTimes)),
+            new(Consts.Monday, CourseDayTimeDto.ToStringArray(MondayTimes)),
+            new(Consts.Tuesday, CourseDayTimeDto.ToStringArray(TuesdayTimes)),
+            new(Consts.Wednesday, CourseDayTimeDto.ToStringArray(WednesdayTimes)),
+            new(Consts.Thursday, CourseDayTimeDto.ToStringArray(ThursdayTimes)),
+            new(Consts.Friday, CourseDayTimeDto.ToStringArray(FridayTimes)),
+            new(Consts.Saturday, CourseDayTimeDto.ToStringArray(SaturdayTimes)),
         };
 
-        public string[] MondayTimes => _mondayTimes;
+        public CourseDayTime MondayTimes
+        {
+            get => _mondayTimes;
+            set => SetField(ref _mondayTimes, value);
+        }
 
-        public string[] TuesdayTimes => _tuesdayTimes;
+        public CourseDayTime TuesdayTimes
+        {
+            get => _tuesdayTimes;
+            set => SetField(ref _tuesdayTimes, value);
+        }
 
-        public string[] WednesdayTimes => _wednesdayTimes;
+        public CourseDayTime WednesdayTimes
+        {
+            get => _wednesdayTimes;
+            set => SetField(ref _wednesdayTimes, value);
+        }
 
-        public string[] ThursdayTimes => _thursdayTimes;
+        public CourseDayTime ThursdayTimes
+        {
+            get => _thursdayTimes;
+            set => SetField(ref _thursdayTimes, value);
+        }
 
-        public string[] FridayTimes => _fridayTimes;
+        public CourseDayTime FridayTimes
+        {
+            get => _fridayTimes;
+            set => SetField(ref _fridayTimes, value);
+        }
 
-        public string[] SaturdayTimes => _saturdayTimes;
+        public CourseDayTime SaturdayTimes
+        {
+            get => _saturdayTimes;
+            set => SetField(ref _saturdayTimes, value);
+        }
 
-        public string[] SundayTimes => _sundayTimes;
+        public CourseDayTime SundayTimes
+        {
+            get => _sundayTimes;
+            set => SetField(ref _sundayTimes, value);
+        }
 
-        public string[] Classrooms => _classrooms;
+        public string[] Classrooms
+        {
+            get => _classrooms;
+            set => SetField(ref _classrooms, value);
+        }
 
-        public string StudentAmount => _studentAmount;
+        public string StudentAmount
+        {
+            get => _studentAmount;
+            set => SetField(ref _studentAmount, value);
+        }
 
-        public string GivenUpStudentAmount => _givenUpStudentAmount;
+        public string GivenUpStudentAmount
+        {
+            get => _givenUpStudentAmount;
+            set => SetField(ref _givenUpStudentAmount, value);
+        }
 
-        public string[] TAs => _tas;
+        public string[] TAs
+        {
+            get => _tas;
+            set => SetField(ref _tas, value);
+        }
 
-        public CourseLanguage Language => _language;
+        public CourseLanguage Language
+        {
+            get => _language;
+            set => SetField(ref _language, value);
+        }
 
-        public string[] OutlineAndProgressUrl => _outlineAndProgressUrl;
+        public string[] OutlineAndProgressUrl
+        {
+            get => _outlineAndProgressUrl;
+            set => SetField(ref _outlineAndProgressUrl, value);
+        }
 
-        public string Remark => _remark;
+        public string Remark
+        {
+            get => _remark;
+            set => SetField(ref _remark, value);
+        }
 
-        public string AttachedStudentAmount => _attachedStudentAmount;
+        public string AttachedStudentAmount
+        {
+            get => _attachedStudentAmount;
+            set => SetField(ref _attachedStudentAmount, value);
+        }
 
-        public bool IsExperiment => _isExperiment;
+        public bool IsExperiment
+        {
+            get => _isExperiment;
+            set => SetField(ref _isExperiment, value);
+        }
     }
 }

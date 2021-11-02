@@ -9,24 +9,51 @@ namespace CourseCrawler
         public void MakeSelected();
         // MakeUnselected
         public void MakeUnselected();
-        public bool IsSelected { get; }
-        public string Serial { get; }
-        public string Name { get; }
-        public string Level { get; }
-        public string Credit { get; }
-        public string Hour { get; }
-        public CourseType Type { get; }
-        public string[] Teachers { get; }
+        public bool IsSelected { get; set; }
+        public bool IsChecked { get; set; }
+        public string Serial { get; set; }
+        public string Name { get; set; }
+        public string Level { get; set; }
+        public string Credit { get; set; }
+        public string Hour { get; set; }
+        public CourseType Type { get; set; }
+        public string[] Teachers { get; set; }
         public List<WeekTime> WeekTimes { get; }
-        public string[] Classrooms { get; }
-        public string StudentAmount { get; }
-        public string GivenUpStudentAmount { get; }
-        public string[] TAs { get; }
-        public CourseLanguage Language { get; }
-        public string[] OutlineAndProgressUrl { get; }
-        public string Remark { get; }
-        public string AttachedStudentAmount { get; }
-        public bool IsExperiment { get; }
+        public string[] Classrooms { get; set; }
+        public string StudentAmount { get; set; }
+        public string GivenUpStudentAmount { get; set; }
+        public string[] TAs { get; set; }
+        public CourseLanguage Language { get; set; }
+        public string[] OutlineAndProgressUrl { get; set; }
+        public string Remark { get; set; }
+        public string AttachedStudentAmount { get; set; }
+        public bool IsExperiment { get; set; }
+        public CourseDayTime MondayTimes { get; set; }
+        public CourseDayTime TuesdayTimes { get; set; }
+        public CourseDayTime WednesdayTimes { get; set; }
+        public CourseDayTime ThursdayTimes { get; set; }
+        public CourseDayTime FridayTimes { get; set; }
+        public CourseDayTime SaturdayTimes { get; set; }
+        public CourseDayTime SundayTimes { get; set; }
+    }
+
+    internal interface ICourseDayTime
+    {
+        public bool One { get; set; }
+        public bool Two { get; set; }
+        public bool Three { get; set; }
+        public bool Four { get; set; }
+        public bool N { get; set; }
+        public bool Five { get; set; }
+        public bool Six { get; set; }
+        public bool Seven { get; set; }
+        public bool Eight { get; set; }
+        public bool Nine { get; set; }
+        public bool A { get; set; }
+        public bool B { get; set; }
+        public bool C { get; set; }
+        public bool D { get; set; }
+        public List<bool> WholeDayList { get; }
     }
 
     internal readonly struct WeekTime
@@ -48,6 +75,8 @@ namespace CourseCrawler
         public BindingList<ICourse> Courses { get; }
 
         public bool IsAnyCourseSelected { get; }
+
+        public bool IsAnyCourseChecked { get; }
     }
 
     internal interface IDepartment

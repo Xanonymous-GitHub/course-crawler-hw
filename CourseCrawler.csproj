@@ -24,8 +24,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -44,7 +44,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -87,12 +87,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\Constants.cs" />
+    <Compile Include="src\Consts.cs" />
     <Compile Include="src\Domain\Course.cs" />
+    <Compile Include="src\Domain\CourseDayTime.cs" />
     <Compile Include="src\Domain\CourseTable.cs" />
     <Compile Include="src\Domain\Department.cs" />
     <Compile Include="src\Dto\CourseDto.cs" />
     <Compile Include="src\Dto\CourseTableDto.cs" />
+    <Compile Include="src\Dto\CourseDayTimeDto.cs" />
     <Compile Include="src\Form\CourseManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,20 +122,23 @@
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Store\Store.cs" />
-    <Compile Include="src\SupportedRange.cs" />
+    <Compile Include="src\SupportedDataSourceInfo.cs" />
     <Compile Include="src\Type\Enums.cs" />
     <Compile Include="src\Type\Interfaces\Courses.cs" />
     <Compile Include="src\Type\Interfaces\ObserverableDictionary.cs" />
     <Compile Include="src\Type\Interfaces\Result.cs" />
     <Compile Include="src\Type\Interfaces\UseCases.cs" />
     <Compile Include="src\Type\Interfaces\Bindable.cs" />
+    <Compile Include="src\UseCase\AddCourseUseCase.cs" />
     <Compile Include="src\UseCase\CrawlerUseCase.cs" />
     <Compile Include="src\UseCase\FetchDepartmentCourseTableUseCase.cs" />
     <Compile Include="src\UseCase\GetAllCourseUseCase.cs" />
     <Compile Include="src\UseCase\GetAllDepartmentsUseCase.cs" />
     <Compile Include="src\UseCase\GetCourseTableUseCase.cs" />
     <Compile Include="src\UseCase\GetDepartmentUseCase.cs" />
+    <Compile Include="src\UseCase\RemoveCourseUseCase.cs" />
     <Compile Include="src\UseCase\SelectedCourseUseCase.cs" />
+    <Compile Include="src\UseCase\UpdateCourseUseCase.cs" />
     <Compile Include="src\Util\Utils.cs" />
     <Compile Include="src\ViewModel\CourseManagementFormViewModel.cs" />
     <Compile Include="src\ViewModel\CourseSelectionResultFormViewModel.cs" />
@@ -160,6 +165,7 @@
     <EmbeddedResource Include="src\Form\StartUpForm.resx">
       <DependentUpon>StartUpForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="LICENSE" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Store.datasource" />

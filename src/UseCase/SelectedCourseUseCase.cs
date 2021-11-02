@@ -20,7 +20,7 @@ namespace CourseCrawler
         // Do this usecase
         public bool Do()
         {
-            _store.Update(Constants.SelectedCourse, _selectedCourses);
+            _store.Update(Consts.SelectedCourse, _selectedCourses);
             return true;
         }
     }
@@ -34,7 +34,7 @@ namespace CourseCrawler
         // Do this usecase
         public BindingList<ICourse> Do()
         {
-            return _store.Use<BindingList<ICourse>>(Constants.SelectedCourse);
+            return _store.Use<BindingList<ICourse>>(Consts.SelectedCourse);
         }
     }
 }

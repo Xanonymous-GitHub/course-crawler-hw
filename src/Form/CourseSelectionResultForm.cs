@@ -32,6 +32,13 @@ namespace CourseCrawler
         // Event handler for CourseSelectionResultForm Load.
         private void CourseSelectionResultForm_Load(object sender, EventArgs e)
         {
+            _formViewModel.PropertyChanged += HandleVMChanged;
+            UpdateCourseGridView();
+        }
+
+        // HandleVMChanged
+        public void HandleVMChanged(object sender, PropertyChangedEventArgs e)
+        {
             UpdateCourseGridView();
         }
 
@@ -41,8 +48,12 @@ namespace CourseCrawler
             if (e.ColumnIndex != -1 && CourseGridView.Columns[e.ColumnIndex].Name == UnselectCourseButtonColumn.Name)
             {
                 _formViewModel.UnselectedCourse(e.RowIndex);
-                UpdateCourseGridView();
             }
+        }
+
+        private void CourseSelectionResultForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _formViewModel.PropertyChanged -= HandleVMChanged;
         }
     }
 }

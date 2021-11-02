@@ -19,6 +19,8 @@ namespace CourseCrawler
         /// <summary>Event raised when a property on the collection changes.</summary>
         public event PropertyChangedEventHandler PropertyChanged = (sender, args) => { };
 
+        public bool ShouldNotifyChanges = true;
+
         /// <summary>
         /// Initializes an instance of the class.
         /// </summary>
@@ -33,6 +35,13 @@ namespace CourseCrawler
             this.dictionary = dictionary;
         }
 
+        // DirectlyNotifyPropertyChanged
+        public void DirectlyNotifyPropertyChanged()
+        {
+            if (ShouldNotifyChanges)
+                PropertyChanged(this, new(nameof(dictionary.Values)));
+        }
+
         // AddWithNotification
         void AddWithNotification(KeyValuePair<TKey, TValue> item) => AddWithNotification(item.Key, item.Value);
 
@@ -41,10 +50,13 @@ namespace CourseCrawler
         {
             dictionary.Add(key, value);
 
-            CollectionChanged(this, new(NotifyCollectionChangedAction.Add, new KeyValuePair<TKey, TValue>(key, value)));
-            PropertyChanged(this, new(nameof(dictionary.Count)));
-            PropertyChanged(this, new(nameof(dictionary.Keys)));
-            PropertyChanged(this, new(nameof(dictionary.Values)));
+            if (ShouldNotifyChanges)
+            {
+                CollectionChanged(this, new(NotifyCollectionChangedAction.Add, new KeyValuePair<TKey, TValue>(key, value)));
+                PropertyChanged(this, new(nameof(dictionary.Count)));
+                PropertyChanged(this, new(nameof(dictionary.Keys)));
+                PropertyChanged(this, new(nameof(dictionary.Values)));
+            }
         }
 
         // RemoveWithNotification
@@ -52,10 +64,13 @@ namespace CourseCrawler
         {
             if (dictionary.TryGetValue(key, out TValue value) && dictionary.Remove(key))
             {
-                CollectionChanged(this, new(NotifyCollectionChangedAction.Remove, new KeyValuePair<TKey, TValue>(key, value)));
-                PropertyChanged(this, new(nameof(dictionary.Count)));
-                PropertyChanged(this, new(nameof(dictionary.Keys)));
-                PropertyChanged(this, new(nameof(dictionary.Values)));
+                if (ShouldNotifyChanges)
+                {
+                    CollectionChanged(this, new(NotifyCollectionChangedAction.Remove, new KeyValuePair<TKey, TValue>(key, value)));
+                    PropertyChanged(this, new(nameof(dictionary.Count)));
+                    PropertyChanged(this, new(nameof(dictionary.Keys)));
+                    PropertyChanged(this, new(nameof(dictionary.Values)));
+                }
 
                 return true;
             }
@@ -70,13 +85,16 @@ namespace CourseCrawler
             {
                 dictionary[key] = value;
 
-                CollectionChanged(this, new(NotifyCollectionChangedAction.Replace,
-                    new KeyValuePair<TKey, TValue>(key, value),
-                    new KeyValuePair<TKey, TValue>(key, existing)
-                  )
-                );
+                if (ShouldNotifyChanges)
+                {
+                    CollectionChanged(this, new(NotifyCollectionChangedAction.Replace,
+                            new KeyValuePair<TKey, TValue>(key, value),
+                            new KeyValuePair<TKey, TValue>(key, existing)
+                        )
+                    );
 
-                PropertyChanged(this, new(nameof(dictionary.Values)));
+                    PropertyChanged(this, new(nameof(dictionary.Values)));
+                }
             }
             else
             {
@@ -89,7 +107,8 @@ namespace CourseCrawler
         /// </summary>
         protected void RaisePropertyChanged(PropertyChangedEventArgs args)
         {
-            PropertyChanged(this, args);
+            if (ShouldNotifyChanges)
+                PropertyChanged(this, args);
         }
 
         #region IDictionary<TKey,TValue> Members
@@ -176,10 +195,13 @@ namespace CourseCrawler
         {
             dictionary.Clear();
 
-            CollectionChanged(this, new(NotifyCollectionChangedAction.Reset));
-            PropertyChanged(this, new(nameof(dictionary.Count)));
-            PropertyChanged(this, new(nameof(dictionary.Keys)));
-            PropertyChanged(this, new(nameof(dictionary.Values)));
+            if (ShouldNotifyChanges)
+            {
+                CollectionChanged(this, new(NotifyCollectionChangedAction.Reset));
+                PropertyChanged(this, new(nameof(dictionary.Count)));
+                PropertyChanged(this, new(nameof(dictionary.Keys)));
+                PropertyChanged(this, new(nameof(dictionary.Values)));
+            }
         }
 
         // ICollection
