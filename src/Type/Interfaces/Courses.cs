@@ -75,6 +75,8 @@ namespace CourseCrawler
         public BindingList<ICourse> Courses { get; }
 
         public bool IsAnyCourseSelected { get; }
+
+        public bool IsAnyCourseChecked { get; }
     }
 
     internal interface IDepartment

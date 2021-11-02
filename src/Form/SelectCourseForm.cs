@@ -61,8 +61,7 @@ namespace CourseCrawler
         // Use _currentDepartmentName & _currentTableName to fetch new course table data then redraw the gridview.
         private void UpdateCourseGridView()
         {
-            _formViewModel.ChangeDisplayTable(_currentShownTabIndex);
-            List<string[]> courseRows = _formViewModel.GetCourseTableRows();
+            List<string[]> courseRows = _formViewModel.GetCourseTableRows(_currentShownTabIndex);
             if (courseRows != null)
             {
                 CourseGridView.Rows.Clear();
@@ -81,7 +80,7 @@ namespace CourseCrawler
 
                 bool isCurrentCheckBoxSelected = checkCell.Value.ToString() == checkCell.TrueValue.ToString();
 
-                _formViewModel.ChangeCourseCheckStatus(e.RowIndex, !isCurrentCheckBoxSelected);
+                _formViewModel.ChangeCourseCheckStatus(e.RowIndex, !isCurrentCheckBoxSelected, _currentShownTabIndex);
 
                 checkCell.Value = !isCurrentCheckBoxSelected ? checkCell.TrueValue : checkCell.FalseValue;
             }
