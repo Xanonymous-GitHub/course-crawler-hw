@@ -69,9 +69,10 @@
             // CoursePanel
             // 
             this.CoursePanel.Controls.Add(this.CourseGridView);
-            this.CoursePanel.Location = new System.Drawing.Point(11, 10);
+            this.CoursePanel.Location = new System.Drawing.Point(18, 16);
+            this.CoursePanel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.CoursePanel.Name = "CoursePanel";
-            this.CoursePanel.Size = new System.Drawing.Size(1029, 416);
+            this.CoursePanel.Size = new System.Drawing.Size(1672, 666);
             this.CoursePanel.TabIndex = 2;
             // 
             // CourseGridView
@@ -111,6 +112,7 @@
             this.IsExperimentColumn});
             this.CourseGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CourseGridView.Location = new System.Drawing.Point(0, 0);
+            this.CourseGridView.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.CourseGridView.MultiSelect = false;
             this.CourseGridView.Name = "CourseGridView";
             this.CourseGridView.ReadOnly = true;
@@ -119,7 +121,7 @@
             this.CourseGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.CourseGridView.RowTemplate.Height = 27;
             this.CourseGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CourseGridView.Size = new System.Drawing.Size(1029, 416);
+            this.CourseGridView.Size = new System.Drawing.Size(1672, 666);
             this.CourseGridView.TabIndex = 0;
             this.CourseGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CourseGridView_CellContentClick);
             // 
@@ -148,7 +150,7 @@
             this.CourseNumberColumn.ReadOnly = true;
             this.CourseNumberColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseNumberColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseNumberColumn.Width = 39;
+            this.CourseNumberColumn.Width = 58;
             // 
             // CourseNameColumn
             // 
@@ -161,7 +163,7 @@
             this.CourseNameColumn.ReadOnly = true;
             this.CourseNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseNameColumn.Width = 52;
+            this.CourseNameColumn.Width = 79;
             // 
             // CourseLevelColumn
             // 
@@ -172,7 +174,7 @@
             this.CourseLevelColumn.ReadOnly = true;
             this.CourseLevelColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseLevelColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseLevelColumn.Width = 40;
+            this.CourseLevelColumn.Width = 58;
             // 
             // CourseCreditColumn
             // 
@@ -183,7 +185,7 @@
             this.CourseCreditColumn.ReadOnly = true;
             this.CourseCreditColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseCreditColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseCreditColumn.Width = 40;
+            this.CourseCreditColumn.Width = 58;
             // 
             // CourseHourColumn
             // 
@@ -194,7 +196,7 @@
             this.CourseHourColumn.ReadOnly = true;
             this.CourseHourColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseHourColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseHourColumn.Width = 40;
+            this.CourseHourColumn.Width = 58;
             // 
             // CourseTypeColumn
             // 
@@ -207,7 +209,7 @@
             this.CourseTypeColumn.ReadOnly = true;
             this.CourseTypeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CourseTypeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CourseTypeColumn.Width = 28;
+            this.CourseTypeColumn.Width = 40;
             // 
             // CourseTeachersColumn
             // 
@@ -323,7 +325,7 @@
             this.StudentAmountColumn.ReadOnly = true;
             this.StudentAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.StudentAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.StudentAmountColumn.Width = 30;
+            this.StudentAmountColumn.Width = 40;
             // 
             // GivenUpStudentAmountColumn
             // 
@@ -334,7 +336,7 @@
             this.GivenUpStudentAmountColumn.ReadOnly = true;
             this.GivenUpStudentAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.GivenUpStudentAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.GivenUpStudentAmountColumn.Width = 30;
+            this.GivenUpStudentAmountColumn.Width = 40;
             // 
             // TAsColumn
             // 
@@ -345,7 +347,7 @@
             this.TAsColumn.ReadOnly = true;
             this.TAsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.TAsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TAsColumn.Width = 52;
+            this.TAsColumn.Width = 79;
             // 
             // LanguageColumn
             // 
@@ -356,7 +358,7 @@
             this.LanguageColumn.ReadOnly = true;
             this.LanguageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.LanguageColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.LanguageColumn.Width = 52;
+            this.LanguageColumn.Width = 79;
             // 
             // OutlineAndProgressColumn
             // 
@@ -370,7 +372,7 @@
             this.OutlineAndProgressColumn.ReadOnly = true;
             this.OutlineAndProgressColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.OutlineAndProgressColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OutlineAndProgressColumn.Width = 79;
+            this.OutlineAndProgressColumn.Width = 122;
             // 
             // RemarkColumn
             // 
@@ -390,7 +392,7 @@
             this.AttachedStudentAmountColumn.ReadOnly = true;
             this.AttachedStudentAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.AttachedStudentAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.AttachedStudentAmountColumn.Width = 52;
+            this.AttachedStudentAmountColumn.Width = 79;
             // 
             // IsExperimentColumn
             // 
@@ -401,21 +403,22 @@
             this.IsExperimentColumn.ReadOnly = true;
             this.IsExperimentColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.IsExperimentColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.IsExperimentColumn.Width = 52;
+            this.IsExperimentColumn.Width = 79;
             // 
             // CourseSelectionResultForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1051, 437);
+            this.ClientSize = new System.Drawing.Size(1708, 699);
             this.Controls.Add(this.CoursePanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.MaximizeBox = false;
             this.Name = "CourseSelectionResultForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Course Selection Result";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CourseSelectionResultForm_FormClosing);
             this.Load += new System.EventHandler(this.CourseSelectionResultForm_Load);
             this.CoursePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CourseGridView)).EndInit();

@@ -4,93 +4,67 @@ using System.ComponentModel;
 
 namespace CourseCrawler
 {
-    internal sealed class SelectCourseFormViewModel
+    internal sealed class SelectCourseFormViewModel : Bindable
     {
-        private SelectCourseFormViewModel(string departmentName, string tableName)
+        public SelectCourseFormViewModel()
         {
-            ChangeDisplayTable(departmentName, tableName);
+            LoadCourses();
+            RegistryDepartmentPropertyChangedEventHandlers();
         }
 
-        private string _currentDisplayedTableNameHash;
-
-        private string _currentDepartmentName, _currentTableName;
-
-        private readonly Dictionary<string, CourseTable> _cachedTables = new();
-
-        private readonly Dictionary<string, List<string[]>> _cachedshouldDisplayedtableRowsStr = new();
-
-        private readonly SortedDictionary<string, List<bool>> _courseTableCheckedStates = new();
-
-        private bool _displayedtableRowsDirty = true;
-
-        public static SelectCourseFormViewModel Instance;
-
-        // MarkAsDirty
-        public void MarkAsDirty() => _displayedtableRowsDirty = true;
-
-        // UseCreateBy
-        public static SelectCourseFormViewModel UseCreateBy(string departmentName, string tableName)
+        // LoadCourses
+        private void LoadCourses()
         {
-            if (Instance == null) Instance = new SelectCourseFormViewModel(departmentName, tableName);
-            return Instance;
-        }
-
-        // Use the given departname & tablename to generate a course table then cached it.
-        public void ChangeDisplayTable(string departmentName, string tableName)
-        {
-            string nextDisplayedTableNameHash = departmentName + tableName;
-
-            if (_currentDisplayedTableNameHash == nextDisplayedTableNameHash) return;
-            
-            if (!_cachedTables.ContainsKey(nextDisplayedTableNameHash))
+            for (int dataSourceIndex = 0; dataSourceIndex < SupportedDataSourceInfo.Amount; dataSourceIndex++)
             {
-                GetCourseTableUseCase getTableUseCase = new(departmentName, tableName);
-                CourseTable newTable = getTableUseCase.Do();
-
-                _cachedTables.Add(nextDisplayedTableNameHash, newTable);
-                if (newTable == null) return;
-
-                List<bool> checkStates = new(new bool[newTable.Courses.Count]);
-                _courseTableCheckedStates.Add(nextDisplayedTableNameHash, checkStates);
-
-                _displayedtableRowsDirty = true;
+                GetCourseTableUseCase getCourseTableUseCase = new(dataSourceIndex);
+                getCourseTableUseCase.Do();
             }
 
-            _currentDepartmentName = departmentName;
-            _currentTableName = tableName;
-            _currentDisplayedTableNameHash = _currentDepartmentName + _currentTableName;
+            GetAllCourseUseCase getAllCourseUseCase = new();
+            getAllCourseUseCase.Do();
         }
 
-        // Convert current cached course table to string array with checkBox status.
-        public List<string[]> GetCourseTableRows()
+        // RegistryDepartmentPropertyChangedEventHandlers
+        public void RegistryDepartmentPropertyChangedEventHandlers()
         {
-            if (!_displayedtableRowsDirty) return _cachedshouldDisplayedtableRowsStr[_currentDisplayedTableNameHash];
+            GetAllDepartmentsUseCase getAllDepartmentsUseCase = new();
+            getAllDepartmentsUseCase.Do().PropertyChanged += HandleDepartmentPropertyChanged;
+        }
 
-            CourseTable currentTable = _cachedTables[_currentDisplayedTableNameHash];
+        // HandleDepartmentPropertyChanged
+        public void HandleDepartmentPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            DirectlyNotifyPropertyChanged();
+        }
+
+        // GetCourseTable
+        public CourseTable GetCourseTable(int dataSourceIndex) => new GetCourseTableUseCase(dataSourceIndex).Do();
+
+        // Convert current cached course table to string array with checkBox status.
+        public List<string[]> GetCourseTableRows(int dataSourceIndex)
+        {
+            CourseTable currentTable = GetCourseTable(dataSourceIndex);
             if (currentTable == null) return null;
 
             List<List<string>> tableRows = CourseTableDto.FromTableToRows(currentTable);
-            List<List<string>> shouldDisplayedtableRows = new();
-            List<int> selectedCourseIndex = GetSelectedCourseIndex();
-            List<bool> currentCheckStates = _courseTableCheckedStates[_currentDisplayedTableNameHash];
-
+            List<List<string>> tableRowsForShow = new();
+            List<int> selectedCourseIndex = GetSelectedCourseIndexes(dataSourceIndex);
+            
             for (int i = 0; i < tableRows.Count; i++)
             {
                 if (selectedCourseIndex.Contains(i)) continue;
 
-                List<string> rowWithCheckState = new() { currentCheckStates[i].ToString() };
+                List<string> rowWithCheckState = new() { currentTable.Courses[i].IsChecked.ToString() };
                 foreach(string colValue in tableRows[i])
                 {
                     rowWithCheckState.Add(colValue);
                 }
 
-                shouldDisplayedtableRows.Add(rowWithCheckState);
+                tableRowsForShow.Add(rowWithCheckState);
             }
 
-            _displayedtableRowsDirty = false;
-
-            List<string[]> shouldDisplayedtableRowsStr = shouldDisplayedtableRows.Count == 0 ? null : shouldDisplayedtableRows.Select(row => row.ToArray()).ToList();
-            _cachedshouldDisplayedtableRowsStr[_currentDisplayedTableNameHash] = shouldDisplayedtableRowsStr;
+            List<string[]> shouldDisplayedtableRowsStr = tableRowsForShow.Count == 0 ? null : tableRowsForShow.Select(row => row.ToArray()).ToList();
 
             return shouldDisplayedtableRowsStr;
         }
@@ -98,9 +72,15 @@ namespace CourseCrawler
         // Check if there's exist any checked checkBox in whole gridView.
         public bool IsAnyCourseChecked()
         {
-            foreach (KeyValuePair<string, List<bool>> kvp in _courseTableCheckedStates)
+            GetAllDepartmentsUseCase getAllDepartmentsUseCase = new();
+            ObservableDictionary<string, Department> allDepartments = getAllDepartmentsUseCase.Do();
+
+            foreach (KeyValuePair<string, Department> kvp in allDepartments)
             {
-                if (kvp.Value.Any(state => state)) return true;
+                foreach (KeyValuePair<string, ICourseTable> _kvp in kvp.Value.CourseTables)
+                {
+                    if (_kvp.Value.IsAnyCourseChecked) return true;
+                }
             }
 
             return false;
@@ -109,18 +89,24 @@ namespace CourseCrawler
         // Check if there's exist any Selected course in whole cachedTables.
         public bool IsAnyCourseSelected()
         {
-            foreach (KeyValuePair<string, CourseTable> kvp in _cachedTables)
+            GetAllDepartmentsUseCase getAllDepartmentsUseCase = new();
+            ObservableDictionary<string, Department> allDepartments = getAllDepartmentsUseCase.Do();
+
+            foreach (KeyValuePair<string, Department> kvp in allDepartments)
             {
-                if (kvp.Value.IsAnyCourseSelected) return true;
+                foreach (KeyValuePair<string, ICourseTable> _kvp in kvp.Value.CourseTables)
+                {
+                    if (_kvp.Value.IsAnyCourseSelected) return true;
+                }
             }
 
             return false;
         }
 
         // Change Course Check Status.
-        public void ChangeCourseCheckStatus(int displayIndex, bool isChecked)
+        public void ChangeCourseCheckStatus(int displayIndex, bool isChecked, int dataSourceIndex)
         {
-            List<int> selectedCourseIndex = GetSelectedCourseIndex();
+            List<int> selectedCourseIndex = GetSelectedCourseIndexes(dataSourceIndex);
             int visitedDisplayedIndexAmount = 0, currentPos = -1;
 
             while (visitedDisplayedIndexAmount < displayIndex + 1)
@@ -129,33 +115,44 @@ namespace CourseCrawler
                 if (!selectedCourseIndex.Contains(currentPos)) visitedDisplayedIndexAmount++;
             }
 
-            _courseTableCheckedStates[_currentDisplayedTableNameHash][currentPos] = isChecked;
+            CourseTable currentTable = GetCourseTable(dataSourceIndex);
+            currentTable.Courses[currentPos].IsChecked = isChecked;
         }
 
         // clear check status.
         public void MakeAllUnCheck()
         {
-            foreach (string k in _courseTableCheckedStates.Keys)
+            GetAllDepartmentsUseCase getAllDepartmentsUseCase = new();
+            ObservableDictionary<string, Department> allDepartments = getAllDepartmentsUseCase.Do();
+
+            foreach (KeyValuePair<string, Department> kvp in allDepartments)
             {
-                for(int i = 0; i< _courseTableCheckedStates[k].Count; i++)
+                foreach (KeyValuePair<string, ICourseTable> _kvp in kvp.Value.CourseTables)
                 {
-                    _courseTableCheckedStates[k][i] = false;
+                    foreach (ICourse course in _kvp.Value.Courses)
+                    {
+                        course.IsChecked = false;
+                    }
                 }
             }
         }
 
         // Get a List contains checked courses and selected but non-checked courses.
-        private List<Course> GetCheckedCourse()
+        private List<Course> GetCheckedCourses()
         {
             List<Course> checkedCourse = new();
 
-            foreach (KeyValuePair<string, CourseTable> kvp in _cachedTables)
+            GetAllDepartmentsUseCase getAllDepartmentsUseCase = new();
+            ObservableDictionary<string, Department> allDepartments = getAllDepartmentsUseCase.Do();
+
+            foreach (KeyValuePair<string, Department> kvp in allDepartments)
             {
-                foreach (dynamic course in kvp.Value.Courses.Select((value, index) => new { value, index }))
+                foreach (KeyValuePair<string, ICourseTable> _kvp in kvp.Value.CourseTables)
                 {
-                    if (_courseTableCheckedStates[kvp.Key][course.index] || course.value.IsSelected)
+                    foreach (ICourse course in _kvp.Value.Courses)
                     {
-                        checkedCourse.Add(course.value);
+                        if (course.IsChecked || course.IsSelected)
+                            checkedCourse.Add((Course)course);
                     }
                 }
             }
@@ -164,17 +161,21 @@ namespace CourseCrawler
         }
 
         // Get a List contains non-checked and non-selected courses.
-        private List<Course> GetUncheckedCourse()
+        private List<Course> GetUncheckedCourses()
         {
             List<Course> unCheckedCourse = new();
 
-            foreach (KeyValuePair<string, CourseTable> kvp in _cachedTables)
+            GetAllDepartmentsUseCase getAllDepartmentsUseCase = new();
+            ObservableDictionary<string, Department> allDepartments = getAllDepartmentsUseCase.Do();
+
+            foreach (KeyValuePair<string, Department> kvp in allDepartments)
             {
-                foreach (dynamic course in kvp.Value.Courses.Select((value, index) => new { value, index }))
+                foreach (KeyValuePair<string, ICourseTable> _kvp in kvp.Value.CourseTables)
                 {
-                    if (!_courseTableCheckedStates[kvp.Key][course.index] && !course.value.IsSelected)
+                    foreach (ICourse course in _kvp.Value.Courses)
                     {
-                        unCheckedCourse.Add(course.value);
+                        if (!course.IsChecked && !course.IsSelected)
+                            unCheckedCourse.Add((Course)course);
                     }
                 }
             }
@@ -183,10 +184,10 @@ namespace CourseCrawler
         }
 
         // Get a List contains all selected course's display index of current displayed tab.
-        public List<int> GetSelectedCourseIndex()
+        public List<int> GetSelectedCourseIndexes(int displayIndex)
         {
             List<int> selectedStatus = new();
-            BindingList<ICourse> currentCourses = _cachedTables[_currentDisplayedTableNameHash].Courses;
+            BindingList<ICourse> currentCourses = GetCourseTable(displayIndex).Courses;
             for (int i = 0; i < currentCourses.Count; i++)
             {
                 if (currentCourses[i].IsSelected) selectedStatus.Add(i);
@@ -224,22 +225,22 @@ namespace CourseCrawler
             {
                 if (kvp.Value != null && kvp.Value.Count < 2) continue;
                 result.Add(string.Join(
-                    Constants.IdeographicComma,
+                    Consts.IdeographicComma,
                     kvp.Value.Select(course =>
-                        Constants.UpperQuoteTw +
+                        Consts.UpperQuoteTw +
                         CourseDto.ToNumberAndName(course) +
-                        Constants.LowerQuoteTw
+                        Consts.LowerQuoteTw
                     ).ToArray()
                 ));
             }
-            return result.Count > 0 ? string.Join(Constants.Comma, result) : null;
+            return result.Count > 0 ? string.Join(Consts.Comma, result) : null;
         }
 
         // Verify all checked courses, check if there exist any conflicts of there properties, then make them become selected state.
         public Result<string> HandleSelectCourseSubmission()
         {
-            List<Course> checkedCourses = GetCheckedCourse();
-            List<Course> unCheckedCourses = GetUncheckedCourse();
+            List<Course> checkedCourses = GetCheckedCourses();
+            List<Course> unCheckedCourses = GetUncheckedCourses();
             SortedDictionary<string, HashSet<Course>> courseClassifiedByName = new();
             SortedDictionary<string, HashSet<Course>> courseClassifiedByTime = new();
 
@@ -253,8 +254,7 @@ namespace CourseCrawler
 
                 foreach (WeekTime weekTime in course.WeekTimes)
                 {
-                    if (weekTime.Times == null || weekTime.Times[0] == string.Empty) continue;
-
+                    if (weekTime.Times == null || weekTime.Times.Length == 0 || weekTime.Times[0] == string.Empty) continue;
                     foreach (string time in weekTime.Times)
                     {
                         string classifyKey = weekTime.Name + time;
@@ -266,25 +266,25 @@ namespace CourseCrawler
                     }
                 }
             }
-
+            
             string nameConflictErrMsg = GenerateConflictErrMsg(courseClassifiedByName);
             string timeConflictErrMsg = GenerateConflictErrMsg(courseClassifiedByTime);
-
-            _displayedtableRowsDirty = true;
 
             if (nameConflictErrMsg == null && timeConflictErrMsg == null)
             {
                 UnselectCourses(unCheckedCourses);
                 SelectCourses(checkedCourses);
                 MakeAllUnCheck();
-                return new SuccessResult<string>(Constants.SuccessfullySelectCourse);
+                GetAllDepartmentsUseCase getAllDepartmentsUseCase = new();
+                getAllDepartmentsUseCase.Do().DirectlyNotifyPropertyChanged();
+                return new SuccessResult<string>(Consts.SuccessfullySelectCourse);
             }
 
             if (nameConflictErrMsg != null)
             {
                 nameConflictErrMsg =
-                    Constants.NewLineChar +
-                    Constants.NameConflictErrMsgHead +
+                    Consts.NewLineChar +
+                    Consts.NameConflictErrMsgHead +
                     nameConflictErrMsg;
             }
             else
@@ -295,8 +295,8 @@ namespace CourseCrawler
             if (timeConflictErrMsg != null)
             {
                 timeConflictErrMsg =
-                    Constants.NewLineChar +
-                    Constants.TimeConflictErrMsgHead + 
+                    Consts.NewLineChar +
+                    Consts.TimeConflictErrMsgHead + 
                     timeConflictErrMsg;
             }
             else
@@ -306,7 +306,7 @@ namespace CourseCrawler
 
             return new ErrorResult<string>
             (
-                Constants.FailToSelectCourse +
+                Consts.FailToSelectCourse +
                 timeConflictErrMsg +
                 nameConflictErrMsg
             );

@@ -8,11 +8,14 @@ namespace CourseCrawler
 {
     internal sealed class FetchDepartmentCourseTableUseCase : IUseCase<Department>
     {
-        public FetchDepartmentCourseTableUseCase(string departmentName, string tableName)
+        public FetchDepartmentCourseTableUseCase(int supportedDataSourceIndex)
         {
-            _departmentName = departmentName;
-            _tableName = tableName;
+            _supportedDataSourceIndex = supportedDataSourceIndex;
+            _departmentName = SupportedDataSourceInfo.GetDepartmentName(_supportedDataSourceIndex);
+            _tableName = SupportedDataSourceInfo.GetTableName(_supportedDataSourceIndex);
         }
+
+        private readonly int _supportedDataSourceIndex;
 
         private readonly string _departmentName, _tableName;
 
@@ -21,19 +24,24 @@ namespace CourseCrawler
         // FetchNeededRawHtmlTableRows
         private HtmlNodeCollection FetchNeededRawHtmlTableRows()
         {
-            Uri targetUri = Utils.GetDepartmentCourseTableUri(_departmentName, _tableName);
+            Uri targetUri = Utils.GetDepartmentCourseTableUri(_supportedDataSourceIndex);
             CrawlerUseCase crawlerUseCase = new(targetUri);
 
             Result<HtmlDocument> crawledResult = crawlerUseCase.Do();
 
             if (crawledResult.Success != true)
             {
-                Utils.ShowDebugBox("Fail to Fetch course tables !!");
+                Utils.ShowDebugBox(Consts.MsgFailToFetchResources);
                 return null;
             }
 
             const string neededContentFilterString = "//body/table";
             HtmlNodeCollection courseTableRows = (crawledResult as SuccessResult<HtmlDocument>).Data.DocumentNode.SelectSingleNode(neededContentFilterString).ChildNodes;
+            if (courseTableRows == null)
+            {
+                Utils.ShowDebugBox(Consts.MsgFailToFetchResources);
+                return null;
+            }
 
             const int unneededCourseTableRowOnTopAmount = 3;
             for (int i = 0; i < unneededCourseTableRowOnTopAmount; i++)
@@ -42,7 +50,15 @@ namespace CourseCrawler
             }
 
             courseTableRows.RemoveAt(courseTableRows.Count - 1);
-            return courseTableRows;
+
+            try
+            {
+                return courseTableRows;
+            } 
+            catch
+            {
+                return null;
+            };
         }
 
         // GenerateCourses
@@ -90,17 +106,20 @@ namespace CourseCrawler
             Department department = GenerateDepartment(courses);
 
             ObservableDictionary<string, Department> allDepartments;
-            if (_store.Exist(Constants.AllDepartments))
+            if (_store.Exist(Consts.AllDepartments))
             {
-                allDepartments = _store.Use<ObservableDictionary<string, Department>>(Constants.AllDepartments);
+                allDepartments = _store.Use<ObservableDictionary<string, Department>>(Consts.AllDepartments);
             }
             else
             {
                 allDepartments = new();
             }
 
+            allDepartments.ShouldNotifyChanges = false;
             allDepartments.Add(_departmentName, department);
-            _store.Update(Constants.AllDepartments, allDepartments);
+            allDepartments.ShouldNotifyChanges = true;
+
+            _store.Update(Consts.AllDepartments, allDepartments);
 
             return department;
         }

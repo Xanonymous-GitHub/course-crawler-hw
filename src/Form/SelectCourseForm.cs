@@ -18,23 +18,18 @@ namespace CourseCrawler
 
             ResizeGridViewRemarkColumnWidth();
 
-            _supportedCourseTableMapIndex.Add(new(0, 2)); // 資工, 三
-            _supportedCourseTableMapIndex.Add(new(1, 6)); // 電子, 三甲
-            _supportedCourseTableMapIndex.Add(new(2, 10)); // 化工, 三乙
             _currentShownTabIndex = 0;
 
-            _formViewModel = SelectCourseFormViewModel.UseCreateBy(_currentDepartmentName, _currentTableName);
+            _formViewModel = new();
         }
-
-        private readonly List<CourseTabSourceIndex> _supportedCourseTableMapIndex = new();
 
         private static int _currentShownTabIndex = 0;
 
-        private string _currentDepartmentName => SupportedRange.DepartmentNames[_supportedCourseTableMapIndex[_currentShownTabIndex].DepartmentIndex];
-        private string _currentTableName => SupportedRange.TableNames[_supportedCourseTableMapIndex[_currentShownTabIndex].TableIIndex];
-
         private SelectCourseFormViewModel _formViewModel;
-        
+
+        private bool _selectionResultFormShowing = false;
+
+        // ResizeGridViewRemarkColumnWidth
         private void ResizeGridViewRemarkColumnWidth()
         {
             const int remarkColumnIndex = 21;
@@ -55,19 +50,25 @@ namespace CourseCrawler
         // Event handler when SelectCourseForm Loaded.
         private void SelectCourseForm_Load(object sender, EventArgs e)
         {
+            _formViewModel.PropertyChanged += HandleVMChanged;
             UpdateCourseGridView();
         }
-        
+
+        // HandleVMChanged
+        public void HandleVMChanged(object sender, PropertyChangedEventArgs e)
+        {
+            UpdateCourseGridView();
+        }
+
         // Use _currentDepartmentName & _currentTableName to fetch new course table data then redraw the gridview.
         private void UpdateCourseGridView()
         {
-            _formViewModel.ChangeDisplayTable(_currentDepartmentName, _currentTableName);
-            List<string[]> courseRows = _formViewModel.GetCourseTableRows();
+            List<string[]> courseRows = _formViewModel.GetCourseTableRows(_currentShownTabIndex);
             if (courseRows != null)
             {
                 CourseGridView.Rows.Clear();
                 courseRows.ForEach(row => CourseGridView.Rows.Add(row));
-                ReDrawContents();
+                ChangeButtonEnableStates();
                 CourseGridView.NotifyCurrentCellDirty(true);
             }
         }
@@ -79,14 +80,11 @@ namespace CourseCrawler
             {
                 DataGridViewCheckBoxCell checkCell = (DataGridViewCheckBoxCell)CourseGridView.Rows[e.RowIndex].Cells[CourseSelectionBoxColumn.Name];
 
-                bool isCurrentCheckBoxSelected = Convert.ToBoolean(checkCell.Value);
+                bool isCurrentCheckBoxSelected = checkCell.Value.ToString() == checkCell.TrueValue.ToString();
 
-                _formViewModel.ChangeCourseCheckStatus(e.RowIndex, !isCurrentCheckBoxSelected);
+                _formViewModel.ChangeCourseCheckStatus(e.RowIndex, !isCurrentCheckBoxSelected, _currentShownTabIndex);
 
-                checkCell.Value = !isCurrentCheckBoxSelected;
-
-                CourseGridView.NotifyCurrentCellDirty(true);
-                CourseGridView.Invalidate();
+                checkCell.Value = !isCurrentCheckBoxSelected ? checkCell.TrueValue : checkCell.FalseValue;
             }
         }
         
@@ -95,7 +93,7 @@ namespace CourseCrawler
         {
             if (!CourseGridView.IsCurrentCellDirty) return;
 
-            ReDrawContents();
+            ChangeButtonEnableStates();
         }
 
         // Event handler when SubmitCourseSelectionButton Click.
@@ -109,7 +107,7 @@ namespace CourseCrawler
 
             if (submitResult.Success)
             {
-                ReDrawContents();
+                ChangeButtonEnableStates();
                 UpdateCourseGridView();
             }
         }
@@ -118,17 +116,23 @@ namespace CourseCrawler
         private void GetCourseSelectResultbutton_Click(object sender, EventArgs e)
         {
             CourseSelectionResultForm courseSelectionResultForm = new();
-            courseSelectionResultForm.ShowDialog();
-            ReDrawContents();
-            _formViewModel.MarkAsDirty();
-            UpdateCourseGridView();
+
+            courseSelectionResultForm.FormClosed += new((object sender, FormClosedEventArgs e) => 
+            {
+                _selectionResultFormShowing = false;
+                ChangeButtonEnableStates();
+            });
+
+            _selectionResultFormShowing = true;
+            ChangeButtonEnableStates();
+            courseSelectionResultForm.Show();
         }
 
         // ReConfigure the properties of Controllers in the form, exclude the gridView.
-        private void ReDrawContents()
+        private void ChangeButtonEnableStates()
         {
             SubmitCourseSelectionButton.Enabled = _formViewModel.IsAnyCourseChecked();
-            GetCourseSelectResultbutton.Enabled = _formViewModel.IsAnyCourseSelected();
+            GetCourseSelectResultbutton.Enabled = !_selectionResultFormShowing && _formViewModel.IsAnyCourseSelected();
         }
 
         // Event handler when CourseTableTabControl SelectedIndexChanged.
@@ -137,7 +141,7 @@ namespace CourseCrawler
             _currentShownTabIndex = CourseTableTabControl.SelectedIndex;
             UpdateCourseGridView();
 
-            TabPage newTabPage = CourseTableTabControl.TabPages[Constants.TabPageNameTitle + (_currentShownTabIndex + 1).ToString()];
+            TabPage newTabPage = CourseTableTabControl.TabPages[Consts.TabPageNameTitle + (_currentShownTabIndex + 1).ToString()];
             
             if (newTabPage.Controls.Count != 0) return;
 
@@ -147,6 +151,11 @@ namespace CourseCrawler
             newTabPage.ResumeLayout();
             newTabPage.Refresh();
             CourseTableTabControl.Refresh();
+        }
+
+        private void SelectCourseForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _formViewModel.PropertyChanged -= HandleVMChanged;
         }
     }
 }

@@ -2,12 +2,14 @@
 {
     internal sealed class GetCourseTableUseCase : IUseCase<CourseTable>
     {
-        public GetCourseTableUseCase(string departmentName, string tableName)
+        public GetCourseTableUseCase(int supportedDataSourceIndex)
         {
-            _departmentName = departmentName;
-            _tableName = tableName;
+            _supportedDataSourceIndex = supportedDataSourceIndex;
+            _departmentName = SupportedDataSourceInfo.GetDepartmentName(_supportedDataSourceIndex);
+            _tableName = SupportedDataSourceInfo.GetTableName(_supportedDataSourceIndex);
         }
 
+        private readonly int _supportedDataSourceIndex;
         private readonly string _departmentName, _tableName;
 
         // Do this usecase
@@ -22,7 +24,7 @@
                 if (hasTable) return (CourseTable)table;
             }
 
-            FetchDepartmentCourseTableUseCase fetchDepartmentCourseTableUseCase = new(_departmentName, _tableName);
+            FetchDepartmentCourseTableUseCase fetchDepartmentCourseTableUseCase = new(_supportedDataSourceIndex);
             department = fetchDepartmentCourseTableUseCase.Do();
             if (department == null) return null;
 

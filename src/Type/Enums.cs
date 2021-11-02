@@ -19,4 +19,14 @@ namespace CourseCrawler
         TW = 1,
         EN = 2,
     }
+
+    internal enum CourseManagementFormDisplayStatus
+    {
+        NotSpecifiedCourseToBeEdited = 0,
+        EditingFiledsNotChangedOrSaved = 1,
+        EditingCourseButInvalid = 2,
+        EditingCourseAndValid = 3,
+        EditingNewCourseButInvalid = 4,
+        EditingNewCourseAndValid = 5,
+    }
 }

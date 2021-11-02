@@ -2,7 +2,7 @@
 
 namespace CourseCrawler
 {
-    internal class Department : IDepartment
+    internal class Department : Bindable, IDepartment
     {
         public Department(string name, Dictionary<string, ICourseTable> tables)
         {
@@ -18,11 +18,19 @@ namespace CourseCrawler
             _tables = tables;
         }
 
-        private readonly string _name;
-        private readonly Dictionary<string, ICourseTable> _tables;
+        private string _name;
+        private Dictionary<string, ICourseTable> _tables;
 
-        public string Name => _name;
+        public string Name
+        {
+            get => _name;
+            set => SetField(ref _name, value);
+        }
 
-        public Dictionary<string, ICourseTable> CourseTables => _tables;
+        public Dictionary<string, ICourseTable> CourseTables
+        {
+            get => _tables;
+            set => SetField(ref _tables, value);
+        }
     }
 }
