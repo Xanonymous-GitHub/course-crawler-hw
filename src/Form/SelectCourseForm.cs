@@ -55,7 +55,7 @@ namespace CourseCrawler
         // HandleVMChanged
         public void HandleVMChanged(object sender, PropertyChangedEventArgs e)
         {
-            _formViewModel.ChangeDisplayTable(_currentShownTabIndex);
+            UpdateCourseGridView();
         }
 
         // Use _currentDepartmentName & _currentTableName to fetch new course table data then redraw the gridview.
@@ -117,7 +117,6 @@ namespace CourseCrawler
             CourseSelectionResultForm courseSelectionResultForm = new();
             courseSelectionResultForm.ShowDialog();
             ReDrawContents();
-            _formViewModel.MarkAsDirty();
             UpdateCourseGridView();
         }
 

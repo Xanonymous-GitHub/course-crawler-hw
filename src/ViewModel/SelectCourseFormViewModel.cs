@@ -18,14 +18,7 @@ namespace CourseCrawler
 
         private readonly Dictionary<string, CourseTable> _cachedTables = new();
 
-        // private readonly Dictionary<string, List<string[]>> _cachedshouldDisplayedtableRowsStr = new();
-
-        private bool _displayedtableRowsDirty = true;
-
         public static SelectCourseFormViewModel Instance;
-
-        // MarkAsDirty
-        public void MarkAsDirty() => _displayedtableRowsDirty = true;
 
         // UseCreateBy
         public static SelectCourseFormViewModel UseCreateBy(int dataSourceIndex)
@@ -52,7 +45,6 @@ namespace CourseCrawler
         public void InvalidCaches()
         {
             _cachedTables.Clear();
-            _displayedtableRowsDirty = true;
         }
 
         // Use the given departname & tablename to generate a course table then cached it.
@@ -61,8 +53,6 @@ namespace CourseCrawler
             string departmentName = SupportedDataSourceInfo.GetDepartmentName(dataSourceIndex);
             string tableName = SupportedDataSourceInfo.GetTableName(dataSourceIndex);
             string nextDisplayedTableNameHash = departmentName + tableName;
-
-            if (_currentDisplayedTableNameHash == nextDisplayedTableNameHash) return;
             
             if (!_cachedTables.ContainsKey(nextDisplayedTableNameHash))
             {
@@ -71,8 +61,6 @@ namespace CourseCrawler
 
                 _cachedTables.Add(nextDisplayedTableNameHash, newTable);
                 if (newTable == null) return;
-
-                _displayedtableRowsDirty = true;
             }
 
             _currentDepartmentName = departmentName;
@@ -102,8 +90,6 @@ namespace CourseCrawler
 
                 tableRowsForShow.Add(rowWithCheckState);
             }
-
-            _displayedtableRowsDirty = false;
 
             List<string[]> shouldDisplayedtableRowsStr = tableRowsForShow.Count == 0 ? null : tableRowsForShow.Select(row => row.ToArray()).ToList();
 
@@ -145,7 +131,6 @@ namespace CourseCrawler
             }
 
             _cachedTables[_currentDisplayedTableNameHash].Courses[currentPos].IsChecked = isChecked;
-            _displayedtableRowsDirty = true;
         }
 
         // clear check status.
@@ -284,8 +269,6 @@ namespace CourseCrawler
             
             string nameConflictErrMsg = GenerateConflictErrMsg(courseClassifiedByName);
             string timeConflictErrMsg = GenerateConflictErrMsg(courseClassifiedByTime);
-
-            _displayedtableRowsDirty = true;
 
             if (nameConflictErrMsg == null && timeConflictErrMsg == null)
             {
