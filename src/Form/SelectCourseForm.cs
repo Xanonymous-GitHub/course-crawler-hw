@@ -27,6 +27,8 @@ namespace CourseCrawler
 
         private SelectCourseFormViewModel _formViewModel;
 
+        private bool _selectionResultFormShowing = false;
+
         // ResizeGridViewRemarkColumnWidth
         private void ResizeGridViewRemarkColumnWidth()
         {
@@ -66,7 +68,7 @@ namespace CourseCrawler
             {
                 CourseGridView.Rows.Clear();
                 courseRows.ForEach(row => CourseGridView.Rows.Add(row));
-                ReDrawContents();
+                ChangeButtonEnableStates();
                 CourseGridView.NotifyCurrentCellDirty(true);
             }
         }
@@ -91,7 +93,7 @@ namespace CourseCrawler
         {
             if (!CourseGridView.IsCurrentCellDirty) return;
 
-            ReDrawContents();
+            ChangeButtonEnableStates();
         }
 
         // Event handler when SubmitCourseSelectionButton Click.
@@ -105,7 +107,7 @@ namespace CourseCrawler
 
             if (submitResult.Success)
             {
-                ReDrawContents();
+                ChangeButtonEnableStates();
                 UpdateCourseGridView();
             }
         }
@@ -114,14 +116,23 @@ namespace CourseCrawler
         private void GetCourseSelectResultbutton_Click(object sender, EventArgs e)
         {
             CourseSelectionResultForm courseSelectionResultForm = new();
+
+            courseSelectionResultForm.FormClosed += new((object sender, FormClosedEventArgs e) => 
+            {
+                _selectionResultFormShowing = false;
+                ChangeButtonEnableStates();
+            });
+
+            _selectionResultFormShowing = true;
+            ChangeButtonEnableStates();
             courseSelectionResultForm.Show();
         }
 
         // ReConfigure the properties of Controllers in the form, exclude the gridView.
-        private void ReDrawContents()
+        private void ChangeButtonEnableStates()
         {
             SubmitCourseSelectionButton.Enabled = _formViewModel.IsAnyCourseChecked();
-            GetCourseSelectResultbutton.Enabled = _formViewModel.IsAnyCourseSelected();
+            GetCourseSelectResultbutton.Enabled = !_selectionResultFormShowing && _formViewModel.IsAnyCourseSelected();
         }
 
         // Event handler when CourseTableTabControl SelectedIndexChanged.
