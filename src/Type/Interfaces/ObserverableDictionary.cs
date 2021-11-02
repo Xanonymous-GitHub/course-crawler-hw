@@ -33,6 +33,12 @@ namespace CourseCrawler
             this.dictionary = dictionary;
         }
 
+        // DirectlyNotifyPropertyChanged
+        public void DirectlyNotifyPropertyChanged()
+        {
+            PropertyChanged(this, new(nameof(dictionary.Values)));
+        }
+
         // AddWithNotification
         void AddWithNotification(KeyValuePair<TKey, TValue> item) => AddWithNotification(item.Key, item.Value);
 

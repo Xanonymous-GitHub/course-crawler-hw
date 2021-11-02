@@ -48,9 +48,16 @@ namespace CourseCrawler
         // Event handler when SelectCourseForm Loaded.
         private void SelectCourseForm_Load(object sender, EventArgs e)
         {
+            _formViewModel.PropertyChanged += HandleVMChanged;
             UpdateCourseGridView();
         }
-        
+
+        // HandleVMChanged
+        public void HandleVMChanged(object sender, PropertyChangedEventArgs e)
+        {
+            _formViewModel.ChangeDisplayTable(_currentShownTabIndex);
+        }
+
         // Use _currentDepartmentName & _currentTableName to fetch new course table data then redraw the gridview.
         private void UpdateCourseGridView()
         {

@@ -4,11 +4,12 @@ using System.ComponentModel;
 
 namespace CourseCrawler
 {
-    internal sealed class SelectCourseFormViewModel
+    internal sealed class SelectCourseFormViewModel : Bindable
     {
         private SelectCourseFormViewModel(int dataSourceIndex)
         {
             ChangeDisplayTable(dataSourceIndex);
+            RegistryDepartmentPropertyChangedEventHandlers();
         }
 
         private string _currentDisplayedTableNameHash;
@@ -33,6 +34,20 @@ namespace CourseCrawler
         {
             if (Instance == null) Instance = new SelectCourseFormViewModel(dataSourceIndex);
             return Instance;
+        }
+
+        // RegistryDepartmentPropertyChangedEventHandlers
+        public void RegistryDepartmentPropertyChangedEventHandlers()
+        {
+            GetAllDepartmentsUseCase getAllDepartmentsUseCase = new();
+            getAllDepartmentsUseCase.Do().PropertyChanged += HandleDepartmentPropertyChanged;
+        }
+
+        // HandleDepartmentPropertyChanged
+        public void HandleDepartmentPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            InvalidCaches();
+            DirectlyNotifyPropertyChanged();
         }
 
         // InvalidCaches
