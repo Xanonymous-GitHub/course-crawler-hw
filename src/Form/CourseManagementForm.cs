@@ -164,6 +164,8 @@ namespace CourseCrawler
 
             if (_currentCheckedCourseTimes != CourseHourComboBox.SelectedIndex + 1) return false;
 
+            if (!Consts.LanguageSymbols.Contains(CourseLanguageTextBox.Text.Trim())) return false;
+
             return true;
         }
 
