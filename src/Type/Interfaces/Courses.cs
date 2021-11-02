@@ -10,6 +10,7 @@ namespace CourseCrawler
         // MakeUnselected
         public void MakeUnselected();
         public bool IsSelected { get; set; }
+        public bool IsChecked { get; set; }
         public string Serial { get; set; }
         public string Name { get; set; }
         public string Level { get; set; }

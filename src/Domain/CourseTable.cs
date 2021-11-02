@@ -41,5 +41,7 @@ namespace CourseCrawler
         }
 
         public bool IsAnyCourseSelected => _courses.Any(course => course.IsSelected);
+
+        public bool IsAnyCourseChecked => _courses.Any(course => course.IsChecked);
     }
 }
