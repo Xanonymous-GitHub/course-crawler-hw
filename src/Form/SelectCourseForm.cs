@@ -144,5 +144,10 @@ namespace CourseCrawler
             newTabPage.Refresh();
             CourseTableTabControl.Refresh();
         }
+
+        private void SelectCourseForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _formViewModel.PropertyChanged -= HandleVMChanged;
+        }
     }
 }
