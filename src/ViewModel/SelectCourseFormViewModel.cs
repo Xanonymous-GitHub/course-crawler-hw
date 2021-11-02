@@ -38,6 +38,7 @@ namespace CourseCrawler
             DirectlyNotifyPropertyChanged();
         }
 
+        // GetCourseTable
         public CourseTable GetCourseTable(int dataSourceIndex) => new GetCourseTableUseCase(dataSourceIndex).Do();
 
         // Convert current cached course table to string array with checkBox status.
@@ -274,6 +275,8 @@ namespace CourseCrawler
                 UnselectCourses(unCheckedCourses);
                 SelectCourses(checkedCourses);
                 MakeAllUnCheck();
+                GetAllDepartmentsUseCase getAllDepartmentsUseCase = new();
+                getAllDepartmentsUseCase.Do().DirectlyNotifyPropertyChanged();
                 return new SuccessResult<string>(Consts.SuccessfullySelectCourse);
             }
 
