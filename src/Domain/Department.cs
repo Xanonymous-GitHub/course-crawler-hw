@@ -2,7 +2,7 @@
 
 namespace CourseCrawler
 {
-    internal class Department : Bindable, IDepartment
+    public class Department : Bindable, IDepartment
     {
         public Department(string name, Dictionary<string, ICourseTable> tables)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseCrawler
 {
-    internal static class SupportedDataSourceInfo
+    public static class SupportedDataSourceInfo
     {
         private static readonly List<(string departmentName, string tableName, string accessNumberStr)> Current = new()
         {

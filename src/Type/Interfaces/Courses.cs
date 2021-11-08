@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CourseCrawler
 {
-    internal interface ICourse
+    public interface ICourse
     {
         // MakeSelected
         public void MakeSelected();
@@ -56,7 +56,7 @@ namespace CourseCrawler
         public List<bool> WholeDayList { get; }
     }
 
-    internal readonly struct WeekTime
+    public readonly struct WeekTime
     {
         public WeekTime(string name, string[] times) 
         {
@@ -68,7 +68,7 @@ namespace CourseCrawler
         public readonly string[] Times { get; }
     }
 
-    internal interface ICourseTable
+    public interface ICourseTable
     {
         public string Name { get; }
 

@@ -6,7 +6,7 @@ using HtmlAgilityPack;
 
 namespace CourseCrawler
 {
-    internal sealed class FetchDepartmentCourseTableUseCase : IUseCase<Department>
+    public sealed class FetchDepartmentCourseTableUseCase : IUseCase<Department>
     {
         public FetchDepartmentCourseTableUseCase(int supportedDataSourceIndex)
         {

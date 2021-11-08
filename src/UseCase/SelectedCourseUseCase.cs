@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseCrawler
 {
-    internal sealed class SaveSelectedCourseUseCase : IUseCase<bool>
+    public sealed class SaveSelectedCourseUseCase : IUseCase<bool>
     {
         public SaveSelectedCourseUseCase(BindingList<ICourse> selectedCourses)
         {

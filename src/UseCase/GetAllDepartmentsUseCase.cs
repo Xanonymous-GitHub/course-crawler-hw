@@ -1,6 +1,6 @@
 ﻿namespace CourseCrawler
 {
-    internal sealed class GetAllDepartmentsUseCase : IUseCase<ObservableDictionary<string, Department>>
+    public sealed class GetAllDepartmentsUseCase : IUseCase<ObservableDictionary<string, Department>>
     {
         private readonly Store _store = Store.Instance;
 

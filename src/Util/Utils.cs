@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace CourseCrawler
 {
-    internal static class Utils
+    public static class Utils
     {
         // GetDepartmentCourseTableUri
         public static Uri GetDepartmentCourseTableUri(int supportedDataSourceIndex)

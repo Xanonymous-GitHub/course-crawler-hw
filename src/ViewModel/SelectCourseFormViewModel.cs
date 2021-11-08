@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace CourseCrawler
 {
-    internal sealed class SelectCourseFormViewModel : Bindable
+    public sealed class SelectCourseFormViewModel : Bindable
     {
         public SelectCourseFormViewModel()
         {

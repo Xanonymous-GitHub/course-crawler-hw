@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CourseCrawler
 {
-    internal static class CourseDto
+    public static class CourseDto
     {
         // FromElementStrings
         public static Course FromElementStrings(params string[] source)

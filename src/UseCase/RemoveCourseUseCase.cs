@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace CourseCrawler
 {
-    internal sealed class RemoveCourseUseCase : IUseCase<bool>
+    public sealed class RemoveCourseUseCase : IUseCase<bool>
     {
         public RemoveCourseUseCase(int dataSourceIndex, ICourse course)
         {

@@ -1,6 +1,6 @@
 ﻿namespace CourseCrawler
 {
-    internal sealed class GetCourseTableUseCase : IUseCase<CourseTable>
+    public sealed class GetCourseTableUseCase : IUseCase<CourseTable>
     {
         public GetCourseTableUseCase(int supportedDataSourceIndex)
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace CourseCrawler
 {
-    internal enum CourseType
+    public enum CourseType
     {
         NoType = 0,
         DeptRequired = 1, // ○
@@ -13,7 +13,7 @@ namespace CourseCrawler
         MajorElective = 6, // ★
     }
 
-    internal enum CourseLanguage
+    public enum CourseLanguage
     {
         NotSet = 0,
         TW = 1,

@@ -8,7 +8,7 @@ using System;
 
 namespace CourseCrawler
 {
-    internal sealed class CourseManagementFormViewModel : Bindable
+    public sealed class CourseManagementFormViewModel : Bindable
     {
         public CourseManagementFormViewModel()
         {

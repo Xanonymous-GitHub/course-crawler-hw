@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseCrawler
 {
-    internal static class CourseDayTimeDto
+    public static class CourseDayTimeDto
     {
         // ToStringArray
         public static string[] ToStringArray(CourseDayTime times)

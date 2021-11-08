@@ -165,7 +165,6 @@
     <EmbeddedResource Include="src\Form\StartUpForm.resx">
       <DependentUpon>StartUpForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="LICENSE" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Store.datasource" />

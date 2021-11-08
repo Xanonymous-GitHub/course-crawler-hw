@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CourseCrawler
 {
-    internal sealed class StartUpFormViewModel : Bindable
+    public sealed class StartUpFormViewModel : Bindable
     {
         public StartUpFormViewModel()
         {

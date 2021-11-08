@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CourseCrawler
 {
-    internal class CourseTable : Bindable, ICourseTable
+    public class CourseTable : Bindable, ICourseTable
     {
         public CourseTable(string name, List<ICourse> courses)
         {

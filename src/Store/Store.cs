@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CourseCrawler
 {
-    internal class Store
+    public class Store
     {
         private Store() 
         {

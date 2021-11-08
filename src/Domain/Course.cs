@@ -2,7 +2,7 @@
 
 namespace CourseCrawler
 {
-    internal class Course : Bindable, ICourse
+    public class Course : Bindable, ICourse
     {
         public Course(
             string serial,

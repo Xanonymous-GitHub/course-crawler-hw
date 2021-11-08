@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseCrawler
 {
-    internal class CourseDayTime : Bindable, ICourseDayTime
+    public class CourseDayTime : Bindable, ICourseDayTime
     {
         public CourseDayTime()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseCrawler
 {
-    internal sealed class CourseSelectionResultFormViewModel : Bindable
+    public sealed class CourseSelectionResultFormViewModel : Bindable
     {
         public CourseSelectionResultFormViewModel()
         {

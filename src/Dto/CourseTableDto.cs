@@ -2,7 +2,7 @@
 
 namespace CourseCrawler
 {
-    internal static class CourseTableDto
+    public static class CourseTableDto
     {
         // FromTableToRows
         public static List<List<string>> FromTableToRows(CourseTable table)

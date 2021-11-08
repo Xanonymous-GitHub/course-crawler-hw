@@ -1,6 +1,6 @@
 ﻿namespace CourseCrawler
 {
-    internal sealed class GetDepartmentUseCase : IUseCase<Department>
+    public sealed class GetDepartmentUseCase : IUseCase<Department>
     {
         public GetDepartmentUseCase(string departmentName)
         {
