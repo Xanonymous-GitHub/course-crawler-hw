@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CourseCrawler;
-using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,21 +12,44 @@ namespace CourseCrawler.Tests
     public class CourseTableTests
     {
         [TestMethod()]
-        public void CourseTableTest()
+        public void CorrectlyCreateCourseTableFromSimpleList()
         {
-            Assert.Fail();
+            // Given
+            CourseTable courseTable;
+
+            // When
+            courseTable = new("", new List<ICourse>());
+
+            // Then
+            Assert.IsNotNull(courseTable);
         }
 
         [TestMethod()]
-        public void CourseTableTest1()
+        public void CorrectlyCreateCourseTableFromBindingList()
         {
-            Assert.Fail();
+            // Given
+            CourseTable courseTable;
+
+            // When
+            courseTable = new("", new BindingList<ICourse>());
+
+            // Then
+            Assert.IsNotNull(courseTable);
         }
 
         [TestMethod()]
-        public void CourseTableTest2()
+        public void CorrectlyCreateCourseTableFromCourse()
         {
-            Assert.Fail();
+            // Given
+            CourseTable courseTable;
+            Course testCourse = new("", "", "", "", "", CourseType.NoType);
+
+            // When
+
+            courseTable = new("", testCourse);
+
+            // Then
+            Assert.IsNotNull(courseTable);
         }
     }
 }

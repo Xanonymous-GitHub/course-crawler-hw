@@ -11,8 +11,9 @@ namespace CourseCrawler.Tests
     [TestClass()]
     public class CourseTests
     {
+        // CorrectlyMakeSelected
         [TestMethod()]
-        public void MakeSelectedTest()
+        public void CorrectlyMakeSelected()
         {
             // Given
             Course testCourse = new("", "", "", "", "", CourseType.NoType);
@@ -24,8 +25,9 @@ namespace CourseCrawler.Tests
             Assert.IsTrue(testCourse.IsSelected);
         }
 
+        // MakeUnselectedTest
         [TestMethod()]
-        public void MakeUnselectedTest()
+        public void CorrectlyMakeUnselected()
         {
             // Given
             Course testCourse = new("", "", "", "", "", CourseType.NoType);

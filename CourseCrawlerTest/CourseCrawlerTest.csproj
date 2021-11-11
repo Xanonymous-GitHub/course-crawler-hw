@@ -59,6 +59,7 @@
     <Compile Include="src\Domain\CourseTableTests.cs" />
     <Compile Include="src\Domain\CourseTests.cs" />
     <Compile Include="src\Domain\DepartmentTests.cs" />
+    <Compile Include="src\Pool.cs" />
     <Compile Include="src\ViewModel\CourseManagementFormViewModelTests.cs" />
     <Compile Include="src\ViewModel\CourseSelectionResultFormViewModelTests.cs" />
     <Compile Include="src\ViewModel\SelectCourseFormViewModelTests.cs" />
