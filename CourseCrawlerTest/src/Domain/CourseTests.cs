@@ -14,13 +14,27 @@ namespace CourseCrawler.Tests
         [TestMethod()]
         public void MakeSelectedTest()
         {
-            Assert.Fail();
+            // Given
+            Course testCourse = new("", "", "", "", "", CourseType.NoType);
+
+            // When
+            testCourse.MakeSelected();
+
+            // Then
+            Assert.IsTrue(testCourse.IsSelected);
         }
 
         [TestMethod()]
         public void MakeUnselectedTest()
         {
-            Assert.Fail();
+            // Given
+            Course testCourse = new("", "", "", "", "", CourseType.NoType);
+
+            // When
+            testCourse.MakeUnselected();
+
+            // Then
+            Assert.IsFalse(testCourse.IsSelected);
         }
     }
 }
