@@ -16,7 +16,7 @@ namespace CourseCrawler.Tests
         public void CorrectlyMakeSelected()
         {
             // Given
-            Course testCourse = new("", "", "", "", "", CourseType.NoType);
+            Course testCourse = new(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, CourseType.NoType);
 
             // When
             testCourse.MakeSelected();
@@ -30,7 +30,7 @@ namespace CourseCrawler.Tests
         public void CorrectlyMakeUnselected()
         {
             // Given
-            Course testCourse = new("", "", "", "", "", CourseType.NoType);
+            Course testCourse = new(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, CourseType.NoType);
 
             // When
             testCourse.MakeUnselected();
