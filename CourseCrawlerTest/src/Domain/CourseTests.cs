@@ -11,11 +11,7 @@ namespace CourseCrawler.Tests
     [TestClass()]
     public class CourseTests
     {
-        [TestMethod()]
-        public void CourseTest()
-        {
-            Assert.Fail();
-        }
+        
 
         [TestMethod()]
         public void MakeSelectedTest()
