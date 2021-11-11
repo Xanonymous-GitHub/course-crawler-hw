@@ -7,6 +7,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FB4E3061-3551-4F8E-916C-8E84CB76D409}</ProjectGuid>
     <OutputType>Library</OutputType>
+    <LangVersion>preview</LangVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CourseCrawlerTest</RootNamespace>
     <AssemblyName>CourseCrawlerTest</AssemblyName>
