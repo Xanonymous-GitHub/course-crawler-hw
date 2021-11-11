@@ -11,16 +11,35 @@ namespace CourseCrawler.Tests
     [TestClass()]
     public class CourseDayTimeTests
     {
+        // CorrectlyCreateCourseDayTimeWithDefaultValues
         [TestMethod()]
-        public void CourseDayTimeTest()
+        public void CorrectlyCreateCourseDayTimeWithDefaultValues()
         {
-            Assert.Fail();
+            // Given
+            CourseDayTime courseDayTime;
+
+            // When
+            courseDayTime = new();
+
+            // Then
+            Assert.IsNotNull(courseDayTime);
+            CollectionAssert.AreEqual(courseDayTime.WholeDayList, Enumerable.Repeat(false, 14).ToList());
         }
 
+        // CorrectlyCreateCourseDayTimeWithDefinedValues
         [TestMethod()]
-        public void CourseDayTimeTest1()
+        public void CorrectlyCreateCourseDayTimeWithDefinedValues()
         {
-            Assert.Fail();
+            // Given
+            CourseDayTime courseDayTime;
+            bool[] testDayTimeStatus = new[] { false, true, false, true, false, true, false, true, false, true, false, true, false, true };
+
+            // When
+            courseDayTime = new(testDayTimeStatus);
+
+            // Then
+            Assert.IsNotNull(courseDayTime);
+            CollectionAssert.AreEqual(courseDayTime.WholeDayList, testDayTimeStatus.ToList());
         }
     }
 }
