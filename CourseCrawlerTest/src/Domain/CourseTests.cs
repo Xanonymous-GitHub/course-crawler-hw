@@ -25,7 +25,7 @@ namespace CourseCrawler.Tests
             Assert.IsTrue(testCourse.IsSelected);
         }
 
-        // MakeUnselectedTest
+        // CorrectlyMakeUnselected
         [TestMethod()]
         public void CorrectlyMakeUnselected()
         {

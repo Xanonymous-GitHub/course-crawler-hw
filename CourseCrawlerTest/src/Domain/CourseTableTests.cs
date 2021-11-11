@@ -19,7 +19,7 @@ namespace CourseCrawler.Tests
             CourseTable courseTable;
 
             // When
-            courseTable = new("", new List<ICourse>());
+            courseTable = new(string.Empty, new List<ICourse>());
 
             // Then
             Assert.IsNotNull(courseTable);
@@ -33,7 +33,7 @@ namespace CourseCrawler.Tests
             CourseTable courseTable;
 
             // When
-            courseTable = new("", new BindingList<ICourse>());
+            courseTable = new(string.Empty, new BindingList<ICourse>());
 
             // Then
             Assert.IsNotNull(courseTable);
@@ -45,11 +45,11 @@ namespace CourseCrawler.Tests
         {
             // Given
             CourseTable courseTable;
-            Course testCourse = new("", "", "", "", "", CourseType.NoType);
+            Course testCourse = new(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, CourseType.NoType);
 
             // When
 
-            courseTable = new("", testCourse);
+            courseTable = new(string.Empty, testCourse);
 
             // Then
             Assert.IsNotNull(courseTable);

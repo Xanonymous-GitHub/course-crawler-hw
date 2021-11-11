@@ -11,6 +11,7 @@ namespace CourseCrawler.Tests
     [TestClass()]
     public class DepartmentTests
     {
+        // CorrectlyCreateDepartmentFromDictionary
         [TestMethod()]
         public void CorrectlyCreateDepartmentFromDictionary()
         {
@@ -25,6 +26,7 @@ namespace CourseCrawler.Tests
             Assert.IsNotNull(department.CourseTables);
         }
 
+        // CorrectlyCreateDepartmentFromSimpleCourseTable
         [TestMethod()]
         public void CorrectlyCreateDepartmentFromSimpleCourseTable()
         {
