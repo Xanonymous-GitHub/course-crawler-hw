@@ -11,8 +11,6 @@ namespace CourseCrawler.Tests
     [TestClass()]
     public class CourseTests
     {
-        
-
         [TestMethod()]
         public void MakeSelectedTest()
         {
