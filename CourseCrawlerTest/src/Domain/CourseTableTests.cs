@@ -11,6 +11,7 @@ namespace CourseCrawler.Tests
     [TestClass()]
     public class CourseTableTests
     {
+        // CorrectlyCreateCourseTableFromSimpleList
         [TestMethod()]
         public void CorrectlyCreateCourseTableFromSimpleList()
         {
@@ -24,6 +25,7 @@ namespace CourseCrawler.Tests
             Assert.IsNotNull(courseTable);
         }
 
+        // CorrectlyCreateCourseTableFromBindingList
         [TestMethod()]
         public void CorrectlyCreateCourseTableFromBindingList()
         {
@@ -37,6 +39,7 @@ namespace CourseCrawler.Tests
             Assert.IsNotNull(courseTable);
         }
 
+        // CorrectlyCreateCourseTableFromCourse
         [TestMethod()]
         public void CorrectlyCreateCourseTableFromCourse()
         {

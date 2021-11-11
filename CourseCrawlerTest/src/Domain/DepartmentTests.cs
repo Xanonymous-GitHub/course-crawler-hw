@@ -12,15 +12,36 @@ namespace CourseCrawler.Tests
     public class DepartmentTests
     {
         [TestMethod()]
-        public void DepartmentTest()
+        public void CorrectlyCreateDepartmentFromDictionary()
         {
-            Assert.Fail();
+            // Given
+            Department department;
+
+            // When
+            department = new(string.Empty, new Dictionary<string, ICourseTable>());
+
+            // Then
+            Assert.IsNotNull(department);
+            Assert.IsNotNull(department.CourseTables);
         }
 
         [TestMethod()]
-        public void DepartmentTest1()
+        public void CorrectlyCreateDepartmentFromSimpleCourseTable()
         {
-            Assert.Fail();
+            // Given
+            Department department;
+
+            const string testTableName = "test";
+            CourseTable courseTable = new(testTableName, new List<ICourse>());
+            Dictionary<string, ICourseTable> courseTables = new();
+            courseTables.Add(testTableName, courseTable);
+
+            // When
+            department = new(string.Empty, courseTable);
+
+            // Then
+            Assert.IsNotNull(department);
+            Assert.AreEqual(department.CourseTables[testTableName].Name, courseTables[testTableName].Name);
         }
     }
 }
