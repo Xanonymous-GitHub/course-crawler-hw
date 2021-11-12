@@ -11,10 +11,18 @@ namespace CourseCrawler.Tests
     [TestClass()]
     public class CourseManagementFormViewModelTests
     {
+        // CorrectlyCreateCourseManagementFormViewModel
         [TestMethod()]
-        public void CourseManagementFormViewModelTest()
+        public void CorrectlyCreateCourseManagementFormViewModel()
         {
-            Assert.Fail();
+            // Given
+            CourseManagementFormViewModel courseManagementFormViewModel;
+
+            // When
+            courseManagementFormViewModel = new();
+
+            // Then
+            Assert.IsNotNull(courseManagementFormViewModel);
         }
     }
 }
