@@ -31,6 +31,8 @@ namespace CourseCrawler
 
         private bool _updatingTabs = false;
 
+        private List<int> _invisibleCourseTabIndexes = new();
+
         // ResizeGridViewRemarkColumnWidth
         private void ResizeGridViewRemarkColumnWidth()
         {
@@ -66,19 +68,24 @@ namespace CourseCrawler
         private void UpdateCourseGridView(bool shouldReGenerateAllTabs = true)
         {
             _updatingTabs = true;
+            bool tabVisibleStatusChanged = false;
             CourseTableTabControl.SuspendLayout();
+            string lastSelectedTabText = CourseTableTabControl.SelectedTab.Text;
 
             if (shouldReGenerateAllTabs) CourseTableTabControl.TabPages.Clear();
 
             List<string> allCombinedNames = SupportedDataSourceInfo.GetAllCombinedNames;
 
+            List<List<string[]>> allCourseRows = new();
+
             for (int i = 0; i < SupportedDataSourceInfo.Amount; i++)
             {
-                if (!shouldReGenerateAllTabs && _currentShownTabIndex != i) continue;
+                if (!shouldReGenerateAllTabs && ActualShownTabIndexInDataSource != i) continue;
 
                 List<string[]> courseRows = _formViewModel.GetCourseTableRows(i);
+                allCourseRows.Add(courseRows);
 
-                if (_currentShownTabIndex == i)
+                if (ActualShownTabIndexInDataSource == i)
                 {
                     CourseGridView.Rows.Clear();
                     courseRows?.ForEach(row => CourseGridView.Rows.Add(row));
@@ -86,11 +93,17 @@ namespace CourseCrawler
 
                 if (courseRows != null)
                 {
+                    if (_invisibleCourseTabIndexes.Contains(i))
+                    {
+                        _invisibleCourseTabIndexes.Remove(i);
+                        tabVisibleStatusChanged = true;
+                    }                    
+
                     string targetTabPageName = Consts.TabPageNameTitle + (i + 1).ToString();
                     
                     if (shouldReGenerateAllTabs)
                     {
-                        TabPage newTabPage = CreateNewTabPage(targetTabPageName, allCombinedNames[i], _currentShownTabIndex == i ? CoursePanel : null);
+                        TabPage newTabPage = CreateNewTabPage(targetTabPageName, allCombinedNames[i], ActualShownTabIndexInDataSource == i ? CoursePanel : null);
                         CourseTableTabControl.TabPages.Add(newTabPage);
                     }
                     else
@@ -103,11 +116,43 @@ namespace CourseCrawler
                         targetTabPage.Refresh();
                     }
                 }
+                else
+                {
+                    _invisibleCourseTabIndexes.Add(i);
+                    tabVisibleStatusChanged = true;
+                }
             }
 
             ChangeButtonEnableStates();
             CourseTableTabControl.ResumeLayout();
-            CourseTableTabControl.SelectedIndex = _currentShownTabIndex;
+
+            if (shouldReGenerateAllTabs && tabVisibleStatusChanged)
+            {
+                int redirectTabPageIndex = 0;
+                for (int j = 0; j < CourseTableTabControl.TabPages.Count; j++)
+                {
+                    if (CourseTableTabControl.TabPages[j].Text == lastSelectedTabText)
+                    {
+                        redirectTabPageIndex = j;
+                        break;
+                    }
+                }
+                CourseTableTabControl.SelectedIndex = redirectTabPageIndex;
+
+                TabPage redirectTabPage = CourseTableTabControl.TabPages[redirectTabPageIndex];
+                if (redirectTabPage.Controls.Count == 0)
+                {
+                    redirectTabPage.SuspendLayout();
+                    redirectTabPage.Controls.Add(CoursePanel);
+                    redirectTabPage.ResumeLayout();
+                    redirectTabPage.Refresh();
+                }
+            }
+            else
+            {
+                CourseTableTabControl.SelectedIndex = _currentShownTabIndex;
+            }
+
             _updatingTabs = false;
             CourseGridView.NotifyCurrentCellDirty(true);
         }
@@ -121,7 +166,7 @@ namespace CourseCrawler
 
                 bool isCurrentCheckBoxSelected = checkCell.Value.ToString() == checkCell.TrueValue.ToString();
 
-                _formViewModel.ChangeCourseCheckStatus(e.RowIndex, !isCurrentCheckBoxSelected, _currentShownTabIndex);
+                _formViewModel.ChangeCourseCheckStatus(e.RowIndex, !isCurrentCheckBoxSelected, ActualShownTabIndexInDataSource);
 
                 checkCell.Value = !isCurrentCheckBoxSelected ? checkCell.TrueValue : checkCell.FalseValue;
             }
@@ -196,6 +241,22 @@ namespace CourseCrawler
         private void SelectCourseForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _formViewModel.PropertyChanged -= HandleVMChanged;
+        }
+
+        private int ActualShownTabIndexInDataSource
+        {
+            get
+            {
+                int visitedIndexAmount = 0, targetTabIndex = -1;
+
+                while (visitedIndexAmount < _currentShownTabIndex + 1)
+                {
+                    targetTabIndex++;
+                    if (!_invisibleCourseTabIndexes.Contains(targetTabIndex)) visitedIndexAmount++;
+                }
+
+                return targetTabIndex;
+            }
         }
     }
 }
