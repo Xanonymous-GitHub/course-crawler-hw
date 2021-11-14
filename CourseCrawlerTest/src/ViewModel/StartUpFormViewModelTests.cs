@@ -14,6 +14,7 @@ namespace CourseCrawler.Tests
     {
         private StartUpFormViewModel _startUpFormViewModel;
 
+        // Init
         [TestInitialize()]
         public void Init()
         {

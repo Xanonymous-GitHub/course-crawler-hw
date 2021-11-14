@@ -16,6 +16,7 @@ namespace CourseCrawler.Tests
         const int testDataSourceIndex = 0;
         const int testEditingIndex = 3;
 
+        // Init
         [TestInitialize()]
         public void Init()
         {
