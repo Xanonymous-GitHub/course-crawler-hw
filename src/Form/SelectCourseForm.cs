@@ -63,16 +63,19 @@ namespace CourseCrawler
         }
 
         // Use _currentDepartmentName & _currentTableName to fetch new course table data then redraw the gridview.
-        private void UpdateCourseGridView()
+        private void UpdateCourseGridView(bool shouldReGenerateAllTabs = true)
         {
             _updatingTabs = true;
             CourseTableTabControl.SuspendLayout();
-            CourseTableTabControl.TabPages.Clear();
+
+            if (shouldReGenerateAllTabs) CourseTableTabControl.TabPages.Clear();
 
             List<string> allCombinedNames = SupportedDataSourceInfo.GetAllCombinedNames;
 
             for (int i = 0; i < SupportedDataSourceInfo.Amount; i++)
             {
+                if (!shouldReGenerateAllTabs && _currentShownTabIndex != i) continue;
+
                 List<string[]> courseRows = _formViewModel.GetCourseTableRows(i);
 
                 if (_currentShownTabIndex == i)
@@ -83,8 +86,22 @@ namespace CourseCrawler
 
                 if (courseRows != null)
                 {
-                    TabPage newTabPage = CreateNewTabPage(Consts.TabPageNameTitle + (i + 1).ToString(), allCombinedNames[i], _currentShownTabIndex == i ? CoursePanel : null);
-                    CourseTableTabControl.TabPages.Add(newTabPage);
+                    string targetTabPageName = Consts.TabPageNameTitle + (i + 1).ToString();
+                    
+                    if (shouldReGenerateAllTabs)
+                    {
+                        TabPage newTabPage = CreateNewTabPage(targetTabPageName, allCombinedNames[i], _currentShownTabIndex == i ? CoursePanel : null);
+                        CourseTableTabControl.TabPages.Add(newTabPage);
+                    }
+                    else
+                    {
+                        TabPage targetTabPage = CourseTableTabControl.TabPages[targetTabPageName];
+                        targetTabPage.SuspendLayout();
+                        targetTabPage.Controls.Clear();
+                        targetTabPage.Controls.Add(CoursePanel);
+                        targetTabPage.ResumeLayout();
+                        targetTabPage.Refresh();
+                    }
                 }
             }
 
@@ -178,7 +195,7 @@ namespace CourseCrawler
             if (selectedIndex >= 0 && CourseTableTabControl.TabPages.Count > 0 && !_updatingTabs)
             {
                 _currentShownTabIndex = selectedIndex;
-                UpdateCourseGridView();
+                UpdateCourseGridView(shouldReGenerateAllTabs: false);
             }
         }
 
