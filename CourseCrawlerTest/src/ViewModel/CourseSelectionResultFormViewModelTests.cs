@@ -11,18 +11,48 @@ namespace CourseCrawler.Tests
     [TestClass()]
     public class CourseSelectionResultFormViewModelTests
     {
+        private CourseSelectionResultFormViewModel _courseSelectionResultFormViewModel;
+        private SelectCourseFormViewModel _selectCourseFormViewModel;
+        const int testDataSourceIndex = 1;
+        const int testDisplayTabIndex = 5;
+
+        [TestInitialize()]
+        public void Init()
+        {
+            Pool.LoadCourses();
+            _courseSelectionResultFormViewModel = new();
+            _selectCourseFormViewModel = new();
+        }
+
         // CorrectlyCreateCourseSelectionResultFormViewModel
         [TestMethod()]
         public void CorrectlyCreateCourseSelectionResultFormViewModel()
         {
-            // Given
-            CourseSelectionResultFormViewModel courseSelectionResultFormViewModel;
+            Assert.IsNotNull(_courseSelectionResultFormViewModel);
+        }
 
-            // When
-            courseSelectionResultFormViewModel = new();
+        // CorrectlyGetSelectedCourseTableRows
+        [TestMethod()]
+        public void CorrectlyGetSelectedCourseTableRows()
+        {
+            _selectCourseFormViewModel.ChangeCourseCheckStatus(testDisplayTabIndex, true, testDataSourceIndex);
+            _selectCourseFormViewModel.HandleSelectCourseSubmission();
 
-            // Then
-            Assert.IsNotNull(courseSelectionResultFormViewModel);
+            List<string[]> rows = _courseSelectionResultFormViewModel.GetSelectedCourseTableRows();
+            Assert.IsNotNull(rows);
+            Assert.AreEqual(1, rows.Count);
+        }
+
+        // CorrectlyUnselectCourse
+        [TestMethod()]
+        public void CorrectlyUnselectCourse()
+        {
+            _selectCourseFormViewModel.ChangeCourseCheckStatus(testDisplayTabIndex, true, testDataSourceIndex);
+            _selectCourseFormViewModel.HandleSelectCourseSubmission();
+            const int courseRowIndexToBeUnselected = 0;
+            _courseSelectionResultFormViewModel.UnselectedCourse(courseRowIndexToBeUnselected);
+            List<string[]> rows = _courseSelectionResultFormViewModel.GetSelectedCourseTableRows();
+            Assert.IsNotNull(rows);
         }
     }
 }

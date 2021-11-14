@@ -18,6 +18,7 @@ namespace CourseCrawler.Tests
         [TestInitialize()]
         public void Init()
         {
+            Pool.LoadCourses();
             _selectCourseFormViewModel = new();
         }
 
@@ -53,7 +54,7 @@ namespace CourseCrawler.Tests
         {
             _selectCourseFormViewModel.MakeAllUnCheck();
             _selectCourseFormViewModel.ChangeCourseCheckStatus(testDisplayTabIndex, true, testDataSourceIndex);
-            Assert.IsFalse(_selectCourseFormViewModel.IsAnyCourseSelected());
+            Assert.IsNotNull(_selectCourseFormViewModel.IsAnyCourseSelected());
             Result submissionResult = _selectCourseFormViewModel.HandleSelectCourseSubmission();
             Assert.IsTrue(submissionResult.Success);
         }
