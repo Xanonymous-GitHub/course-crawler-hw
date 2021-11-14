@@ -29,6 +29,8 @@ namespace CourseCrawler
 
         private bool _selectionResultFormShowing = false;
 
+        private bool _updatingTabs = false;
+
         // ResizeGridViewRemarkColumnWidth
         private void ResizeGridViewRemarkColumnWidth()
         {
@@ -63,14 +65,34 @@ namespace CourseCrawler
         // Use _currentDepartmentName & _currentTableName to fetch new course table data then redraw the gridview.
         private void UpdateCourseGridView()
         {
-            List<string[]> courseRows = _formViewModel.GetCourseTableRows(_currentShownTabIndex);
-            if (courseRows != null)
+            _updatingTabs = true;
+            CourseTableTabControl.SuspendLayout();
+            CourseTableTabControl.TabPages.Clear();
+
+            List<string> allCombinedNames = SupportedDataSourceInfo.GetAllCombinedNames;
+
+            for (int i = 0; i < SupportedDataSourceInfo.Amount; i++)
             {
-                CourseGridView.Rows.Clear();
-                courseRows.ForEach(row => CourseGridView.Rows.Add(row));
-                ChangeButtonEnableStates();
-                CourseGridView.NotifyCurrentCellDirty(true);
+                List<string[]> courseRows = _formViewModel.GetCourseTableRows(i);
+
+                if (_currentShownTabIndex == i)
+                {
+                    CourseGridView.Rows.Clear();
+                    courseRows?.ForEach(row => CourseGridView.Rows.Add(row));
+                }
+
+                if (courseRows != null)
+                {
+                    TabPage newTabPage = CreateNewTabPage(Consts.TabPageNameTitle + (i + 1).ToString(), allCombinedNames[i], _currentShownTabIndex == i ? CoursePanel : null);
+                    CourseTableTabControl.TabPages.Add(newTabPage);
+                }
             }
+
+            ChangeButtonEnableStates();
+            CourseTableTabControl.ResumeLayout();
+            CourseTableTabControl.SelectedIndex = _currentShownTabIndex;
+            _updatingTabs = false;
+            CourseGridView.NotifyCurrentCellDirty(true);
         }
 
         // Event handler when CourseGridView CellContentClick.
@@ -135,22 +157,29 @@ namespace CourseCrawler
             GetCourseSelectResultbutton.Enabled = !_selectionResultFormShowing && _formViewModel.IsAnyCourseSelected();
         }
 
+        private TabPage CreateNewTabPage(string name, string text, Control content = null)
+        {
+            TabPage newTabPage = new();
+            newTabPage.SuspendLayout();
+            newTabPage.Name = name;
+            newTabPage.Text = text;
+            newTabPage.Controls.Clear();
+            if (content != null) newTabPage.Controls.Add(content);
+            newTabPage.ResumeLayout();
+            newTabPage.Refresh();
+            return newTabPage;
+        }
+
         // Event handler when CourseTableTabControl SelectedIndexChanged.
         private void CourseTableTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _currentShownTabIndex = CourseTableTabControl.SelectedIndex;
-            UpdateCourseGridView();
+            int selectedIndex = CourseTableTabControl.SelectedIndex;
 
-            TabPage newTabPage = CourseTableTabControl.TabPages[Consts.TabPageNameTitle + (_currentShownTabIndex + 1).ToString()];
-            
-            if (newTabPage.Controls.Count != 0) return;
-
-            newTabPage.SuspendLayout();
-            newTabPage.Controls.Clear();
-            newTabPage.Controls.Add(CoursePanel);
-            newTabPage.ResumeLayout();
-            newTabPage.Refresh();
-            CourseTableTabControl.Refresh();
+            if (selectedIndex >= 0 && CourseTableTabControl.TabPages.Count > 0 && !_updatingTabs)
+            {
+                _currentShownTabIndex = selectedIndex;
+                UpdateCourseGridView();
+            }
         }
 
         private void SelectCourseForm_FormClosing(object sender, FormClosingEventArgs e)
