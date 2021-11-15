@@ -44,7 +44,7 @@ namespace CourseCrawler
         }
 
         // LoadCourses
-        public void LoadCourses()
+        public void LoadCourses(bool shouldNotifyAllDepartmentListener = false)
         {
             for (int dataSourceIndex = 0; dataSourceIndex < SupportedDataSourceInfo.Amount; dataSourceIndex++)
             {
@@ -56,6 +56,12 @@ namespace CourseCrawler
             _coursesToBeEdit = getAllCourseUseCase.Do();
 
             DirectlyNotifyPropertyChanged(nameof(CoursesToBeEditStrList));
+
+            if (shouldNotifyAllDepartmentListener)
+            {
+                GetAllDepartmentsUseCase getAllDepartmentsUseCase = new();
+                getAllDepartmentsUseCase.Do().DirectlyNotifyPropertyChanged();
+            }
         }
 
         // FindGroupIndexPairIn2dList

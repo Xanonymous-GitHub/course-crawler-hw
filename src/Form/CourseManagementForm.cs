@@ -318,7 +318,7 @@ namespace CourseCrawler
                 SupportedDataSourceInfo.AddSourceInfo(source);
             }
 
-            _formViewModel.LoadCourses();
+            _formViewModel.LoadCourses(shouldNotifyAllDepartmentListener: true);
             _formViewModel.GenerateEmptyFieldContens();
             SetupDefaultStates();
             CourseListBox.ClearSelected();
