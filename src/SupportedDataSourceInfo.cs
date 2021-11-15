@@ -27,5 +27,12 @@ namespace CourseCrawler
 
         // GetAccessNumberStr
         public static string GetAccessNumberStr(int supportedDataSourceIndex) => Current[supportedDataSourceIndex].accessNumberStr;
+
+        // AddSourceInfo
+        public static void AddSourceInfo((string, string, string) info)
+        {
+            if (!Current.Contains(info))
+            Current.Add(info);
+        }
     }
 }

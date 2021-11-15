@@ -76,21 +76,22 @@ namespace CourseCrawler
             return courses;
         }
 
+        // GenerateCourseTable
+        private CourseTable GenerateCourseTable(List<ICourse> courses) => new(_tableName, courses);
+
         // GenerateDepartment
-        private Department GenerateDepartment(List<ICourse> courses)
+        private Department GenerateDepartment(CourseTable courseTable)
         {
             GetDepartmentUseCase getDepartmentUseCase = new(_departmentName);
             Department department = getDepartmentUseCase.Do();
 
-            CourseTable table = new(_tableName, courses);
-
             if (department == null)
             {
-                department = new(_departmentName, table);
+                department = new(_departmentName, courseTable);
             }
             else
             {
-                department.CourseTables[_tableName] = table;
+                department.CourseTables[_tableName] = courseTable;
             }
 
             return department;
@@ -103,7 +104,7 @@ namespace CourseCrawler
             if (courseTableRows == null) return null;
 
             List<ICourse> courses = GenerateCourses(courseTableRows);
-            Department department = GenerateDepartment(courses);
+            CourseTable courseTable = GenerateCourseTable(courses);
 
             ObservableDictionary<string, Department> allDepartments;
             if (_store.Exist(Consts.AllDepartments))
@@ -116,7 +117,20 @@ namespace CourseCrawler
             }
 
             allDepartments.ShouldNotifyChanges = false;
-            allDepartments.Add(_departmentName, department);
+
+            Department department;
+            
+            if (allDepartments.ContainsKey(_departmentName))
+            {
+                allDepartments[_departmentName].CourseTables.Add(_tableName, courseTable);
+                department = allDepartments[_departmentName];
+            }
+            else
+            {
+                department = GenerateDepartment(courseTable);
+                allDepartments.Add(_departmentName, department);
+            }
+            
             allDepartments.ShouldNotifyChanges = true;
 
             _store.Update(Consts.AllDepartments, allDepartments);

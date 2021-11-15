@@ -18,7 +18,6 @@ namespace CourseCrawler
 
         public int DefaultCourseEnabledComboBoxSelectedIndex = 0;
         public int DefaultCourseListBoxSelectedIndex = -1;
-        public readonly List<string> CourseClassComboBoxItems = SupportedDataSourceInfo.GetAllCombinedNames;
         public readonly List<string> CourseTypeComboBoxItems = Consts.CourseSymbols.Skip(1).ToList();
 
         private List<BindingList<ICourse>> _coursesToBeEdit;
@@ -45,7 +44,7 @@ namespace CourseCrawler
         }
 
         // LoadCourses
-        private void LoadCourses()
+        public void LoadCourses()
         {
             for (int dataSourceIndex = 0; dataSourceIndex < SupportedDataSourceInfo.Amount; dataSourceIndex++)
             {

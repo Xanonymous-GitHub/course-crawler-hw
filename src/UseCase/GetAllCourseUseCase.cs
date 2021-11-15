@@ -18,15 +18,14 @@ namespace CourseCrawler
 
             List<BindingList<ICourse>> allCourses = new(SupportedDataSourceInfo.Amount);
 
-            foreach (Department department in allDepartments.Values)
+            for (int i = 0; i < SupportedDataSourceInfo.Amount; i++)
             {
-                foreach (CourseTable table in department.CourseTables.Values)
+                GetCourseTableUseCase getCourseTableUseCase = new(i);
+                CourseTable table = getCourseTableUseCase.Do();
+                allCourses.Add(new());
+                foreach (ICourse Course in table.Courses)
                 {
-                    allCourses.Add(new());
-                    foreach (ICourse Course in table.Courses)
-                    {
-                        allCourses.Last().Add(Course);
-                    }
+                    allCourses.Last().Add(Course);
                 }
             }
 

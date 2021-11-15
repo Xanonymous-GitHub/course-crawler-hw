@@ -40,7 +40,6 @@ namespace CourseCrawler
         {
             _displayStatus = CourseManagementFormDisplayStatus.NotSpecifiedCourseToBeEdited;
             CourseEnabledComboBox.SelectedIndex = _formViewModel.DefaultCourseEnabledComboBoxSelectedIndex;
-            _formViewModel.CourseClassComboBoxItems.ForEach(name => CourseClassComboBox.Items.Add(name));
             _formViewModel.CourseTypeComboBoxItems.ForEach(symbol => CourseTypeComboBox.Items.Add(symbol));
             UpdateCourseWeekTimeCheckBoxGridView();
             TriggerFieldValidationAndUseResult();
@@ -101,6 +100,8 @@ namespace CourseCrawler
         // UpdateDisplayedCompoments
         private void UpdateDisplayedCompoments(object sender, PropertyChangedEventArgs e)
         {
+            CourseClassComboBox.Items.Clear();
+            SupportedDataSourceInfo.GetAllCombinedNames.ForEach(name => CourseClassComboBox.Items.Add(name));
             ICourse course = _formViewModel.CurrentEditingContent.course;
             int dataSourceIndex = _formViewModel.CurrentEditingContent.dataSourceIndex;
             _shouldSkipValidation = true;
@@ -117,7 +118,7 @@ namespace CourseCrawler
             CourseClassComboBox.SelectedIndex = dataSourceIndex;
 
             bool hasCourseHour = int.TryParse(course?.Hour, out int hour);
-            CourseHourComboBox.SelectedIndex = hasCourseHour ? hour - 1 : -1;
+            CourseHourComboBox.SelectedIndex = hasCourseHour ? Math.Min(hour - 1, Consts.CourseHourComboBoxMaxSelectIndex) : -1;
 
             UpdateCourseWeekTimeCheckBoxGridView();
             _shouldSkipValidation = false;
@@ -292,5 +293,35 @@ namespace CourseCrawler
 
         // CourseClassComboBox_SelectedIndexChanged
         private void CourseClassComboBox_SelectedIndexChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
+
+        /// Import All CSIE Course from NTUT in academic 110.
+        /// 
+        /// <summary>
+        /// Because we don't know what year should be imported and the requirement spec did not say what 'all' means,
+        /// so I will use the 110 year and 'all' CSIE courses in this feature.
+        /// 
+        /// Suggest make the spec more clear next time.
+        /// </summary>
+        private void ImportAllCSIECourseButton_Click(object sender, EventArgs e)
+        {
+            List<(string, string, string)> newDataSourcesToBeImported = new()
+            {
+                ("資工", "一", "2676"),
+                ("資工", "二", "2550"),
+                // The "資工三" is a default imported course table, so we don't need to import it again here.
+                ("資工", "四", "2314"),
+                ("資工", "所", "2701"),
+            };
+
+            foreach ((string, string, string) source in newDataSourcesToBeImported)
+            {
+                SupportedDataSourceInfo.AddSourceInfo(source);
+            }
+
+            _formViewModel.LoadCourses();
+            _formViewModel.GenerateEmptyFieldContens();
+            SetupDefaultStates();
+            CourseListBox.ClearSelected();
+        }
     }
 }

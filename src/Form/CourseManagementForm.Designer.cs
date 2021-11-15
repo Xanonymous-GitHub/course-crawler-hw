@@ -32,6 +32,7 @@
             this.CommingSoonLabel = new System.Windows.Forms.Label();
             this.ManagementTabControll = new System.Windows.Forms.TabControl();
             this.CourseManageTabPage = new System.Windows.Forms.TabPage();
+            this.ImportAllCSIECourseButton = new System.Windows.Forms.Button();
             this.SaveCourseButton = new System.Windows.Forms.Button();
             this.CourseListBox = new System.Windows.Forms.ListBox();
             this.EditCourseGroupBox = new System.Windows.Forms.GroupBox();
@@ -70,7 +71,6 @@
             this.SaturdaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.AddCourseButton = new System.Windows.Forms.Button();
             this.ClassManageTabPage = new System.Windows.Forms.TabPage();
-            this.ImportAllCSIECourseButton = new System.Windows.Forms.Button();
             this.ManagementTabControll.SuspendLayout();
             this.CourseManageTabPage.SuspendLayout();
             this.EditCourseGroupBox.SuspendLayout();
@@ -106,11 +106,21 @@
             this.CourseManageTabPage.Controls.Add(this.AddCourseButton);
             this.CourseManageTabPage.Location = new System.Drawing.Point(8, 39);
             this.CourseManageTabPage.Name = "CourseManageTabPage";
-            this.CourseManageTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.CourseManageTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.CourseManageTabPage.Size = new System.Drawing.Size(1861, 1111);
             this.CourseManageTabPage.TabIndex = 0;
             this.CourseManageTabPage.Text = "課程管理";
             this.CourseManageTabPage.UseVisualStyleBackColor = true;
+            // 
+            // ImportAllCSIECourseButton
+            // 
+            this.ImportAllCSIECourseButton.Location = new System.Drawing.Point(272, 1003);
+            this.ImportAllCSIECourseButton.Name = "ImportAllCSIECourseButton";
+            this.ImportAllCSIECourseButton.Size = new System.Drawing.Size(284, 97);
+            this.ImportAllCSIECourseButton.TabIndex = 4;
+            this.ImportAllCSIECourseButton.Text = "匯入資工系全部課程";
+            this.ImportAllCSIECourseButton.UseVisualStyleBackColor = true;
+            this.ImportAllCSIECourseButton.Click += new System.EventHandler(this.ImportAllCSIECourseButton_Click);
             // 
             // SaveCourseButton
             // 
@@ -181,7 +191,7 @@
             this.CourseClassComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CourseClassComboBox.FormattingEnabled = true;
             this.CourseClassComboBox.Location = new System.Drawing.Point(400, 392);
-            this.CourseClassComboBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseClassComboBox.Margin = new System.Windows.Forms.Padding(5);
             this.CourseClassComboBox.Name = "CourseClassComboBox";
             this.CourseClassComboBox.Size = new System.Drawing.Size(191, 32);
             this.CourseClassComboBox.TabIndex = 22;
@@ -209,7 +219,7 @@
             "5",
             "6"});
             this.CourseHourComboBox.Location = new System.Drawing.Point(101, 392);
-            this.CourseHourComboBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseHourComboBox.Margin = new System.Windows.Forms.Padding(5);
             this.CourseHourComboBox.Name = "CourseHourComboBox";
             this.CourseHourComboBox.Size = new System.Drawing.Size(191, 32);
             this.CourseHourComboBox.TabIndex = 20;
@@ -228,7 +238,7 @@
             // CourseRemarkTextBox
             // 
             this.CourseRemarkTextBox.Location = new System.Drawing.Point(77, 301);
-            this.CourseRemarkTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseRemarkTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.CourseRemarkTextBox.Name = "CourseRemarkTextBox";
             this.CourseRemarkTextBox.Size = new System.Drawing.Size(906, 36);
             this.CourseRemarkTextBox.TabIndex = 18;
@@ -247,7 +257,7 @@
             // CourseLanguageTextBox
             // 
             this.CourseLanguageTextBox.Location = new System.Drawing.Point(733, 210);
-            this.CourseLanguageTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseLanguageTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.CourseLanguageTextBox.Name = "CourseLanguageTextBox";
             this.CourseLanguageTextBox.Size = new System.Drawing.Size(546, 36);
             this.CourseLanguageTextBox.TabIndex = 16;
@@ -266,7 +276,7 @@
             // CourseTAsTextBox
             // 
             this.CourseTAsTextBox.Location = new System.Drawing.Point(125, 210);
-            this.CourseTAsTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseTAsTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.CourseTAsTextBox.Name = "CourseTAsTextBox";
             this.CourseTAsTextBox.Size = new System.Drawing.Size(479, 36);
             this.CourseTAsTextBox.TabIndex = 15;
@@ -287,7 +297,7 @@
             this.CourseTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CourseTypeComboBox.FormattingEnabled = true;
             this.CourseTypeComboBox.Location = new System.Drawing.Point(1067, 126);
-            this.CourseTypeComboBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseTypeComboBox.Margin = new System.Windows.Forms.Padding(5);
             this.CourseTypeComboBox.Name = "CourseTypeComboBox";
             this.CourseTypeComboBox.Size = new System.Drawing.Size(212, 32);
             this.CourseTypeComboBox.TabIndex = 13;
@@ -306,7 +316,7 @@
             // CourseTeacherTextBox
             // 
             this.CourseTeacherTextBox.Location = new System.Drawing.Point(710, 123);
-            this.CourseTeacherTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseTeacherTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.CourseTeacherTextBox.Name = "CourseTeacherTextBox";
             this.CourseTeacherTextBox.Size = new System.Drawing.Size(273, 36);
             this.CourseTeacherTextBox.TabIndex = 11;
@@ -325,7 +335,7 @@
             // CourseCreditTextBox
             // 
             this.CourseCreditTextBox.Location = new System.Drawing.Point(366, 123);
-            this.CourseCreditTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseCreditTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.CourseCreditTextBox.Name = "CourseCreditTextBox";
             this.CourseCreditTextBox.Size = new System.Drawing.Size(238, 36);
             this.CourseCreditTextBox.TabIndex = 9;
@@ -344,7 +354,7 @@
             // CourseLevelTextBox
             // 
             this.CourseLevelTextBox.Location = new System.Drawing.Point(101, 123);
-            this.CourseLevelTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseLevelTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.CourseLevelTextBox.Name = "CourseLevelTextBox";
             this.CourseLevelTextBox.Size = new System.Drawing.Size(158, 36);
             this.CourseLevelTextBox.TabIndex = 7;
@@ -353,7 +363,7 @@
             // CourseNameTextBox
             // 
             this.CourseNameTextBox.Location = new System.Drawing.Point(757, 32);
-            this.CourseNameTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseNameTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.CourseNameTextBox.Name = "CourseNameTextBox";
             this.CourseNameTextBox.Size = new System.Drawing.Size(522, 36);
             this.CourseNameTextBox.TabIndex = 6;
@@ -362,7 +372,7 @@
             // CourseNumberTextBox
             // 
             this.CourseNumberTextBox.Location = new System.Drawing.Point(334, 32);
-            this.CourseNumberTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CourseNumberTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.CourseNumberTextBox.Name = "CourseNumberTextBox";
             this.CourseNumberTextBox.Size = new System.Drawing.Size(270, 36);
             this.CourseNumberTextBox.TabIndex = 5;
@@ -532,20 +542,11 @@
             // 
             this.ClassManageTabPage.Location = new System.Drawing.Point(8, 39);
             this.ClassManageTabPage.Name = "ClassManageTabPage";
-            this.ClassManageTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.ClassManageTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.ClassManageTabPage.Size = new System.Drawing.Size(1861, 1111);
             this.ClassManageTabPage.TabIndex = 1;
             this.ClassManageTabPage.Text = "班級管理";
             this.ClassManageTabPage.UseVisualStyleBackColor = true;
-            // 
-            // ImportAllCSIECourseButton
-            // 
-            this.ImportAllCSIECourseButton.Location = new System.Drawing.Point(272, 1003);
-            this.ImportAllCSIECourseButton.Name = "ImportAllCSIECourseButton";
-            this.ImportAllCSIECourseButton.Size = new System.Drawing.Size(284, 97);
-            this.ImportAllCSIECourseButton.TabIndex = 4;
-            this.ImportAllCSIECourseButton.Text = "匯入資工系全部課程";
-            this.ImportAllCSIECourseButton.UseVisualStyleBackColor = true;
             // 
             // CourseManagementForm
             // 
