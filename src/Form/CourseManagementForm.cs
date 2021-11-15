@@ -305,7 +305,7 @@ namespace CourseCrawler
         /// 
         /// Suggest make the spec more clear next time.
         /// </summary>
-        private void ImportAllCSIECourseButton_Click(object sender, EventArgs e)
+        private async void ImportAllCSIECourseButton_Click(object sender, EventArgs e)
         {
             List<(string, string, string)> newDataSourcesToBeImported = new()
             {
@@ -321,7 +321,10 @@ namespace CourseCrawler
                 SupportedDataSourceInfo.AddSourceInfo(source);
             }
 
+            await Task.Run(() => new ProgressForm().ShowDialog());
+
             _formViewModel.LoadCourses(shouldNotifyAllDepartmentListener: true);
+
             ImportAllCSIECourseButton.Enabled = false;
             _formViewModel.GenerateEmptyFieldContens();
             SetupDefaultStates();
