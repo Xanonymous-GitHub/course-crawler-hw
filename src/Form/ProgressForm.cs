@@ -36,7 +36,7 @@ namespace CourseCrawler
             ProgressBar.Step = _expectProgressBarStep;
         }
 
-        private async void StartProgress(int milliSeconds)
+        private void StartProgress(int milliSeconds)
         {
             // await Task.Run(() => null);
             if (!ProgressTimer.Enabled)
@@ -47,7 +47,7 @@ namespace CourseCrawler
             }
         }
 
-        private async void ProgressForm_Load(object sender, EventArgs e)
+        private void ProgressForm_Load(object sender, EventArgs e)
         {
             StartProgress(_expectFakeProgressFinishDurationInSeconds * 1000);
             // await _task?.Invoke();
