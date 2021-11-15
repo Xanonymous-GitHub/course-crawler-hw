@@ -319,6 +319,7 @@ namespace CourseCrawler
             }
 
             _formViewModel.LoadCourses(shouldNotifyAllDepartmentListener: true);
+            ImportAllCSIECourseButton.Enabled = false;
             _formViewModel.GenerateEmptyFieldContens();
             SetupDefaultStates();
             CourseListBox.ClearSelected();
