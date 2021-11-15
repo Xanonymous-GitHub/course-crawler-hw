@@ -50,10 +50,11 @@ namespace CourseCrawler
             List<List<string>> tableRows = CourseTableDto.FromTableToRows(currentTable);
             List<List<string>> tableRowsForShow = new();
             List<int> selectedCourseIndex = GetSelectedCourseIndexes(dataSourceIndex);
+            List<int> disabledCourseIndex = GetDisabledCourseIndexes(dataSourceIndex);
             
             for (int i = 0; i < tableRows.Count; i++)
             {
-                if (selectedCourseIndex.Contains(i)) continue;
+                if (selectedCourseIndex.Contains(i) || disabledCourseIndex.Contains(i)) continue;
 
                 List<string> rowWithCheckState = new() { currentTable.Courses[i].IsChecked.ToString() };
                 foreach(string colValue in tableRows[i])
@@ -193,6 +194,18 @@ namespace CourseCrawler
                 if (currentCourses[i].IsSelected) selectedStatus.Add(i);
             }
             return selectedStatus;
+        }
+
+        // GetDisabledCourseIndexes
+        public List<int> GetDisabledCourseIndexes(int displayIndex)
+        {
+            List<int> disableStatus = new();
+            BindingList<ICourse> currentCourses = GetCourseTable(displayIndex).Courses;
+            for (int i = 0; i < currentCourses.Count; i++)
+            {
+                if (!currentCourses[i].IsEnabled) disableStatus.Add(i);
+            }
+            return disableStatus;
         }
 
         // Make all given courses to selected state and save the selected course references to Store.

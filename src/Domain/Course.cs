@@ -29,11 +29,13 @@ namespace CourseCrawler
             string attachedStudentAmount = "0",
             bool isExperiment = false,
             bool isSelected = false,
-            bool isChecked = false
+            bool isChecked = false,
+            bool isEnabled = true
         )
         {
             _isSelected = isSelected;
             _isChecked = isChecked;
+            _isEnabled = isEnabled;
             _serial = serial;
             _name = name;
             _level = level;
@@ -61,6 +63,7 @@ namespace CourseCrawler
 
         private bool _isSelected = false;
         private bool _isChecked = false;
+        private bool _isEnabled = true;
         private string _serial;
         private string _name;
         private string _level;
@@ -101,6 +104,12 @@ namespace CourseCrawler
         {
             get => _isChecked;
             set => SetField(ref _isChecked, value);
+        }
+
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set => SetField(ref _isEnabled, value);
         }
 
         public string Serial

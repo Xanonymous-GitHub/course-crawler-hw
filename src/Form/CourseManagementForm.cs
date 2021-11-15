@@ -116,6 +116,7 @@ namespace CourseCrawler
             CourseLanguageTextBox.Text = course?.Language.ToOriginString();
             CourseTypeComboBox.SelectedIndex = CourseTypeComboBox.Items.IndexOf(course?.Type.ToOriginString() ?? string.Empty);
             CourseClassComboBox.SelectedIndex = dataSourceIndex;
+            CourseEnabledComboBox.SelectedIndex = course?.IsEnabled == true ? 0 : 1;
 
             bool hasCourseHour = int.TryParse(course?.Hour, out int hour);
             CourseHourComboBox.SelectedIndex = hasCourseHour ? Math.Min(hour - 1, Consts.CourseHourComboBoxMaxSelectIndex) : -1;
@@ -153,6 +154,7 @@ namespace CourseCrawler
                 CourseTypeComboBox.SelectedIndex,
                 CourseHourComboBox.SelectedIndex,
                 CourseClassComboBox.SelectedIndex,
+                CourseEnabledComboBox.SelectedIndex,
             };
 
             if (expectSelectedComboBoxIndexes.Contains(-1)) return false;
@@ -243,7 +245,8 @@ namespace CourseCrawler
                 CourseHourComboBox.Items[CourseHourComboBox.SelectedIndex].ToString(),
                 CourseClassComboBox.SelectedIndex,
                 _courseTimeStates,
-                _displayStatus == CourseManagementFormDisplayStatus.EditingNewCourseAndValid
+                _displayStatus == CourseManagementFormDisplayStatus.EditingNewCourseAndValid,
+                isEnabled: CourseEnabledComboBox.SelectedIndex != 1
             );
 
             CourseListBox.SelectedIndex = _formViewModel.DefaultCourseListBoxSelectedIndex;
@@ -324,5 +327,8 @@ namespace CourseCrawler
             SetupDefaultStates();
             CourseListBox.ClearSelected();
         }
+
+        // CourseEnabledComboBox_SelectedIndexChanged
+        private void CourseEnabledComboBox_SelectedIndexChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
     }
 }

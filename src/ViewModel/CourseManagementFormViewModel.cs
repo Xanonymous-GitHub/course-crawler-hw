@@ -122,7 +122,7 @@ namespace CourseCrawler
             string newCredit, string newTeachers, string newType,
             string newTas, string newLanguage, string newRemark,
             string newHour, int newDataSourceIndex, List<List<bool>> newTimes,
-            bool isNewCourse = false
+            bool isNewCourse = false, bool isEnabled = true
         )
         {
             // FIXME: Don't write this ugly code ...
@@ -154,6 +154,7 @@ namespace CourseCrawler
 
             modifiedCourse.IsChecked = originCourse?.IsChecked ?? false;
             modifiedCourse.IsSelected = originCourse?.IsSelected ?? false;
+            modifiedCourse.IsEnabled = isEnabled;
 
             if (isNewCourse || newDataSourceIndex != CurrentEditingContent.dataSourceIndex)
             {

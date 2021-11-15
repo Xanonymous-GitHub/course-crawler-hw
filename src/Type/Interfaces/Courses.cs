@@ -11,6 +11,7 @@ namespace CourseCrawler
         public void MakeUnselected();
         public bool IsSelected { get; set; }
         public bool IsChecked { get; set; }
+        public bool IsEnabled { get; set; }
         public string Serial { get; set; }
         public string Name { get; set; }
         public string Level { get; set; }

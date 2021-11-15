@@ -416,6 +416,7 @@
             this.CourseEnabledComboBox.Name = "CourseEnabledComboBox";
             this.CourseEnabledComboBox.Size = new System.Drawing.Size(225, 32);
             this.CourseEnabledComboBox.TabIndex = 1;
+            this.CourseEnabledComboBox.SelectedIndexChanged += new System.EventHandler(this.CourseEnabledComboBox_SelectedIndexChanged);
             // 
             // CourseWeekTimeCheckBoxGridView
             // 
