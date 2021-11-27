@@ -13,6 +13,7 @@ namespace CourseCrawler.Tests
     public class StartUpFormTests
     {
         private readonly Robot _robot;
+        private bool executed = false;
 
         [Obsolete]
         public StartUpFormTests() 
@@ -23,7 +24,22 @@ namespace CourseCrawler.Tests
         [TestMethod()]
         public void StartUpFormTest()
         {
-            Assert.IsTrue(true);
+            if (executed) return;
+
+            const string TestNameSelectCourseButton = "Select Course";
+            _robot.ClickButton(TestNameSelectCourseButton);
+            _robot.AssertEnable(TestNameSelectCourseButton, false);
+
+            const string TestNameManageCourseButton = "Manage Course";
+            _robot.ClickButton(TestNameManageCourseButton);
+            _robot.AssertEnable(TestNameManageCourseButton, false);
+        }
+
+        [TestCleanup()]
+        public void Cleanup() 
+        {
+            _robot.CleanUp();
+            executed = true;
         }
     }
 }
