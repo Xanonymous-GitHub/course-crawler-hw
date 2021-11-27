@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security.AccessControl;
+using System.Security.Principal;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,7 +20,16 @@ namespace CourseCrawler
         [STAThread]
         static void Main()
         {
-            if (Environment.OSVersion.Version.Major >= 6) 
+            string appGuid =
+            ((GuidAttribute)Assembly.GetExecutingAssembly().
+                GetCustomAttributes(typeof(GuidAttribute), false).
+                    GetValue(0)).Value.ToString();
+
+            using Mutex mutex = new(false, "Global\\" + appGuid);
+
+            if (!mutex.WaitOne(0, false)) return;
+
+            if (Environment.OSVersion.Version.Major >= 6)
             {
                 SetProcessDPIAware();
             }
