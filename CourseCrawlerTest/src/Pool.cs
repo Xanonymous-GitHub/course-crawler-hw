@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.IO;
 
 namespace CourseCrawler.Tests
 {
@@ -41,6 +43,45 @@ namespace CourseCrawler.Tests
                 GetCourseTableUseCase getCourseTableUseCase = new(dataSourceIndex);
                 getCourseTableUseCase.Do();
             }
+        }
+
+        // ResloveExecutorPath
+        public static string ResloveExecutorPath([CallerFilePath] string callerFilePath = null) => callerFilePath;
+
+        // GoUpperLevelUntilCurrentFolderNameIs
+        public static string GoUpperLevelUntilCurrentFolderNameIs(string targetFolderName, string currentPath = null)
+        {
+            Assert.IsFalse(currentPath == null || !currentPath.Contains(targetFolderName));
+
+            string currentFolderName = new DirectoryInfo(currentPath).Name;
+            if (currentFolderName == targetFolderName) return Directory.GetCurrentDirectory();
+
+            for (DirectoryInfo parentDirInfo; (parentDirInfo = Directory.GetParent(currentPath)) != null;) 
+            {
+                if (parentDirInfo.Name == targetFolderName) return parentDirInfo.FullName;
+
+                currentPath = parentDirInfo.FullName;
+            }
+
+            return null;
+        }
+
+        // GetExecutablePath
+        public static string GetExecutableDebugPath(string currentPath) 
+        {
+            string testProjectRootPath = GoUpperLevelUntilCurrentFolderNameIs(Consts.NameCourseCrawlerTest, currentPath);
+
+            Assert.IsNotNull(testProjectRootPath);
+
+            string projectRootPath = Directory.GetParent(testProjectRootPath)?.FullName;
+
+            Assert.IsNotNull(projectRootPath);
+
+            string executablePath = projectRootPath + Consts.PathExecutableDebug;
+
+            Assert.IsTrue(File.Exists(executablePath));
+
+            return executablePath;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CourseCrawler
 {
-    internal static class Consts
+    public static class Consts
     {
         public static readonly string CoursePagePath = "https://aps.ntut.edu.tw/course/tw/Subj.jsp?format=-4&year=110&sem=1&code=";
         public static readonly string[] StringSplitSeperators = new[] { "\r\n", "\r", "\n", " ", "\n\r" };
@@ -44,5 +44,9 @@ namespace CourseCrawler
         public static readonly string MsgDeadArea = "This area should not be proccessed!";
         public static readonly string MsgFailToFetchResources = "Fail to fetch resources. Is the Internet works normally??";
         public static readonly int CourseHourComboBoxMaxSelectIndex = 5;
+        public static readonly string NameCourseCrawlerTest = "CourseCrawlerTest";
+        public static readonly string PathExecutableRoot = "\\bin";
+        public static readonly string PathExecutableDebug = "\\bin\\Debug\\CourseCrawler.exe";
+        public static readonly string PathExecutableDRelease = "\\bin\\Release\\CourseCrawler.exe";
     }
 }
