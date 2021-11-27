@@ -45,9 +45,6 @@ namespace CourseCrawler.Tests
             }
         }
 
-        // ResloveExecutorPath
-        public static string ResloveExecutorPath([CallerFilePath] string callerFilePath = null) => callerFilePath;
-
         // GoUpperLevelUntilCurrentFolderNameIs
         public static string GoUpperLevelUntilCurrentFolderNameIs(string targetFolderName, string currentPath = null)
         {
@@ -67,9 +64,9 @@ namespace CourseCrawler.Tests
         }
 
         // GetExecutablePath
-        public static string GetExecutableDebugPath(string currentPath) 
+        public static string GetExecutableDebugPath([CallerFilePath] string callerFilePath = null) 
         {
-            string testProjectRootPath = GoUpperLevelUntilCurrentFolderNameIs(Consts.NameCourseCrawlerTest, currentPath);
+            string testProjectRootPath = GoUpperLevelUntilCurrentFolderNameIs(Consts.NameCourseCrawlerTest, callerFilePath);
 
             Assert.IsNotNull(testProjectRootPath);
 

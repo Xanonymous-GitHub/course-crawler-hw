@@ -17,7 +17,7 @@ namespace CourseCrawler.Tests
         [Obsolete]
         public StartUpFormTests() 
         {
-            _robot = new(Pool.GetExecutableDebugPath(Pool.ResloveExecutorPath()), nameof(StartUpForm));
+            _robot = new(Pool.GetExecutableDebugPath(), nameof(StartUpForm));
         }
 
         [TestMethod()]
