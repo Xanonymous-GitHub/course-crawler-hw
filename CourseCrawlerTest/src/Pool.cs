@@ -63,7 +63,13 @@ namespace CourseCrawler.Tests
             return null;
         }
 
-        // GetExecutablePath
+        /// GetExecutablePath
+        /// 
+        /// <summary>
+        /// Get the built exe file's absolute file path in current env.
+        /// This function can only be called in a file that under the <value> Consts.NameCourseCrawlerTest </value> folder.
+        /// And the executable file name should always be the same as the SLN name.
+        /// </summary>
         public static string GetExecutableDebugPath([CallerFilePath] string callerFilePath = null) 
         {
             string testProjectRootPath = GoUpperLevelUntilCurrentFolderNameIs(Consts.NameCourseCrawlerTest, callerFilePath);
