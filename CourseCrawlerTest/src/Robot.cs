@@ -77,7 +77,7 @@ namespace CourseCrawler.Tests
         }
 
         // test
-        public void Sleep(Double time)
+        public void Sleep(double time)
         {
             Thread.Sleep(TimeSpan.FromSeconds(time));
         }
