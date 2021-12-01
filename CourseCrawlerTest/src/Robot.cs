@@ -112,9 +112,8 @@ namespace CourseCrawler.Tests
         }
 
         // test
-        public void ClickDataGridViewCellBy(string name, int rowIndex, string columnName)
+        public void ClickDataGridViewCellBy(int rowIndex, string columnName)
         {
-            _driver.FindElementByAccessibilityId(name);
             _driver.FindElementByName($"{columnName} 資料列 {rowIndex}").Click();
         }
 
@@ -160,6 +159,28 @@ namespace CourseCrawler.Tests
             {
                 Assert.AreEqual(rowCount, gridPattern.Current.RowCount);
             }
+        }
+
+        // test
+        public string[] GetDataGridViewRowDataStrings(string id, int rowIndex)
+        {
+            //var dataGridView = _driver.FindElementByAccessibilityId(id);
+            ReadOnlyCollection<AppiumWebElement> rowDatas = _driver.FindElementByAccessibilityId(id).FindElementByName($"資料列 {rowIndex}").FindElementsByXPath("//*");
+            List<string> stringsList = new();
+
+            for (int i = 1; i < rowDatas.Count; i++)
+            {
+                stringsList.Add(rowDatas[i].Text.Replace("(null)", ""));
+            }
+
+            return stringsList.ToArray();
+        }
+
+        // test
+        public string GetMessageBoxText()
+        {
+            WindowsElement element = _driver.FindElementByClassName("Static");
+            return element.Text;
         }
     }
 }
