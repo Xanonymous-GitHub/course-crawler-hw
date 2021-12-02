@@ -182,5 +182,19 @@ namespace CourseCrawler.Tests
             WindowsElement element = _driver.FindElementByClassName("Static");
             return element.Text;
         }
+
+        // test
+        public void ClickByName(string name)
+        {
+            _driver.FindElementByName(name).Click();
+        }
+
+        // test
+        public void InputValueToTextBox(string id, string text)
+        {
+            WindowsElement element = _driver.FindElementByAccessibilityId(id);
+            element.Clear();
+            element.SendKeys(text);
+        }
     }
 }

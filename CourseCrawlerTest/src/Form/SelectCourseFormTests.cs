@@ -73,7 +73,7 @@ namespace CourseCrawler.Tests
         }
 
         // Cleanup
-        // [TestCleanup()]
+        [TestCleanup()]
         public void Cleanup()
         {
             _robot.CleanUp();
