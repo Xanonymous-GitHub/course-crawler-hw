@@ -71,10 +71,20 @@
             this.SaturdaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.AddCourseButton = new System.Windows.Forms.Button();
             this.ClassManageTabPage = new System.Windows.Forms.TabPage();
+            this.ClassListBox = new System.Windows.Forms.ListBox();
+            this.ClassGroupBox = new System.Windows.Forms.GroupBox();
+            this.ClassNameLabel = new System.Windows.Forms.Label();
+            this.CourseInClassLabel = new System.Windows.Forms.Label();
+            this.CourseInClassListBox = new System.Windows.Forms.ListBox();
+            this.ClassNameTextBox = new System.Windows.Forms.TextBox();
+            this.AddClassToEditButton = new System.Windows.Forms.Button();
+            this.AddClassButton = new System.Windows.Forms.Button();
             this.ManagementTabControll.SuspendLayout();
             this.CourseManageTabPage.SuspendLayout();
             this.EditCourseGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CourseWeekTimeCheckBoxGridView)).BeginInit();
+            this.ClassManageTabPage.SuspendLayout();
+            this.ClassGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // CommingSoonLabel
@@ -541,6 +551,10 @@
             // 
             // ClassManageTabPage
             // 
+            this.ClassManageTabPage.Controls.Add(this.AddClassButton);
+            this.ClassManageTabPage.Controls.Add(this.AddClassToEditButton);
+            this.ClassManageTabPage.Controls.Add(this.ClassGroupBox);
+            this.ClassManageTabPage.Controls.Add(this.ClassListBox);
             this.ClassManageTabPage.Location = new System.Drawing.Point(8, 39);
             this.ClassManageTabPage.Name = "ClassManageTabPage";
             this.ClassManageTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -548,6 +562,80 @@
             this.ClassManageTabPage.TabIndex = 1;
             this.ClassManageTabPage.Text = "班級管理";
             this.ClassManageTabPage.UseVisualStyleBackColor = true;
+            // 
+            // ClassListBox
+            // 
+            this.ClassListBox.FormattingEnabled = true;
+            this.ClassListBox.ItemHeight = 24;
+            this.ClassListBox.Location = new System.Drawing.Point(6, 6);
+            this.ClassListBox.Name = "ClassListBox";
+            this.ClassListBox.Size = new System.Drawing.Size(550, 988);
+            this.ClassListBox.TabIndex = 3;
+            // 
+            // ClassGroupBox
+            // 
+            this.ClassGroupBox.Controls.Add(this.ClassNameTextBox);
+            this.ClassGroupBox.Controls.Add(this.CourseInClassListBox);
+            this.ClassGroupBox.Controls.Add(this.CourseInClassLabel);
+            this.ClassGroupBox.Controls.Add(this.ClassNameLabel);
+            this.ClassGroupBox.Location = new System.Drawing.Point(562, 6);
+            this.ClassGroupBox.Name = "ClassGroupBox";
+            this.ClassGroupBox.Size = new System.Drawing.Size(1296, 988);
+            this.ClassGroupBox.TabIndex = 4;
+            this.ClassGroupBox.TabStop = false;
+            this.ClassGroupBox.Text = "班級";
+            // 
+            // ClassNameLabel
+            // 
+            this.ClassNameLabel.AutoSize = true;
+            this.ClassNameLabel.Location = new System.Drawing.Point(94, 195);
+            this.ClassNameLabel.Name = "ClassNameLabel";
+            this.ClassNameLabel.Size = new System.Drawing.Size(133, 24);
+            this.ClassNameLabel.TabIndex = 0;
+            this.ClassNameLabel.Text = "班級名稱(*)";
+            // 
+            // CourseInClassLabel
+            // 
+            this.CourseInClassLabel.AutoSize = true;
+            this.CourseInClassLabel.Location = new System.Drawing.Point(6, 317);
+            this.CourseInClassLabel.Name = "CourseInClassLabel";
+            this.CourseInClassLabel.Size = new System.Drawing.Size(130, 24);
+            this.CourseInClassLabel.TabIndex = 1;
+            this.CourseInClassLabel.Text = "班級內課程";
+            // 
+            // CourseInClassListBox
+            // 
+            this.CourseInClassListBox.FormattingEnabled = true;
+            this.CourseInClassListBox.ItemHeight = 24;
+            this.CourseInClassListBox.Location = new System.Drawing.Point(6, 354);
+            this.CourseInClassListBox.Name = "CourseInClassListBox";
+            this.CourseInClassListBox.Size = new System.Drawing.Size(1284, 628);
+            this.CourseInClassListBox.TabIndex = 2;
+            // 
+            // ClassNameTextBox
+            // 
+            this.ClassNameTextBox.Location = new System.Drawing.Point(233, 192);
+            this.ClassNameTextBox.Name = "ClassNameTextBox";
+            this.ClassNameTextBox.Size = new System.Drawing.Size(994, 36);
+            this.ClassNameTextBox.TabIndex = 3;
+            // 
+            // AddClassToEditButton
+            // 
+            this.AddClassToEditButton.Location = new System.Drawing.Point(3, 1000);
+            this.AddClassToEditButton.Name = "AddClassToEditButton";
+            this.AddClassToEditButton.Size = new System.Drawing.Size(553, 98);
+            this.AddClassToEditButton.TabIndex = 5;
+            this.AddClassToEditButton.Text = "新增班級";
+            this.AddClassToEditButton.UseVisualStyleBackColor = true;
+            // 
+            // AddClassButton
+            // 
+            this.AddClassButton.Location = new System.Drawing.Point(1655, 1000);
+            this.AddClassButton.Name = "AddClassButton";
+            this.AddClassButton.Size = new System.Drawing.Size(197, 98);
+            this.AddClassButton.TabIndex = 6;
+            this.AddClassButton.Text = "新增";
+            this.AddClassButton.UseVisualStyleBackColor = true;
             // 
             // CourseManagementForm
             // 
@@ -571,6 +659,9 @@
             this.EditCourseGroupBox.ResumeLayout(false);
             this.EditCourseGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CourseWeekTimeCheckBoxGridView)).EndInit();
+            this.ClassManageTabPage.ResumeLayout(false);
+            this.ClassGroupBox.ResumeLayout(false);
+            this.ClassGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -620,5 +711,13 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn SaturdaySectionColumn;
         private System.Windows.Forms.Label LanguageOptionsLabel;
         private System.Windows.Forms.Button ImportAllCSIECourseButton;
+        private System.Windows.Forms.GroupBox ClassGroupBox;
+        private System.Windows.Forms.TextBox ClassNameTextBox;
+        private System.Windows.Forms.ListBox CourseInClassListBox;
+        private System.Windows.Forms.Label CourseInClassLabel;
+        private System.Windows.Forms.Label ClassNameLabel;
+        private System.Windows.Forms.ListBox ClassListBox;
+        private System.Windows.Forms.Button AddClassButton;
+        private System.Windows.Forms.Button AddClassToEditButton;
     }
 }
