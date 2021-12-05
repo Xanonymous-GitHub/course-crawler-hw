@@ -62,6 +62,24 @@ namespace CourseCrawler.Tests
             _robot.ClickDataGridViewCellBy(2, "一");
             _robot.ClickDataGridViewCellBy(2, "二");
             _robot.ClickByName("儲存");
+            _robot.CloseMessageBox();
+            _robot.SwitchTo(nameof(SelectCourseForm));
+            _robot.ClickByName("資工三");
+            _robot.AssertDataGridViewRowCountBy("視窗程式設計", 0);
+            _robot.ClickByName("電子三甲");
+            _robot.AssertDataGridViewRowCountBy("物件導向分析與設計", 1);
+        }
+
+        // CourseManagementFormTest2
+        [TestMethod()]
+        public void CourseManagementFormTest2() 
+        {
+            _robot.ClickButton("Manage Course");
+            _robot.SwitchTo(nameof(StartUpForm));
+            _robot.ClickButton("Select Course");
+            _robot.SwitchTo(nameof(SelectCourseForm));
+            _robot.ClickByName("資工三");
+            
         }
 
         // Cleanup
