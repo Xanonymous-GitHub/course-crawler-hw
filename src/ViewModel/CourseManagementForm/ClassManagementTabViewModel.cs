@@ -11,10 +11,12 @@ namespace CourseCrawler
         public ClassManagementTabViewModel()
         {
             DepartmentNamesToShow = new();
+            CoursesToShow = new();
         }
 
         private readonly Store _store = Store.Instance;
         public List<string> DepartmentNamesToShow;
+        public List<string> CoursesToShow;
 
         // GenerateClassList
         public void GenerateClassList()
@@ -32,6 +34,22 @@ namespace CourseCrawler
 
             DepartmentNamesToShow.Clear();
             DepartmentNamesToShow = DepartmentNamesToShow.Concat(supportedDepartmentFullNames).ToList();
+        }
+
+        // GenerateCoursesByClassName
+        public void GenerateCoursesByClassName(string className)
+        {
+            CoursesToShow.Clear();
+
+            if (!SupportedDataSourceInfo.GetAllCombinedNames.Contains(className)) return;
+
+            int dataSourceIndex = SupportedDataSourceInfo.GetAllCombinedNames.IndexOf(className);
+            if (dataSourceIndex == -1) throw new KeyNotFoundException();
+
+            GetCourseTableUseCase getCourseTableUseCase = new(dataSourceIndex);
+            CourseTable courseTable = getCourseTableUseCase.Do();
+
+            courseTable.Courses.ToList().ForEach(course => CoursesToShow.Add(course.Name));
         }
     }
 }

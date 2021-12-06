@@ -71,14 +71,14 @@
             this.SaturdaySectionColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.AddCourseButton = new System.Windows.Forms.Button();
             this.ClassManageTabPage = new System.Windows.Forms.TabPage();
-            this.ClassListBox = new System.Windows.Forms.ListBox();
-            this.ClassGroupBox = new System.Windows.Forms.GroupBox();
-            this.ClassNameLabel = new System.Windows.Forms.Label();
-            this.CourseInClassLabel = new System.Windows.Forms.Label();
-            this.CourseInClassListBox = new System.Windows.Forms.ListBox();
-            this.ClassNameTextBox = new System.Windows.Forms.TextBox();
-            this.AddClassToEditButton = new System.Windows.Forms.Button();
             this.AddClassButton = new System.Windows.Forms.Button();
+            this.AddClassToEditButton = new System.Windows.Forms.Button();
+            this.ClassGroupBox = new System.Windows.Forms.GroupBox();
+            this.ClassNameTextBox = new System.Windows.Forms.TextBox();
+            this.CourseInClassListBox = new System.Windows.Forms.ListBox();
+            this.CourseInClassLabel = new System.Windows.Forms.Label();
+            this.ClassNameLabel = new System.Windows.Forms.Label();
+            this.ClassListBox = new System.Windows.Forms.ListBox();
             this.ManagementTabControll.SuspendLayout();
             this.CourseManageTabPage.SuspendLayout();
             this.EditCourseGroupBox.SuspendLayout();
@@ -563,14 +563,23 @@
             this.ClassManageTabPage.Text = "班級管理";
             this.ClassManageTabPage.UseVisualStyleBackColor = true;
             // 
-            // ClassListBox
+            // AddClassButton
             // 
-            this.ClassListBox.FormattingEnabled = true;
-            this.ClassListBox.ItemHeight = 24;
-            this.ClassListBox.Location = new System.Drawing.Point(6, 6);
-            this.ClassListBox.Name = "ClassListBox";
-            this.ClassListBox.Size = new System.Drawing.Size(550, 988);
-            this.ClassListBox.TabIndex = 3;
+            this.AddClassButton.Location = new System.Drawing.Point(1655, 1000);
+            this.AddClassButton.Name = "AddClassButton";
+            this.AddClassButton.Size = new System.Drawing.Size(197, 98);
+            this.AddClassButton.TabIndex = 6;
+            this.AddClassButton.Text = "新增";
+            this.AddClassButton.UseVisualStyleBackColor = true;
+            // 
+            // AddClassToEditButton
+            // 
+            this.AddClassToEditButton.Location = new System.Drawing.Point(3, 1000);
+            this.AddClassToEditButton.Name = "AddClassToEditButton";
+            this.AddClassToEditButton.Size = new System.Drawing.Size(553, 98);
+            this.AddClassToEditButton.TabIndex = 5;
+            this.AddClassToEditButton.Text = "新增班級";
+            this.AddClassToEditButton.UseVisualStyleBackColor = true;
             // 
             // ClassGroupBox
             // 
@@ -585,23 +594,12 @@
             this.ClassGroupBox.TabStop = false;
             this.ClassGroupBox.Text = "班級";
             // 
-            // ClassNameLabel
+            // ClassNameTextBox
             // 
-            this.ClassNameLabel.AutoSize = true;
-            this.ClassNameLabel.Location = new System.Drawing.Point(94, 195);
-            this.ClassNameLabel.Name = "ClassNameLabel";
-            this.ClassNameLabel.Size = new System.Drawing.Size(133, 24);
-            this.ClassNameLabel.TabIndex = 0;
-            this.ClassNameLabel.Text = "班級名稱(*)";
-            // 
-            // CourseInClassLabel
-            // 
-            this.CourseInClassLabel.AutoSize = true;
-            this.CourseInClassLabel.Location = new System.Drawing.Point(6, 317);
-            this.CourseInClassLabel.Name = "CourseInClassLabel";
-            this.CourseInClassLabel.Size = new System.Drawing.Size(130, 24);
-            this.CourseInClassLabel.TabIndex = 1;
-            this.CourseInClassLabel.Text = "班級內課程";
+            this.ClassNameTextBox.Location = new System.Drawing.Point(233, 192);
+            this.ClassNameTextBox.Name = "ClassNameTextBox";
+            this.ClassNameTextBox.Size = new System.Drawing.Size(994, 36);
+            this.ClassNameTextBox.TabIndex = 3;
             // 
             // CourseInClassListBox
             // 
@@ -612,30 +610,33 @@
             this.CourseInClassListBox.Size = new System.Drawing.Size(1284, 628);
             this.CourseInClassListBox.TabIndex = 2;
             // 
-            // ClassNameTextBox
+            // CourseInClassLabel
             // 
-            this.ClassNameTextBox.Location = new System.Drawing.Point(233, 192);
-            this.ClassNameTextBox.Name = "ClassNameTextBox";
-            this.ClassNameTextBox.Size = new System.Drawing.Size(994, 36);
-            this.ClassNameTextBox.TabIndex = 3;
+            this.CourseInClassLabel.AutoSize = true;
+            this.CourseInClassLabel.Location = new System.Drawing.Point(6, 317);
+            this.CourseInClassLabel.Name = "CourseInClassLabel";
+            this.CourseInClassLabel.Size = new System.Drawing.Size(130, 24);
+            this.CourseInClassLabel.TabIndex = 1;
+            this.CourseInClassLabel.Text = "班級內課程";
             // 
-            // AddClassToEditButton
+            // ClassNameLabel
             // 
-            this.AddClassToEditButton.Location = new System.Drawing.Point(3, 1000);
-            this.AddClassToEditButton.Name = "AddClassToEditButton";
-            this.AddClassToEditButton.Size = new System.Drawing.Size(553, 98);
-            this.AddClassToEditButton.TabIndex = 5;
-            this.AddClassToEditButton.Text = "新增班級";
-            this.AddClassToEditButton.UseVisualStyleBackColor = true;
+            this.ClassNameLabel.AutoSize = true;
+            this.ClassNameLabel.Location = new System.Drawing.Point(94, 195);
+            this.ClassNameLabel.Name = "ClassNameLabel";
+            this.ClassNameLabel.Size = new System.Drawing.Size(133, 24);
+            this.ClassNameLabel.TabIndex = 0;
+            this.ClassNameLabel.Text = "班級名稱(*)";
             // 
-            // AddClassButton
+            // ClassListBox
             // 
-            this.AddClassButton.Location = new System.Drawing.Point(1655, 1000);
-            this.AddClassButton.Name = "AddClassButton";
-            this.AddClassButton.Size = new System.Drawing.Size(197, 98);
-            this.AddClassButton.TabIndex = 6;
-            this.AddClassButton.Text = "新增";
-            this.AddClassButton.UseVisualStyleBackColor = true;
+            this.ClassListBox.FormattingEnabled = true;
+            this.ClassListBox.ItemHeight = 24;
+            this.ClassListBox.Location = new System.Drawing.Point(6, 6);
+            this.ClassListBox.Name = "ClassListBox";
+            this.ClassListBox.Size = new System.Drawing.Size(550, 988);
+            this.ClassListBox.TabIndex = 3;
+            this.ClassListBox.SelectedIndexChanged += new System.EventHandler(this.ClassListBox_SelectedIndexChanged);
             // 
             // CourseManagementForm
             // 

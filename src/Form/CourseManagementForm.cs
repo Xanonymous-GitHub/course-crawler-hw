@@ -346,5 +346,22 @@ namespace CourseCrawler
 
         // CourseEnabledComboBox_SelectedIndexChanged
         private void CourseEnabledComboBox_SelectedIndexChanged(object sender, EventArgs e) => TriggerFieldValidationAndUseResult();
+
+        private void ClassListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = ClassListBox.SelectedIndex;
+            if (selectedIndex < 0)
+            {
+                ClassNameTextBox.Text = string.Empty;
+                return;
+            }
+
+            string className = _classTabViewModel.DepartmentNamesToShow[selectedIndex];
+            ClassNameTextBox.Text = className;
+
+            _classTabViewModel.GenerateCoursesByClassName(className);
+            CourseInClassListBox.Items.Clear();
+            _classTabViewModel.CoursesToShow.ForEach(courseName => CourseInClassListBox.Items.Add(courseName));
+        }
     }
 }
