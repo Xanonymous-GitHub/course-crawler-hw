@@ -51,5 +51,23 @@ namespace CourseCrawler
 
             courseTable.Courses.ToList().ForEach(course => CoursesToShow.Add(course.Name));
         }
+
+        public void AddNewClass(string className)
+        {
+            List<string> newAddedDepartmentFullNames;
+
+            if (_store.Exist(Consts.NewClasses))
+            {
+                newAddedDepartmentFullNames = _store.Use<List<string>>(Consts.NewClasses);
+                if (newAddedDepartmentFullNames == null) newAddedDepartmentFullNames = new();
+            }
+            else
+            {
+                newAddedDepartmentFullNames = new();
+            }
+
+            newAddedDepartmentFullNames.Add(className);
+            _store.Update(Consts.NewClasses, newAddedDepartmentFullNames);
+        }
     }
 }

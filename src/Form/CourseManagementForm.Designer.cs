@@ -571,6 +571,7 @@
             this.AddClassButton.TabIndex = 6;
             this.AddClassButton.Text = "新增";
             this.AddClassButton.UseVisualStyleBackColor = true;
+            this.AddClassButton.Click += new System.EventHandler(this.AddClassButton_Click);
             // 
             // AddClassToEditButton
             // 

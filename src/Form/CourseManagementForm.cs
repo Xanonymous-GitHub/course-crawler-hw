@@ -48,6 +48,7 @@ namespace CourseCrawler
             _courseTabViewModel.CourseTypeComboBoxItems.ForEach(symbol => CourseTypeComboBox.Items.Add(symbol));
             UpdateCourseWeekTimeCheckBoxGridView();
             TriggerFieldValidationAndUseResult();
+            UpdateClassManagementTabDisplayedCompomentEnabledStatus();
         }
 
         // BindCompomentsToData
@@ -402,6 +403,18 @@ namespace CourseCrawler
             bool isValid = ClassNameTextBox.Text.Trim() != string.Empty;
             _classManageTabDisplayStatus = isValid ? ClassManagementTabDisplayStatus.EditingNewClassAndValid : ClassManagementTabDisplayStatus.EditingNewClassButInvalid;
             UpdateClassManagementTabDisplayedCompomentEnabledStatus();
+        }
+
+        private void AddClassButton_Click(object sender, EventArgs e)
+        {
+            string newClassName = ClassNameTextBox.Text.Trim();
+            ClassNameTextBox.Text = string.Empty;
+            if (newClassName == string.Empty) return;
+
+            _classTabViewModel.AddNewClass(newClassName);
+            _classManageTabDisplayStatus = ClassManagementTabDisplayStatus.NotSpecifiedClassToBeEdited;
+            UpdateClassListBoxContent();
+            ClassListBox.SelectedIndex = ClassListBox.Items.Count - 1;
         }
     }
 }
