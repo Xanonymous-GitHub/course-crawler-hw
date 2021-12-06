@@ -24,7 +24,8 @@ namespace CourseCrawler
         private readonly CourseManagementFormViewModel _formViewModel;
         private bool _shouldSkipValidation = true;
         private int _currentCheckedCourseTimes;
-        private CourseManagementTabDisplayStatus _displayStatus;
+        private CourseManagementTabDisplayStatus _courseManageTabDisplayStatus;
+        private ClassManagementTabDisplayStatus _classManageTabDisplayStatus;
         private List<List<bool>> _courseTimeStates;
 
         // CourseManagementForm_Load
@@ -38,7 +39,7 @@ namespace CourseCrawler
         // SetupDefaultState
         private void SetupDefaultStates()
         {
-            _displayStatus = CourseManagementTabDisplayStatus.NotSpecifiedCourseToBeEdited;
+            _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.NotSpecifiedCourseToBeEdited;
             CourseEnabledComboBox.SelectedIndex = _formViewModel.DefaultCourseEnabledComboBoxSelectedIndex;
             _formViewModel.CourseTypeComboBoxItems.ForEach(symbol => CourseTypeComboBox.Items.Add(symbol));
             UpdateCourseWeekTimeCheckBoxGridView();
@@ -126,13 +127,21 @@ namespace CourseCrawler
         }
 
         // UpdateDisplayedCompomentEnabledStatus
-        private void UpdateDisplayedCompomentEnabledStatus()
+        private void UpdateCourseManagementTabDisplayedCompomentEnabledStatus()
         {
-            SaveCourseButton.Enabled = Utils.OR(_displayStatus, CourseManagementTabDisplayStatus.EditingCourseAndValid, CourseManagementTabDisplayStatus.EditingNewCourseAndValid);
-            AddCourseButton.Enabled = !Utils.OR(_displayStatus, CourseManagementTabDisplayStatus.EditingNewCourseAndValid, CourseManagementTabDisplayStatus.EditingNewCourseButInvalid);
+            SaveCourseButton.Enabled = Utils.OR(_courseManageTabDisplayStatus, CourseManagementTabDisplayStatus.EditingCourseAndValid, CourseManagementTabDisplayStatus.EditingNewCourseAndValid);
+            AddCourseButton.Enabled = !Utils.OR(_courseManageTabDisplayStatus, CourseManagementTabDisplayStatus.EditingNewCourseAndValid, CourseManagementTabDisplayStatus.EditingNewCourseButInvalid);
 
-            EditCourseGroupBox.Enabled = _displayStatus != CourseManagementTabDisplayStatus.NotSpecifiedCourseToBeEdited;
-            CourseWeekTimeCheckBoxGridView.Enabled = _displayStatus != CourseManagementTabDisplayStatus.NotSpecifiedCourseToBeEdited;
+            EditCourseGroupBox.Enabled = _courseManageTabDisplayStatus != CourseManagementTabDisplayStatus.NotSpecifiedCourseToBeEdited;
+            CourseWeekTimeCheckBoxGridView.Enabled = _courseManageTabDisplayStatus != CourseManagementTabDisplayStatus.NotSpecifiedCourseToBeEdited;
+        }
+
+        // UpdateClassManagementTabDisplayedCompomentEnabledStatus
+        private void UpdateClassManagementTabDisplayedCompomentEnabledStatus()
+        {
+            AddClassToEditButton.Enabled = Utils.OR(_classManageTabDisplayStatus, ClassManagementTabDisplayStatus.NotSpecifiedClassToBeEdited, ClassManagementTabDisplayStatus.ShowingExistedClass);
+            ClassNameTextBox.Enabled = _classManageTabDisplayStatus != ClassManagementTabDisplayStatus.NotSpecifiedClassToBeEdited;
+            AddClassButton.Enabled = _classManageTabDisplayStatus == ClassManagementTabDisplayStatus.EditingNewClassAndValid;
         }
 
         // ValidateEditingCompomentValues
@@ -177,13 +186,13 @@ namespace CourseCrawler
         {
             if (CourseListBox.SelectedIndex < 0)
             {
-                _displayStatus = CourseManagementTabDisplayStatus.NotSpecifiedCourseToBeEdited;
-                UpdateDisplayedCompomentEnabledStatus();
+                _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.NotSpecifiedCourseToBeEdited;
+                UpdateCourseManagementTabDisplayedCompomentEnabledStatus();
                 return;
             }
 
-            _displayStatus = CourseManagementTabDisplayStatus.EditingFiledsNotChangedOrSaved;
-            UpdateDisplayedCompomentEnabledStatus();
+            _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.EditingFiledsNotChangedOrSaved;
+            UpdateCourseManagementTabDisplayedCompomentEnabledStatus();
             _formViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
         }
 
@@ -212,20 +221,20 @@ namespace CourseCrawler
 
             if (isValid)
             {
-                if (Utils.OR((int)_displayStatus, 4, 5))
-                    _displayStatus = CourseManagementTabDisplayStatus.EditingNewCourseAndValid;
+                if (Utils.OR((int)_courseManageTabDisplayStatus, 4, 5))
+                    _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.EditingNewCourseAndValid;
                 else
-                    _displayStatus = CourseManagementTabDisplayStatus.EditingCourseAndValid;
+                    _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.EditingCourseAndValid;
             }
             else
             {
-                if (Utils.OR((int)_displayStatus, 4, 5))
-                    _displayStatus = CourseManagementTabDisplayStatus.EditingNewCourseButInvalid;
+                if (Utils.OR((int)_courseManageTabDisplayStatus, 4, 5))
+                    _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.EditingNewCourseButInvalid;
                 else
-                    _displayStatus = CourseManagementTabDisplayStatus.EditingCourseButInvalid;
+                    _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.EditingCourseButInvalid;
             }
 
-            UpdateDisplayedCompomentEnabledStatus();
+            UpdateCourseManagementTabDisplayedCompomentEnabledStatus();
         }
 
         // SaveCourseButton_Click
@@ -245,14 +254,14 @@ namespace CourseCrawler
                 CourseHourComboBox.Items[CourseHourComboBox.SelectedIndex].ToString(),
                 CourseClassComboBox.SelectedIndex,
                 _courseTimeStates,
-                _displayStatus == CourseManagementTabDisplayStatus.EditingNewCourseAndValid,
+                _courseManageTabDisplayStatus == CourseManagementTabDisplayStatus.EditingNewCourseAndValid,
                 isEnabled: CourseEnabledComboBox.SelectedIndex != 1
             );
 
             CourseListBox.SelectedIndex = _formViewModel.DefaultCourseListBoxSelectedIndex;
             _formViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
-            _displayStatus = CourseManagementTabDisplayStatus.EditingFiledsNotChangedOrSaved;
-            UpdateDisplayedCompomentEnabledStatus();
+            _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.EditingFiledsNotChangedOrSaved;
+            UpdateCourseManagementTabDisplayedCompomentEnabledStatus();
             MessageBox.Show(Consts.SuccessfullySaveCourse);
         }
 
@@ -260,8 +269,8 @@ namespace CourseCrawler
         private void AddCourseButton_Click(object sender, EventArgs e)
         {
             _formViewModel.GenerateEmptyFieldContens();
-            _displayStatus = CourseManagementTabDisplayStatus.EditingNewCourseButInvalid;
-            UpdateDisplayedCompomentEnabledStatus();
+            _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.EditingNewCourseButInvalid;
+            UpdateCourseManagementTabDisplayedCompomentEnabledStatus();
         }
 
         // CourseNumberTextBox_TextChanged
