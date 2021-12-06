@@ -54,6 +54,13 @@ namespace CourseCrawler
         {
             CourseListBox.DataBindings.Add(nameof(CourseListBox.DataSource), _courseTabViewModel, nameof(_courseTabViewModel.CoursesToBeEditStrList));
             _courseTabViewModel.PropertyChanged += UpdateDisplayedCompoments;
+            UpdateClassListBoxContent();
+        }
+
+        private void UpdateClassListBoxContent()
+        {
+            _classTabViewModel.GenerateClassList();
+            ClassListBox.Items.Clear();
             _classTabViewModel.DepartmentNamesToShow.ForEach(name => ClassListBox.Items.Add(name));
         }
 
@@ -342,6 +349,8 @@ namespace CourseCrawler
             _courseTabViewModel.GenerateEmptyFieldContens();
             SetupDefaultStates();
             CourseListBox.ClearSelected();
+
+            UpdateClassListBoxContent();
         }
 
         // CourseEnabledComboBox_SelectedIndexChanged
