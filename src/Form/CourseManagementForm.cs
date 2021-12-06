@@ -25,6 +25,7 @@ namespace CourseCrawler
         private readonly CourseManagementFormViewModel _courseTabViewModel;
         private readonly ClassManagementTabViewModel _classTabViewModel;
         private bool _shouldSkipValidation = true;
+        private bool _editingNewClass = false;
         private int _currentCheckedCourseTimes;
         private CourseManagementTabDisplayStatus _courseManageTabDisplayStatus;
         private ClassManagementTabDisplayStatus _classManageTabDisplayStatus;
@@ -358,10 +359,22 @@ namespace CourseCrawler
 
         private void ClassListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            CourseInClassListBox.Items.Clear();
             int selectedIndex = ClassListBox.SelectedIndex;
             if (selectedIndex < 0)
             {
+                if (_editingNewClass)
+                {
+                    _classManageTabDisplayStatus = ClassManagementTabDisplayStatus.EditingNewClassButInvalid;
+                    _editingNewClass = false;
+                }
+                else
+                {
+                    _classManageTabDisplayStatus = ClassManagementTabDisplayStatus.NotSpecifiedClassToBeEdited;
+                }
+
                 ClassNameTextBox.Text = string.Empty;
+                UpdateClassManagementTabDisplayedCompomentEnabledStatus();
                 return;
             }
 
@@ -369,8 +382,26 @@ namespace CourseCrawler
             ClassNameTextBox.Text = className;
 
             _classTabViewModel.GenerateCoursesByClassName(className);
-            CourseInClassListBox.Items.Clear();
             _classTabViewModel.CoursesToShow.ForEach(courseName => CourseInClassListBox.Items.Add(courseName));
+
+            _classManageTabDisplayStatus = ClassManagementTabDisplayStatus.ShowingExistedClass;
+            UpdateClassManagementTabDisplayedCompomentEnabledStatus();
+        }
+
+        private void AddClassToEditButton_Click(object sender, EventArgs e)
+        {
+            _classManageTabDisplayStatus = ClassManagementTabDisplayStatus.EditingNewClassButInvalid;
+            _editingNewClass = true;
+            ClassListBox.SelectedIndex = -1;
+        }
+
+        private void ClassNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!Utils.OR((int)_classManageTabDisplayStatus, 2, 3)) return;
+
+            bool isValid = ClassNameTextBox.Text.Trim() != string.Empty;
+            _classManageTabDisplayStatus = isValid ? ClassManagementTabDisplayStatus.EditingNewClassAndValid : ClassManagementTabDisplayStatus.EditingNewClassButInvalid;
+            UpdateClassManagementTabDisplayedCompomentEnabledStatus();
         }
     }
 }

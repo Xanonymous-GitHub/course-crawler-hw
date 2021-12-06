@@ -580,6 +580,7 @@
             this.AddClassToEditButton.TabIndex = 5;
             this.AddClassToEditButton.Text = "新增班級";
             this.AddClassToEditButton.UseVisualStyleBackColor = true;
+            this.AddClassToEditButton.Click += new System.EventHandler(this.AddClassToEditButton_Click);
             // 
             // ClassGroupBox
             // 
@@ -600,6 +601,7 @@
             this.ClassNameTextBox.Name = "ClassNameTextBox";
             this.ClassNameTextBox.Size = new System.Drawing.Size(994, 36);
             this.ClassNameTextBox.TabIndex = 3;
+            this.ClassNameTextBox.TextChanged += new System.EventHandler(this.ClassNameTextBox_TextChanged);
             // 
             // CourseInClassListBox
             // 
