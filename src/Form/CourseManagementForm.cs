@@ -16,12 +16,14 @@ namespace CourseCrawler
         {
             InitializeComponent();
             
-            _formViewModel = new();
+            _courseTabViewModel = new();
+            _classTabViewModel = new();
 
             SetupDefaultStates();
         }
 
-        private readonly CourseManagementFormViewModel _formViewModel;
+        private readonly CourseManagementFormViewModel _courseTabViewModel;
+        private readonly ClassManagementTabViewModel _classTabViewModel;
         private bool _shouldSkipValidation = true;
         private int _currentCheckedCourseTimes;
         private CourseManagementTabDisplayStatus _courseManageTabDisplayStatus;
@@ -31,6 +33,7 @@ namespace CourseCrawler
         // CourseManagementForm_Load
         private void CourseManagementForm_Load(object sender, EventArgs e)
         {
+            _classTabViewModel.GenerateClassList();
             BindCompomentsToData();
             CourseListBox.ClearSelected();
             _shouldSkipValidation = false;
@@ -40,8 +43,8 @@ namespace CourseCrawler
         private void SetupDefaultStates()
         {
             _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.NotSpecifiedCourseToBeEdited;
-            CourseEnabledComboBox.SelectedIndex = _formViewModel.DefaultCourseEnabledComboBoxSelectedIndex;
-            _formViewModel.CourseTypeComboBoxItems.ForEach(symbol => CourseTypeComboBox.Items.Add(symbol));
+            CourseEnabledComboBox.SelectedIndex = _courseTabViewModel.DefaultCourseEnabledComboBoxSelectedIndex;
+            _courseTabViewModel.CourseTypeComboBoxItems.ForEach(symbol => CourseTypeComboBox.Items.Add(symbol));
             UpdateCourseWeekTimeCheckBoxGridView();
             TriggerFieldValidationAndUseResult();
         }
@@ -49,14 +52,15 @@ namespace CourseCrawler
         // BindCompomentsToData
         private void BindCompomentsToData()
         {
-            CourseListBox.DataBindings.Add(nameof(CourseListBox.DataSource), _formViewModel, nameof(_formViewModel.CoursesToBeEditStrList));
-            _formViewModel.PropertyChanged += UpdateDisplayedCompoments;
+            CourseListBox.DataBindings.Add(nameof(CourseListBox.DataSource), _courseTabViewModel, nameof(_courseTabViewModel.CoursesToBeEditStrList));
+            _courseTabViewModel.PropertyChanged += UpdateDisplayedCompoments;
+            _classTabViewModel.DepartmentNamesToShow.ForEach(name => ClassListBox.Items.Add(name));
         }
 
         // UpdateCourseWeekTimeCheckBoxGridView
         private void UpdateCourseWeekTimeCheckBoxGridView()
         {
-            List<List<bool>> newStates = _formViewModel.CourseWeekTimeCheckStates;
+            List<List<bool>> newStates = _courseTabViewModel.CourseWeekTimeCheckStates;
             if (newStates == null || CourseWeekTimeCheckBoxGridView.VirtualMode) return;
 
             _courseTimeStates = newStates;
@@ -103,8 +107,8 @@ namespace CourseCrawler
         {
             CourseClassComboBox.Items.Clear();
             SupportedDataSourceInfo.GetAllCombinedNames.ForEach(name => CourseClassComboBox.Items.Add(name));
-            ICourse course = _formViewModel.CurrentEditingContent.course;
-            int dataSourceIndex = _formViewModel.CurrentEditingContent.dataSourceIndex;
+            ICourse course = _courseTabViewModel.CurrentEditingContent.course;
+            int dataSourceIndex = _courseTabViewModel.CurrentEditingContent.dataSourceIndex;
             _shouldSkipValidation = true;
 
             CourseNumberTextBox.Text = course?.Serial;
@@ -193,7 +197,7 @@ namespace CourseCrawler
 
             _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.EditingFiledsNotChangedOrSaved;
             UpdateCourseManagementTabDisplayedCompomentEnabledStatus();
-            _formViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
+            _courseTabViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
         }
 
         // CourseWeekTimeCheckBoxGridView_CellContentClick
@@ -240,7 +244,7 @@ namespace CourseCrawler
         // SaveCourseButton_Click
         private void SaveCourseButton_Click(object sender, EventArgs e)
         {
-            _formViewModel.UpdateCourse
+            _courseTabViewModel.UpdateCourse
             (
                 CourseNumberTextBox.Text.Trim(),
                 CourseNameTextBox.Text.Trim(),
@@ -258,8 +262,8 @@ namespace CourseCrawler
                 isEnabled: CourseEnabledComboBox.SelectedIndex != 1
             );
 
-            CourseListBox.SelectedIndex = _formViewModel.DefaultCourseListBoxSelectedIndex;
-            _formViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
+            CourseListBox.SelectedIndex = _courseTabViewModel.DefaultCourseListBoxSelectedIndex;
+            _courseTabViewModel.GenerateEditableFieldContens(CourseListBox.SelectedIndex);
             _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.EditingFiledsNotChangedOrSaved;
             UpdateCourseManagementTabDisplayedCompomentEnabledStatus();
             MessageBox.Show(Consts.SuccessfullySaveCourse);
@@ -268,7 +272,7 @@ namespace CourseCrawler
         // AddCourseButton_Click
         private void AddCourseButton_Click(object sender, EventArgs e)
         {
-            _formViewModel.GenerateEmptyFieldContens();
+            _courseTabViewModel.GenerateEmptyFieldContens();
             _courseManageTabDisplayStatus = CourseManagementTabDisplayStatus.EditingNewCourseButInvalid;
             UpdateCourseManagementTabDisplayedCompomentEnabledStatus();
         }
@@ -332,10 +336,10 @@ namespace CourseCrawler
 
             await Task.Run(() => new ProgressForm().ShowDialog());
 
-            _formViewModel.LoadCourses(shouldNotifyAllDepartmentListener: true);
+            _courseTabViewModel.LoadCourses(shouldNotifyAllDepartmentListener: true);
 
             ImportAllCSIECourseButton.Enabled = false;
-            _formViewModel.GenerateEmptyFieldContens();
+            _courseTabViewModel.GenerateEmptyFieldContens();
             SetupDefaultStates();
             CourseListBox.ClearSelected();
         }

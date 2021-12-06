@@ -20,10 +20,7 @@ namespace CourseCrawler
         }
 
         // Exist
-        public bool Exist(string storeItemName)
-        {
-            return _box.ContainsKey(storeItemName);
-        }
+        public bool Exist(string storeItemName) => _box.ContainsKey(storeItemName);
 
         // Use
         public T Use<T>(string storeItemName)

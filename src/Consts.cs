@@ -48,5 +48,6 @@ namespace CourseCrawler
         public static readonly string PathExecutableRoot = "\\bin";
         public static readonly string PathExecutableDebug = "\\bin\\Debug\\CourseCrawler.exe";
         public static readonly string PathExecutableDRelease = "\\bin\\Release\\CourseCrawler.exe";
+        public static readonly string NewClasses = "NewClasses";
     }
 }

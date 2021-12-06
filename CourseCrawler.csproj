@@ -146,7 +146,8 @@
     <Compile Include="src\UseCase\SelectedCourseUseCase.cs" />
     <Compile Include="src\UseCase\UpdateCourseUseCase.cs" />
     <Compile Include="src\Util\Utils.cs" />
-    <Compile Include="src\ViewModel\CourseManagementFormViewModel.cs" />
+    <Compile Include="src\ViewModel\CourseManagementForm\ClassManagementTabViewModel.cs" />
+    <Compile Include="src\ViewModel\CourseManagementForm\CourseManagementTabViewModel.cs" />
     <Compile Include="src\ViewModel\CourseSelectionResultFormViewModel.cs" />
     <Compile Include="src\ViewModel\SelectCourseFormViewModel.cs" />
     <Compile Include="src\ViewModel\StartUpFormViewModel.cs" />
