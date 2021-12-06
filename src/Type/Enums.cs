@@ -20,7 +20,7 @@ namespace CourseCrawler
         EN = 2,
     }
 
-    internal enum CourseManagementFormDisplayStatus
+    internal enum CourseManagementTabDisplayStatus
     {
         NotSpecifiedCourseToBeEdited = 0,
         EditingFiledsNotChangedOrSaved = 1,
@@ -28,5 +28,13 @@ namespace CourseCrawler
         EditingCourseAndValid = 3,
         EditingNewCourseButInvalid = 4,
         EditingNewCourseAndValid = 5,
+    }
+
+    internal enum ClassManagementTabDisplayStatus
+    {
+        NotSpecifiedClassToBeEdited = 0,
+        ShowingExistedClass = 1,
+        EditingNewClassButInvalid = 2,
+        EditingNewClassAndValid = 3,
     }
 }
